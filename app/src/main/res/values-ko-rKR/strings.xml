@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kpop</string>
+    <string name="start">시 작</string>
+    <string name="bestscore">최고 점수</string>
+    <string name="Easy">이지</string>
+    <string name="Korean">한글</string>
+    <string name="English">영어</string>
+</resources>

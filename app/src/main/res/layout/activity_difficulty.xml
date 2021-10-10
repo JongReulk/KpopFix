@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DifficultyActivity">
+
+    <TextView
+        android:id="@+id/difficulty"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="난이도"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="문제 수"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/question_num"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_horizontal"
+        android:text="30"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question" />
+
+    <TextView
+        android:id="@+id/txt_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="이지모드"
+        android:textColor="@color/teal_200"
+        android:textSize="28sp"
+        android:layout_marginTop="140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/difficulty"/>
+
+    <TextView
+        android:id="@+id/guide_level"
+        android:layout_width="330dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="150dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="잠시 후 게임이 시작됩니다.\n준비하세요!"
+        android:textSize="28sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/difficulty"/>
+
+    <LinearLayout
+        android:id="@+id/difficulty_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/difficulty">
+
+        <Button
+            android:id="@+id/easy_Button"
+            android:layout_width="130dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/Easy"
+            android:textSize="24sp"
+            app:backgroundTint="@color/teal_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/difficulty" />
+
+        <Button
+            android:id="@+id/normal_Button"
+            android:layout_width="130dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="50dp"
+            android:text="노말"
+            android:textSize="24sp"
+            app:backgroundTint="@color/teal_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/easy_Button" />
+
+        <Button
+            android:id="@+id/hard_Button"
+            android:layout_width="130dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="50dp"
+            android:text="하드"
+            android:textSize="24sp"
+            app:backgroundTint="@color/teal_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/normal_Button" />
+
+    </LinearLayout>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

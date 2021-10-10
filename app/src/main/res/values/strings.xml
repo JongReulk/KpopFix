@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Kpop</string>
+    <string name="start">start</string>
+    <string name="Title" translatable="false">K-pop\n게임맞추기</string>
+    <string name="bestscore">bestscore</string>
+    <string name="Korean">Korean</string>
+    <string name="English">English</string>
+    <string name="Easy">Easy</string>
+</resources>
