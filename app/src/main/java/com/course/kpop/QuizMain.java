@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class QuizMain extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
@@ -42,7 +43,7 @@ public class QuizMain extends YouTubeBaseActivity {
     //static String API_KEY ="AIzaSyDImlmmX6mnicXNlzed8TH1cn5YN62hBN0"; // 구글 콘솔사이트에서 발급받는 키
     static String API_KEY ="AIzaSyCnt7CWC3z_t_OimQLUwJ5-yXf6C6F83-A";
     static int score = 0;
-    static long videoLength;// 이지 노말 하드에 따라서 바뀜
+    static int videoLength;// 이지 노말 하드에 따라서 바뀜
     
     private String question;
     private String korean_Answer;
@@ -73,17 +74,19 @@ public class QuizMain extends YouTubeBaseActivity {
 
     ProgressDialog customProgressDialog;
 
-    private int max_num_value = 9;
+    private int max_num_value = 3;
     private int min_num_value = 0;
 
+    private static int randomTotal;
+    private static int randomStart;
 
 
+    private static int[] arr = {50000,55000,60000};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_main);
-
 
 
         Intent intent = getIntent();
@@ -118,8 +121,16 @@ public class QuizMain extends YouTubeBaseActivity {
 
         isHandler = true;
 
+        // 음악 로딩 다이얼로그 불러오기
         customProgressDialog = new ProgressDialog(this);
         customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+        Random random = new Random();
+        int randomInt = random.nextInt(max_num_value - min_num_value);
+
+        randomTotal = arr[randomInt] + videoLength;
+        randomStart = arr[randomInt];
 
 
         initPlayer();
@@ -127,7 +138,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
 
-        // 종렬 / 정답 확인 버튼 checkAnswer 함수 불러오기
+        // 정답 확인 버튼 checkAnswer 함수 불러오기
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,17 +227,17 @@ public class QuizMain extends YouTubeBaseActivity {
 //                player.cueVideo(videoId); // 여기에 있으면 동영상 재생이 안됨.
             }
 
-            player.loadVideo(question, 50000);
 
-            //final Handler handler = new Handler();
+            player.loadVideo(question, randomStart);
 
+            // 지정 시간동안 동영상 재생하기
             handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if(isHandler)
                     {
-                        if (player.getCurrentTimeMillis() <= videoLength) {
+                        if (player.getCurrentTimeMillis() <= randomTotal) {
                             handler.postDelayed(this, 1000);
 
                         } else {
