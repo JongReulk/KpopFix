@@ -29,6 +29,8 @@ public class  DifficultyActivity extends AppCompatActivity {
     private TextView textLevel;
     private LinearLayout difficultyLinear;
 
+    private boolean isFinished = false;
+
 
 
     @Override
@@ -71,11 +73,18 @@ public class  DifficultyActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent intent = new Intent(getApplicationContext(),QuizMain.class);
-                        intent.putExtra("difficulty_time",10000); // 10초
-                        startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
-                        //startActivity(intent);
-                        finish();
+                        if(!isFinished){
+                            Intent intent = new Intent(getApplicationContext(),QuizMain.class);
+                            intent.putExtra("difficulty_time",10000); // 10초
+                            startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
+                            //startActivity(intent);
+                            finish();
+                        }
+
+                        else{
+                            handler.removeCallbacks(this);
+                        }
+
                     }
                 },2000);
 
@@ -94,11 +103,17 @@ public class  DifficultyActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent intent = new Intent(getApplicationContext(),QuizMain.class);
-                        intent.putExtra("difficulty_time",5000); // 5초
-                        startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
-                        //startActivity(intent);
-                        finish();
+                        if(!isFinished){
+                            Intent intent = new Intent(getApplicationContext(),QuizMain.class);
+                            intent.putExtra("difficulty_time",5000); // 5초
+                            startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
+                            //startActivity(intent);
+                            finish();
+                        }
+
+                        else{
+                            handler.removeCallbacks(this);
+                        }
                     }
                 },2000);
             }
@@ -117,11 +132,17 @@ public class  DifficultyActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent intent = new Intent(getApplicationContext(),QuizMain.class);
-                        intent.putExtra("difficulty_time",3000); // 3초
-                        startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
-                        //startActivity(intent);
-                        finish();
+                        if(!isFinished){
+                            Intent intent = new Intent(getApplicationContext(),QuizMain.class);
+                            intent.putExtra("difficulty_time",3000); // 3초
+                            startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
+                            //startActivity(intent);
+                            finish();
+                        }
+
+                        else{
+                            handler.removeCallbacks(this);
+                        }
                     }
                 },2000);
             }
@@ -149,6 +170,11 @@ public class  DifficultyActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        isFinished = true;
+    }
 
     /*
     private void updateHighscore(int highscoreNew){

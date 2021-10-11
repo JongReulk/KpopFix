@@ -35,7 +35,7 @@ import java.util.Random;
 
 public class QuizMain extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
-    private static final long COUNTDOWN_IN_MILLIS = 15000;
+    private static final long COUNTDOWN_IN_MILLIS = 31000;
 
     YouTubePlayerView playerView;
     YouTubePlayer player;
@@ -79,6 +79,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
     private static int randomTotal;
     private static int randomStart;
+
+    private boolean isCountStart;
 
 
     private static int[] arr = {50000,55000,60000};
@@ -194,6 +196,7 @@ public class QuizMain extends YouTubeBaseActivity {
                     public void onLoaded(String s) {
                         Log.e("PlayerView", "onLoaded 호출됨: " + s);
                         customProgressDialog.dismiss();
+                        startCountDown();
                     }
 
                     @Override
@@ -271,10 +274,11 @@ public class QuizMain extends YouTubeBaseActivity {
             confirmButton.setText("정답 확인");
             answerText.getBackground().setColorFilter(null);
 
-            timeLeftInMillis = COUNTDOWN_IN_MILLIS;
-            startCountDown();
 
-            showSolution();
+            //카운트 다운 시작
+            isCountStart = true;
+            
+            checkLast();
 
         }
 
@@ -282,20 +286,27 @@ public class QuizMain extends YouTubeBaseActivity {
     }
 
     private void startCountDown() {
-        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-            }
+        if(isCountStart) {
+            timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+            countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    timeLeftInMillis = millisUntilFinished;
+                    updateCountDownText();
+                }
 
-            @Override
-            public void onFinish() {
-                timeLeftInMillis = 0;
-                updateCountDownText();
-                checkAnswer();
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+                    timeLeftInMillis = 0;
+                    updateCountDownText();
+                    checkAnswer();
+                }
+            }.start();
+        }
+        else{
+            Log.e("아님","!");
+        }
+        isCountStart=false;
     }
 
     private void updateCountDownText(){
@@ -355,7 +366,8 @@ public class QuizMain extends YouTubeBaseActivity {
     }
 
 
-    private void showSolution(){
+    // 마지막 문제인지 체크
+    private void checkLast(){
         if (questionCounter < questionCountTotal) {
             nextButton.setText("다음");
         }
