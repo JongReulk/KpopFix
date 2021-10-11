@@ -271,7 +271,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
             questionCounter ++;
             txtQuestionCount.setText(questionCounter + " / " + questionCountTotal); // 문제 수 확인
-            confirmButton.setText("정답 확인");
+            confirmButton.setText(getString(R.string.Confirm));
             answerText.getBackground().setColorFilter(null);
 
 
