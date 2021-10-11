@@ -67,7 +67,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                 difficultyLinear.setVisibility(View.GONE);
                 textViewGuidegame.setVisibility(View.VISIBLE);
                 textLevel.setVisibility(View.VISIBLE);
-                textLevel.setText("이지모드");
+                textLevel.setText(getString(R.string.Easy));
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -77,8 +77,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(),QuizMain.class);
                             intent.putExtra("difficulty_time",10000); // 10초
                             startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
-                            //startActivity(intent);
-                            finish();
+
                         }
 
                         else{
@@ -97,7 +96,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                 difficultyLinear.setVisibility(View.GONE);
                 textViewGuidegame.setVisibility(View.VISIBLE);
                 textLevel.setVisibility(View.VISIBLE);
-                textLevel.setText("노말모드");
+                textLevel.setText(getString(R.string.Normal));
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -107,8 +106,6 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(),QuizMain.class);
                             intent.putExtra("difficulty_time",5000); // 5초
                             startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
-                            //startActivity(intent);
-                            finish();
                         }
 
                         else{
@@ -125,7 +122,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                 difficultyLinear.setVisibility(View.GONE);
                 textViewGuidegame.setVisibility(View.VISIBLE);
                 textLevel.setVisibility(View.VISIBLE);
-                textLevel.setText("하드모드");
+                textLevel.setText(getString(R.string.Hard));
                 textLevel.setTextColor(Color.RED);
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -136,8 +133,6 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(),QuizMain.class);
                             intent.putExtra("difficulty_time",3000); // 3초
                             startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
-                            //startActivity(intent);
-                            finish();
                         }
 
                         else{

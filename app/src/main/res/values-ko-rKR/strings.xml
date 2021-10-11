@@ -4,6 +4,11 @@
     <string name="start">시 작</string>
     <string name="bestscore">최고 점수</string>
     <string name="Easy">이지</string>
-    <string name="Korean">한글</string>
-    <string name="English">영어</string>
+    <string name="Normal">노말</string>
+    <string name="Hard">하드</string>
+    <string name="Difficulty">난이도</string>
+    <string name="Gamestart">잠시 후 게임이 시작됩니다.\n준비하세요!</string>
+    <string name="Confirm">정답 확인</string>
+    <string name="Next">다음</string>
+    <string name="Finish">종료</string>
 </resources>

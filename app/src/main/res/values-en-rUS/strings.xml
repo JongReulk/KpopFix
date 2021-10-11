@@ -4,6 +4,11 @@
     <string name="start">Start</string>
     <string name="bestscore">Best Score</string>
     <string name="Easy">Easy</string>
-    <string name="Korean">Korean</string>
-    <string name="English">English</string>
+    <string name="Normal">Normal</string>
+    <string name="Hard">Hard</string>
+    <string name="Difficulty">Difficulty</string>
+    <string name="Gamestart">The game will begin.\nGet Ready!</string>
+    <string name="Confirm">Confirm</string>
+    <string name="Next">Next</string>
+    <string name="Finish">Finish</string>
 </resources>

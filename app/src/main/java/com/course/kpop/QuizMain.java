@@ -369,10 +369,10 @@ public class QuizMain extends YouTubeBaseActivity {
     // 마지막 문제인지 체크
     private void checkLast(){
         if (questionCounter < questionCountTotal) {
-            nextButton.setText("다음");
+            nextButton.setText(getString(R.string.Next));
         }
         else{
-            nextButton.setText("종료");
+            nextButton.setText(getString(R.string.Finish));
         }
     }
 

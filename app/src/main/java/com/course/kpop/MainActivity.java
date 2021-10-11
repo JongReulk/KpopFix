@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE_QUIZ = 101;
     public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String LANGUAGE_PREFS = "sharedLanguage";
     public static final String KEY_HIGHSCORE = "keyhighscore";
 
     private int highscore;
@@ -58,12 +57,6 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     AudioManager audioManager;
 
-    private String locale;
-    private int locale_number;
-
-    private Spinner lanSpinner;
-    ArrayList<String> locales;
-    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,43 +69,6 @@ public class MainActivity extends AppCompatActivity {
         //mediaPlayer = mediaPlayer.create(this, R.raw.titlesound1);
 
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
-
-
-        // 언어설정 스피너
-        SharedPreferences lanprefs = getSharedPreferences(LANGUAGE_PREFS,MODE_PRIVATE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            locale = lanprefs.getString("locale",getResources().getConfiguration().getLocales().get(0).getLanguage());
-        }
-        else{
-            locale = lanprefs.getString("locale", Resources.getSystem().getConfiguration().locale.getLanguage());
-        }
-
-        switch (locale){
-            case "ko":{
-                locale_number = 0;
-                Log.e("언어",":"+locale);
-                break;
-            }
-
-            case "en":{
-                locale_number = 1;
-                Log.e("언어",":"+locale);
-                break;
-            }
-        }
-
-        lanSpinner = findViewById(R.id.languagespinner);
-        locales = new ArrayList<>();
-
-        locales.add(getStringByLocal(this,R.string.Korean,locale));
-        locales.add(getStringByLocal(this,R.string.English,locale));
-
-        adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, locales);
-
-        lanSpinner.setAdapter(adapter);
-        lanSpinner.setSelection(locale_number);
-
 
         Intent intent = getIntent();
 
@@ -137,43 +93,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        lanSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != locale_number){
 
-                    switch (position){
-                        case 0:{
-                            locale = "ko";
-                            Log.e("언어",":"+locale);
-                            break;
-                        }
-                        case 1:{
-                            locale = "en";
-                            Log.e("언어",":"+locale);
-                            break;
-                        }
-                    }
-                    SharedPreferences.Editor laneditor = lanprefs.edit();
-
-                    laneditor.putString("locale",locale);
-
-                    laneditor.commit();
-
-                    Intent intent = getBaseContext().getPackageManager() .getLaunchIntentForPackage(getBaseContext().getPackageName());
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    finish();
-                    startActivity(intent);
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                lanSpinner.setSelection(locale_number);
-            }
-        });
 
     }
 
@@ -250,54 +170,4 @@ public class MainActivity extends AppCompatActivity {
 
    }
 
-    @NonNull
-    public static String getStringByLocal(Activity context, int resId, String locale) {
-        //버전에 따라서 언어를 설정해주는 방식이 다르기 때문에 분류해서 사용합니다.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-            return getStringByLocalPlus17(context, resId, locale);
-        else return getStringByLocalBefore17(context, resId, locale);
-    }
-
-    //젤리빈 버전 이상일 경우
-    @NonNull
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private static String getStringByLocalPlus17(Activity context, int resId, String locale) {
-        Configuration configuration = new Configuration(context.getResources().getConfiguration());
-        configuration.setLocale(new Locale(locale));
-        return context.createConfigurationContext(configuration).getResources().getString(resId);
-    }
-
-
-    //젤리빈 버전 이하일 경우
-    private static String getStringByLocalBefore17(Context context, int resId, String language) {
-        Resources currentResources = context.getResources();
-        AssetManager assets = currentResources.getAssets();
-        DisplayMetrics metrics = currentResources.getDisplayMetrics();
-        Configuration config = new Configuration(currentResources.getConfiguration());
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-        config.locale = locale;
-        /*
-        * Note: This (temporarily) changes the devices locale!
-        * TODO find a better way to get the string in the specific locale
-        *  */
-        Resources defaultLocaleResources = new Resources(assets, metrics, config);
-        String string = defaultLocaleResources.getString(resId);
-        // Restore device-specific locale
-        new Resources(assets, metrics, currentResources.getConfiguration());
-        return string;
-    }
-
-
-
-
-
-
-
-
-    /*
-    public void startButton(View view) {
-        Intent intent = new Intent(this, DifficultyActivity.class);
-        startActivity(intent);
-    }*/
 }

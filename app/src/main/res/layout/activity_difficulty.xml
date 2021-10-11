@@ -12,7 +12,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="난이도"
+        android:text="@string/Difficulty"
         android:textStyle="bold"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
 
         android:textStyle="bold"
         android:gravity="center"
-        android:text="이지모드"
+        android:text="@string/Easy"
         android:textColor="@color/teal_200"
         android:textSize="28sp"
         android:layout_marginTop="140dp"
@@ -67,7 +67,7 @@
         android:layout_marginTop="150dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:text="잠시 후 게임이 시작됩니다.\n준비하세요!"
+        android:text="@string/Gamestart"
         android:textSize="28sp"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,8 +87,8 @@
 
         <Button
             android:id="@+id/easy_Button"
-            android:layout_width="130dp"
-            android:layout_height="80dp"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
             android:layout_marginTop="50dp"
             android:text="@string/Easy"
             android:textSize="24sp"
@@ -99,10 +99,10 @@
 
         <Button
             android:id="@+id/normal_Button"
-            android:layout_width="130dp"
-            android:layout_height="80dp"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
             android:layout_marginTop="50dp"
-            android:text="노말"
+            android:text="@string/Normal"
             android:textSize="24sp"
             app:backgroundTint="@color/teal_700"
             app:layout_constraintEnd_toEndOf="parent"
@@ -111,10 +111,10 @@
 
         <Button
             android:id="@+id/hard_Button"
-            android:layout_width="130dp"
-            android:layout_height="80dp"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
             android:layout_marginTop="50dp"
-            android:text="하드"
+            android:text="@string/Hard"
             android:textSize="24sp"
             app:backgroundTint="@color/teal_700"
             app:layout_constraintEnd_toEndOf="parent"
