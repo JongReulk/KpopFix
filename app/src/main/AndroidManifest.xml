@@ -14,6 +14,7 @@
         <activity android:name=".QuizMain"></activity>
         <activity android:name=".DifficultyActivity"></activity>
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".TitleActivity"></activity>
         <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
