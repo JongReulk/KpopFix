@@ -11,4 +11,10 @@
     <string name="Confirm">정답 확인</string>
     <string name="Next">다음</string>
     <string name="Finish">종료</string>
+    <string name="Setting">설정</string>
+    <string name="Bgm">배경음악</string>
+    <string name="SFX">효과음</string>
+    <string name="Cancel">취소</string>
+    <string name="Ok">확인</string>
+
 </resources>
