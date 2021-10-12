@@ -18,8 +18,8 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
-                android:layout_height="374dp"
-                android:src="@drawable/titleimage" />
+                android:layout_height="wrap_content"
+                android:src="@drawable/tvframefull" />
 
             <TextView
                 android:id="@+id/touchtext"
