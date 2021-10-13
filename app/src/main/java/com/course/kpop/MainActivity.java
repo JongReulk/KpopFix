@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private long backPressedTime;
 
     private Button settingOpen;
+    private Button quitButton;
 
     SettingDialog settingDialog;
 
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         startButton = findViewById(R.id.Main_start);
         textViewHighscore = findViewById(R.id.txtbestScore);
         settingOpen = findViewById(R.id.setting_Button);
+        quitButton = findViewById(R.id.quit_Button);
         //mediaPlayer = mediaPlayer.create(this, R.raw.titlesound1);
 
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
@@ -89,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 dial();
+
+            }
+        });
+
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
 
             }
         });

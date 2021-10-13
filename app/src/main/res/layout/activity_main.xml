@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    // 모니터 이미지
+    <!-- 모니터 이미지 -->
     <ImageView
         android:id="@+id/Image_TV_main"
         android:layout_width="fill_parent"
@@ -32,6 +32,7 @@
                 android:text="@string/Title"
                 android:textColor="@color/white"
                 android:textSize="32sp"
+                android:gravity="center"
                 android:layout_marginTop="120dp"
                 android:layout_centerHorizontal="true"
                 />
@@ -49,7 +50,7 @@
 
         </RelativeLayout>
 
-    // 리모컨 이미지
+    <!-- 리모컨 이미지 -->
     <ImageView
         android:id="@+id/Remote_main"
         android:layout_width="fill_parent"
@@ -70,33 +71,40 @@
 
             <Button
                 android:id="@+id/Main_start"
-                android:layout_width="130dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="65dp"
                 android:text="@string/start"
                 android:textSize="24sp"
-                app:backgroundTint="@color/black"
+                android:gravity="center"
+                android:background="@drawable/btn_remote"
+                android:textColor="@color/white"
                 android:layout_centerHorizontal="true"
                 />
 
             <Button
                 android:id="@+id/setting_Button"
-                android:layout_width="130dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="130dp"
-                android:text="설정"
+                android:layout_below="@+id/Main_start"
+                android:text="@string/Setting"
                 android:textSize="24sp"
-                app:backgroundTint="@color/black"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/btn_remote"
+                android:textColor="@color/white"
                 android:layout_centerHorizontal="true"/>
 
             <Button
                 android:id="@+id/quit_Button"
-                android:layout_width="130dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="190dp"
-                android:text="종료"
+                android:layout_below="@+id/setting_Button"
+                android:layout_marginTop="15dp"
+                android:text="@string/Quit"
+                android:background="@drawable/btn_remote"
+                android:textColor="@color/white"
                 android:textSize="24sp"
-                app:backgroundTint="@color/black"
                 android:layout_centerHorizontal="true"/>
         </RelativeLayout>
 </RelativeLayout>

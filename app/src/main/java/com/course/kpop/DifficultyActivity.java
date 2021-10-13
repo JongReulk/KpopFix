@@ -9,6 +9,9 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +31,12 @@ public class  DifficultyActivity extends AppCompatActivity {
     private TextView textViewHighscore;
     private TextView textViewGuidegame;
     private TextView textLevel;
+    private LinearLayout layout_caution;
+    private LinearLayout layout_tip;
+
+    private TextView easyTip;
+    private TextView normalTip;
+    private TextView hardTip;
 
     private boolean isFinished = false;
 
@@ -44,20 +53,36 @@ public class  DifficultyActivity extends AppCompatActivity {
         normalButton = findViewById(R.id.normal_Button);
         hardButton = findViewById(R.id.hard_Button);
 
-        textViewGuidegame = findViewById(R.id.guide_level);
         textLevel = findViewById(R.id.txt_level);
 
-        textViewGuidegame.setVisibility(View.GONE);
-        textLevel.setVisibility(View.GONE);
+        easyTip = findViewById(R.id.txt_easytip);
+        normalTip = findViewById(R.id.txt_normaltip);
+        hardTip = findViewById(R.id.txt_hardtip);
 
-        //Intent intent = getIntent();
+        //텍스트뷰 특정 부분 색깔 바꾸기
+        Spannable easyspan = (Spannable) easyTip.getText();
+        easyspan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.easy_color)), 0, 4, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+
+        Spannable normalspan = (Spannable) normalTip.getText();
+        normalspan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.teal_200)), 0, 6, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+
+        Spannable hardspan = (Spannable) hardTip.getText();
+        hardspan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.hard_color)), 0, 4, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+
+        layout_caution = findViewById(R.id.layout_caution);
+        layout_tip = findViewById(R.id.layout_difficultyTip);
+
+        layout_caution.setVisibility(View.GONE);
+
+
 
         easyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textViewGuidegame.setVisibility(View.VISIBLE);
-                textLevel.setVisibility(View.VISIBLE);
+                layout_tip.setVisibility(View.GONE);
+                layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Easy));
+                textLevel.setTextColor(getResources().getColor(R.color.easy_color));
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -83,9 +108,10 @@ public class  DifficultyActivity extends AppCompatActivity {
         normalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textViewGuidegame.setVisibility(View.VISIBLE);
-                textLevel.setVisibility(View.VISIBLE);
+                layout_tip.setVisibility(View.GONE);
+                layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Normal));
+                textLevel.setTextColor(getResources().getColor(R.color.teal_200));
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -108,10 +134,10 @@ public class  DifficultyActivity extends AppCompatActivity {
         hardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textViewGuidegame.setVisibility(View.VISIBLE);
-                textLevel.setVisibility(View.VISIBLE);
+                layout_tip.setVisibility(View.GONE);
+                layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Hard));
-                textLevel.setTextColor(Color.RED);
+                textLevel.setTextColor(getResources().getColor(R.color.hard_color));
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override

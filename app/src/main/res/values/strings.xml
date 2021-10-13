@@ -1,20 +1,21 @@
 <resources>
     <string name="app_name">Kpop</string>
-    <string name="start">Start</string>
-    <string name="Title" translatable="false">K-pop\n게임맞추기</string>
-    <string name="bestscore">bestscore</string>
-    <string name="Easy">Easy</string>
-    <string name="Normal">Normal</string>
-    <string name="Hard">Hard</string>
-    <string name="Difficulty">Difficulty</string>
-    <string name="Gamestart">The game will begin.\nGet Ready!</string>
+    <string name="start">START</string>
+    <string name="Title" translatable="false">K-pop\n게임</string>
+    <string name="bestscore">Best Score</string>
+    <string name="Easy">EASY</string>
+    <string name="Normal">" NORMAL "</string>
+    <string name="Hard">HARD</string>
+    <string name="Difficulty">DIFFICULTY</string>
+    <string name="Gamestart">The Game will begin.\nGET READY!</string>
     <string name="Confirm">Confirm</string>
     <string name="Next">Next</string>
     <string name="Finish">Finish</string>
-    <string name="Setting">Settings</string>
+    <string name="Setting">" SETTINGS "</string>
     <string name="Bgm">BGM</string>
     <string name="SFX">SFX</string>
-    <string name="Cancel">Cancel</string>
+    <string name="Cancel">CANCEL</string>
     <string name="Ok">Ok</string>
+    <string name="Quit">QUIT</string>
 
 </resources>
