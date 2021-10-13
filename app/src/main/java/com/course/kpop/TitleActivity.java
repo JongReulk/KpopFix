@@ -1,5 +1,6 @@
 package com.course.kpop;
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -11,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.service.wallpaper.WallpaperService;
+import android.widget.Button;
 
 public class TitleActivity extends AppCompatActivity {
 
@@ -18,11 +20,15 @@ public class TitleActivity extends AppCompatActivity {
     private static MediaPlayer mediaplayer;
     private static TextView TitleText; // 터치투스타트
     private static ImageView TitleImage; // 타이틀이미지
+    private static Button StartButton; // 스타트버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
+
+        // 버튼 생성
+        StartButton = findViewById(R.id.start_button);
 
         // BGN 실행
         mediaplayer = MediaPlayer.create(this, R.raw.titlesound1);
@@ -30,8 +36,20 @@ public class TitleActivity extends AppCompatActivity {
 
         //타이틀 텍스트뷰
         TitleText = (TextView) findViewById(R.id.touchtext);
+
+        StartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaplayer.stop();
+                mediaplayer.release();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
+
+/*
     @Override
     protected void onStart()
     {
@@ -40,7 +58,9 @@ public class TitleActivity extends AppCompatActivity {
         Animation animTreanTop = AnimationUtils.loadAnimation(getApplication(), R.anim.top);
         TitleText.startAnimation(animTreanTop);
     }
+*/
 
+    /*
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -65,5 +85,5 @@ public class TitleActivity extends AppCompatActivity {
                 break;
         }
         return true;
-    }
+    }*/
 }
