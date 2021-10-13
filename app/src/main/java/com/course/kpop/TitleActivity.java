@@ -18,9 +18,9 @@ public class TitleActivity extends AppCompatActivity {
 
     // MediaPlayer 객체생성
     private static MediaPlayer mediaplayer;
-    private static TextView TitleText; // 터치투스타트
-    private static ImageView TitleImage; // 타이틀이미지
-    private static Button StartButton; // 스타트버튼
+    private TextView TitleText; // 터치투스타트
+    private ImageView TitleImage; // 타이틀이미지
+    private Button StartButton; // 스타트버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class TitleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_title);
 
         // 버튼 생성
-        StartButton = findViewById(R.id.start_button);
+        StartButton = findViewById(R.id.Title_start);
 
         // BGN 실행
         mediaplayer = MediaPlayer.create(this, R.raw.titlesound1);
@@ -44,8 +44,10 @@ public class TitleActivity extends AppCompatActivity {
                 mediaplayer.release();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
+
     }
 
 
