@@ -19,7 +19,7 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="500dp"
                 android:src="@drawable/tvframebig" />
 
             <TextView
@@ -30,6 +30,7 @@
                 android:layout_marginTop="130dp"
                 android:gravity="center"
                 android:text="KPOP GAME"
+                android:textColor="@color/white"
                 android:textSize="45dp" />
 
             <TextView
