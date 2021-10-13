@@ -21,6 +21,17 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/tvframefull" />
 
+
+            <TextView
+                android:id="@+id/titletext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75dp"
+                android:layout_marginTop="130dp"
+                android:gravity="center"
+                android:text="KPOP GAME"
+                android:textSize="45dp" />
+
             <TextView
                 android:id="@+id/touchtext"
                 android:layout_width="wrap_content"
@@ -37,6 +48,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/versiontext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="640dp"
