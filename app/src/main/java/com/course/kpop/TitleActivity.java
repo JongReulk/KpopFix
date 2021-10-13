@@ -50,8 +50,14 @@ public class TitleActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaplayer.stop();
+        mediaplayer.release();
+    }
 
-/*
+    /*
     @Override
     protected void onStart()
     {
