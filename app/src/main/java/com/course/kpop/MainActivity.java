@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private long backPressedTime;
 
-    private ImageView settingOpen;
+    private Button settingOpen;
 
     SettingDialog settingDialog;
 
@@ -63,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startButton = findViewById(R.id.start_button);
+        startButton = findViewById(R.id.Main_start);
         textViewHighscore = findViewById(R.id.txtbestScore);
-        settingOpen = findViewById(R.id.settingOpen);
+        settingOpen = findViewById(R.id.setting_Button);
         //mediaPlayer = mediaPlayer.create(this, R.raw.titlesound1);
 
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);

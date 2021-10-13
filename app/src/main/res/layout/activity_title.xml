@@ -7,11 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".TitleActivity">
 
-
-
-
     <ImageView
-        android:id="@+id/Image_TV"
+        android:id="@+id/Image_TV_title"
         android:layout_width="fill_parent"
         android:layout_height="330dp"
         android:scaleType="fitXY"
@@ -21,10 +18,10 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/Image_TV"
-        android:layout_alignBottom="@+id/Image_TV"
-        android:layout_alignLeft="@+id/Image_TV"
-        android:layout_alignRight="@+id/Image_TV"
+        android:layout_alignTop="@+id/Image_TV_title"
+        android:layout_alignBottom="@+id/Image_TV_title"
+        android:layout_alignLeft="@+id/Image_TV_title"
+        android:layout_alignRight="@+id/Image_TV_title"
         >
 
 
@@ -64,8 +61,6 @@
              />
 
     </RelativeLayout>
-
-
 
     <Button
         android:id="@+id/Title_start"

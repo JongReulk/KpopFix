@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class  DifficultyActivity extends AppCompatActivity {
@@ -27,7 +28,6 @@ public class  DifficultyActivity extends AppCompatActivity {
     private TextView textViewHighscore;
     private TextView textViewGuidegame;
     private TextView textLevel;
-    private LinearLayout difficultyLinear;
 
     private boolean isFinished = false;
 
@@ -44,27 +44,17 @@ public class  DifficultyActivity extends AppCompatActivity {
         normalButton = findViewById(R.id.normal_Button);
         hardButton = findViewById(R.id.hard_Button);
 
-        textViewHighscore = findViewById(R.id.question_num);
         textViewGuidegame = findViewById(R.id.guide_level);
         textLevel = findViewById(R.id.txt_level);
-        difficultyLinear = findViewById(R.id.difficulty_layout);
 
         textViewGuidegame.setVisibility(View.GONE);
         textLevel.setVisibility(View.GONE);
 
-
         //Intent intent = getIntent();
-
-
-
-
-
-
 
         easyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                difficultyLinear.setVisibility(View.GONE);
                 textViewGuidegame.setVisibility(View.VISIBLE);
                 textLevel.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Easy));
@@ -93,7 +83,6 @@ public class  DifficultyActivity extends AppCompatActivity {
         normalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                difficultyLinear.setVisibility(View.GONE);
                 textViewGuidegame.setVisibility(View.VISIBLE);
                 textLevel.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Normal));
@@ -119,7 +108,6 @@ public class  DifficultyActivity extends AppCompatActivity {
         hardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                difficultyLinear.setVisibility(View.GONE);
                 textViewGuidegame.setVisibility(View.VISIBLE);
                 textLevel.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Hard));

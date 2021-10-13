@@ -1,82 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:text="@string/Title"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtbestScore"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/bestscore"
-        android:textSize="24sp"
-
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle"/>
-
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="130dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/start"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtbestScore" />
-
-    <Button
-        android:id="@+id/setting_Button"
-        android:layout_width="130dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="50dp"
-        android:text="설정"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_button" />
-
-    <Button
-        android:id="@+id/quit_Button"
-        android:layout_width="130dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="50dp"
-        android:text="종료"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_Button" />
-
+    // 모니터 이미지
     <ImageView
-        android:id="@+id/settingOpen"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:id="@+id/Image_TV_main"
+        android:layout_width="fill_parent"
+        android:layout_height="330dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/tvframefullfix" />
 
-        android:layout_marginRight="350dp"
-        android:layout_marginBottom="147dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/gearwheel" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/Image_TV_main"
+            android:layout_alignBottom="@+id/Image_TV_main"
+            android:layout_alignLeft="@+id/Image_TV_main"
+            android:layout_alignRight="@+id/Image_TV_main"
+            >
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Title"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:layout_marginTop="120dp"
+                android:layout_centerHorizontal="true"
+                />
 
+            <TextView
+                android:id="@+id/txtbestScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/bestscore"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:layout_below="@+id/txtTitle"
+                android:layout_centerHorizontal="true"/>
 
+        </RelativeLayout>
 
+    // 리모컨 이미지
+    <ImageView
+        android:id="@+id/Remote_main"
+        android:layout_width="fill_parent"
+        android:layout_height="330dp"
+        android:src="@drawable/remotecontrol"
+        android:layout_below="@+id/Image_TV_main"
+        android:layout_marginTop="30dp"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/Remote_main"
+            android:layout_alignBottom="@+id/Remote_main"
+            android:layout_alignLeft="@+id/Remote_main"
+            android:layout_alignRight="@+id/Remote_main"
+            >
+
+            <Button
+                android:id="@+id/Main_start"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:text="@string/start"
+                android:textSize="24sp"
+                app:backgroundTint="@color/black"
+                android:layout_centerHorizontal="true"
+                />
+
+            <Button
+                android:id="@+id/setting_Button"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="130dp"
+                android:text="설정"
+                android:textSize="24sp"
+                app:backgroundTint="@color/black"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:id="@+id/quit_Button"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="190dp"
+                android:text="종료"
+                android:textSize="24sp"
+                app:backgroundTint="@color/black"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+</RelativeLayout>
