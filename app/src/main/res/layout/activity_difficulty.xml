@@ -163,6 +163,7 @@
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
             android:layout_centerHorizontal="true"
+            android:soundEffectsEnabled="false"
             />
 
         <Button
@@ -176,6 +177,7 @@
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
             android:layout_centerHorizontal="true"
+            android:soundEffectsEnabled="false"
             />
 
         <Button
@@ -189,6 +191,7 @@
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
             android:layout_centerHorizontal="true"
+            android:soundEffectsEnabled="false"
             />
     </RelativeLayout>
 

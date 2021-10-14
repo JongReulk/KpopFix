@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Spannable;
@@ -19,9 +20,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.media.SoundPool;
 
 public class  DifficultyActivity extends AppCompatActivity {
-
 
     private Button easyButton;
     private Button normalButton;
@@ -40,7 +41,9 @@ public class  DifficultyActivity extends AppCompatActivity {
 
     private boolean isFinished = false;
 
-
+    //Sound
+    SoundPool soundPool;	//작성
+    int soundID;		//작성
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +77,15 @@ public class  DifficultyActivity extends AppCompatActivity {
 
         layout_caution.setVisibility(View.GONE);
 
-
+        //Sound
+        soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC,0);	//작성
+        soundID = soundPool.load(this,R.raw.buttonsound1,1);
 
         easyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(soundID,1f,1f,0,0,1f);
+
                 layout_tip.setVisibility(View.GONE);
                 layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Easy));
@@ -108,6 +115,8 @@ public class  DifficultyActivity extends AppCompatActivity {
         normalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(soundID,1f,1f,0,0,1f);
+
                 layout_tip.setVisibility(View.GONE);
                 layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Normal));
@@ -134,6 +143,8 @@ public class  DifficultyActivity extends AppCompatActivity {
         hardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(soundID,1f,1f,0,0,1f);
+
                 layout_tip.setVisibility(View.GONE);
                 layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Hard));

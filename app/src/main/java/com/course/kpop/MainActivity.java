@@ -18,6 +18,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -36,6 +37,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import android.media.SoundPool;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     AudioManager audioManager;
 
+    //Sound
+    SoundPool soundPool;	//작성
+    int soundID;		//작성
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +79,17 @@ public class MainActivity extends AppCompatActivity {
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
 
         Intent intent = getIntent();
-
-
         loadHighscore();
+
+        //Sound
+        soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
+        soundID = soundPool.load(this,R.raw.buttonsound1,1);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(soundID,1f,1f,0,0,1f);
+
                 Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
                 startActivityForResult(intent,REQUEST_CODE_QUIZ);
             }
@@ -89,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         settingOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                soundPool.play(soundID,1f,1f,0,0,1f);
                 dial();
 
             }
@@ -98,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                soundPool.play(soundID,1f,1f,0,0,1f);
                 finish();
 
             }

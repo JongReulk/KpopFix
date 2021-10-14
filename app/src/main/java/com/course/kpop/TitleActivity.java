@@ -20,15 +20,11 @@ public class TitleActivity extends AppCompatActivity {
     private static MediaPlayer mediaplayer;
     private TextView TitleText; // 터치투스타트
     private ImageView TitleImage; // 타이틀이미지
-    private Button StartButton; // 스타트버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
-
-        // 버튼 생성
-        StartButton = findViewById(R.id.Title_start);
 
         // BGN 실행
         mediaplayer = MediaPlayer.create(this, R.raw.titlesound1);
@@ -36,18 +32,6 @@ public class TitleActivity extends AppCompatActivity {
 
         //타이틀 텍스트뷰
         TitleText = (TextView) findViewById(R.id.touchtext);
-
-        StartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaplayer.stop();
-                mediaplayer.release();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
     }
 
     @Override
@@ -57,18 +41,15 @@ public class TitleActivity extends AppCompatActivity {
         mediaplayer.release();
     }
 
-    /*
     @Override
     protected void onStart()
     {
         super.onStart();
 
-        Animation animTreanTop = AnimationUtils.loadAnimation(getApplication(), R.anim.top);
-        TitleText.startAnimation(animTreanTop);
+        Animation bounce = AnimationUtils.loadAnimation(getApplication(), R.anim.top);
+        TitleText.startAnimation(bounce);
     }
-*/
 
-    /*
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -93,5 +74,5 @@ public class TitleActivity extends AppCompatActivity {
                 break;
         }
         return true;
-    }*/
+    }
 }
