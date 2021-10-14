@@ -86,6 +86,13 @@ public class  DifficultyActivity extends AppCompatActivity {
             public void onClick(View v) {
                 soundPool.play(soundID,1f,1f,0,0,1f);
 
+                easyButton.setEnabled(false);
+                normalButton.setEnabled(false);
+                hardButton.setEnabled(false);
+                easyButton.setTextColor(Color.GRAY);
+                normalButton.setTextColor(Color.GRAY);
+                hardButton.setTextColor(Color.GRAY);
+
                 layout_tip.setVisibility(View.GONE);
                 layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Easy));
@@ -117,6 +124,13 @@ public class  DifficultyActivity extends AppCompatActivity {
             public void onClick(View v) {
                 soundPool.play(soundID,1f,1f,0,0,1f);
 
+                easyButton.setEnabled(false);
+                normalButton.setEnabled(false);
+                hardButton.setEnabled(false);
+                easyButton.setTextColor(Color.GRAY);
+                normalButton.setTextColor(Color.GRAY);
+                hardButton.setTextColor(Color.GRAY);
+
                 layout_tip.setVisibility(View.GONE);
                 layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Normal));
@@ -144,6 +158,13 @@ public class  DifficultyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(soundID,1f,1f,0,0,1f);
+
+                easyButton.setEnabled(false);
+                normalButton.setEnabled(false);
+                hardButton.setEnabled(false);
+                easyButton.setTextColor(Color.GRAY);
+                normalButton.setTextColor(Color.GRAY);
+                hardButton.setTextColor(Color.GRAY);
 
                 layout_tip.setVisibility(View.GONE);
                 layout_caution.setVisibility(View.VISIBLE);
