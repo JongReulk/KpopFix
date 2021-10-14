@@ -1,8 +1,5 @@
 package com.course.kpop;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -13,9 +10,11 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,10 +23,6 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -82,6 +77,9 @@ public class QuizMain extends YouTubeBaseActivity {
 
     private boolean isCountStart;
 
+    private ImageView leftSpeaker;
+    private ImageView rightSpeaker;
+
 
     private static int[] arr = {50000,55000,60000};
 
@@ -119,7 +117,17 @@ public class QuizMain extends YouTubeBaseActivity {
         questionCountTotal = 3;
         Collections.shuffle(questionList);
 
+        // 스피커 애니메이션
+        leftSpeaker = findViewById(R.id.imageView_speakerleft);
+        rightSpeaker = findViewById(R.id.imageView_speakerright);
+
+        Animation speakerleft_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.speaker_leftanim);
+        leftSpeaker.startAnimation(speakerleft_anim);
+        Animation speakerright_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.speaker_rightanim);
+        rightSpeaker.startAnimation(speakerright_anim);
+
         nextButton.setEnabled(false);
+        nextButton.setTextColor(Color.GRAY);
 
         isHandler = true;
 
@@ -140,12 +148,16 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
 
+
+
         // 정답 확인 버튼 checkAnswer 함수 불러오기
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 checkAnswer();
+                leftSpeaker.startAnimation(speakerleft_anim);
+                rightSpeaker.startAnimation(speakerright_anim);
             }
         });
 
@@ -159,7 +171,9 @@ public class QuizMain extends YouTubeBaseActivity {
 
                 playerView.setAlpha(0.0f);
                 confirmButton.setEnabled(true);
+                confirmButton.setTextColor(Color.WHITE);
                 nextButton.setEnabled(false);
+                nextButton.setTextColor(Color.GRAY);
                 answerText.setText("");
 
                 answerText.getBackground().setColorFilter(null);
@@ -169,6 +183,8 @@ public class QuizMain extends YouTubeBaseActivity {
                     finishQuiz();
                 }
                 showNextQuestion();
+                leftSpeaker.startAnimation(speakerleft_anim);
+                rightSpeaker.startAnimation(speakerright_anim);
 
                 playVideo();
             }
@@ -246,6 +262,8 @@ public class QuizMain extends YouTubeBaseActivity {
                         } else {
                             handler.removeCallbacks(this);
                             player.pause();
+                            rightSpeaker.clearAnimation();
+                            leftSpeaker.clearAnimation();
                         }
                     }
 
@@ -255,6 +273,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
                 }
             }, 1000);
+
         }
 
 
@@ -277,6 +296,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
             //카운트 다운 시작
             isCountStart = true;
+
             
             checkLast();
 
@@ -336,7 +356,9 @@ public class QuizMain extends YouTubeBaseActivity {
 
         playerView.setAlpha(1.0f);
         nextButton.setEnabled(true);
+        nextButton.setTextColor(Color.WHITE);
         confirmButton.setEnabled(false);
+        confirmButton.setTextColor(Color.GRAY);
         
         //좌우 공백 및 띄어쓰기 공백 없애기
         String answer = answerText.getText().toString().trim().replace(" ","");

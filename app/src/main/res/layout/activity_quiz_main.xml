@@ -1,103 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".QuizMain">
 
-    <view
-        android:id="@+id/youtubeView"
-        class="com.google.android.youtube.player.YouTubePlayerView"
+    <ImageView
+        android:id="@+id/Image_TV_quizmain"
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="330dp"
+        android:scaleType="fitXY"
         android:layout_marginTop="80dp"
-        android:alpha="0.0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/tvframefullfix" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/Image_TV_quizmain"
+        android:layout_alignBottom="@+id/Image_TV_quizmain"
+        android:layout_alignLeft="@+id/Image_TV_quizmain"
+        android:layout_alignRight="@+id/Image_TV_quizmain"
+        >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- 모니터 이미지 -->
+dp             <view
+                android:id="@+id/youtubeView"
+                class="com.google.android.youtube.player.YouTubePlayerView"
+                android:layout_width="fill_parent"
+                android:layout_height="305dp"
+                android:layout_marginTop="0dp"
+                android:alpha="0.0"
+                 />
+        </FrameLayout>
+    </RelativeLayout>
+
+
 
     <TextView
         android:id="@+id/txtQuestionCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
         android:textSize="30dp"
-
+        android:layout_margin="20dp"
         android:text="1/10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 
     <TextView
         android:id="@+id/txtCountDown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
         android:text="30"
         android:textSize="35dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="18dp"
+        android:layout_centerHorizontal="true"
+        />
 
     <TextView
         android:id="@+id/scoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="20dp"
         android:text="0"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
         android:textSize="30dp"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:gravity="center"
         android:hint="(예: Next level, 넥스트레벨)"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/youtubeView" />
+        android:layout_below="@+id/Image_TV_quizmain"
+        />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <!-- 리모컨 이미지 -->
+    <ImageView
+        android:id="@+id/Remote_quizmain"
+        android:layout_width="200dp"
+        android:layout_height="fill_parent"
+        android:src="@drawable/remotecontrol"
+        android:layout_below="@+id/editText"
+        android:scaleType="fitXY"
+        android:layout_marginTop="0dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText">
-
+        android:layout_alignTop="@+id/Remote_quizmain"
+        android:layout_alignBottom="@+id/Remote_quizmain"
+        android:layout_alignLeft="@+id/Remote_quizmain"
+        android:layout_alignRight="@+id/Remote_quizmain"
+        >
 
         <Button
             android:id="@+id/confirmButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="65dp"
+            android:textSize="24sp"
+            android:background="@drawable/btn_remote"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
             android:text="@string/Confirm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+             />
 
         <Button
             android:id="@+id/nextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24sp"
             android:layout_marginTop="15dp"
+            android:background="@drawable/btn_remote"
+            android:textColor="@color/white"
+            android:layout_below="@+id/confirmButton"
+            android:layout_centerHorizontal="true"
             android:text="@string/Next"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+             />
 
 
-    </LinearLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView_speakerleft"
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:layout_toLeftOf="@+id/Remote_quizmain"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="5dp"
+
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/speakerright"
+        />
+
+    <ImageView
+        android:id="@+id/imageView_speakerright"
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:layout_toRightOf="@+id/Remote_quizmain"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/speakerleft"
+        />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -8,7 +8,7 @@
     <string name="Hard">HARD</string>
     <string name="Difficulty">DIFFICULTY</string>
     <string name="Gamestart">The Game will begin.\nGET READY!</string>
-    <string name="Confirm">Confirm</string>
+    <string name="Confirm">" Confirm "</string>
     <string name="Next">Next</string>
     <string name="Finish">Finish</string>
     <string name="Setting">" SETTINGS "</string>
