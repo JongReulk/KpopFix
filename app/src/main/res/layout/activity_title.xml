@@ -5,42 +5,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="1"
     tools:context=".TitleActivity">
 
-
-    <TextView
-        android:id="@+id/titletext"
-        android:layout_width="wrap_content"
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:text="KPOP GAME"
-        android:textColor="@color/black"
-        android:textSize="45dp" />
+        android:background="@android:color/darker_gray"
 
-    <TextView
-        android:id="@+id/touchtext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titletext"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"
-        android:gravity="bottom"
-        android:text="Touch To Start!!"
-        android:textColor="@color/black"
-        android:textSize="32sp" />
+        app:scale_base_width="400"
+        app:scale_base_height="800">
 
-    <TextView
+        <TextView
+            android:id="@+id/titletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="KPOP GAME"
+            android:textColor="@color/black"
+            app:scale_height="150"
+            app:scale_left="70"
+            app:scale_textsize="40"
+            app:scale_top="100"
+            app:scale_width="200" />
+
+        <TextView
+            android:id="@+id/touchtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:scale_left="20"
+            app:scale_top="40"
+            app:scale_width="100"
+            app:scale_height="200"
+            app:scale_textsize="32"
+            android:text="Touch To Start!!"
+            android:textColor="@color/black"
+            />
+
+        <TextView
             android:id="@+id/versiontext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/touchtext"
             android:gravity="end"
+            app:scale_left="20"
+            app:scale_top="40"
+            app:scale_width="100"
+            app:scale_height="200"
+            app:scale_textsize="32"
             android:text="ver. 1.00"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginTop="50dp"
-            android:layout_toRightOf="@+id/touchtext"
-            android:layout_below="@+id/touchtext"
              />
-
+    </com.ssomai.android.scalablelayout.ScalableLayout>
 </RelativeLayout>
