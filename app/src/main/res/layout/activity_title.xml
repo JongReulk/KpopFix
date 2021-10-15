@@ -1,60 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="1"
-    tools:context=".TitleActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/titletext"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
+        android:text="KPOP GAME"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="52dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        />
 
-        app:scale_base_width="400"
-        app:scale_base_height="800">
+    <TextView
+        android:id="@+id/touchtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Touch To Start!!"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="35dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.6"
+        />
 
-        <TextView
-            android:id="@+id/titletext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="KPOP GAME"
-            android:textColor="@color/black"
-            app:scale_height="150"
-            app:scale_left="70"
-            app:scale_textsize="40"
-            app:scale_top="100"
-            app:scale_width="200" />
+    <TextView
+        android:id="@+id/versiontext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/touchtext"
+        android:gravity="end"
+        android:text="ver. 1.00"
+        android:textColor="@color/black"
+        android:textSize="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintHorizontal_bias="1"
+         />
 
-        <TextView
-            android:id="@+id/touchtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:scale_left="20"
-            app:scale_top="40"
-            app:scale_width="100"
-            app:scale_height="200"
-            app:scale_textsize="32"
-            android:text="Touch To Start!!"
-            android:textColor="@color/black"
-            />
 
-        <TextView
-            android:id="@+id/versiontext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/touchtext"
-            android:gravity="end"
-            app:scale_left="20"
-            app:scale_top="40"
-            app:scale_width="100"
-            app:scale_height="200"
-            app:scale_textsize="32"
-            android:text="ver. 1.00"
-            android:textColor="@color/black"
-             />
-    </com.ssomai.android.scalablelayout.ScalableLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
