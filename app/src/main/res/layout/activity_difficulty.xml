@@ -1,169 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DifficultyActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <!-- 모니터 이미지 -->
     <ImageView
         android:id="@+id/Image_TV_difficulty"
-        android:layout_width="fill_parent"
-        android:layout_height="330dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/tvframefullfix" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/Image_TV_difficulty"
-            android:layout_alignBottom="@+id/Image_TV_difficulty"
-            android:layout_alignLeft="@+id/Image_TV_difficulty"
-            android:layout_alignRight="@+id/Image_TV_difficulty"
-            >
-            <TextView
-                android:id="@+id/difficulty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="@string/Difficulty"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="32sp"
-                android:layout_centerHorizontal="true"
-                />
-
-            <LinearLayout
-                android:id="@+id/layout_difficultyTip"
-                android:orientation="vertical"
-                android:paddingTop="20dp"
-                android:gravity="center"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/difficulty"
-                >
-
-            <TextView
-                android:id="@+id/txt_easytip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="EASY : 10 "
-                android:paddingTop="10dp"
-                android:textColor="@color/white"
-                android:textSize="28sp"
-                android:bufferType="spannable"
-                android:layout_centerHorizontal="true"
-
-                />
-
-            <TextView
-                android:id="@+id/txt_normaltip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="NORMAL : 5 "
-                android:paddingTop="10dp"
-                android:textColor="@color/white"
-                android:textSize="28sp"
-                android:bufferType="spannable"
-                android:layout_centerHorizontal="true"
-
-                />
-
-            <TextView
-                android:id="@+id/txt_hardtip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="HARD : 3 "
-                android:bufferType="spannable"
-                android:paddingTop="10dp"
-                android:textColor="@color/white"
-                android:textSize="28sp"
-                android:layout_centerHorizontal="true"
-
-                />
+        android:src="@drawable/tvframefullfix"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.20"
+        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintWidth_percent="1"
+        />
 
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/layout_caution"
-                android:orientation="vertical"
-                android:paddingTop="20dp"
-                android:gravity="center"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/difficulty"
-                >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_difficultyTip"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/Image_TV_difficulty"
+        app:layout_constraintBottom_toBottomOf="@+id/Image_TV_difficulty"
+        app:layout_constraintLeft_toLeftOf="@+id/Image_TV_difficulty"
+        app:layout_constraintRight_toRightOf="@+id/Image_TV_difficulty"
+        >
 
-            <TextView
-                android:id="@+id/txt_level"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/Easy"
-                android:paddingTop="10dp"
-                android:textColor="@color/teal_200"
-                android:textSize="28sp"
-                android:layout_centerHorizontal="true"
+        <TextView
+            android:id="@+id/difficulty"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/Difficulty"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="24sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
 
-                />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.5"
+            />
 
-            <TextView
-                android:id="@+id/guide_level"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/Gamestart"
-                android:paddingTop="10dp"
-                android:textSize="28sp"
-                android:textColor="@color/white"
-                android:layout_centerHorizontal="true"
 
-                />
-            </LinearLayout>
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/txt_easytip"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="EASY : 10 "
+            android:textColor="@color/white"
+            android:bufferType="spannable"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="24sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toBottomOf="@id/difficulty"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.15"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintWidth_percent="1"
+
+            />
+
+        <TextView
+            android:id="@+id/txt_normaltip"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="NORMAL : 5 "
+            android:textColor="@color/white"
+            android:bufferType="spannable"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="24sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toBottomOf="@+id/txt_easytip"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintWidth_percent="1"
+
+
+            />
+
+        <TextView
+            android:id="@+id/txt_hardtip"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="HARD : 3 "
+            android:bufferType="spannable"
+            android:textColor="@color/white"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="24sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toBottomOf="@+id/txt_normaltip"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintHeight_percent="0.13"
+            app:layout_constraintWidth_percent="1"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_caution"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/Image_TV_difficulty"
+        app:layout_constraintBottom_toBottomOf="@+id/Image_TV_difficulty"
+        app:layout_constraintLeft_toLeftOf="@+id/Image_TV_difficulty"
+        app:layout_constraintRight_toRightOf="@+id/Image_TV_difficulty"
+        >
+
+        <TextView
+            android:id="@+id/difficulty_level"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/Difficulty"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="24sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.5"
+            />
+
+        <TextView
+            android:id="@+id/txt_level"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="@string/Easy"
+            android:textColor="@color/teal_200"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="24sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toBottomOf="@id/difficulty_level"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.15"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintWidth_percent="0.2"
+            />
+
+        <TextView
+            android:id="@+id/guide_level"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="@string/Gamestart"
+            android:textColor="@color/white"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="24sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toBottomOf="@+id/txt_level"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintWidth_percent="1"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <!-- 리모컨 이미지 -->
     <ImageView
         android:id="@+id/Remote_difficulty"
-        android:layout_width="fill_parent"
-        android:layout_height="330dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:src="@drawable/remotecontrol"
-        android:layout_below="@+id/Image_TV_difficulty"
-        android:layout_marginTop="30dp"
+        android:scaleType="fitXY"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintWidth_percent="0.45"
         />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/Remote_difficulty"
-        android:layout_alignBottom="@+id/Remote_difficulty"
-        android:layout_alignLeft="@+id/Remote_difficulty"
-        android:layout_alignRight="@+id/Remote_difficulty"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/Remote_difficulty"
+        app:layout_constraintBottom_toBottomOf="@+id/Remote_difficulty"
+        app:layout_constraintLeft_toLeftOf="@+id/Remote_difficulty"
+        app:layout_constraintRight_toRightOf="@+id/Remote_difficulty"
         >
 
         <Button
             android:id="@+id/easy_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="65dp"
             android:text="@string/Easy"
             android:textSize="24sp"
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
-            android:layout_centerHorizontal="true"
             android:soundEffectsEnabled="false"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.3"
             />
 
         <Button
@@ -171,13 +261,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/easy_Button"
-            android:layout_marginTop="15dp"
             android:text="@string/Normal"
             android:textSize="24sp"
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
-            android:layout_centerHorizontal="true"
             android:soundEffectsEnabled="false"
+
+            app:layout_constraintTop_toBottomOf="@+id/easy_Button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
             />
 
         <Button
@@ -185,14 +279,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/normal_Button"
-            android:layout_marginTop="15dp"
             android:text="@string/Hard"
             android:textSize="24sp"
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
-            android:layout_centerHorizontal="true"
             android:soundEffectsEnabled="false"
-            />
-    </RelativeLayout>
 
-</RelativeLayout>
+            app:layout_constraintTop_toBottomOf="@+id/normal_Button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.15"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

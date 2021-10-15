@@ -2,6 +2,7 @@ package com.course.kpop;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -33,8 +34,8 @@ public class  DifficultyActivity extends AppCompatActivity {
     private TextView textViewHighscore;
     private TextView textViewGuidegame;
     private TextView textLevel;
-    private LinearLayout layout_caution;
-    private LinearLayout layout_tip;
+    private ConstraintLayout layout_caution;
+    private ConstraintLayout layout_tip;
 
     private TextView easyTip;
     private TextView normalTip;
