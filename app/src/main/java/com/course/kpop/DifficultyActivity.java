@@ -17,6 +17,8 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -63,6 +65,17 @@ public class  DifficultyActivity extends AppCompatActivity {
         easyTip = findViewById(R.id.txt_easytip);
         normalTip = findViewById(R.id.txt_normaltip);
         hardTip = findViewById(R.id.txt_hardtip);
+
+
+        ImageView remote_difficulty = (ImageView) findViewById(R.id.Remote_difficulty);
+        ConstraintLayout remotebutton_difficulty = (ConstraintLayout) findViewById(R.id.Remote_button_difficulty);
+
+        Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remote_difficulty.startAnimation(RemoteUp);
+
+        Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remotebutton_difficulty.startAnimation(RemoteButtonUp);
+
 
         //텍스트뷰 특정 부분 색깔 바꾸기
         Spannable easyspan = (Spannable) easyTip.getText();

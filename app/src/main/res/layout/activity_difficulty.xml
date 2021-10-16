@@ -225,11 +225,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="1"
-        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHeight_percent="0.38"
         app:layout_constraintWidth_percent="0.45"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Remote_button_difficulty"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"

@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -130,6 +132,15 @@ public class QuizMain extends YouTubeBaseActivity {
         nextButton.setTextColor(Color.GRAY);
 
         isHandler = true;
+
+        ImageView remote_quiz = (ImageView) findViewById(R.id.Remote_quizmain);
+        ConstraintLayout remotebutton_quiz = (ConstraintLayout) findViewById(R.id.Remote_button_quizmain);
+
+        Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remote_quiz.startAnimation(RemoteUp);
+
+        Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remotebutton_quiz.startAnimation(RemoteButtonUp);
 
         // 음악 로딩 다이얼로그 불러오기
         customProgressDialog = new ProgressDialog(this);
