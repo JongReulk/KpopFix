@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
                         startActivityForResult(intent,REQUEST_CODE_QUIZ);
                     }
-                }, 500); //딜레이 타임 조절
+                }, 600); //딜레이 타임 조절
             }
         });
 
