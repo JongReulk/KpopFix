@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.media.SoundPool;
+import android.os.Handler;
 
 public class  DifficultyActivity extends AppCompatActivity {
 

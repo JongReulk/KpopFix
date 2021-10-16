@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import android.media.SoundPool;
+import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,9 +82,11 @@ public class MainActivity extends AppCompatActivity {
         ImageView remote = (ImageView) findViewById(R.id.Remote_main);
         ConstraintLayout remotebutton = (ConstraintLayout) findViewById(R.id.Remote_button_main);
 
+        //리모컨이미지 올라옴
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remote.startAnimation(RemoteUp);
 
+        //리모컨버튼 올라옴
         Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remotebutton.startAnimation(RemoteButtonUp);
 
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         soundID = soundPool.load(this,R.raw.buttonsound1,1);
 
 
-
+        Handler handler = new Handler();
 
 
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -112,8 +115,21 @@ public class MainActivity extends AppCompatActivity {
 
                 soundPool.play(soundID,1f,1f,0,0,1f);
 
-                Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
-                startActivityForResult(intent,REQUEST_CODE_QUIZ);
+                //리모컨이미지 내려감
+                Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                remote.startAnimation(RemoteDown);
+
+                //리모컨버튼 내려감
+                Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                remotebutton.startAnimation(RemoteButtonDown);
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
+                        startActivityForResult(intent,REQUEST_CODE_QUIZ);
+                    }
+                }, 500); //딜레이 타임 조절
             }
         });
 

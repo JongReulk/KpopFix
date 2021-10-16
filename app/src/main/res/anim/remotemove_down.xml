@@ -3,9 +3,9 @@
 
     <translate
         android:interpolator="@android:anim/linear_interpolator"
-        android:duration="2000"
-        android:fromYDelta="-100%p"
-        android:toYDelta="0"
+        android:duration="1000"
+        android:fromYDelta="0"
+        android:toYDelta="100%"
         android:repeatCount="0"
         android:repeatMode="reverse" />
 </set>
