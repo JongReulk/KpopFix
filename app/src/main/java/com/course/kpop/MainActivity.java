@@ -24,11 +24,14 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -63,12 +66,24 @@ public class MainActivity extends AppCompatActivity {
 
     //Sound
     SoundPool soundPool;	//작성
-    int soundID;		//작성
+    int soundID;		    //작성
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //리모컨 이미지
+        ImageView remote = (ImageView) findViewById(R.id.Remote_main);
+        RelativeLayout remotebutton = (RelativeLayout) findViewById(R.id.Remote_button_main);
+
+        Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remote.startAnimation(RemoteUp);
+
+        Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remotebutton.startAnimation(RemoteButtonUp);
 
         startButton = findViewById(R.id.Main_start);
         textViewHighscore = findViewById(R.id.txtbestScore);
@@ -85,9 +100,13 @@ public class MainActivity extends AppCompatActivity {
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
         soundID = soundPool.load(this,R.raw.buttonsound1,1);
 
+
+
+
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 soundPool.play(soundID,1f,1f,0,0,1f);
 
                 Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
