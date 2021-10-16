@@ -28,6 +28,7 @@ public class TitleActivity extends AppCompatActivity {
 
         // BGN 실행
         mediaplayer = MediaPlayer.create(this, R.raw.titlesound1);
+        mediaplayer.setLooping(true);
         mediaplayer.start();
 
         //타이틀 텍스트뷰

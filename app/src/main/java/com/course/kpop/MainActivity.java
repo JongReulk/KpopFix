@@ -17,6 +17,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.icu.text.CaseMap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
     SettingDialog settingDialog;
 
-    private static MediaPlayer mediaplayer;
     
     AudioManager audioManager;
 
@@ -149,11 +149,11 @@ public class MainActivity extends AppCompatActivity {
                 soundPool.play(soundID,1f,1f,0,0,1f);
 
                 // BGM 종료
-                if(MainActivity.mediaplayer!=null)
+                if(TitleActivity.mediaplayer!=null)
                 {
-                    MainActivity.mediaplayer.stop();
-                    MainActivity.mediaplayer.release();
-                    MainActivity.mediaplayer = null;
+                    TitleActivity.mediaplayer.stop();
+                    TitleActivity.mediaplayer.release();
+                    TitleActivity.mediaplayer = null;
                 }
                 finish();
 
@@ -201,11 +201,11 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()){
             finish();
-            if(mediaplayer!=null)
+            if(TitleActivity.mediaplayer!=null)
             {
-                mediaplayer.stop();
-                mediaplayer.release();
-                mediaplayer = null;
+                TitleActivity.mediaplayer.stop();
+                TitleActivity.mediaplayer.release();
+                TitleActivity.mediaplayer = null;
             }
         }else{
             Toast.makeText(this, "한번 더 뒤로버튼을 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
