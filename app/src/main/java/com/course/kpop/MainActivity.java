@@ -164,6 +164,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(TitleActivity.mediaplayer!=null)
+        {
+            TitleActivity.mediaplayer.start();
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
