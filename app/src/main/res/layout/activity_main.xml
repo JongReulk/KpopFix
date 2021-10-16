@@ -1,114 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- 모니터 이미지 -->
     <ImageView
         android:id="@+id/Image_TV_main"
-        android:layout_width="fill_parent"
-        android:layout_height="330dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/tvframefullfix" />
+        android:src="@drawable/tvframefullfinal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.20"
+        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintWidth_percent="1"
+        />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/Image_TV_main"
-            android:layout_alignBottom="@+id/Image_TV_main"
-            android:layout_alignLeft="@+id/Image_TV_main"
-            android:layout_alignRight="@+id/Image_TV_main"
-            >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/Image_TV_main"
+        app:layout_constraintBottom_toBottomOf="@+id/Image_TV_main"
+        app:layout_constraintLeft_toLeftOf="@+id/Image_TV_main"
+        app:layout_constraintRight_toRightOf="@+id/Image_TV_main">
+
             <TextView
                 android:id="@+id/txtTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/Title"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:textColor="@color/white"
-                android:textSize="32sp"
+                android:textStyle="bold"
                 android:gravity="center"
-                android:layout_marginTop="120dp"
-                android:layout_centerHorizontal="true"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="28sp"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeStepGranularity="2sp"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintHeight_percent="0.3"
+                app:layout_constraintWidth_percent="0.6"
                 />
 
             <TextView
                 android:id="@+id/txtbestScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/bestscore"
-                android:textSize="24sp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:textStyle="bold"
+                android:gravity="center"
                 android:textColor="@color/white"
-                android:layout_below="@+id/txtTitle"
-                android:layout_centerHorizontal="true"/>
+                android:bufferType="spannable"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="24sp"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeStepGranularity="2sp"
 
-        </RelativeLayout>
+                app:layout_constraintTop_toBottomOf="@id/txtTitle"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.25"
+                app:layout_constraintHeight_percent="0.13"
+                app:layout_constraintWidth_percent="1"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- 리모컨 이미지 -->
     <ImageView
         android:id="@+id/Remote_main"
-        android:layout_width="fill_parent"
-        android:layout_height="330dp"
         android:src="@drawable/remotecontrol"
-        android:layout_below="@+id/Image_TV_main"
-        android:layout_marginTop="30dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintWidth_percent="0.45"
         />
 
-        <RelativeLayout
-            android:id="@+id/Remote_button_main"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Remote_button_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/Remote_main"
+        app:layout_constraintBottom_toBottomOf="@+id/Remote_main"
+        app:layout_constraintLeft_toLeftOf="@+id/Remote_main"
+        app:layout_constraintRight_toRightOf="@+id/Remote_main"
+        >
+
+        <Button
+            android:id="@+id/Main_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/Remote_main"
-            android:layout_alignBottom="@+id/Remote_main"
-            android:layout_alignLeft="@+id/Remote_main"
-            android:layout_alignRight="@+id/Remote_main"
-            >
+            android:text="@string/start"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:background="@drawable/btn_remote"
+            android:textColor="@color/white"
+            android:soundEffectsEnabled="false"
 
-            <Button
-                android:id="@+id/Main_start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="65dp"
-                android:text="@string/start"
-                android:textSize="24sp"
-                android:gravity="center"
-                android:background="@drawable/btn_remote"
-                android:textColor="@color/white"
-                android:layout_centerHorizontal="true"
-                android:soundEffectsEnabled="false"
-                />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            />
 
-            <Button
-                android:id="@+id/setting_Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/Main_start"
-                android:text="@string/Setting"
-                android:textSize="24sp"
-                android:gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/btn_remote"
-                android:textColor="@color/white"
-                android:layout_centerHorizontal="true"
-                android:soundEffectsEnabled="false"/>
+        <Button
+            android:id="@+id/setting_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Main_start"
+            android:text="@string/Setting"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:background="@drawable/btn_remote"
+            android:textColor="@color/white"
+            android:soundEffectsEnabled="false"
 
-            <Button
-                android:id="@+id/quit_Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/setting_Button"
-                android:layout_marginTop="15dp"
-                android:text="@string/Quit"
-                android:background="@drawable/btn_remote"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:layout_centerHorizontal="true"
-                android:soundEffectsEnabled="false"/>
-        </RelativeLayout>
-</RelativeLayout>
+            app:layout_constraintTop_toBottomOf="@+id/Main_start"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+
+            />
+
+        <Button
+            android:id="@+id/quit_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/setting_Button"
+            android:text="@string/Quit"
+            android:background="@drawable/btn_remote"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:soundEffectsEnabled="false"
+
+            app:layout_constraintTop_toBottomOf="@+id/setting_Button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

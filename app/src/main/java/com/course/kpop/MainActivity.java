@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         //리모컨 이미지
         ImageView remote = (ImageView) findViewById(R.id.Remote_main);
-        RelativeLayout remotebutton = (RelativeLayout) findViewById(R.id.Remote_button_main);
+        ConstraintLayout remotebutton = (ConstraintLayout) findViewById(R.id.Remote_button_main);
 
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remote.startAnimation(RemoteUp);
