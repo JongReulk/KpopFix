@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
     SettingDialog settingDialog;
 
-    MediaPlayer mediaPlayer;
+    private static MediaPlayer mediaplayer;
+    
     AudioManager audioManager;
 
     //Sound
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +131,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(soundID,1f,1f,0,0,1f);
+
+                // BGM 종료
+                if(MainActivity.mediaplayer!=null)
+                {
+                    MainActivity.mediaplayer.stop();
+                    MainActivity.mediaplayer.release();
+                    MainActivity.mediaplayer = null;
+                }
                 finish();
 
             }
@@ -175,6 +185,12 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()){
             finish();
+            if(mediaplayer!=null)
+            {
+                mediaplayer.stop();
+                mediaplayer.release();
+                mediaplayer = null;
+            }
         }else{
             Toast.makeText(this, "한번 더 뒤로버튼을 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }

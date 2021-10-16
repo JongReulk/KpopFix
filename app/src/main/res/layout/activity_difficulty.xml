@@ -18,7 +18,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.20"
-        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintHeight_percent="0.44"
         app:layout_constraintWidth_percent="1"
         />
 
@@ -220,7 +220,7 @@
         android:src="@drawable/remotecontrol"
         android:scaleType="fitXY"
 
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Image_TV_difficulty"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -17,7 +17,7 @@ import android.widget.Button;
 public class TitleActivity extends AppCompatActivity {
 
     // MediaPlayer 객체생성
-    private static MediaPlayer mediaplayer;
+    public static MediaPlayer mediaplayer;
     private TextView TitleText; // 터치투스타트
     private ImageView TitleImage; // 타이틀이미지
 
@@ -37,14 +37,14 @@ public class TitleActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        mediaplayer.stop();
-        mediaplayer.release();
     }
 
     @Override
     protected void onStart()
     {
         super.onStart();
+
+
 
         Animation bounce = AnimationUtils.loadAnimation(getApplication(), R.anim.top);
         TitleText.startAnimation(bounce);
@@ -61,10 +61,9 @@ public class TitleActivity extends AppCompatActivity {
                 break;
             case MotionEvent.ACTION_UP:
                 //손가락을 화면에서 뗄 때 할 일
-                mediaplayer.stop();
-                mediaplayer.release();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                finish();
 
                 break;
             case MotionEvent.ACTION_CANCEL:
