@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         startButton = findViewById(R.id.Main_start);
-        TextView textViewHighscore = findViewById(R.id.txtbestScore);
-        TextView textViewTitle = findViewById(R.id.txtTitle);
+        TypingEffect textViewHighscore = findViewById(R.id.txtbestScore);
+        TypingEffect textViewTitle = findViewById(R.id.txtTitle);
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
 
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // 타이핑 이펙트
-        /*
+
         textViewHighscore.setText("");
         textViewHighscore.setCharacterDelay(150);
         textViewHighscore.animateText(getString(R.string.bestscore));
