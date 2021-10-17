@@ -31,6 +31,7 @@
         android:padding="10dp"
         android:textColor="@color/gray"
         android:checked="true"
+        android:soundEffectsEnabled="false"
         />
 
     <CheckBox
@@ -43,6 +44,7 @@
         android:padding="10dp"
         android:textColor="@color/gray"
         android:checked="true"
+        android:soundEffectsEnabled="false"
         />
 
     <LinearLayout
@@ -64,6 +66,7 @@
             android:textColor="@color/gray"
             android:textStyle="bold"
             android:textSize="20dp"
+            android:soundEffectsEnabled="false"
             style ="@style/Widget.AppCompat.Button.Borderless"
             />
 
@@ -77,6 +80,7 @@
             android:textColor="@color/gray"
             android:textStyle="bold"
             android:textSize="20dp"
+            android:soundEffectsEnabled="false"
             style ="@style/Widget.AppCompat.Button.Borderless"
             />
     </LinearLayout>
