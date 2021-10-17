@@ -31,7 +31,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/Image_TV_main"
         app:layout_constraintRight_toRightOf="@+id/Image_TV_main">
 
-            <TextView
+            <com.course.kpop.Typewriter
                 android:id="@+id/txtTitle"
                 android:text="@string/Title"
                 android:layout_width="0dp"
@@ -53,7 +53,7 @@
                 app:layout_constraintWidth_percent="0.6"
                 />
 
-            <TextView
+            <com.course.kpop.Typewriter
                 android:id="@+id/txtbestScore"
                 android:layout_marginTop="30dp"
                 android:text="@string/bestscore"

@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int highscore;
     private TextView textViewHighscore;
+    private TextView textViewTitle;
 
     private long backPressedTime;
 
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
     SettingDialog settingDialog;
     private float soundPoolVolume;
+
+
 
     
     AudioManager audioManager;
@@ -118,7 +121,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         startButton = findViewById(R.id.Main_start);
-        textViewHighscore = findViewById(R.id.txtbestScore);
+        Typewriter textViewHighscore = findViewById(R.id.txtbestScore);
+        Typewriter textViewTitle = findViewById(R.id.txtTitle);
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
 
@@ -143,6 +147,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         Handler handler = new Handler();
+
+        /*
+        //타이핑 이펙트
+        textViewTitle.setText("");
+        textViewTitle.setCharacterDelay(150);
+        textViewTitle.animateText(getString(R.string.Title));*/
+
+        textViewHighscore.setText("");
+        textViewHighscore.setCharacterDelay(150);
+        textViewHighscore.animateText(getString(R.string.bestscore));
 
 
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -228,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateHighscore(int highscoreNew){
         highscore = highscoreNew;
-        textViewHighscore.setText("Best: " + highscore);
+        //textViewHighscore.setText("Best: " + highscore);
 
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -239,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadHighscore() {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         highscore = prefs.getInt(KEY_HIGHSCORE, 0);
-        textViewHighscore.setText("Best: " + highscore);
+        //textViewHighscore.setText("Best: " + highscore);
     }
 
     @Override
