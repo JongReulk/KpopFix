@@ -50,6 +50,8 @@ public class  DifficultyActivity extends AppCompatActivity {
     SoundPool soundPool;	//작성
     int soundID;		//작성
 
+    private float soundPoolVolume;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -93,14 +95,30 @@ public class  DifficultyActivity extends AppCompatActivity {
 
         layout_caution.setVisibility(View.GONE);
 
+        SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC,MODE_PRIVATE);
+
+        Boolean bgmCb_difficulty = music.getBoolean("bgmCb",true);
+        Boolean effectCb_difficulty = music.getBoolean("effectCb",true);
+
+
         //Sound
         soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC,0);	//작성
         soundID = soundPool.load(this,R.raw.buttonsound1,1);
 
+        if(soundPool!=null){
+            if(!effectCb_difficulty){
+                soundPoolVolume=0.0f;
+            }
+
+            else{
+                soundPoolVolume=1.0f;
+            }
+        }
+
         easyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundID,1f,1f,0,0,1f);
+                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
 
                 easyButton.setEnabled(false);
                 normalButton.setEnabled(false);
@@ -147,7 +165,7 @@ public class  DifficultyActivity extends AppCompatActivity {
         normalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundID,1f,1f,0,0,1f);
+                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
 
                 easyButton.setEnabled(false);
                 normalButton.setEnabled(false);
@@ -191,7 +209,7 @@ public class  DifficultyActivity extends AppCompatActivity {
         hardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundID,1f,1f,0,0,1f);
+                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
 
                 easyButton.setEnabled(false);
                 normalButton.setEnabled(false);

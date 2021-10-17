@@ -3,6 +3,7 @@ package com.course.kpop;
 import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -31,6 +32,22 @@ public class TitleActivity extends AppCompatActivity {
         mediaplayer_title.setLooping(true);
         mediaplayer_title.start();
 
+        SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC,MODE_PRIVATE);
+
+        Boolean bgmCb_title = music.getBoolean("bgmCb",true);
+        Boolean effectCb_title = music.getBoolean("effectCb",true);
+
+
+        if(mediaplayer_title!=null){
+            if(!bgmCb_title){
+                mediaplayer_title.setVolume(0,0);
+            }
+
+            else{
+                mediaplayer_title.setVolume(1,1);
+            }
+        }
+
         //타이틀 텍스트뷰
         TitleText = (TextView) findViewById(R.id.touchtext);
     }
@@ -38,6 +55,12 @@ public class TitleActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        if(mediaplayer_title!=null)
+        {
+            mediaplayer_title.stop();
+            mediaplayer_title.release();
+            mediaplayer_title = null;
+        }
     }
 
     @Override

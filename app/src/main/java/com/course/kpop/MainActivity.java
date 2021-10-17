@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE_QUIZ = 101;
     public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String SHARED_MUSIC = "sharedMusic";
     public static final String KEY_HIGHSCORE = "keyhighscore";
 
     private int highscore;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private Button quitButton;
 
     SettingDialog settingDialog;
+    private float soundPoolVolume;
 
     
     AudioManager audioManager;
@@ -97,6 +99,24 @@ public class MainActivity extends AppCompatActivity {
         mediaplayer_main.setLooping(true);
         mediaplayer_main.start();
 
+        SharedPreferences music = getSharedPreferences(SHARED_MUSIC,MODE_PRIVATE);
+
+        Boolean bgmCb_main = music.getBoolean("bgmCb",true);
+        Boolean effectCb_main = music.getBoolean("effectCb",true);
+
+
+        if(mediaplayer_main!=null){
+            if(!bgmCb_main){
+                mediaplayer_main.setVolume(0,0);
+            }
+
+            else{
+                mediaplayer_main.setVolume(1,1);
+            }
+        }
+
+
+
         startButton = findViewById(R.id.Main_start);
         textViewHighscore = findViewById(R.id.txtbestScore);
         settingOpen = findViewById(R.id.setting_Button);
@@ -111,6 +131,15 @@ public class MainActivity extends AppCompatActivity {
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
         soundID = soundPool.load(this,R.raw.buttonsound1,1);
 
+        if(soundPool!=null){
+            if(!effectCb_main){
+                soundPoolVolume=0.0f;
+            }
+
+            else{
+                soundPoolVolume=1.0f;
+            }
+        }
 
 
         Handler handler = new Handler();
@@ -120,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                soundPool.play(soundID,1f,1f,0,0,1f);
+                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
 
                 //리모컨이미지 내려감
                 Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
@@ -144,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         settingOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundID,1f,1f,0,0,1f);
+                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
                 dial();
 
             }
@@ -153,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundID,1f,1f,0,0,1f);
+                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
 
                 // BGM 종료
                 if(mediaplayer_main!=null)
@@ -234,12 +263,22 @@ public class MainActivity extends AppCompatActivity {
         settingDialog = new SettingDialog(this);
         settingDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        settingDialog.setCancelable(false);
-        settingDialog.show();
-
-
         Button cancelBtn = settingDialog.findViewById(R.id.btn_cancel);
         Button confirmBtn = settingDialog.findViewById(R.id.btn_confirm);
+        CheckBox bgmCb = settingDialog.findViewById(R.id.backgroundMusicCb);
+        CheckBox effectCb = settingDialog.findViewById(R.id.effectCb);
+
+        SharedPreferences music = getSharedPreferences(SHARED_MUSIC,MODE_PRIVATE);
+
+        Boolean bgm_B = music.getBoolean("bgmCb",true);
+        Boolean effect_B = music.getBoolean("effectCb",true);
+
+        bgmCb.setChecked(bgm_B);
+        effectCb.setChecked(effect_B);
+
+        settingDialog.setCancelable(false); // 밖에 선택해도 창이 안꺼짐
+        settingDialog.show();
+
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -252,8 +291,31 @@ public class MainActivity extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                settingDialog.dismiss();
+                SharedPreferences.Editor musicEditor = music.edit();
+                musicEditor.putBoolean("bgmCb", (bgmCb.isChecked()));
+                musicEditor.putBoolean("effectCb", (effectCb.isChecked()));
+                musicEditor.apply();
 
+                if(mediaplayer_main!=null){
+                    if(!bgmCb.isChecked()){
+                        mediaplayer_main.setVolume(0,0);
+                    }
+
+                    else{
+                        mediaplayer_main.setVolume(1,1);
+                    }
+                }
+
+                if(mediaplayer_main!=null){
+                    if(!effectCb.isChecked()){
+                        soundPoolVolume=0.0f;
+                    }
+
+                    else{
+                        soundPoolVolume=1.0f;
+                    }
+                }
+                settingDialog.dismiss();
             }
         });
 
