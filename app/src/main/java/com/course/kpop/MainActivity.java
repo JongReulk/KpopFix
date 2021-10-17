@@ -283,6 +283,7 @@ public class MainActivity extends AppCompatActivity {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
                 settingDialog.dismiss();
 
             }
@@ -291,6 +292,7 @@ public class MainActivity extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 SharedPreferences.Editor musicEditor = music.edit();
                 musicEditor.putBoolean("bgmCb", (bgmCb.isChecked()));
                 musicEditor.putBoolean("effectCb", (effectCb.isChecked()));
@@ -315,7 +317,10 @@ public class MainActivity extends AppCompatActivity {
                         soundPoolVolume=1.0f;
                     }
                 }
+
+                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
                 settingDialog.dismiss();
+
             }
         });
 
