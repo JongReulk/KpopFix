@@ -47,6 +47,8 @@ import android.media.SoundPool;
 import android.os.Handler;
 import android.media.MediaPlayer;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button startButton;
@@ -69,8 +71,6 @@ public class MainActivity extends AppCompatActivity {
     private float soundPoolVolume;
 
 
-
-    
     AudioManager audioManager;
 
     //Sound
@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         startButton = findViewById(R.id.Main_start);
-        Typewriter textViewHighscore = findViewById(R.id.txtbestScore);
-        Typewriter textViewTitle = findViewById(R.id.txtTitle);
+        TextView textViewHighscore = findViewById(R.id.txtbestScore);
+        TextView textViewTitle = findViewById(R.id.txtTitle);
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
 
@@ -148,15 +148,18 @@ public class MainActivity extends AppCompatActivity {
 
         Handler handler = new Handler();
 
-        /*
-        //타이핑 이펙트
-        textViewTitle.setText("");
-        textViewTitle.setCharacterDelay(150);
-        textViewTitle.animateText(getString(R.string.Title));*/
 
+
+        // 타이핑 이펙트
+        /*
         textViewHighscore.setText("");
         textViewHighscore.setCharacterDelay(150);
         textViewHighscore.animateText(getString(R.string.bestscore));
+
+        /*
+        textViewTitle.setText("");
+        textViewTitle.setCharacterDelay(150);
+        textViewTitle.animateText(getString(R.string.Title));*/
 
 
         startButton.setOnClickListener(new View.OnClickListener() {
