@@ -17,7 +17,7 @@ import android.widget.Button;
 public class TitleActivity extends AppCompatActivity {
 
     // MediaPlayer 객체생성
-    public static MediaPlayer mediaplayer;
+    public static MediaPlayer mediaplayer_title;
     private TextView TitleText; // 터치투스타트
     private ImageView TitleImage; // 타이틀이미지
 
@@ -27,9 +27,9 @@ public class TitleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_title);
 
         // BGN 실행
-        mediaplayer = MediaPlayer.create(this, R.raw.titlesound1);
-        mediaplayer.setLooping(true);
-        mediaplayer.start();
+        mediaplayer_title = MediaPlayer.create(this, R.raw.titlesound1);
+        mediaplayer_title.setLooping(true);
+        mediaplayer_title.start();
 
         //타이틀 텍스트뷰
         TitleText = (TextView) findViewById(R.id.touchtext);
@@ -62,6 +62,15 @@ public class TitleActivity extends AppCompatActivity {
                 break;
             case MotionEvent.ACTION_UP:
                 //손가락을 화면에서 뗄 때 할 일
+                // 타이틀 음악 종료 후 액티비티 이동
+                // BGM 종료
+                if(mediaplayer_title!=null)
+                {
+                    mediaplayer_title.stop();
+                    mediaplayer_title.release();
+                    mediaplayer_title = null;
+                }
+
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();

@@ -90,9 +90,9 @@ public class QuizMain extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_main);
 
-        if(TitleActivity.mediaplayer!=null)
+        if(MainActivity.mediaplayer_main!=null)
         {
-            TitleActivity.mediaplayer.pause();
+            MainActivity.mediaplayer_main.pause();
         }
 
 

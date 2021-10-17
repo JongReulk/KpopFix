@@ -45,6 +45,7 @@ import java.util.Locale;
 
 import android.media.SoundPool;
 import android.os.Handler;
+import android.media.MediaPlayer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
     SoundPool soundPool;	//작성
     int soundID;		    //작성
 
-
+    // MediaPlayer 객체생성
+    public static MediaPlayer mediaplayer_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,11 +92,15 @@ public class MainActivity extends AppCompatActivity {
         Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remotebutton.startAnimation(RemoteButtonUp);
 
+        // BGN 실행
+        mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic2);
+        mediaplayer_main.setLooping(true);
+        mediaplayer_main.start();
+
         startButton = findViewById(R.id.Main_start);
         textViewHighscore = findViewById(R.id.txtbestScore);
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
-        //mediaPlayer = mediaPlayer.create(this, R.raw.titlesound1);
 
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
 
@@ -104,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         //Sound
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
         soundID = soundPool.load(this,R.raw.buttonsound1,1);
+
 
 
         Handler handler = new Handler();
@@ -149,11 +156,11 @@ public class MainActivity extends AppCompatActivity {
                 soundPool.play(soundID,1f,1f,0,0,1f);
 
                 // BGM 종료
-                if(TitleActivity.mediaplayer!=null)
+                if(mediaplayer_main!=null)
                 {
-                    TitleActivity.mediaplayer.stop();
-                    TitleActivity.mediaplayer.release();
-                    TitleActivity.mediaplayer = null;
+                    mediaplayer_main.stop();
+                    mediaplayer_main.release();
+                    mediaplayer_main = null;
                 }
                 finish();
 
@@ -168,9 +175,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if(TitleActivity.mediaplayer!=null)
+        if(mediaplayer_main!=null)
         {
-            TitleActivity.mediaplayer.start();
+            mediaplayer_main.start();
         }
     }
 
@@ -210,11 +217,11 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()){
             finish();
-            if(TitleActivity.mediaplayer!=null)
+            if(mediaplayer_main!=null)
             {
-                TitleActivity.mediaplayer.stop();
-                TitleActivity.mediaplayer.release();
-                TitleActivity.mediaplayer = null;
+                mediaplayer_main.stop();
+                mediaplayer_main.release();
+                mediaplayer_main = null;
             }
         }else{
             Toast.makeText(this, "한번 더 뒤로버튼을 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();

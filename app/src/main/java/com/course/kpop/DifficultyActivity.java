@@ -113,14 +113,15 @@ public class  DifficultyActivity extends AppCompatActivity {
                 layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Easy));
                 textLevel.setTextColor(getResources().getColor(R.color.easy_color));
-                //리모컨이미지 내려감
 
+                //리모컨이미지 내려감
                 Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
                 remote_difficulty.startAnimation(RemoteDown);
 
                 //리모컨버튼 내려감
                 Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
                 remotebutton_difficulty.startAnimation(RemoteButtonDown);
+
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -159,6 +160,15 @@ public class  DifficultyActivity extends AppCompatActivity {
                 layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Normal));
                 textLevel.setTextColor(getResources().getColor(R.color.teal_200));
+
+                //리모컨이미지 내려감
+                Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                remote_difficulty.startAnimation(RemoteDown);
+
+                //리모컨버튼 내려감
+                Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                remotebutton_difficulty.startAnimation(RemoteButtonDown);
+
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -174,7 +184,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             handler.removeCallbacks(this);
                         }
                     }
-                },2000);
+                },600);
             }
         });
 
@@ -194,6 +204,15 @@ public class  DifficultyActivity extends AppCompatActivity {
                 layout_caution.setVisibility(View.VISIBLE);
                 textLevel.setText(getString(R.string.Hard));
                 textLevel.setTextColor(getResources().getColor(R.color.hard_color));
+
+                //리모컨이미지 내려감
+                Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                remote_difficulty.startAnimation(RemoteDown);
+
+                //리모컨버튼 내려감
+                Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                remotebutton_difficulty.startAnimation(RemoteButtonDown);
+
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -209,12 +228,11 @@ public class  DifficultyActivity extends AppCompatActivity {
                             handler.removeCallbacks(this);
                         }
                     }
-                },2000);
+                },600);
             }
         });
 
     }
-
 
 
     @Override
