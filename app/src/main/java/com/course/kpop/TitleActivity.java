@@ -96,6 +96,9 @@ public class TitleActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+
+                // 액티비티 이동시 페이드인아웃 연출
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 finish();
 
                 break;
