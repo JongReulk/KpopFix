@@ -97,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
         Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remotebutton.startAnimation(RemoteButtonUp);
 
+        //텍스트 페이드인
+        textViewTitle = (TextView) findViewById((R.id.txtTitle));
+        Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
+        textViewTitle.startAnimation(textfadein);
+
         // BGN 실행
         mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic2);
         mediaplayer_main.setLooping(true);
@@ -181,6 +186,9 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
                         startActivityForResult(intent,REQUEST_CODE_QUIZ);
+
+                        // 액티비티 이동시 페이드인아웃 연출
+                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     }
                 }, 600); //딜레이 타임 조절
             }

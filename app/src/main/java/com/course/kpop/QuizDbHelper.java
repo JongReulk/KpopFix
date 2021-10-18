@@ -15,7 +15,7 @@ import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MyKpopQuiz.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private SQLiteDatabase db;
 
@@ -61,6 +61,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
         Question q3 = new Question("WMweEpGlu_U", "버터","butter","Butter - BTS");
         addQuestion(q3);
+
+        Question q4 = new Question("jv543Nk5s18", "염라","Karma","염라 - 달의하루");
+        addQuestion(q4);
     }
 
     private void addQuestion(Question question) {

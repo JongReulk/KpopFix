@@ -68,8 +68,6 @@ public class TitleActivity extends AppCompatActivity {
     {
         super.onStart();
 
-
-
         Animation bounce = AnimationUtils.loadAnimation(getApplication(), R.anim.top);
         TitleText.startAnimation(bounce);
     }
