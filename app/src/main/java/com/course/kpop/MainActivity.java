@@ -248,7 +248,9 @@ public class MainActivity extends AppCompatActivity {
         startButton.setEnabled(true);
         settingOpen.setEnabled(true);
         quitButton.setEnabled(true);
-
+        startButton.setTextColor(Color.WHITE);
+        settingOpen.setTextColor(Color.WHITE);
+        quitButton.setTextColor(Color.WHITE);
     }
 
     @Override
