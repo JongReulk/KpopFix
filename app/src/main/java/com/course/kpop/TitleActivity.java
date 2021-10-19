@@ -92,7 +92,7 @@ public class TitleActivity extends AppCompatActivity {
                     mediaplayer_title = null;
                 }
 
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, TipsActivity.class);
                 startActivity(intent);
 
                 // 액티비티 이동시 페이드인아웃 연출

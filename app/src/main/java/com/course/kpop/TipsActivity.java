@@ -22,6 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -60,13 +61,20 @@ public class TipsActivity extends AppCompatActivity{
     private int num_page = 4;
     private CircleIndicator3 mIndicator;
 
+    // MediaPlayer 객체생성
+    public static MediaPlayer mediaplayer_title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tips);
-/**
- * 가로 슬라이드 뷰 Fragment
- */
+
+        // BGN 실행
+        mediaplayer_title = MediaPlayer.create(this, R.raw.titlesound1);
+        mediaplayer_title.setLooping(true);
+        mediaplayer_title.start();
+
+        //가로 슬라이드 뷰 Fragment
         //ViewPager2
         mPager = findViewById(R.id.viewpager);
         //Adapter
@@ -99,5 +107,53 @@ public class TipsActivity extends AppCompatActivity{
                 mIndicator.animatePageSelected(position%num_page);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(mediaplayer_title!=null)
+        {
+            mediaplayer_title.stop();
+            mediaplayer_title.release();
+            mediaplayer_title = null;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                //손가락으로 화면을 누르기 시작했을 때 할 일
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //터치 후 손가락을 움직일 때 할 일
+                break;
+            case MotionEvent.ACTION_UP:
+                //손가락을 화면에서 뗄 때 할 일
+                // 타이틀 음악 종료 후 액티비티 이동
+                // BGM 종료
+                if(mediaplayer_title!=null)
+                {
+                    mediaplayer_title.stop();
+                    mediaplayer_title.release();
+                    mediaplayer_title = null;
+                }
+
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+
+                // 액티비티 이동시 페이드인아웃 연출
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                finish();
+
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                // 터치가 취소될 때 할 일
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 }
