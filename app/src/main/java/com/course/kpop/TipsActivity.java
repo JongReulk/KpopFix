@@ -83,7 +83,8 @@ public class TipsActivity extends AppCompatActivity{
         //Indicator
         mIndicator = findViewById(R.id.indicator);
         mIndicator.setViewPager(mPager);
-        mIndicator.createIndicators(num_page,0);
+        mIndicator.createIndicators(num_page,
+                0);
         //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 /**

@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,6 +85,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
     private static int[] arr = {50000,55000,60000};
+
+    private ProgressBar musicProgressbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +160,10 @@ public class QuizMain extends YouTubeBaseActivity {
 
         randomTotal = arr[randomInt] + videoLength;
         randomStart = arr[randomInt];
+
+        musicProgressbar = findViewById(R.id.musicProgressBar);
+
+        musicProgressbar.setMax(videoLength);
 
 
         initPlayer();
@@ -265,6 +272,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
             player.loadVideo(question, randomStart);
 
+
             // 지정 시간동안 동영상 재생하기
             handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -272,12 +280,18 @@ public class QuizMain extends YouTubeBaseActivity {
                 public void run() {
                     if(isHandler)
                     {
-                        if (player.getCurrentTimeMillis() <= randomTotal) {
+                        if (player.getCurrentTimeMillis() <= randomTotal ) {
+                            if(player.isPlaying()){
+
+                                musicProgressbar.incrementProgressBy(1000);
+                                startCountDown();
+                            }
                             handler.postDelayed(this, 1000);
 
                         } else {
                             handler.removeCallbacks(this);
                             player.pause();
+                            musicProgressbar.setProgress(musicProgressbar.getMax());
                             rightSpeaker.clearAnimation();
                             leftSpeaker.clearAnimation();
                         }
