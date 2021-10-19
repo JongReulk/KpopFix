@@ -121,7 +121,7 @@ public class QuizMain extends YouTubeBaseActivity {
         QuizDbHelper dbHelper = new QuizDbHelper(this);
         questionList = dbHelper.getAllQuestions();
 
-        questionCountTotal = 3;
+        questionCountTotal = 4;
         Collections.shuffle(questionList);
 
         // 스피커 애니메이션
