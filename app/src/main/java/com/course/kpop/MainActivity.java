@@ -89,13 +89,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView remote = (ImageView) findViewById(R.id.Remote_main);
         ConstraintLayout remotebutton = (ConstraintLayout) findViewById(R.id.Remote_button_main);
 
-        //리모컨이미지 올라옴
-        Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
-        remote.startAnimation(RemoteUp);
-
-        //리모컨버튼 올라옴
-        Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
-        remotebutton.startAnimation(RemoteButtonUp);
 
         // BGN 실행
         mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic2);
@@ -168,6 +161,13 @@ public class MainActivity extends AppCompatActivity {
 
                 soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
 
+                startButton.setEnabled(false);
+                settingOpen.setEnabled(false);
+                quitButton.setEnabled(false);
+                startButton.setTextColor(Color.GRAY);
+                settingOpen.setTextColor(Color.GRAY);
+                quitButton.setTextColor(Color.GRAY);
+
                 //리모컨이미지 내려감
                 Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
                 remote.startAnimation(RemoteDown);
@@ -225,6 +225,24 @@ public class MainActivity extends AppCompatActivity {
         {
             mediaplayer_main.start();
         }
+
+        ImageView remote = (ImageView) findViewById(R.id.Remote_main);
+        ConstraintLayout remotebutton = (ConstraintLayout) findViewById(R.id.Remote_button_main);
+
+        //리모컨이미지 올라옴
+        Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remote.startAnimation(RemoteUp);
+
+        //리모컨버튼 올라옴
+        Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remotebutton.startAnimation(RemoteButtonUp);
+
+        startButton.setEnabled(true);
+        settingOpen.setEnabled(true);
+        quitButton.setEnabled(true);
+        startButton.setTextColor(Color.WHITE);
+        settingOpen.setTextColor(Color.WHITE);
+        quitButton.setTextColor(Color.WHITE);
     }
 
     @Override
