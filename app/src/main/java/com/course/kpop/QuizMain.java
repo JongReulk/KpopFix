@@ -1,5 +1,6 @@
 package com.course.kpop;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -10,8 +11,11 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -83,8 +87,10 @@ public class QuizMain extends YouTubeBaseActivity {
     private ImageView leftSpeaker;
     private ImageView rightSpeaker;
 
+    boolean isStarted =true;
 
-    private static int[] arr = {50000,55000,60000};
+
+    private static int[] arr = {51000,56000,61000};
 
     private ProgressBar musicProgressbar;
 
@@ -116,6 +122,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
         answerText.getBackground().setColorFilter(null);
         //textColorDefaultCd = txtCountDown.getTextColors();
+
 
 
         // DB 관련 선언
@@ -235,7 +242,7 @@ public class QuizMain extends YouTubeBaseActivity {
                     public void onLoaded(String s) {
                         Log.e("PlayerView", "onLoaded 호출됨: " + s);
                         customProgressDialog.dismiss();
-                        startCountDown();
+
                     }
 
                     @Override
@@ -273,6 +280,12 @@ public class QuizMain extends YouTubeBaseActivity {
             player.loadVideo(question, randomStart);
 
 
+            Log.e("Max:"," "+(musicProgressbar.getMax()));
+            ObjectAnimator progressAnimation = ObjectAnimator.ofInt(musicProgressbar, "progress", 0,musicProgressbar.getMax() );
+            progressAnimation.setDuration(musicProgressbar.getMax());
+            progressAnimation.setInterpolator(new DecelerateInterpolator());
+
+
             // 지정 시간동안 동영상 재생하기
             handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -282,9 +295,12 @@ public class QuizMain extends YouTubeBaseActivity {
                     {
                         if (player.getCurrentTimeMillis() <= randomTotal ) {
                             if(player.isPlaying()){
-
-                                musicProgressbar.incrementProgressBy(1000);
+                                //musicProgressbar.incrementProgressBy(1000);
                                 startCountDown();
+                                if(isStarted){
+                                    progressAnimation.start();
+                                    isStarted=false;
+                                }
                             }
                             handler.postDelayed(this, 1000);
 
@@ -327,6 +343,8 @@ public class QuizMain extends YouTubeBaseActivity {
             //카운트 다운 시작
             isCountStart = true;
 
+            musicProgressbar.setProgress(0);
+            isStarted = true;
             
             checkLast();
 
@@ -354,7 +372,6 @@ public class QuizMain extends YouTubeBaseActivity {
             }.start();
         }
         else{
-            Log.e("아님","!");
         }
         isCountStart=false;
     }
