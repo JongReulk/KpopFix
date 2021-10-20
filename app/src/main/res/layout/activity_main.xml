@@ -52,7 +52,7 @@
                 app:layout_constraintWidth_percent="0.6"
                 />
 
-            <com.course.kpop.TypingEffect
+            <TextView
                 android:id="@+id/txtbestScore"
                 android:layout_marginTop="30dp"
                 android:text="@string/bestscore"

@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         startButton = findViewById(R.id.Main_start);
-        TypingEffect textViewHighscore = findViewById(R.id.txtbestScore);
+        textViewHighscore = findViewById(R.id.txtbestScore);
         TypingEffect textViewTitle = findViewById(R.id.txtTitle);
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
@@ -150,9 +150,10 @@ public class MainActivity extends AppCompatActivity {
 
         // 타이핑 이펙트
 
+        /*
         textViewHighscore.setText("");
         textViewHighscore.setCharacterDelay(150);
-        textViewHighscore.animateText(getString(R.string.bestscore));
+        textViewHighscore.animateText(getString(R.string.bestscore));*/
 
         /*
         textViewTitle.setText("");
@@ -229,9 +230,42 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if(mediaplayer_main!=null)
+        if(mediaplayer_main==null)
         {
+            // BGN 실행
+            mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic2);
+            mediaplayer_main.setLooping(true);
             mediaplayer_main.start();
+
+        }
+
+        SharedPreferences music = getSharedPreferences(SHARED_MUSIC,MODE_PRIVATE);
+
+        Boolean bgmCb_main = music.getBoolean("bgmCb",true);
+        Boolean effectCb_main = music.getBoolean("effectCb",true);
+
+
+        if(mediaplayer_main!=null){
+            if(!bgmCb_main){
+                mediaplayer_main.setVolume(0,0);
+            }
+
+            else{
+                mediaplayer_main.setVolume(1,1);
+            }
+        }
+
+        soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
+        soundID = soundPool.load(this,R.raw.buttonsound1,1);
+
+        if(soundPool!=null){
+            if(!effectCb_main){
+                soundPoolVolume=0.0f;
+            }
+
+            else{
+                soundPoolVolume=1.0f;
+            }
         }
 
         ImageView remote = (ImageView) findViewById(R.id.Remote_main);
@@ -271,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateHighscore(int highscoreNew){
         highscore = highscoreNew;
-        //textViewHighscore.setText("Best: " + highscore);
+        textViewHighscore.setText("Best: " + highscore);
 
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -282,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadHighscore() {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         highscore = prefs.getInt(KEY_HIGHSCORE, 0);
-        //textViewHighscore.setText("Best: " + highscore);
+        textViewHighscore.setText("Best: " + highscore);
     }
 
     @Override

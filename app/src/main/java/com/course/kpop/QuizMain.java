@@ -101,7 +101,9 @@ public class QuizMain extends YouTubeBaseActivity {
 
         if(MainActivity.mediaplayer_main!=null)
         {
-            MainActivity.mediaplayer_main.pause();
+            MainActivity.mediaplayer_main.stop();
+            MainActivity.mediaplayer_main.release();
+            MainActivity.mediaplayer_main = null;
         }
 
 
@@ -349,7 +351,6 @@ public class QuizMain extends YouTubeBaseActivity {
             checkLast();
 
         }
-
 
     }
 
