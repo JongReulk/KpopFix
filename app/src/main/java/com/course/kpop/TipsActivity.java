@@ -53,16 +53,20 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 import me.relex.circleindicator.CircleIndicator3;
+import android.os.Handler;
 
 public class TipsActivity extends AppCompatActivity{
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 4;
+    private int num_page = 3;
     private CircleIndicator3 mIndicator;
 
     // MediaPlayer 객체생성
     public static MediaPlayer mediaplayer_title;
+
+    private Button close;
+    private Button closeforever;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,12 @@ public class TipsActivity extends AppCompatActivity{
         mediaplayer_title = MediaPlayer.create(this, R.raw.titlesound1);
         mediaplayer_title.setLooping(true);
         mediaplayer_title.start();
+
+        // 버튼
+        close = findViewById(R.id.close_Button);
+
+        // 핸들러
+        Handler handler = new Handler();
 
         //가로 슬라이드 뷰 Fragment
         //ViewPager2
@@ -92,7 +102,7 @@ public class TipsActivity extends AppCompatActivity{
  * 2000장 생성하였으니 현재위치 1002로 설정하여
  * 좌 우로 슬라이딩 할 수 있게 함. 거의 무한대로
  */
-        mPager.setCurrentItem(1000); //시작 지점
+        mPager.setCurrentItem(0); //시작 지점
         mPager.setOffscreenPageLimit(4); //최대 이미지 수
         mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -108,6 +118,35 @@ public class TipsActivity extends AppCompatActivity{
                 mIndicator.animatePageSelected(position%num_page);
             }
         });
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // bgm 끄기
+                if(mediaplayer_title!=null)
+                {
+                    mediaplayer_title.stop();
+                    mediaplayer_title.release();
+                    mediaplayer_title = null;
+                }
+
+                close.setEnabled(false);
+                close.setTextColor(Color.GRAY);
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+
+                        // 액티비티 이동시 페이드인아웃 연출
+                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        finish();
+                    }
+                }, 600); //딜레이 타임 조절
+            }
+        });
     }
 
     @Override
@@ -121,6 +160,10 @@ public class TipsActivity extends AppCompatActivity{
         }
     }
 
+
+
+
+    /*
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -134,20 +177,22 @@ public class TipsActivity extends AppCompatActivity{
                 //손가락을 화면에서 뗄 때 할 일
                 // 타이틀 음악 종료 후 액티비티 이동
                 // BGM 종료
-                if(mediaplayer_title!=null)
+                if(mPager.getCurrentItem() == num_page - 1)
                 {
-                    mediaplayer_title.stop();
-                    mediaplayer_title.release();
-                    mediaplayer_title = null;
+                    if(mediaplayer_title!=null)
+                    {
+                        mediaplayer_title.stop();
+                        mediaplayer_title.release();
+                        mediaplayer_title = null;
+                    }
+
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+
+                    // 액티비티 이동시 페이드인아웃 연출
+                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                    finish();
                 }
-
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-
-                // 액티비티 이동시 페이드인아웃 연출
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-                finish();
-
                 break;
             case MotionEvent.ACTION_CANCEL:
                 // 터치가 취소될 때 할 일
@@ -156,5 +201,5 @@ public class TipsActivity extends AppCompatActivity{
                 break;
         }
         return true;
-    }
+    }*/
 }
