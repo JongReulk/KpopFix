@@ -15,7 +15,7 @@ import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MyKpopQuiz.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     private SQLiteDatabase db;
 
@@ -35,7 +35,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_QUESTION + " TEXT, " +
                 QuestionsTable.COLUMN_KOREAN_ANSWER + " TEXT, " +
                 QuestionsTable.COLUMN_ENGLISH_ANSWER + " TEXT, " +
-                QuestionsTable.COLUMN_REAL_ANSWER + " TEXT " +
+                QuestionsTable.COLUMN_REAL_ANSWER + " TEXT, " +
+                QuestionsTable.COLUMN_YEAR + " INTEGER " +
                 ")";
 
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
@@ -53,16 +54,16 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question q1 = new Question("4TWR90KJl84", "넥스트레벨","nextlevel","Next Level - Aespa");
+        Question q1 = new Question("4TWR90KJl84", "넥스트레벨","nextlevel","Next Level - Aespa",2021);
         addQuestion(q1);
 
-        Question q2 = new Question("gdZLi9oWNZg", "다이너마이트","dynamite","Dynamite - BTS");
+        Question q2 = new Question("gdZLi9oWNZg", "다이너마이트","dynamite","Dynamite - BTS",2020);
         addQuestion(q2);
 
-        Question q3 = new Question("WMweEpGlu_U", "버터","butter","Butter - BTS");
+        Question q3 = new Question("WMweEpGlu_U", "버터","butter","Butter - BTS",2021);
         addQuestion(q3);
 
-        Question q4 = new Question("jv543Nk5s18", "염라","Karma","염라 - 달의하루");
+        Question q4 = new Question("q_gfD3nvh-8", "런데빌런","rundevilrun","Run Devil Run - 소녀시대",2010);
         addQuestion(q4);
     }
 
@@ -72,6 +73,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_KOREAN_ANSWER, question.getKoreanAnswer());
         cv.put(QuestionsTable.COLUMN_ENGLISH_ANSWER, question.getEnglishAnswer2());
         cv.put(QuestionsTable.COLUMN_REAL_ANSWER, question.getRealAnswer());
+        cv.put(QuestionsTable.COLUMN_YEAR, question.getYear());
         db.insert(QuestionsTable.TABLE_NAME,null,cv);
     }
 
@@ -87,6 +89,31 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setKoreanAnswer(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_KOREAN_ANSWER)));
                 question.setEnglishAnswer2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_ENGLISH_ANSWER)));
                 question.setRealAnswer(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_REAL_ANSWER)));
+                question.setYear(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_YEAR)));
+                questionList.add(question);
+            } while (c.moveToNext());
+        }
+
+        c.close();
+        return questionList;
+    }
+
+    public List<Question> getQuestions(String year) {
+        List<Question> questionList = new ArrayList<>();
+        db = getReadableDatabase();
+
+        String[] selectionArgs = new String[]{year};
+        Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME +
+                " WHERE " + QuestionsTable.COLUMN_YEAR + " = ?", selectionArgs);
+
+        if (c.moveToFirst()) {
+            do {
+                Question question = new Question();
+                question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
+                question.setKoreanAnswer(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_KOREAN_ANSWER)));
+                question.setEnglishAnswer2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_ENGLISH_ANSWER)));
+                question.setRealAnswer(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_REAL_ANSWER)));
+                question.setYear(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_YEAR)));
                 questionList.add(question);
             } while (c.moveToNext());
         }

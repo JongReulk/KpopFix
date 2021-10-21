@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -22,8 +23,7 @@ public class TitleActivity extends AppCompatActivity {
     private TextView TitleText; // 터치투스타트
     private ImageView TitleImage; // 타이틀이미지
 
-    public static SharedPreferences pref;
-    public static SharedPreferences.Editor closef;
+    public static final String SHARED_CLOSE = "sharedClose";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +40,7 @@ public class TitleActivity extends AppCompatActivity {
         Boolean bgmCb_title = music.getBoolean("bgmCb",true);
         Boolean effectCb_title = music.getBoolean("effectCb",true);
 
-        // Tips Activity 다시보지않기를 위한 변수
-        pref = getSharedPreferences("closeforever",MODE_PRIVATE);
-        closef = pref.edit();
+
 
         if(mediaplayer_title!=null){
             if(!bgmCb_title){
@@ -59,9 +57,13 @@ public class TitleActivity extends AppCompatActivity {
     }
 
     public void checkFirstRun() {
-        boolean isFirstRun = pref.getBoolean("isFirstRun", true);
 
-        if (isFirstRun) {
+        // Tips Activity 다시보지않기를 위한 변수
+        SharedPreferences closef = getSharedPreferences(SHARED_CLOSE,MODE_PRIVATE);
+        Boolean close_Tips = closef.getBoolean("closeforever",true);
+
+
+        if (close_Tips) {
             if(mediaplayer_title!=null)
             {
                 mediaplayer_title.stop();
@@ -123,7 +125,7 @@ public class TitleActivity extends AppCompatActivity {
                     mediaplayer_title = null;
                 }
 
-                Intent intent = new Intent(this, TipsActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
 
                 // 액티비티 이동시 페이드인아웃 연출

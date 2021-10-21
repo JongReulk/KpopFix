@@ -127,13 +127,15 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
 
-        // DB 관련 선언
+
         txtQuestionCount = findViewById(R.id.txtQuestionCount);
         txtCountDown = findViewById(R.id.txtCountDown);
-        QuizDbHelper dbHelper = new QuizDbHelper(this);
-        questionList = dbHelper.getAllQuestions();
 
-        questionCountTotal = 4;
+        // DB 관련 선언
+        QuizDbHelper dbHelper = new QuizDbHelper(this);
+        questionList = dbHelper.getQuestions("2010");
+
+        questionCountTotal = questionList.size();
         Collections.shuffle(questionList);
 
         // 스피커 애니메이션

@@ -149,7 +149,12 @@ public class TipsActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 // 다시보지않기
-                TitleActivity.closef.putBoolean("isFirstRun", false).apply();
+                SharedPreferences closef = getSharedPreferences(TitleActivity.SHARED_CLOSE,MODE_PRIVATE);
+                SharedPreferences.Editor closeEditor = closef.edit();
+                closeEditor.putBoolean("closeforever", false);
+                closeEditor.apply();
+                Boolean close_Tips = closef.getBoolean("closeforever",true);
+
 
                 // bgm 끄기
                 if(mediaplayer_title!=null)
