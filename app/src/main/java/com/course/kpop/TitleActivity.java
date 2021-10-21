@@ -22,6 +22,9 @@ public class TitleActivity extends AppCompatActivity {
     private TextView TitleText; // 터치투스타트
     private ImageView TitleImage; // 타이틀이미지
 
+    public static SharedPreferences pref;
+    public static SharedPreferences.Editor closef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,9 @@ public class TitleActivity extends AppCompatActivity {
         Boolean bgmCb_title = music.getBoolean("bgmCb",true);
         Boolean effectCb_title = music.getBoolean("effectCb",true);
 
+        // Tips Activity 다시보지않기를 위한 변수
+        pref = getSharedPreferences("closeforever",MODE_PRIVATE);
+        closef = pref.edit();
 
         if(mediaplayer_title!=null){
             if(!bgmCb_title){
@@ -50,6 +56,28 @@ public class TitleActivity extends AppCompatActivity {
 
         //타이틀 텍스트뷰
         TitleText = (TextView) findViewById(R.id.touchtext);
+    }
+
+    public void checkFirstRun() {
+        boolean isFirstRun = pref.getBoolean("isFirstRun", true);
+
+        if (isFirstRun) {
+            if(mediaplayer_title!=null)
+            {
+                mediaplayer_title.stop();
+                mediaplayer_title.release();
+                mediaplayer_title = null;
+            }
+
+            Intent newIntent = new Intent(this, TipsActivity.class);
+            startActivity(newIntent);
+
+            // 액티비티 이동시 페이드인아웃 연출
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            finish();
+
+            //closef.putBoolean("isFirstRun", false).apply();
+        }
     }
 
     @Override
@@ -85,6 +113,9 @@ public class TitleActivity extends AppCompatActivity {
                 //손가락을 화면에서 뗄 때 할 일
                 // 타이틀 음악 종료 후 액티비티 이동
                 // BGM 종료
+
+                checkFirstRun();
+
                 if(mediaplayer_title!=null)
                 {
                     mediaplayer_title.stop();

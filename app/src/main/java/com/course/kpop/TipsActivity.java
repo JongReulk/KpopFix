@@ -80,7 +80,7 @@ public class TipsActivity extends AppCompatActivity{
 
         // 버튼
         close = findViewById(R.id.close_Button);
-
+        closeforever = findViewById(R.id.closeforever_Button);
         // 핸들러
         Handler handler = new Handler();
 
@@ -97,11 +97,8 @@ public class TipsActivity extends AppCompatActivity{
                 0);
         //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-/**
- * 이 부분 조정하여 처음 시작하는 이미지 설정.
- * 2000장 생성하였으니 현재위치 1002로 설정하여
- * 좌 우로 슬라이딩 할 수 있게 함. 거의 무한대로
- */
+
+
         mPager.setCurrentItem(0); //시작 지점
         mPager.setOffscreenPageLimit(4); //최대 이미지 수
         mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -133,6 +130,37 @@ public class TipsActivity extends AppCompatActivity{
 
                 close.setEnabled(false);
                 close.setTextColor(Color.GRAY);
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+
+                        // 액티비티 이동시 페이드인아웃 연출
+                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        finish();
+                    }
+                }, 600); //딜레이 타임 조절
+            }
+        });
+
+        closeforever.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 다시보지않기
+                TitleActivity.closef.putBoolean("isFirstRun", false).apply();
+
+                // bgm 끄기
+                if(mediaplayer_title!=null)
+                {
+                    mediaplayer_title.stop();
+                    mediaplayer_title.release();
+                    mediaplayer_title = null;
+                }
+
+                closeforever.setEnabled(false);
+                closeforever.setTextColor(Color.GRAY);
 
                 handler.postDelayed(new Runnable() {
                     @Override
