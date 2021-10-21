@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -106,6 +107,22 @@
         >
 
         <Button
+            android:id="@+id/Main_tips"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:drawable/ic_dialog_info"
+            android:soundEffectsEnabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.12"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintWidth_percent="0.15"
+            app:layout_constraintHeight_percent="0.1"
+            />
+
+        <Button
             android:id="@+id/Main_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -159,5 +176,7 @@
             app:layout_constraintVertical_bias="0.1"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

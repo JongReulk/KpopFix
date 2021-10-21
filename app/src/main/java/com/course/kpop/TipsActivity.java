@@ -155,7 +155,6 @@ public class TipsActivity extends AppCompatActivity{
                 closeEditor.apply();
                 Boolean close_Tips = closef.getBoolean("closeforever",true);
 
-
                 // bgm 끄기
                 if(mediaplayer_title!=null)
                 {

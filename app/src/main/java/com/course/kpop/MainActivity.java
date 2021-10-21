@@ -51,8 +51,6 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button startButton;
-
     public static final int REQUEST_CODE_QUIZ = 101;
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String SHARED_MUSIC = "sharedMusic";
@@ -64,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
     private long backPressedTime;
 
+    private Button tipsButton;
+    private Button startButton;
     private Button settingOpen;
     private Button quitButton;
 
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
+        tipsButton = findViewById(R.id.Main_tips);
         startButton = findViewById(R.id.Main_start);
         textViewHighscore = findViewById(R.id.txtbestScore);
         TypingEffect textViewTitle = findViewById(R.id.txtTitle);
@@ -160,6 +160,31 @@ public class MainActivity extends AppCompatActivity {
         textViewTitle.setCharacterDelay(150);
         textViewTitle.animateText(getString(R.string.Title));*/
 
+        tipsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                tipsButton.setEnabled(false);
+                startButton.setEnabled(false);
+                settingOpen.setEnabled(false);
+                quitButton.setEnabled(false);
+                startButton.setTextColor(Color.GRAY);
+                settingOpen.setTextColor(Color.GRAY);
+                quitButton.setTextColor(Color.GRAY);
+
+
+                // 다시보지않기
+                SharedPreferences closef = getSharedPreferences(TitleActivity.SHARED_CLOSE,MODE_PRIVATE);
+                SharedPreferences.Editor closeEditor = closef.edit();
+                closeEditor.putBoolean("closeforever", true);
+                closeEditor.apply();
+
+                Intent intent = new Intent(getApplicationContext(), TipsActivity.class);
+                startActivity(intent);
+
+                finish();
+            }
+        });
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override

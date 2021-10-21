@@ -80,6 +80,23 @@ public class TitleActivity extends AppCompatActivity {
 
             //closef.putBoolean("isFirstRun", false).apply();
         }
+
+        else
+        {
+            if(mediaplayer_title!=null)
+            {
+                mediaplayer_title.stop();
+                mediaplayer_title.release();
+                mediaplayer_title = null;
+            }
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+
+            // 액티비티 이동시 페이드인아웃 연출
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            finish();
+        }
     }
 
     @Override
@@ -117,20 +134,6 @@ public class TitleActivity extends AppCompatActivity {
                 // BGM 종료
 
                 checkFirstRun();
-
-                if(mediaplayer_title!=null)
-                {
-                    mediaplayer_title.stop();
-                    mediaplayer_title.release();
-                    mediaplayer_title = null;
-                }
-
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-
-                // 액티비티 이동시 페이드인아웃 연출
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-                finish();
 
                 break;
             case MotionEvent.ACTION_CANCEL:
