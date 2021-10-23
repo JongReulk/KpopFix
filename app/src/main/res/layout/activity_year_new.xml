@@ -6,10 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".YearActivity">
 
-    <ScrollView
-        android:id="@+id/year_Scrollview"
+    <!-- 모니터 이미지 -->
+    <ImageView
+        android:id="@+id/Image_TV_year"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/tvframefullfinal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -17,6 +20,39 @@
         app:layout_constraintVertical_bias="0.20"
         app:layout_constraintHeight_percent="0.44"
         app:layout_constraintWidth_percent="1"
+        />
+
+    <TextView
+        android:id="@+id/year_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Year"
+        android:textSize="48sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintVertical_bias="0.1"
+
+
+        app:layout_constraintTop_toTopOf="@id/Image_TV_year"
+        app:layout_constraintLeft_toLeftOf="@id/Image_TV_year"
+        app:layout_constraintRight_toRightOf="@id/Image_TV_year"
+        app:layout_constraintBottom_toBottomOf="@id/Image_TV_year"
+        >
+
+    </TextView>
+
+    <ScrollView
+        android:id="@+id/year_Scrollview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintWidth_percent="0.9"
+
+        app:layout_constraintTop_toBottomOf="@+id/year_Title"
+        app:layout_constraintLeft_toLeftOf="@id/Image_TV_year"
+        app:layout_constraintRight_toRightOf="@id/Image_TV_year"
+        app:layout_constraintBottom_toBottomOf="@id/Image_TV_year"
         >
 
         <LinearLayout
@@ -24,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="10dp"
             >
 
             <Button
@@ -32,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2010"
+                android:textStyle="bold"
                 >
             </Button>
             <Button
@@ -40,6 +78,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2011"
+                android:textStyle="bold"
+
                 >
             </Button>
             <Button
@@ -48,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2012"
+                android:textStyle="bold"
                 >
             </Button>
             <Button
@@ -56,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2013"
+                android:textStyle="bold"
                 >
             </Button>
             <Button
@@ -64,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2014"
+                android:textStyle="bold"
                 >
             </Button>
             <Button
@@ -72,6 +115,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2015"
+                android:textStyle="bold"
                 >
             </Button>
             <Button
@@ -80,15 +124,17 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2016"
+                android:textStyle="bold"
                 >
             </Button>
 
             <Button
                 android:id="@+id/year_2017"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
-            android:text="2017"
+                android:text="2017"
+                android:textStyle="bold"
             >
 
             </Button>
@@ -99,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2018"
+                android:textStyle="bold"
                 >
             </Button>
 
@@ -108,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2019"
+                android:textStyle="bold"
                 >
             </Button>
 
@@ -117,6 +165,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2020"
+                android:textStyle="bold"
                 >
             </Button>
 
@@ -126,43 +175,88 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2021"
+                android:textStyle="bold"
                 >
             </Button>
+
 
         </LinearLayout>
     </ScrollView>
 
-    <Button
+    <!-- 리모컨 이미지 -->
+    <ImageView
+        android:id="@+id/Remote_year"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/remotecontrol"
+        android:scaleType="fitXY"
+
+        app:layout_constraintTop_toBottomOf="@id/Image_TV_year"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHeight_percent="0.38"
+        app:layout_constraintWidth_percent="0.45"
+        />
+
+    <ImageButton
         android:id="@+id/year_up"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
 
+
+        android:soundEffectsEnabled="false"
+
+        android:src="@drawable/uparrow"
         android:text="up"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.80"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintWidth_percent="1"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@+id/Remote_year"
+        app:layout_constraintLeft_toLeftOf="@+id/Remote_year"
+        app:layout_constraintRight_toRightOf="@+id/Remote_year"
+        app:layout_constraintBottom_toBottomOf="@+id/Remote_year"
+        app:layout_constraintVertical_bias="0.25"
         >
 
-    </Button>
+    </ImageButton>
 
     <Button
-        android:id="@+id/year_down"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/year_confirm"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_remote_circle"
+        android:soundEffectsEnabled="false"
 
-        android:text="down"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.92"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintWidth_percent="1"
+        android:text="OK"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@+id/Remote_year"
+        app:layout_constraintLeft_toLeftOf="@+id/Remote_year"
+        app:layout_constraintRight_toRightOf="@+id/Remote_year"
+        app:layout_constraintBottom_toBottomOf="@+id/Remote_year"
+        app:layout_constraintVertical_bias="0.5"
+
+
+        >
+    </Button>
+
+    <ImageButton
+        android:id="@+id/year_down"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:src="@drawable/downarrow"
+        app:layout_constraintTop_toTopOf="@+id/Remote_year"
+        app:layout_constraintLeft_toLeftOf="@+id/Remote_year"
+        app:layout_constraintRight_toRightOf="@+id/Remote_year"
+        app:layout_constraintBottom_toBottomOf="@+id/Remote_year"
+        app:layout_constraintVertical_bias="0.75"
+
         >
 
-    </Button>
+    </ImageButton>
 </androidx.constraintlayout.widget.ConstraintLayout>
