@@ -11,19 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kpop">
-        <activity android:name=".QuizMain"></activity>
-        <activity android:name=".DifficultyActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".TitleActivity"></activity>
-        <activity android:name=".TipsActivity"></activity>
-        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
+        <activity android:name=".YearActivity"></activity>
+        <activity android:name=".QuizMain" />
+        <activity android:name=".DifficultyActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".TitleActivity" />
+        <activity android:name=".TipsActivity" />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
