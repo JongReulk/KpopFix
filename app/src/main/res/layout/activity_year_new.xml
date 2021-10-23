@@ -69,7 +69,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2010"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
                 >
             </Button>
             <Button
@@ -78,7 +81,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2011"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
 
                 >
             </Button>
@@ -88,7 +94,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2012"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
                 >
             </Button>
             <Button
@@ -97,7 +106,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2013"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
                 >
             </Button>
             <Button
@@ -106,7 +118,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2014"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
                 >
             </Button>
             <Button
@@ -115,7 +130,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2015"
+                android:textSize="18dp"
                 android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginBottom="5dp"
                 >
             </Button>
             <Button
@@ -124,7 +142,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2016"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
                 >
             </Button>
 
@@ -134,7 +155,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2017"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
             >
 
             </Button>
@@ -145,7 +169,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2018"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
                 >
             </Button>
 
@@ -155,7 +182,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2019"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
                 >
             </Button>
 
@@ -165,7 +195,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2020"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
                 >
             </Button>
 
@@ -175,7 +208,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2021"
+                android:textSize="18dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginBottom="5dp"
                 >
             </Button>
 
@@ -205,7 +241,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:scaleType="fitXY"
-
+        android:background="@android:color/transparent"
 
         android:soundEffectsEnabled="false"
 
@@ -247,8 +283,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:scaleType="fitXY"
-        android:textColor="@color/white"
-        android:textStyle="bold"
+
+        android:background="@android:color/transparent"
         android:src="@drawable/downarrow"
         app:layout_constraintTop_toTopOf="@+id/Remote_year"
         app:layout_constraintLeft_toLeftOf="@+id/Remote_year"

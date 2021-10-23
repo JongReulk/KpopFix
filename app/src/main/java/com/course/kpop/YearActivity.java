@@ -54,12 +54,16 @@ public class YearActivity extends AppCompatActivity {
         year_v = year_linear.getChildAt(button_num);
 
         year_v.setSelected(true);
+        year_b = (Button)year_v;
+        year_b.setTextColor(getResources().getColor(R.color.black));
+        year_b.setTextSize(24);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
 
+                Log.e("Num "," : " + button_num);
                 View year_v = year_linear.getChildAt(button_num-1);
                 year_scroll.smoothScrollTo(0, year_v.getTop());
 
@@ -81,27 +85,37 @@ public class YearActivity extends AppCompatActivity {
 
                     View year_v = year_linear.getChildAt(button_num);
 
-                    year_v.setFocusable(false);
                     year_v.setSelected(false);
+
+                    Button year_b = (Button)year_v;
+                    year_b.setTextColor(getResources().getColor(R.color.white));
+                    year_b.setTextSize(18);
 
                     button_num++;
 
                     year_v = year_linear.getChildAt(button_num);
                     year_v.setSelected(true);
-                    year_v.setFocusable(true);
 
-                    Log.e("Button : " ," : " +button_num);
+                    year_b = (Button)year_v;
+                    year_b.setTextColor(getResources().getColor(R.color.black));
+                    year_b.setTextSize(24);
+
 
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
 
-                            View year_v = year_linear.getChildAt(button_num);
+                            View year_v = year_linear.getChildAt(button_num-1);
                             year_scroll.smoothScrollTo(0, year_v.getTop());
 
                         }
-                    }, 50);
+                    }, 500);
+
+
+                    Log.e("Button : " ," : " +button_num);
+
+
                 }
 
             }
@@ -126,20 +140,36 @@ public class YearActivity extends AppCompatActivity {
 
                     year_v.setSelected(false);
 
+                    Button year_b = (Button)year_v;
+                    year_b.setTextColor(getResources().getColor(R.color.white));
+                    year_b.setTextSize(18);
+
                     button_num--;
                     year_v = year_linear.getChildAt(button_num);
                     year_v.setSelected(true);
+
+                    year_b = (Button)year_v;
+                    year_b.setTextColor(getResources().getColor(R.color.black));
+                    year_b.setTextSize(24);
 
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
 
-                            View year_v = year_linear.getChildAt(button_num);
-                            year_scroll.smoothScrollTo(0, year_v.getTop());
+                            if(button_num == 0){
+                                View year_v = year_linear.getChildAt(button_num);
+                                year_scroll.smoothScrollTo(0, year_v.getTop());
+                            }
+                            else {
+                                View year_v = year_linear.getChildAt(button_num - 1);
+                                year_scroll.smoothScrollTo(0, year_v.getTop());
+                            }
+
 
                         }
                     }, 50);
+                    Log.e("Button : " ," : " +button_num);
                 }
 
             }
