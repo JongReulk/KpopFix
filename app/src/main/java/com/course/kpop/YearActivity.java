@@ -116,8 +116,6 @@ public class YearActivity extends AppCompatActivity {
 
 
                     Log.e("Button : " ," : " +button_num);
-
-
                 }
 
             }
@@ -161,6 +159,99 @@ public class YearActivity extends AppCompatActivity {
 
             }
         });
+
+        //도박1
+        year_down.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                while (true) {
+                    if (button_num < button_total - 1) {
+
+                        View year_v = year_linear.getChildAt(button_num);
+
+                        year_v.setSelected(false);
+
+                        Button year_b = (Button) year_v;
+                        year_b.setTextColor(getResources().getColor(R.color.white));
+                        year_b.setTextSize(18);
+
+                        button_num++;
+
+                        year_v = year_linear.getChildAt(button_num);
+                        year_v.setSelected(true);
+
+                        year_b = (Button) year_v;
+                        year_b.setTextColor(getResources().getColor(R.color.black));
+                        year_b.setTextSize(24);
+
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                View year_v = year_linear.getChildAt(button_num - 1);
+                                year_scroll.smoothScrollTo(0, year_v.getTop());
+
+                            }
+                        }, 100);
+
+
+                        Log.e("Button : ", " : " + button_num);
+                    } else {
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+        //도박2
+        year_up.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                while (true) {
+                    if (button_num > 0) {
+                        View year_v = year_linear.getChildAt(button_num);
+
+                        year_v.setSelected(false);
+
+                        Button year_b = (Button) year_v;
+                        year_b.setTextColor(getResources().getColor(R.color.white));
+                        year_b.setTextSize(18);
+
+                        button_num--;
+                        year_v = year_linear.getChildAt(button_num);
+                        year_v.setSelected(true);
+
+                        year_b = (Button) year_v;
+                        year_b.setTextColor(getResources().getColor(R.color.black));
+                        year_b.setTextSize(24);
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                if (button_num == 0) {
+                                    View year_v = year_linear.getChildAt(button_num);
+                                    year_scroll.smoothScrollTo(0, year_v.getTop());
+                                } else {
+                                    View year_v = year_linear.getChildAt(button_num - 1);
+                                    year_scroll.smoothScrollTo(0, year_v.getTop());
+                                }
+                            }
+                        }, 100);
+                        Log.e("Button : ", " : " + button_num);
+                    } else {
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
+
 
         year_up.setOnClickListener(new View.OnClickListener() {
             @Override
