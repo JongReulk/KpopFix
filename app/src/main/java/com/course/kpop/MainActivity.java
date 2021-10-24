@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), YearActivity.class);
                         startActivityForResult(intent,REQUEST_CODE_QUIZ);
 
                         // 액티비티 이동시 페이드인아웃 연출

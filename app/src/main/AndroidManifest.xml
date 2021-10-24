@@ -13,9 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kpop">
-        <activity android:name=".YearActivity"></activity>
         <activity android:name=".QuizMain" />
         <activity android:name=".DifficultyActivity" />
+        <activity android:name=".YearActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".TitleActivity" />
         <activity android:name=".TipsActivity" />

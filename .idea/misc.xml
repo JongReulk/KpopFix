@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/drawable/btn_remote.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/drawable/btn_remote_circle.xml" value="0.1984375" />
+        <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/drawable/btn_year.xml" value="0.1984375" />
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/layout/activity_difficulty.xml" value="0.19375" />
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/layout/activity_main.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/layout/activity_tips.xml" value="0.144" />
