@@ -51,14 +51,14 @@ public class YearActivity extends AppCompatActivity {
 
         SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC,MODE_PRIVATE);
         Boolean bgmCb_difficulty = music.getBoolean("bgmCb",true);
-        Boolean effectCb_difficulty = music.getBoolean("effectCb",true);
+        Boolean effectCb_year = music.getBoolean("effectCb",true);
 
         //Sound
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
         soundID = soundPool.load(this,R.raw.buttonsound1,1);
 
         if(soundPool!=null){
-            if(!effectCb_difficulty){
+            if(!effectCb_year){
                 soundPoolVolume=0.0f;
             }
 
@@ -205,7 +205,7 @@ public class YearActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
-                        startActivity(intent);
+                        startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
 
                         // 액티비티 이동시 페이드인아웃 연출
                         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
