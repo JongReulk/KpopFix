@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView remote = (ImageView) findViewById(R.id.Remote_main);
         ConstraintLayout remotebutton = (ConstraintLayout) findViewById(R.id.Remote_button_main);
 
-
         //텍스트 페이드인
         textViewTitle = (TextView) findViewById((R.id.txtTitle));
         Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
