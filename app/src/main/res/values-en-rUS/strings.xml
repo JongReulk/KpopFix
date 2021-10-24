@@ -17,5 +17,6 @@
     <string name="Cancel">CANCEL</string>
     <string name="Ok">Ok</string>
     <string name="Quit">QUIT</string>
+    <string name="Year">Year</string>
 
 </resources>

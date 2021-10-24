@@ -17,5 +17,6 @@
     <string name="Cancel">취소</string>
     <string name="Ok">확인</string>
     <string name="Quit">종료</string>
+    <string name="Year">연도</string>
 
 </resources>
