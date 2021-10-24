@@ -100,7 +100,6 @@ public class  DifficultyActivity extends AppCompatActivity {
         Boolean bgmCb_difficulty = music.getBoolean("bgmCb",true);
         Boolean effectCb_difficulty = music.getBoolean("effectCb",true);
 
-
         //Sound
         soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC,0);	//작성
         soundID = soundPool.load(this,R.raw.buttonsound1,1);

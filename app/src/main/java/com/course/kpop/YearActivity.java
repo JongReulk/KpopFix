@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -39,7 +40,6 @@ public class YearActivity extends AppCompatActivity {
     SoundPool soundPool;	//작성
     int soundID;		    //작성
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +49,23 @@ public class YearActivity extends AppCompatActivity {
         ImageView remote = (ImageView) findViewById(R.id.Remote_year);
         //ConstraintLayout remotebutton = (ConstraintLayout) findViewById(R.id.Image_TV_year);
 
+        SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC,MODE_PRIVATE);
+        Boolean bgmCb_difficulty = music.getBoolean("bgmCb",true);
+        Boolean effectCb_difficulty = music.getBoolean("effectCb",true);
+
         //Sound
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
         soundID = soundPool.load(this,R.raw.buttonsound1,1);
 
+        if(soundPool!=null){
+            if(!effectCb_difficulty){
+                soundPoolVolume=0.0f;
+            }
+
+            else{
+                soundPoolVolume=1.0f;
+            }
+        }
 
         year_scroll = findViewById(R.id.year_Scrollview);
         year_up = findViewById(R.id.year_up);
