@@ -45,9 +45,6 @@ public class YearActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_year_new);
 
-        //리모컨 이미지
-        ImageView remote = (ImageView) findViewById(R.id.Remote_year);
-        //ConstraintLayout remotebutton = (ConstraintLayout) findViewById(R.id.Image_TV_year);
 
         SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC,MODE_PRIVATE);
         Boolean bgmCb_difficulty = music.getBoolean("bgmCb",true);
@@ -67,6 +64,10 @@ public class YearActivity extends AppCompatActivity {
             }
         }
 
+        //리모컨 이미지
+        ImageView remote = (ImageView) findViewById(R.id.Remote_year);
+        ConstraintLayout remotebutton_year = (ConstraintLayout) findViewById(R.id.Remote_button_year);
+
         year_scroll = findViewById(R.id.year_Scrollview);
         year_up = findViewById(R.id.year_up);
         year_down = findViewById(R.id.year_down);
@@ -74,6 +75,12 @@ public class YearActivity extends AppCompatActivity {
         year_linear = findViewById(R.id.year_linearlayout);
         View year_v;
 
+        // 리모콘 애니메이션
+        Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remote.startAnimation(RemoteUp);
+
+        Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remotebutton_year.startAnimation(RemoteButtonUp);
 
         Button year_b;
 
@@ -193,14 +200,14 @@ public class YearActivity extends AppCompatActivity {
 
                 soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
 
-                //리모컨이미지 내려감
+                // 리모콘 애니메이션
                 Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
                 remote.startAnimation(RemoteDown);
 
-                //리모컨버튼 내려감
                 Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                //remotebutton.startAnimation(RemoteButtonDown);
+                remotebutton_year.startAnimation(RemoteButtonDown);
 
+                Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -211,7 +218,6 @@ public class YearActivity extends AppCompatActivity {
                         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     }
                 }, 600); //딜레이 타임 조절
-
             }
         });
 

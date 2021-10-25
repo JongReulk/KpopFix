@@ -206,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
                 Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
                 remotebutton.startAnimation(RemoteButtonDown);
 
+                Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {

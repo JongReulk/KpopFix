@@ -243,6 +243,17 @@
         app:layout_constraintWidth_percent="0.45"
         />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Remote_button_year"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/Remote_year"
+        app:layout_constraintBottom_toBottomOf="@+id/Remote_year"
+        app:layout_constraintLeft_toLeftOf="@+id/Remote_year"
+        app:layout_constraintRight_toRightOf="@+id/Remote_year"
+        >
+
     <ImageButton
         android:id="@+id/year_up"
         android:layout_width="50dp"
@@ -256,10 +267,10 @@
         android:text="up"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@+id/Remote_year"
-        app:layout_constraintLeft_toLeftOf="@+id/Remote_year"
-        app:layout_constraintRight_toRightOf="@+id/Remote_year"
-        app:layout_constraintBottom_toBottomOf="@+id/Remote_year"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.25"
         >
 
@@ -275,10 +286,10 @@
         android:text="OK"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@+id/Remote_year"
-        app:layout_constraintLeft_toLeftOf="@+id/Remote_year"
-        app:layout_constraintRight_toRightOf="@+id/Remote_year"
-        app:layout_constraintBottom_toBottomOf="@+id/Remote_year"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.5"
 
 
@@ -293,13 +304,14 @@
 
         android:background="@android:color/transparent"
         android:src="@drawable/downarrow"
-        app:layout_constraintTop_toTopOf="@+id/Remote_year"
-        app:layout_constraintLeft_toLeftOf="@+id/Remote_year"
-        app:layout_constraintRight_toRightOf="@+id/Remote_year"
-        app:layout_constraintBottom_toBottomOf="@+id/Remote_year"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.75"
-
         >
-
     </ImageButton>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
