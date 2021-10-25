@@ -133,7 +133,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
-        questionList = dbHelper.getQuestions("2010");
+        questionList = dbHelper.getQuestions("2020");
 
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList);

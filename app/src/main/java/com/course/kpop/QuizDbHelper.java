@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.course.kpop.QuizContract.*;
 
@@ -102,7 +103,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         List<Question> questionList = new ArrayList<>();
         db = getReadableDatabase();
 
+        /*
+        for(int i = 0; i < year.length; i++){
+            String[] selectionArgs = new String[]{year[i]};
+        }*/
+
+
         String[] selectionArgs = new String[]{year};
+        Log.e("Year", " : " + selectionArgs.length);
         Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME +
                 " WHERE " + QuestionsTable.COLUMN_YEAR + " = ?", selectionArgs);
 

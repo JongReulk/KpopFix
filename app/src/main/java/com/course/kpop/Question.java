@@ -2,6 +2,9 @@ package com.course.kpop;
 
 public class Question {
     public static final int YEAR_TWOTHOUSANDTEN = 2010;
+    public static final int YEAR_TWOTHOUSANDFIFTEEN=2015;
+    public static final int YEAR_TWOTHOUSANDSIXTEEN=2016;
+    public static final int YEAR_TWOTHOUSANDSEVENTEEN=2015;
     public static final int YEAR_TWOTHOUSANDTWENTY = 2020;
     public static final int YEAR_TWOTHOUSANDTWENTYONE = 2021;
 
@@ -67,9 +70,13 @@ public class Question {
 
     public static int[] getAllYear() {
         return new int[]{
-                YEAR_TWOTHOUSANDTEN,
-                YEAR_TWOTHOUSANDTWENTY,
-                YEAR_TWOTHOUSANDTWENTYONE
+                2015,
+                2016,
+                2017,
+                2018,
+                2019,
+                2020,
+                2021
         };
     }
 }
