@@ -25,6 +25,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class YearActivity extends AppCompatActivity {
 
     private ScrollView year_scroll;
@@ -196,10 +198,6 @@ public class YearActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-
-
                 soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
 
                 year_down.setEnabled(false);
@@ -223,14 +221,17 @@ public class YearActivity extends AppCompatActivity {
 
                         if(button_num == button_total-2)
                         {
-                            year_num = 100; // 랜덤이면 100
+                            Random random = new Random();
+                            int random_year = random.nextInt(button_total-2);
+                            year_num = random_year + 2016;
+                            Log.e("RANDOM YEAR", " : " + year_num);
                         }
 
                         if(button_num == button_total-1)
                         {
                             year_num = 101; // 전체면 101
                         }
-                        Toast.makeText(getApplicationContext(),"year : " + year_num,Toast.LENGTH_SHORT).show();
+
                         Intent intent = new Intent(getApplicationContext(),DifficultyActivity.class);
                         intent.putExtra("year_num",year_num); // 10초
                         startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);

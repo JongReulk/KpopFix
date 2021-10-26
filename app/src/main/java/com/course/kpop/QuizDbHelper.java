@@ -16,7 +16,7 @@ import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MyKpopQuiz.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 1;
 
     private SQLiteDatabase db;
 
@@ -64,8 +64,18 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q3 = new Question("WMweEpGlu_U", "버터","butter","Butter - BTS",2021);
         addQuestion(q3);
 
-        Question q4 = new Question("q_gfD3nvh-8", "런데빌런","rundevilrun","Run Devil Run - 소녀시대",2010);
+        Question q4 = new Question("c7rCyll5AeY", "치얼업","cheerup","CHEER UP - TWICE",2016);
         addQuestion(q4);
+
+        Question q5 = new Question("8A2t_tAjMz8", "낙낙","knockknock","KNOCK KNOCK - TWICE",2017);
+        addQuestion(q5);
+
+        Question q6 = new Question("7C2z4GqqS5E", "페이크러브","fakelove","FAKE LOVE - BTS",2018);
+        addQuestion(q6);
+
+        Question q7 = new Question("kOHB85vDuow", "팬시","fancy","FANCY - TWICE",2019);
+        addQuestion(q7);
+
     }
 
     private void addQuestion(Question question) {
