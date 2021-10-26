@@ -10,5 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#77000000</color>
     <color name="beige">#419147BF</color>
+    <color name="yellow">#FFF300</color>
     <color name="hard_color">#DA0303</color>
 </resources>

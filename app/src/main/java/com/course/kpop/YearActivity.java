@@ -23,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -36,6 +37,8 @@ public class YearActivity extends AppCompatActivity {
     private LinearLayout year_linear;
     private int button_total;
     private int button_num;
+
+    private TextView year_select;
 
     private static boolean isClicked;
 
@@ -76,6 +79,7 @@ public class YearActivity extends AppCompatActivity {
         year_down = findViewById(R.id.year_down);
         year_confirm = findViewById(R.id.year_confirm);
         year_linear = findViewById(R.id.year_linearlayout);
+        year_select = findViewById(R.id.txt_selectYear);
         View year_v;
 
         // 리모콘 애니메이션
@@ -100,6 +104,8 @@ public class YearActivity extends AppCompatActivity {
         year_b = (Button)year_v;
         year_b.setTextColor(getResources().getColor(R.color.black));
         year_b.setTextSize(24);
+
+        year_select.setVisibility(View.GONE);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -213,10 +219,37 @@ public class YearActivity extends AppCompatActivity {
                 Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
                 remotebutton_year.startAnimation(RemoteButtonDown);
 
+
+                int year_num = button_num + 2016;
+                String year_num_string = String.valueOf(year_num);
+
+                year_select.setText(year_num_string);
+
+                if(button_num == button_total-2)
+                {
+                    Random random = new Random();
+                    int random_year = random.nextInt(button_total-2);
+                    year_num = random_year + 2016;
+                    year_num_string = String.valueOf(year_num);
+
+                    year_select.setText(year_num_string);
+                }
+
+
+                if(button_num == button_total-1)
+                {
+                    year_select.setText(getString(R.string.All));
+                }
+
+                year_scroll.setVisibility(View.GONE);
+                year_select.setVisibility(View.VISIBLE);
+
+
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+
                         int year_num = button_num + 2016;
 
                         if(button_num == button_total-2)
