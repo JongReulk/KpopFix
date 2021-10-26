@@ -34,6 +34,7 @@ public class  DifficultyActivity extends AppCompatActivity {
     private Button hardButton;
 
     private int highscore;
+    private int year_num_Difficulty;
     private TextView textViewHighscore;
     private TextView textViewGuidegame;
     private TextView textLevel;
@@ -57,6 +58,8 @@ public class  DifficultyActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_difficulty);
+
+
 
 
         easyButton = findViewById(R.id.easy_Button);
@@ -143,11 +146,17 @@ public class  DifficultyActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        Intent intent = getIntent();
+
+                        final int year_num_Difficulty = intent.getIntExtra("year_num",2020);
+                        Log.e("Year DIFFICULTY 11"," : " + year_num_Difficulty);
 
                         if(!isFinished){
-                            Intent intent = new Intent(getApplicationContext(),QuizMain.class);
-                            intent.putExtra("difficulty_time",10000); // 10초
-                            startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
+
+                            Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
+                            Quizintent.putExtra("difficulty_time",10000); // 10초
+                            Quizintent.putExtra("year_num",year_num_Difficulty);
+                            startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
 
                         }
 

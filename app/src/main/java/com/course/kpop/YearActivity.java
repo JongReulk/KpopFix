@@ -195,10 +195,17 @@ public class YearActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int year_num = button_num + 2010;
-                Toast.makeText(getApplicationContext(),"year : " + year_num,Toast.LENGTH_SHORT).show();
+
+
+
 
                 soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
+
+                year_down.setEnabled(false);
+                year_up.setEnabled(false);
+                year_confirm.setEnabled(false);
+                year_confirm.setTextColor(Color.GRAY);
+
 
                 // 리모콘 애니메이션
                 Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
@@ -211,11 +218,25 @@ public class YearActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
+                        int year_num = button_num + 2016;
+
+                        if(button_num == button_total-2)
+                        {
+                            year_num = 100; // 랜덤이면 100
+                        }
+
+                        if(button_num == button_total-1)
+                        {
+                            year_num = 101; // 전체면 101
+                        }
+                        Toast.makeText(getApplicationContext(),"year : " + year_num,Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(),DifficultyActivity.class);
+                        intent.putExtra("year_num",year_num); // 10초
                         startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
 
                         // 액티비티 이동시 페이드인아웃 연출
                         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        finish();
                     }
                 }, 600); //딜레이 타임 조절
             }

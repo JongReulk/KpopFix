@@ -110,6 +110,7 @@ public class QuizMain extends YouTubeBaseActivity {
         Intent intent = getIntent();
 
         videoLength = intent.getIntExtra("difficulty_time",10000);
+        int year_num = intent.getIntExtra("year_num",2020);
 
 
         confirmButton = findViewById(R.id.confirmButton);
@@ -131,9 +132,19 @@ public class QuizMain extends YouTubeBaseActivity {
         txtQuestionCount = findViewById(R.id.txtQuestionCount);
         txtCountDown = findViewById(R.id.txtCountDown);
 
+
+
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
-        questionList = dbHelper.getQuestions("2020");
+        if(year_num == 101){
+            questionList = dbHelper.getAllQuestions();
+        }
+        else {
+            String year_num_string = String.valueOf(year_num);
+            Log.e("year_QUIZMAIN", " : " +year_num_string);
+
+            questionList = dbHelper.getQuestions(year_num_string);
+        }
 
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList);
@@ -176,6 +187,9 @@ public class QuizMain extends YouTubeBaseActivity {
 
         musicProgressbar.setMax(videoLength);
 
+        confirmButton.setEnabled(false);
+        confirmButton.setTextColor(Color.GRAY);
+
 
         initPlayer();
         showNextQuestion();
@@ -190,6 +204,7 @@ public class QuizMain extends YouTubeBaseActivity {
             public void onClick(View v) {
 
                 checkAnswer();
+                musicProgressbar.clearAnimation();
                 leftSpeaker.startAnimation(speakerleft_anim);
                 rightSpeaker.startAnimation(speakerright_anim);
             }
@@ -204,13 +219,13 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
                 playerView.setAlpha(0.0f);
-                confirmButton.setEnabled(true);
-                confirmButton.setTextColor(Color.WHITE);
+
                 nextButton.setEnabled(false);
                 nextButton.setTextColor(Color.GRAY);
                 answerText.setText("");
 
                 answerText.getBackground().setColorFilter(null);
+
 
                 if(questionCounter >= questionCountTotal)
                 {
@@ -245,15 +260,15 @@ public class QuizMain extends YouTubeBaseActivity {
                     @Override
                     public void onLoaded(String s) {
                         Log.e("PlayerView", "onLoaded 호출됨: " + s);
-                        customProgressDialog.dismiss();
-
                     }
 
                     @Override
                     public void onAdStarted() {}
 
                     @Override
-                    public void onVideoStarted() {}
+                    public void onVideoStarted() {
+                        customProgressDialog.dismiss();
+                    }
 
                     @Override
                     public void onVideoEnded() {}
@@ -288,6 +303,7 @@ public class QuizMain extends YouTubeBaseActivity {
             ObjectAnimator progressAnimation = ObjectAnimator.ofInt(musicProgressbar, "progress", 0,musicProgressbar.getMax() );
             progressAnimation.setDuration(musicProgressbar.getMax());
             progressAnimation.setInterpolator(new DecelerateInterpolator());
+
 
 
             // 지정 시간동안 동영상 재생하기
@@ -357,7 +373,10 @@ public class QuizMain extends YouTubeBaseActivity {
     }
 
     private void startCountDown() {
+
         if(isCountStart) {
+            confirmButton.setEnabled(true);
+            confirmButton.setTextColor(Color.WHITE);
             timeLeftInMillis = COUNTDOWN_IN_MILLIS;
             countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
                 @Override
