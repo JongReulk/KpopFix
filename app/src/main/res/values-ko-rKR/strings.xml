@@ -18,5 +18,7 @@
     <string name="Ok">확인</string>
     <string name="Quit">종료</string>
     <string name="Year">연도</string>
+    <string name="All">전체</string>
+    <string name="Random">랜덤</string>
 
 </resources>

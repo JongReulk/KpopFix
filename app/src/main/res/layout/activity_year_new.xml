@@ -71,79 +71,6 @@
             >
 
             <Button
-                android:id="@+id/year_2010"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_year"
-                android:text="2010"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"
-                >
-            </Button>
-            <Button
-                android:id="@+id/year_2011"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_year"
-                android:text="2011"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"
-
-                >
-            </Button>
-            <Button
-                android:id="@+id/year_2012"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_year"
-                android:text="2012"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"
-                >
-            </Button>
-            <Button
-                android:id="@+id/year_2013"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_year"
-                android:text="2013"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"
-                >
-            </Button>
-            <Button
-                android:id="@+id/year_2014"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_year"
-                android:text="2014"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"
-                >
-            </Button>
-            <Button
-                android:id="@+id/year_2015"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_year"
-                android:text="2015"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginBottom="5dp"
-                >
-            </Button>
-            <Button
                 android:id="@+id/year_2016"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -215,6 +142,32 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_year"
                 android:text="2021"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"
+                >
+            </Button>
+
+            <Button
+                android:id="@+id/year_random"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_year"
+                android:text="@string/Random"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"
+                >
+            </Button>
+
+            <Button
+                android:id="@+id/year_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_year"
+                android:text="@string/All"
                 android:textSize="18dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"

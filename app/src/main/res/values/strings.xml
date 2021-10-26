@@ -9,14 +9,16 @@
     <string name="Difficulty">DIFFICULTY</string>
     <string name="Gamestart">The Game will begin.\nGET READY!</string>
     <string name="Confirm">" Confirm "</string>
-    <string name="Next">Next</string>
-    <string name="Finish">Finish</string>
+    <string name="Next">NEXT</string>
+    <string name="Finish">FINISH</string>
     <string name="Setting">" SETTINGS "</string>
     <string name="Bgm">BGM</string>
     <string name="SFX">SFX</string>
     <string name="Cancel">CANCEL</string>
-    <string name="Ok">Ok</string>
+    <string name="Ok">OK</string>
     <string name="Quit">QUIT</string>
-    <string name="Year">Year</string>
+    <string name="Year">YEAR</string>
+    <string name="All">ALL</string>
+    <string name="Random">RANDOM</string>
 
 </resources>
