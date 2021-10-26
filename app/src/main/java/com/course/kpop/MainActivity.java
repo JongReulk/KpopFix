@@ -144,9 +144,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         Handler handler = new Handler();
-
-
-
         // 타이핑 이펙트
 
         /*
@@ -206,6 +203,8 @@ public class MainActivity extends AppCompatActivity {
                 Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
                 remotebutton.startAnimation(RemoteButtonDown);
 
+
+
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -214,7 +213,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivityForResult(intent,REQUEST_CODE_QUIZ);
 
                         // 액티비티 이동시 페이드인아웃 연출
-                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        //overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                        finish();
+
                     }
                 }, 600); //딜레이 타임 조절
             }

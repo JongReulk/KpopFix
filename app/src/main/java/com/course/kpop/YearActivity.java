@@ -44,7 +44,7 @@ public class YearActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_year_new);
-
+        getWindow().setWindowAnimations(0);
 
         SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC,MODE_PRIVATE);
         Boolean bgmCb_difficulty = music.getBoolean("bgmCb",true);
@@ -235,7 +235,7 @@ public class YearActivity extends AppCompatActivity {
                         startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
 
                         // 액티비티 이동시 페이드인아웃 연출
-                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                         finish();
                     }
                 }, 600); //딜레이 타임 조절

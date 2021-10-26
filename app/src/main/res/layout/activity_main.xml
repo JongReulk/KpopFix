@@ -34,6 +34,7 @@
             <com.course.kpop.TypingEffect
                 android:id="@+id/txtTitle"
                 android:text="@string/Title"
+                android:fontFamily="@font/font_digital"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:textColor="@color/white"
@@ -63,6 +64,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:bufferType="spannable"
+                android:fontFamily="@font/font_digital"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="24sp"
                 android:autoSizeMaxTextSize="100sp"
