@@ -138,7 +138,7 @@ public class TipsActivity extends AppCompatActivity{
                         startActivity(intent);
 
                         // 액티비티 이동시 페이드인아웃 연출
-                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                         finish();
                     }
                 }, 600); //딜레이 타임 조절
@@ -173,7 +173,7 @@ public class TipsActivity extends AppCompatActivity{
                         startActivity(intent);
 
                         // 액티비티 이동시 페이드인아웃 연출
-                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                         finish();
                     }
                 }, 600); //딜레이 타임 조절

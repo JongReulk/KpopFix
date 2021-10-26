@@ -175,6 +175,13 @@ public class MainActivity extends AppCompatActivity {
                 closeEditor.putBoolean("closeforever", true);
                 closeEditor.apply();
 
+                if(mediaplayer_main!=null)
+                {
+                    mediaplayer_main.stop();
+                    mediaplayer_main.release();
+                    mediaplayer_main = null;
+                }
+
                 Intent intent = new Intent(getApplicationContext(), TipsActivity.class);
                 startActivity(intent);
 
