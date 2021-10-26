@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
                         // 액티비티 이동시 페이드인아웃 연출
                         //overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                        finish();
+                        //finish();
 
                     }
                 }, 600); //딜레이 타임 조절

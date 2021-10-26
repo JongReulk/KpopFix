@@ -1,5 +1,6 @@
 package com.course.kpop;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -236,7 +237,7 @@ public class YearActivity extends AppCompatActivity {
 
                         // 액티비티 이동시 페이드인아웃 연출
                         //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-                        finish();
+                        //finish();
                     }
                 }, 600); //딜레이 타임 조절
             }
@@ -316,6 +317,23 @@ public class YearActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == MainActivity.REQUEST_CODE_QUIZ){
+            if (resultCode == RESULT_OK){
+                int score = data.getIntExtra(QuizMain.HIGH_SCORE, 0);
+                Log.e("점수를 받았는가33","?" + score);
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(QuizMain.HIGH_SCORE, score);
+                Log.e("최고 점수",":" + score);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            }
+        }
     }
 
 }

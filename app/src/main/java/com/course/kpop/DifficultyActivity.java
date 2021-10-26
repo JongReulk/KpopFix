@@ -107,6 +107,10 @@ public class  DifficultyActivity extends AppCompatActivity {
         soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC,0);	//작성
         soundID = soundPool.load(this,R.raw.buttonsound1,1);
 
+        Intent intent = getIntent();
+        final int year_num_Difficulty = intent.getIntExtra("year_num",2020);
+        Log.e("Year DIFFICULTY 11"," : " + year_num_Difficulty);
+
         if(soundPool!=null){
             if(!effectCb_difficulty){
                 soundPoolVolume=0.0f;
@@ -146,10 +150,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = getIntent();
 
-                        final int year_num_Difficulty = intent.getIntExtra("year_num",2020);
-                        Log.e("Year DIFFICULTY 11"," : " + year_num_Difficulty);
 
                         if(!isFinished){
 
@@ -201,9 +202,10 @@ public class  DifficultyActivity extends AppCompatActivity {
                     public void run() {
 
                         if(!isFinished){
-                            Intent intent = new Intent(getApplicationContext(),QuizMain.class);
-                            intent.putExtra("difficulty_time",5000); // 5초
-                            startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
+                            Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
+                            Quizintent.putExtra("difficulty_time",5000); // 5초
+                            Quizintent.putExtra("year_num",year_num_Difficulty);
+                            startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
                         }
 
                         else{
@@ -245,9 +247,10 @@ public class  DifficultyActivity extends AppCompatActivity {
                     public void run() {
 
                         if(!isFinished){
-                            Intent intent = new Intent(getApplicationContext(),QuizMain.class);
-                            intent.putExtra("difficulty_time",3000); // 3초
-                            startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
+                            Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
+                            Quizintent.putExtra("difficulty_time",3000); // 3초
+                            Quizintent.putExtra("year_num",year_num_Difficulty);
+                            startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
                         }
 
                         else{
