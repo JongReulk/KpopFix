@@ -165,16 +165,30 @@ public class TitleActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         TitleTextGuess.setAlpha(1);
+
                                         Animation bounceGuess = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
                                         TitleTextGuess.startAnimation(bounceGuess);
+
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                TitleTextTouch.setAlpha(1);
+                                                TitleTextVersion.setAlpha(1);
+
+                                                Animation showtext = AnimationUtils.loadAnimation(getApplication(), R.anim.repeattext);
+                                                TitleTextTouch.startAnimation(showtext);
+                                                Animation showversion = AnimationUtils.loadAnimation(getApplication(), R.anim.top);
+                                                TitleTextVersion.startAnimation(showversion);
+                                            }
+                                        }, 500); //딜레이 타임 조절
                                     }
-                                }, 1000); //딜레이 타임 조절
+                                }, 500); //딜레이 타임 조절
                             }
-                        }, 1000); //딜레이 타임 조절
+                        }, 500); //딜레이 타임 조절
                     }
-                }, 1000); //딜레이 타임 조절
+                }, 500); //딜레이 타임 조절
             }
-        }, 1000); //딜레이 타임 조절
+        }, 500); //딜레이 타임 조절
     }
 
     @Override

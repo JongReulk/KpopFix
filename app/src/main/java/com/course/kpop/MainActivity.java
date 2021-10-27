@@ -177,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
                 settingOpen.setTextColor(Color.GRAY);
                 quitButton.setTextColor(Color.GRAY);
 
-
                 // 다시보지않기
                 SharedPreferences closef = getSharedPreferences(TitleActivity.SHARED_CLOSE,MODE_PRIVATE);
                 SharedPreferences.Editor closeEditor = closef.edit();
