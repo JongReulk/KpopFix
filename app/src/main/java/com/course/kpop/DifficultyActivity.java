@@ -37,6 +37,7 @@ public class  DifficultyActivity extends AppCompatActivity {
     private int year_num_Difficulty;
     private TextView textViewHighscore;
     private TextView textViewGuidegame;
+    private TextView difficulty_title;
     private TextView textLevel;
     private ConstraintLayout layout_caution;
     private ConstraintLayout layout_tip;
@@ -61,7 +62,7 @@ public class  DifficultyActivity extends AppCompatActivity {
 
 
 
-
+        difficulty_title = findViewById(R.id.difficultyTitle);
         easyButton = findViewById(R.id.easy_Button);
         normalButton = findViewById(R.id.normal_Button);
         hardButton = findViewById(R.id.hard_Button);
@@ -71,6 +72,12 @@ public class  DifficultyActivity extends AppCompatActivity {
         easyTip = findViewById(R.id.txt_easytip);
         normalTip = findViewById(R.id.txt_normaltip);
         hardTip = findViewById(R.id.txt_hardtip);
+
+        Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
+        difficulty_title.startAnimation(textfadein);
+        easyTip.startAnimation(textfadein);
+        normalTip.startAnimation(textfadein);
+        hardTip.startAnimation(textfadein);
 
 
         ImageView remote_difficulty = (ImageView) findViewById(R.id.Remote_difficulty);

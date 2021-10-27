@@ -125,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
 
+
+        textViewHighscore.startAnimation(textfadein);
+
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
 
         loadHighscore();

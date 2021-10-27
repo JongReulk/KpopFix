@@ -37,6 +37,7 @@ public class YearActivity extends AppCompatActivity {
     private LinearLayout year_linear;
     private int button_total;
     private int button_num;
+    private TextView year_Title;
 
     private TextView year_select;
 
@@ -74,6 +75,7 @@ public class YearActivity extends AppCompatActivity {
         ImageView remote = (ImageView) findViewById(R.id.Remote_year);
         ConstraintLayout remotebutton_year = (ConstraintLayout) findViewById(R.id.Remote_button_year);
 
+        year_Title = findViewById(R.id.year_Title);
         year_scroll = findViewById(R.id.year_Scrollview);
         year_up = findViewById(R.id.year_up);
         year_down = findViewById(R.id.year_down);
@@ -85,6 +87,10 @@ public class YearActivity extends AppCompatActivity {
         year_up.setEnabled(true);
         year_down.setEnabled(true);
         year_confirm.setEnabled(true);
+
+        Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
+        year_Title.startAnimation(textfadein);
+        year_scroll.startAnimation(textfadein);
 
         // 리모콘 애니메이션
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);

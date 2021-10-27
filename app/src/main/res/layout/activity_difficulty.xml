@@ -36,7 +36,7 @@
         >
 
         <TextView
-            android:id="@+id/difficulty"
+            android:id="@+id/difficultyTitle"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="@string/Difficulty"
@@ -74,7 +74,7 @@
             android:autoSizeMaxTextSize="100sp"
             android:autoSizeStepGranularity="2sp"
 
-            app:layout_constraintTop_toBottomOf="@id/difficulty"
+            app:layout_constraintTop_toBottomOf="@id/difficultyTitle"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
