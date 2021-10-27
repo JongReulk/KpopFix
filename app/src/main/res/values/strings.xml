@@ -20,5 +20,7 @@
     <string name="Year">YEAR</string>
     <string name="All">ALL</string>
     <string name="Random">RANDOM</string>
+    <string name="CLOSE">CLOSE</string>
+    <string name="Donotshow">DO NOT SHOW AGAIN</string>
 
 </resources>
