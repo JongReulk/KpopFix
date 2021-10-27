@@ -158,7 +158,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Quizintent.putExtra("difficulty_time",10000); // 10초
                             Quizintent.putExtra("year_num",year_num_Difficulty);
                             startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
-
+                            finish();
                         }
 
                         else{
@@ -206,6 +206,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Quizintent.putExtra("difficulty_time",5000); // 5초
                             Quizintent.putExtra("year_num",year_num_Difficulty);
                             startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
+                            finish();
                         }
 
                         else{
@@ -251,6 +252,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Quizintent.putExtra("difficulty_time",3000); // 3초
                             Quizintent.putExtra("year_num",year_num_Difficulty);
                             startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
+                            finish();
                         }
 
                         else{
@@ -264,6 +266,7 @@ public class  DifficultyActivity extends AppCompatActivity {
     }
 
 
+    /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -280,12 +283,17 @@ public class  DifficultyActivity extends AppCompatActivity {
                 finish();
             }
         }
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         isFinished = true;
+
+        Intent yearintent = new Intent(this,YearActivity.class);
+        startActivity(yearintent);
+        finish();
+
     }
 
     /*

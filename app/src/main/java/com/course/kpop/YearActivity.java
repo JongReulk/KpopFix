@@ -82,6 +82,10 @@ public class YearActivity extends AppCompatActivity {
         year_select = findViewById(R.id.txt_selectYear);
         View year_v;
 
+        year_up.setEnabled(true);
+        year_down.setEnabled(true);
+        year_confirm.setEnabled(true);
+
         // 리모콘 애니메이션
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remote.startAnimation(RemoteUp);
@@ -271,7 +275,7 @@ public class YearActivity extends AppCompatActivity {
 
                         // 액티비티 이동시 페이드인아웃 연출
                         //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-                        //finish();
+                        finish();
                     }
                 }, 600); //딜레이 타임 조절
             }
@@ -353,6 +357,7 @@ public class YearActivity extends AppCompatActivity {
 
     }
 
+    /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -368,6 +373,15 @@ public class YearActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent mainintent = new Intent(this,MainActivity.class);
+        startActivity(mainintent);
+        finish();
     }
 
 }

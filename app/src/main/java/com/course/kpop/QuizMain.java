@@ -470,10 +470,11 @@ public class QuizMain extends YouTubeBaseActivity {
 
     private void finishQuiz() {
         isHandler = false;
-        Intent resultIntent = new Intent();
+        Intent resultIntent = new Intent(this,MainActivity.class);
         resultIntent.putExtra(HIGH_SCORE, score);
+        startActivity(resultIntent);
         Log.e("최고 점수",":" + score);
-        setResult(RESULT_OK, resultIntent);
+        //setResult(RESULT_OK, resultIntent);
         finish();
     }
 

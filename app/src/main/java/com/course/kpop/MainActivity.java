@@ -95,9 +95,11 @@ public class MainActivity extends AppCompatActivity {
         textViewTitle.startAnimation(textfadein);
 
         // BGN 실행
-        mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic2);
-        mediaplayer_main.setLooping(true);
-        mediaplayer_main.start();
+        if(mediaplayer_main ==null){
+            mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic2);
+            mediaplayer_main.setLooping(true);
+            mediaplayer_main.start();
+        }
 
         SharedPreferences music = getSharedPreferences(SHARED_MUSIC,MODE_PRIVATE);
 
@@ -125,8 +127,12 @@ public class MainActivity extends AppCompatActivity {
 
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
 
-        Intent intent = getIntent();
         loadHighscore();
+
+        Intent intent = getIntent();
+        int best_score = intent.getIntExtra(QuizMain.HIGH_SCORE,0);
+        updateHighscore(best_score);
+
 
         //Sound
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
@@ -221,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
                         // 액티비티 이동시 페이드인아웃 연출
                         //overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                        //finish();
+                        finish();
 
                     }
                 }, 600); //딜레이 타임 조절
@@ -320,6 +326,7 @@ public class MainActivity extends AppCompatActivity {
         quitButton.setTextColor(Color.WHITE);
     }
 
+    /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -334,7 +341,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
 
     private void updateHighscore(int highscoreNew){
         highscore = highscoreNew;
