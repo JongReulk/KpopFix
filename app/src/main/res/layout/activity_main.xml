@@ -34,7 +34,7 @@
             <com.course.kpop.TypingEffect
                 android:id="@+id/txtTitle"
                 android:text="@string/Title"
-                android:fontFamily="@font/font_digital"
+                android:fontFamily="@font/font_basicbold"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:textColor="@color/white"
@@ -131,6 +131,7 @@
             android:text="@string/start"
             android:textSize="24sp"
             android:gravity="center"
+            android:fontFamily="@font/font_basic"
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
             android:soundEffectsEnabled="false"
@@ -149,6 +150,7 @@
             android:text="@string/Setting"
             android:textSize="24sp"
             android:gravity="center"
+            android:fontFamily="@font/font_basic"
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
             android:soundEffectsEnabled="false"
@@ -169,6 +171,7 @@
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
             android:textSize="24sp"
+            android:fontFamily="@font/font_basic"
             android:soundEffectsEnabled="false"
 
             app:layout_constraintTop_toBottomOf="@+id/setting_Button"

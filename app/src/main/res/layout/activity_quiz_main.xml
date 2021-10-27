@@ -63,12 +63,14 @@
 
 
 
+
     <TextView
         android:id="@+id/txtQuestionCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:text="1/10"
+        android:fontFamily="@font/font_basic"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -83,8 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="30"
-        android:textSize="35dp"
-        android:textStyle="bold"
+        android:textSize="30dp"
+        android:fontFamily="@font/font_basicbold"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -99,6 +101,7 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="30dp"
+        android:fontFamily="@font/font_basic"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -116,6 +119,7 @@
         android:gravity="center"
         android:hint="(예: Next level, 넥스트레벨)"
         android:inputType="text"
+        android:fontFamily="@font/font_basic"
 
         app:layout_constraintTop_toBottomOf="@+id/Image_TV_quizmain"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -159,6 +163,7 @@
             android:textSize="24sp"
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
+            android:fontFamily="@font/font_basic"
             android:text="@string/Confirm"
 
             app:layout_constraintTop_toTopOf="parent"
@@ -175,6 +180,7 @@
             android:textSize="24sp"
             android:background="@drawable/btn_remote"
             android:textColor="@color/white"
+            android:fontFamily="@font/font_basic"
             android:text="@string/Next"
 
             app:layout_constraintTop_toBottomOf="@+id/confirmButton"
