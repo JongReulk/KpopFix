@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,12 +17,24 @@ import android.widget.TextView;
 import android.service.wallpaper.WallpaperService;
 import android.widget.Button;
 
+import java.util.Random;
+
 public class TitleActivity extends AppCompatActivity {
 
     // MediaPlayer 객체생성
     public static MediaPlayer mediaplayer_title;
-    private TextView TitleText; // 터치투스타트
-    private ImageView TitleImage; // 타이틀이미지
+
+    // 애니메이션을 위해 텍스트뷰 객체들 생성
+    private TextView TitleTextK; // 터치투스타트 K
+    private TextView TitleTextP1; // 터치투스타트 P
+    private TextView TitleTextO; // 터치투스타트 O
+    private TextView TitleTextP2; // 터치투스타트 P
+    private TextView TitleTextGuess; // 터치투스타트 노래맞추기
+
+    private TextView TitleTextTouch; // 터치투스타트 touch to start
+    private TextView TitleTextVersion; // 터치투스타트 version
+
+
 
     public static final String SHARED_CLOSE = "sharedClose";
 
@@ -53,7 +66,14 @@ public class TitleActivity extends AppCompatActivity {
         }
 
         //타이틀 텍스트뷰
-        TitleText = (TextView) findViewById(R.id.touchtext);
+        TitleTextK = (TextView) findViewById(R.id.titletextK);
+        TitleTextP1 = (TextView) findViewById(R.id.titletextP1);
+        TitleTextO = (TextView) findViewById(R.id.titletextO);
+        TitleTextP2 = (TextView) findViewById(R.id.titletextP2);
+        TitleTextGuess = (TextView) findViewById(R.id.titletextGuess);
+
+        TitleTextTouch = (TextView) findViewById(R.id.touchtext);
+        TitleTextVersion = (TextView) findViewById(R.id.versiontext);
     }
 
     public void checkFirstRun() {
@@ -111,12 +131,50 @@ public class TitleActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
 
-        Animation bounce = AnimationUtils.loadAnimation(getApplication(), R.anim.top);
-        TitleText.startAnimation(bounce);
+        TitleTextK.setAlpha(1);
+        Animation bounceK = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
+        TitleTextK.startAnimation(bounceK);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                TitleTextP1.setAlpha(1);
+                Animation bounceP1 = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
+                TitleTextP1.startAnimation(bounceP1);
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        TitleTextO.setAlpha(1);
+                        Animation bounceO = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
+                        TitleTextO.startAnimation(bounceO);
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                TitleTextP2.setAlpha(1);
+                                Animation bounceP = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
+                                TitleTextP2.startAnimation(bounceP);
+
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        TitleTextGuess.setAlpha(1);
+                                        Animation bounceGuess = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
+                                        TitleTextGuess.startAnimation(bounceGuess);
+                                    }
+                                }, 1000); //딜레이 타임 조절
+                            }
+                        }, 1000); //딜레이 타임 조절
+                    }
+                }, 1000); //딜레이 타임 조절
+            }
+        }, 1000); //딜레이 타임 조절
     }
 
     @Override

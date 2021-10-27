@@ -6,20 +6,95 @@
     android:background="@color/design_default_color_secondary">
 
     <TextView
-        android:id="@+id/titletext"
+        android:id="@+id/titletextK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="KPOP \n노래맞추기"
+        android:text="K"
         android:textColor="@color/black"
         android:gravity="center"
         android:textSize="52dp"
         android:fontFamily="@font/font_digital"
+        android:alpha="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.3"
+        />
+
+    <TextView
+        android:id="@+id/titletextP1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="P"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="52dp"
+        android:fontFamily="@font/font_digital"
+        android:alpha="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.4"
+        />
+
+    <TextView
+        android:id="@+id/titletextO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="52dp"
+        android:fontFamily="@font/font_digital"
+        android:alpha="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    <TextView
+        android:id="@+id/titletextP2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="P"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="52dp"
+        android:fontFamily="@font/font_digital"
+        android:alpha="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.6"
+        />
+
+    <TextView
+        android:id="@+id/titletextGuess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="노래맞추기"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="52dp"
+        android:fontFamily="@font/font_digital"
+        android:alpha="0"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.5"
         />
+
 
     <TextView
         android:id="@+id/touchtext"
@@ -30,6 +105,7 @@
         android:gravity="center"
         android:textSize="35dp"
         android:fontFamily="@font/font_digital"
+        android:alpha="0"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -51,7 +127,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintVertical_bias="0.88"
         app:layout_constraintHorizontal_bias="1"
          />
 
