@@ -59,6 +59,7 @@
         android:gravity="center"
         android:text="2016"
         android:textStyle="bold"
+        android:fontFamily="@font/font_digital"
         android:textColor="@color/yellow"
 
         android:autoSizeTextType="uniform"
@@ -103,6 +104,7 @@
                 android:textSize="18dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:fontFamily="@font/font_digital"
                 android:layout_marginBottom="5dp"
                 >
             </Button>
@@ -116,6 +118,7 @@
                 android:textSize="18dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:fontFamily="@font/font_digital"
                 android:layout_marginBottom="5dp"
             >
 
@@ -130,6 +133,7 @@
                 android:textSize="18dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:fontFamily="@font/font_digital"
                 android:layout_marginBottom="5dp"
                 >
             </Button>
@@ -143,6 +147,7 @@
                 android:textSize="18dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:fontFamily="@font/font_digital"
                 android:layout_marginBottom="5dp"
                 >
             </Button>
@@ -156,6 +161,7 @@
                 android:textSize="18dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:fontFamily="@font/font_digital"
                 android:layout_marginBottom="5dp"
                 >
             </Button>
@@ -169,6 +175,7 @@
                 android:textSize="18dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:fontFamily="@font/font_digital"
                 android:layout_marginBottom="5dp"
                 >
             </Button>
@@ -182,6 +189,7 @@
                 android:textSize="18dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:fontFamily="@font/font_digital"
                 android:layout_marginBottom="5dp"
                 >
             </Button>
@@ -195,6 +203,7 @@
                 android:textSize="18dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:fontFamily="@font/font_digital"
                 android:layout_marginBottom="5dp"
                 >
             </Button>
@@ -244,11 +253,11 @@
         android:text="up"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintBottom_toTopOf="@id/year_confirm"
+        app:layout_constraintVertical_bias="1"
         >
 
     </ImageButton>
@@ -281,11 +290,11 @@
 
         android:background="@android:color/transparent"
         android:src="@drawable/downarrow"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/year_confirm"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintVertical_bias="0"
         >
     </ImageButton>
 
