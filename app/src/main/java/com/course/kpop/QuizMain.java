@@ -144,6 +144,7 @@ public class QuizMain extends YouTubeBaseActivity {
             Log.e("year_QUIZMAIN", " : " +year_num_string);
 
             questionList = dbHelper.getQuestions(year_num_string);
+            Log.e("Question", " : "+year_num_string);
         }
 
         questionCountTotal = questionList.size();
