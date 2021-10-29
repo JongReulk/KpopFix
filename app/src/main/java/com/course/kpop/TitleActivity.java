@@ -1,11 +1,8 @@
 package com.course.kpop;
 
-import androidx.annotation.MainThread;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -15,18 +12,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.service.wallpaper.WallpaperService;
 import android.widget.Button;
-import android.widget.Toast;
-
-import java.util.Random;
 
 public class TitleActivity extends AppCompatActivity {
 
@@ -172,7 +163,7 @@ public class TitleActivity extends AppCompatActivity {
         super.onStart();
 
         TitleTextK.setAlpha(1);
-        Animation bounceK = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
+        Animation bounceK = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_text);
         TitleTextK.startAnimation(bounceK);
 
         Handler handler = new Handler();
@@ -181,21 +172,21 @@ public class TitleActivity extends AppCompatActivity {
             @Override
             public void run() {
                 TitleTextP1.setAlpha(1);
-                Animation bounceP1 = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
+                Animation bounceP1 = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_text);
                 TitleTextP1.startAnimation(bounceP1);
 
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         TitleTextO.setAlpha(1);
-                        Animation bounceO = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
+                        Animation bounceO = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_text);
                         TitleTextO.startAnimation(bounceO);
 
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 TitleTextP2.setAlpha(1);
-                                Animation bounceP = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
+                                Animation bounceP = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_text);
                                 TitleTextP2.startAnimation(bounceP);
 
                                 handler.postDelayed(new Runnable() {
@@ -203,7 +194,7 @@ public class TitleActivity extends AppCompatActivity {
                                     public void run() {
                                         TitleTextGuess.setAlpha(1);
 
-                                        Animation bounceGuess = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_ball);
+                                        Animation bounceGuess = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_text);
                                         TitleTextGuess.startAnimation(bounceGuess);
 
                                         handler.postDelayed(new Runnable() {
@@ -212,9 +203,9 @@ public class TitleActivity extends AppCompatActivity {
                                                 TitleTextTouch.setAlpha(1);
                                                 TitleTextVersion.setAlpha(1);
 
-                                                Animation showtext = AnimationUtils.loadAnimation(getApplication(), R.anim.repeattext);
+                                                Animation showtext = AnimationUtils.loadAnimation(getApplication(), R.anim.repeat_text);
                                                 TitleTextTouch.startAnimation(showtext);
-                                                Animation showversion = AnimationUtils.loadAnimation(getApplication(), R.anim.top);
+                                                Animation showversion = AnimationUtils.loadAnimation(getApplication(), R.anim.smalltobig);
                                                 TitleTextVersion.startAnimation(showversion);
                                             }
                                         }, 500); //딜레이 타임 조절
