@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -41,6 +43,8 @@ public class TitleActivity extends AppCompatActivity {
     private TextView TitleTextTouch; // 터치투스타트 touch to start
     private TextView TitleTextVersion; // 터치투스타트 version
 
+    InternetDialog internetDialog;
+
 
 
     public static final String SHARED_CLOSE = "sharedClose";
@@ -68,33 +72,23 @@ public class TitleActivity extends AppCompatActivity {
 
         // 인터넷이 연결되어있을 때
         if(!isConnected){
-            Toast.makeText(this, "인터넷이 연결되어있지 않습니다.", Toast.LENGTH_SHORT).show();
 
-            AlertDialog.Builder msgBuilder = new AlertDialog.Builder(TitleActivity.this)
-                    .setTitle(getString(R.string.INTERNET))
-                    .setMessage(getString(R.string.InternetWarning))
-                    .setPositiveButton(getString(R.string.Ok), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            if(mediaplayer_title!=null)
-                            {
-                                mediaplayer_title.stop();
-                                mediaplayer_title.release();
-                                mediaplayer_title = null;
-                            }
+            internetDialog = new InternetDialog(this);
+            internetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                            finish();
-                        }
-                    });
-            AlertDialog msgDlg = msgBuilder.create();
-            msgDlg.setCancelable(false);
-            msgDlg.show();
+            Button internetOk = internetDialog.findViewById(R.id.btn_Internetconfirm);
+
+            internetDialog.setCancelable(false); // 밖에 선택해도 창이 안꺼짐
+            internetDialog.show();
+
+            internetOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
         }
 
-        if(isConnected)
-        {
-            Toast.makeText(this, "인터넷이 연결되어있습니다.", Toast.LENGTH_SHORT).show();
-        }
 
 
 
