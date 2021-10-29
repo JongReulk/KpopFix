@@ -91,7 +91,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
     boolean isStarted =true;
 
-    private static int[] arr = {51000,56000,61000};
+    private static int[] arr = {51000,61000,71000};
 
     private ProgressBar musicProgressbar;
 
