@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -65,6 +66,7 @@ public class QuizMain extends YouTubeBaseActivity {
     private TextView txtQuestionCount;
     private TextView txtCountDown;
     private TextView scoreText;
+    private TextView correctText;
     private EditText answerText;
     
     private Button confirmButton;
@@ -89,10 +91,11 @@ public class QuizMain extends YouTubeBaseActivity {
 
     boolean isStarted =true;
 
-
     private static int[] arr = {51000,56000,61000};
 
     private ProgressBar musicProgressbar;
+
+    private TextView txt_answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,12 +119,16 @@ public class QuizMain extends YouTubeBaseActivity {
         confirmButton = findViewById(R.id.confirmButton);
         nextButton = findViewById(R.id.nextButton);
         scoreText = findViewById(R.id.scoreText);
+        correctText = findViewById(R.id.correctText);
+        correctText.setVisibility(View.GONE);
 
         playerView = findViewById(R.id.youtubeView);
 
 
         answerText = findViewById(R.id.editText);
+        txt_answer = findViewById(R.id.txt_answer);
 
+        txt_answer.setVisibility(View.GONE);
 
         answerText.getBackground().setColorFilter(null);
         //textColorDefaultCd = txtCountDown.getTextColors();
@@ -147,7 +154,7 @@ public class QuizMain extends YouTubeBaseActivity {
             Log.e("Question", " : "+year_num_string);
         }
 
-        questionCountTotal = questionList.size();
+        questionCountTotal = 20;
         Collections.shuffle(questionList);
 
         // 스피커 애니메이션
@@ -223,6 +230,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
                 nextButton.setEnabled(false);
                 nextButton.setTextColor(Color.GRAY);
+                answerText.setVisibility(View.VISIBLE);
+                txt_answer.setVisibility(View.GONE);
                 answerText.setText("");
 
                 answerText.getBackground().setColorFilter(null);
@@ -441,7 +450,18 @@ public class QuizMain extends YouTubeBaseActivity {
         // 내용 비교 위해서 equals 사용
         if(answer.equals(korean_Answer) || answer.equals(english_Answer)){
             answerText.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
-            score++; // 점수 책정 방식
+            correctText.setVisibility(View.VISIBLE);
+            score = score+10; // 점수 책정 방식
+            handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    correctText.setVisibility(View.GONE);
+
+                }
+            }, 1000);
+
+
         }
 
         else {
@@ -453,7 +473,12 @@ public class QuizMain extends YouTubeBaseActivity {
 
         playVideo(); // 비디오 재생
         //nextButton.setVisibility(View.VISIBLE);
-        answerText.setText(real_Answer);
+        answerText.setVisibility(View.GONE);
+        txt_answer.setVisibility(View.VISIBLE);
+        txt_answer.setText(real_Answer);
+        txt_answer.setSingleLine(true);
+        txt_answer.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        txt_answer.setSelected(true);
 
     }
 
