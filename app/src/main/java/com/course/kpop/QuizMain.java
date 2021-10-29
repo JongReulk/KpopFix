@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -38,7 +39,7 @@ import java.util.Random;
 
 public class QuizMain extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
-    private static final long COUNTDOWN_IN_MILLIS = 31000;
+    private static final long COUNTDOWN_IN_MILLIS = 30500;
 
     YouTubePlayerView playerView;
     YouTubePlayer player;
@@ -92,6 +93,7 @@ public class QuizMain extends YouTubeBaseActivity {
     boolean isStarted =true;
 
     private static int[] arr = {51000,61000,71000};
+
 
     private ProgressBar musicProgressbar;
 
@@ -211,8 +213,8 @@ public class QuizMain extends YouTubeBaseActivity {
             @Override
             public void onClick(View v) {
 
+                musicProgressbar.setAlpha(0);
                 checkAnswer();
-                musicProgressbar.clearAnimation();
                 leftSpeaker.startAnimation(speakerleft_anim);
                 rightSpeaker.startAnimation(speakerright_anim);
             }
@@ -309,7 +311,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
             ObjectAnimator progressAnimation = ObjectAnimator.ofInt(musicProgressbar, "progress", 0,musicProgressbar.getMax() );
             progressAnimation.setDuration(musicProgressbar.getMax());
-            progressAnimation.setInterpolator(new DecelerateInterpolator());
+            progressAnimation.setInterpolator(new LinearInterpolator());
 
 
 
@@ -325,6 +327,8 @@ public class QuizMain extends YouTubeBaseActivity {
                                 //musicProgressbar.incrementProgressBy(1000);
                                 startCountDown();
                                 if(isStarted){
+                                    Log.e("START", " ANI ");
+                                    musicProgressbar.setAlpha(1);
                                     progressAnimation.start();
                                     isStarted=false;
                                 }
@@ -335,6 +339,7 @@ public class QuizMain extends YouTubeBaseActivity {
                             handler.removeCallbacks(this);
                             player.pause();
                             musicProgressbar.setProgress(musicProgressbar.getMax());
+                            musicProgressbar.clearAnimation();
                             rightSpeaker.clearAnimation();
                             leftSpeaker.clearAnimation();
                         }

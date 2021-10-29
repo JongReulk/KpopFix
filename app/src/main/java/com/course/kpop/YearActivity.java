@@ -219,6 +219,7 @@ public class YearActivity extends AppCompatActivity {
                 year_down.setEnabled(false);
                 year_up.setEnabled(false);
                 year_confirm.setEnabled(false);
+                year_scroll.setVisibility(View.GONE);
                 year_confirm.setTextColor(Color.GRAY);
 
 
@@ -251,7 +252,7 @@ public class YearActivity extends AppCompatActivity {
                     year_select.setText(getString(R.string.All));
                 }
 
-                year_scroll.setVisibility(View.GONE);
+
                 year_select.setVisibility(View.VISIBLE);
 
 
