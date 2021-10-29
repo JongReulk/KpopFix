@@ -227,14 +227,12 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
                 playerView.setAlpha(0.0f);
+                txt_answer.setBackground(null);
 
                 nextButton.setEnabled(false);
                 nextButton.setTextColor(Color.GRAY);
                 answerText.setVisibility(View.VISIBLE);
                 txt_answer.setVisibility(View.GONE);
-                answerText.setText("");
-
-                answerText.getBackground().setColorFilter(null);
 
 
                 if(questionCounter >= questionCountTotal)
@@ -309,7 +307,6 @@ public class QuizMain extends YouTubeBaseActivity {
             player.loadVideo(question, randomStart);
 
 
-            Log.e("Max:"," "+(musicProgressbar.getMax()));
             ObjectAnimator progressAnimation = ObjectAnimator.ofInt(musicProgressbar, "progress", 0,musicProgressbar.getMax() );
             progressAnimation.setDuration(musicProgressbar.getMax());
             progressAnimation.setInterpolator(new DecelerateInterpolator());
@@ -367,7 +364,6 @@ public class QuizMain extends YouTubeBaseActivity {
             questionCounter ++;
             txtQuestionCount.setText(questionCounter + " / " + questionCountTotal); // 문제 수 확인
             confirmButton.setText(getString(R.string.Confirm));
-            answerText.getBackground().setColorFilter(null);
 
 
             //카운트 다운 시작
@@ -449,8 +445,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
         // 내용 비교 위해서 equals 사용
         if(answer.equals(korean_Answer) || answer.equals(english_Answer)){
-            answerText.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
             correctText.setVisibility(View.VISIBLE);
+            txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_green));
             score = score+10; // 점수 책정 방식
             handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -465,7 +461,7 @@ public class QuizMain extends YouTubeBaseActivity {
         }
 
         else {
-            answerText.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+            txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }
         
         scoreText.setText(""+score); // 점수 텍스트 변경
