@@ -22,5 +22,7 @@
     <string name="Random">RANDOM</string>
     <string name="CLOSE">CLOSE</string>
     <string name="Donotshow">DO NOT SHOW AGAIN</string>
+    <string name="INTERNET">INTERNET</string>
+    <string name="InternetWarning">There is no internet connection.\nPlease try again after connecting to the internet.</string>
 
 </resources>

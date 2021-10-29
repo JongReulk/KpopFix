@@ -1,10 +1,16 @@
 package com.course.kpop;
 
 import androidx.annotation.MainThread;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -16,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.service.wallpaper.WallpaperService;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -52,6 +59,42 @@ public class TitleActivity extends AppCompatActivity {
 
         Boolean bgmCb_title = music.getBoolean("bgmCb",true);
         Boolean effectCb_title = music.getBoolean("effectCb",true);
+
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        // 인터넷이 연결되어있을 때
+        if(!isConnected){
+            Toast.makeText(this, "인터넷이 연결되어있지 않습니다.", Toast.LENGTH_SHORT).show();
+
+            AlertDialog.Builder msgBuilder = new AlertDialog.Builder(TitleActivity.this)
+                    .setTitle(getString(R.string.INTERNET))
+                    .setMessage(getString(R.string.InternetWarning))
+                    .setPositiveButton(getString(R.string.Ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if(mediaplayer_title!=null)
+                            {
+                                mediaplayer_title.stop();
+                                mediaplayer_title.release();
+                                mediaplayer_title = null;
+                            }
+
+                            finish();
+                        }
+                    });
+            AlertDialog msgDlg = msgBuilder.create();
+            msgDlg.setCancelable(false);
+            msgDlg.show();
+        }
+
+        if(isConnected)
+        {
+            Toast.makeText(this, "인터넷이 연결되어있습니다.", Toast.LENGTH_SHORT).show();
+        }
 
 
 
