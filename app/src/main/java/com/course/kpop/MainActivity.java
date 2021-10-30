@@ -372,7 +372,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaplayer_main = null;
             }
         }else{
-            Toast.makeText(this, "한번 더 뒤로버튼을 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.BackQuit), Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
 

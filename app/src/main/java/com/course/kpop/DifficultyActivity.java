@@ -116,7 +116,6 @@ public class  DifficultyActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final int year_num_Difficulty = intent.getIntExtra("year_num",2020);
-        Log.e("Year DIFFICULTY 11"," : " + year_num_Difficulty);
 
         if(soundPool!=null){
             if(!effectCb_difficulty){
