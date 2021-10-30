@@ -12,4 +12,5 @@
     <color name="beige">#419147BF</color>
     <color name="yellow">#FFF300</color>
     <color name="hard_color">#DA0303</color>
+    <color name="title_color">#292828</color>
 </resources>

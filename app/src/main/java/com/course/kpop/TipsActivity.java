@@ -74,7 +74,7 @@ public class TipsActivity extends AppCompatActivity{
         setContentView(R.layout.activity_tips);
 
         // BGN 실행
-        mediaplayer_title = MediaPlayer.create(this, R.raw.titlesound1);
+        mediaplayer_title = MediaPlayer.create(this, R.raw.tipsmusic);
         mediaplayer_title.setLooping(true);
         mediaplayer_title.start();
 

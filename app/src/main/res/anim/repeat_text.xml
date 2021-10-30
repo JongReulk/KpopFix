@@ -10,6 +10,6 @@
         android:toXScale="1.0"
         android:fromYScale="0.5"
         android:toYScale="1.0"
-        android:repeatCount= "100"
+        android:repeatCount= "infinite"
         android:repeatMode="reverse"/>
 </set>

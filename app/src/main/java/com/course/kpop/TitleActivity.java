@@ -46,7 +46,7 @@ public class TitleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_title);
 
         // BGN 실행
-        mediaplayer_title = MediaPlayer.create(this, R.raw.titlesound1);
+        mediaplayer_title = MediaPlayer.create(this, R.raw.titlemusic_new);
         mediaplayer_title.setLooping(true);
         mediaplayer_title.start();
 
@@ -186,7 +186,7 @@ public class TitleActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 TitleTextP2.setAlpha(1);
-                                Animation bounceP = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_text);
+                                Animation bounceP = AnimationUtils.loadAnimation(getApplication(), R.anim.rotate_text);
                                 TitleTextP2.startAnimation(bounceP);
 
                                 handler.postDelayed(new Runnable() {
