@@ -47,6 +47,7 @@ public class QuizMain extends YouTubeBaseActivity {
     //static String API_KEY ="AIzaSyDImlmmX6mnicXNlzed8TH1cn5YN62hBN0"; // 구글 콘솔사이트에서 발급받는 키
     static String API_KEY ="AIzaSyCnt7CWC3z_t_OimQLUwJ5-yXf6C6F83-A";
     static int score = 0;
+    static int plus = 0;
     static int videoLength;// 이지 노말 하드에 따라서 바뀜
     
     private String question;
@@ -111,10 +112,25 @@ public class QuizMain extends YouTubeBaseActivity {
             MainActivity.mediaplayer_main = null;
         }
 
+        score = 0;
+
 
         Intent intent = getIntent();
 
         videoLength = intent.getIntExtra("difficulty_time",10000);
+
+        if(videoLength == 10000){
+            plus = 10;
+        }
+
+        if(videoLength == 5000){
+            plus = 20;
+        }
+
+        if(videoLength == 3000){
+            plus = 30;
+        }
+
         int year_num = intent.getIntExtra("year_num",2020);
 
 
@@ -226,6 +242,7 @@ public class QuizMain extends YouTubeBaseActivity {
                 if(player.isPlaying()){
                     player.pause();
                 }
+                timeLeftInMillis = COUNTDOWN_IN_MILLIS;
 
 
                 playerView.setAlpha(0.0f);
@@ -233,6 +250,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
                 nextButton.setEnabled(false);
                 nextButton.setTextColor(Color.GRAY);
+                answerText.setText("");
                 answerText.setVisibility(View.VISIBLE);
                 txt_answer.setVisibility(View.GONE);
 
@@ -452,7 +470,7 @@ public class QuizMain extends YouTubeBaseActivity {
         if(answer.equals(korean_Answer) || answer.equals(english_Answer)){
             correctText.setVisibility(View.VISIBLE);
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_green));
-            score = score+10; // 점수 책정 방식
+            score = score+plus; // 점수 책정 방식
             handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override

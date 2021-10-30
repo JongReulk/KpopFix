@@ -130,11 +130,6 @@ public class MainActivity extends AppCompatActivity {
 
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
 
-        loadHighscore();
-
-        Intent intent = getIntent();
-        int best_score = intent.getIntExtra(QuizMain.HIGH_SCORE,0);
-        updateHighscore(best_score);
 
 
         //Sound
@@ -279,6 +274,15 @@ public class MainActivity extends AppCompatActivity {
             mediaplayer_main.start();
 
         }
+
+        loadHighscore();
+        Intent intent = getIntent();
+        int score = intent.getIntExtra(QuizMain.HIGH_SCORE, 0);
+        Log.e("점수를 받았는가","?" + score);
+        if (score > highscore){
+            updateHighscore(score);
+        }
+
 
         SharedPreferences music = getSharedPreferences(SHARED_MUSIC,MODE_PRIVATE);
 
