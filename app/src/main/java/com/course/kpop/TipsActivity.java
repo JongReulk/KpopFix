@@ -57,16 +57,18 @@ import android.os.Handler;
 
 public class TipsActivity extends AppCompatActivity{
 
+    // MediaPlayer 객체생성
+    public static MediaPlayer mediaplayer_tips;
+
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 3;
+    private int num_page = 5;
     private CircleIndicator3 mIndicator;
-
-    // MediaPlayer 객체생성
-    public static MediaPlayer mediaplayer_title;
 
     private Button close;
     private Button closeforever;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +76,28 @@ public class TipsActivity extends AppCompatActivity{
         setContentView(R.layout.activity_tips);
 
         // BGN 실행
-        mediaplayer_title = MediaPlayer.create(this, R.raw.tipsmusic);
-        mediaplayer_title.setLooping(true);
-        mediaplayer_title.start();
+        mediaplayer_tips = MediaPlayer.create(this, R.raw.tipsmusic);
+        mediaplayer_tips.setLooping(true);
+        mediaplayer_tips.start();
+
+        SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC,MODE_PRIVATE);
+        Boolean bgmCb_tips = music.getBoolean("bgmCb",true);
+        Boolean effectCb_tips = music.getBoolean("effectCb",true);
 
         // 버튼
         close = findViewById(R.id.close_Button);
         closeforever = findViewById(R.id.closeforever_Button);
+
+        if(mediaplayer_tips!=null){
+            if(!bgmCb_tips){
+                mediaplayer_tips.setVolume(0,0);
+            }
+
+            else{
+                mediaplayer_tips.setVolume(1,1);
+            }
+        }
+
         // 핸들러
         Handler handler = new Handler();
 
@@ -121,11 +138,11 @@ public class TipsActivity extends AppCompatActivity{
             public void onClick(View v) {
 
                 // bgm 끄기
-                if(mediaplayer_title!=null)
+                if(mediaplayer_tips!=null)
                 {
-                    mediaplayer_title.stop();
-                    mediaplayer_title.release();
-                    mediaplayer_title = null;
+                    mediaplayer_tips.stop();
+                    mediaplayer_tips.release();
+                    mediaplayer_tips = null;
                 }
 
                 close.setEnabled(false);
@@ -156,11 +173,11 @@ public class TipsActivity extends AppCompatActivity{
                 Boolean close_Tips = closef.getBoolean("closeforever",true);
 
                 // bgm 끄기
-                if(mediaplayer_title!=null)
+                if(mediaplayer_tips!=null)
                 {
-                    mediaplayer_title.stop();
-                    mediaplayer_title.release();
-                    mediaplayer_title = null;
+                    mediaplayer_tips.stop();
+                    mediaplayer_tips.release();
+                    mediaplayer_tips = null;
                 }
 
                 closeforever.setEnabled(false);
@@ -184,15 +201,13 @@ public class TipsActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if(mediaplayer_title!=null)
+        if(mediaplayer_tips!=null)
         {
-            mediaplayer_title.stop();
-            mediaplayer_title.release();
-            mediaplayer_title = null;
+            mediaplayer_tips.stop();
+            mediaplayer_tips.release();
+            mediaplayer_tips = null;
         }
     }
-
-
 
 
     /*

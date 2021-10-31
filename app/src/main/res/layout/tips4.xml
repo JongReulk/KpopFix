@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -11,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:src="@drawable/screenshot3"
+        android:src="@drawable/screenshot4"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -22,43 +23,43 @@
         />
 
     <TextView
-        android:id="@+id/tips3_text1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/tips4_text1"
+        android:layout_width="124dp"
+        android:layout_height="48dp"
         android:fontFamily="@font/font_digital"
+        android:gravity="center"
         android:scaleType="fitXY"
-        android:text="난이도마다 제한시간이 달라요!"
+        android:text="맞췄는지 틀렸는지 확인하세요!"
         android:textColor="@color/hard_color"
         android:textStyle="bold"
-        android:gravity="center"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.422"
+        app:layout_constraintVertical_bias="0.635"
         app:layout_constraintWidth_percent="0.2" />
 
     <TextView
-        android:id="@+id/tips3_text2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/tips4_text2"
+        android:layout_width="113dp"
+        android:layout_height="58dp"
         android:fontFamily="@font/font_digital"
+        android:gravity="center"
         android:scaleType="fitXY"
-        android:text="원하는 난이도를 선택하세요!"
+        android:text="다음 문제로 넘어갈 수 있어요!"
         android:textColor="@color/hard_color"
         android:textStyle="bold"
-        android:gravity="center"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintHorizontal_bias="0.939"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.811"
+        app:layout_constraintVertical_bias="0.933"
         app:layout_constraintWidth_percent="0.2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

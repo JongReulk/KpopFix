@@ -81,8 +81,6 @@ public class TitleActivity extends AppCompatActivity {
         }
 
 
-
-
         if(mediaplayer_title!=null){
             if(!bgmCb_title){
                 mediaplayer_title.setVolume(0,0);

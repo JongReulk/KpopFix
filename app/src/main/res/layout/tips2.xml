@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:src="@drawable/gamescreen2"
+        android:src="@drawable/screenshot2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -19,5 +19,89 @@
         app:layout_constraintVertical_bias="0.5"
         app:layout_constraintHeight_percent="0.9"
         app:layout_constraintWidth_percent="0.9"
+        />
+
+    <TextView
+        android:id="@+id/tips2_text1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:text="원하는 년도를\n골라보세요!"
+        android:textStyle="bold"
+        android:textColor="@color/hard_color"
+        android:fontFamily="@font/font_digital"
+        android:gravity="center"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.33"
+        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintWidth_percent="0.2"
+        />
+
+    <TextView
+        android:id="@+id/tips2_text2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:text="  랜덤으로도\n플레이해봐요!"
+        android:textStyle="bold"
+        android:textColor="@color/hard_color"
+        android:fontFamily="@font/font_digital"
+        android:gravity="center"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.223"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintWidth_percent="0.2"
+        />
+
+    <TextView
+        android:id="@+id/tips2_text3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:text="  모든 년도로\n플레이해봐요!"
+        android:textStyle="bold"
+        android:textColor="@color/hard_color"
+        android:fontFamily="@font/font_digital"
+        android:gravity="center"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.475"
+        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintWidth_percent="0.2"
+        />
+
+    <TextView
+        android:id="@+id/tips2_text4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:text="화살표로 고른고\nOK버튼을 눌러\n원하는 년도를\n선택하세요!"
+        android:textStyle="bold"
+        android:textColor="@color/hard_color"
+        android:fontFamily="@font/font_digital"
+        android:gravity="center"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.812"
+        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintWidth_percent="0.21"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

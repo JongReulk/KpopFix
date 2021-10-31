@@ -20,8 +20,9 @@ public class MyAdapter extends FragmentStateAdapter {
         int index = getRealPosition(position);
         if(index==0) return new tips_1();
         else if(index==1) return new tips_2();
-        //else if(index==2) return new tips_1();
-        else return new tips_3();
+        else if(index==2) return new tips_3();
+        else if(index==3) return new tips_4();
+        else return new tips_5();
     }
     @Override
     public int getItemCount() {
