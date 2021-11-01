@@ -21,7 +21,7 @@
     <string name="All">ALL</string>
     <string name="Random">RANDOM</string>
     <string name="CLOSE">CLOSE</string>
-    <string name="Donotshow">DO NOT SHOW AGAIN</string>
+    <string name="Donotshow"> DO NOT SHOW AGAIN </string>
     <string name="INTERNET">INTERNET</string>
     <string name="InternetWarning">There is no internet connection.\nPlease try again after connecting to the internet.</string>
     <string name="BackQuit">Press the back button once more to exit.</string>
@@ -33,5 +33,11 @@
     <string name="Tips2_3">Play\nin any\nyear!</string>
     <string name="tips2_4">Select\nwith\nthe arrow\nand press\nthe OK\nbutton\nto select\nthe year\nyou want!</string>
     <string name="Tips3_1">Each\ndifficulty\nhas a\ndifferent\ntime\nlimit!</string>
+    <string name="Tips3_2">Choose\nthe\nlevel\nof\ndifficulty\nyou\nwant!</string>
+    <string name="Tips4_1">Do not include\nspaces and special characters!\nPlease write \nonly lowercase letters\nin English.</string>
+    <string name="Tips4_2">Make\nsure\nyou\'re\nright\nor wrong!</string>
+    <string name="Tips4_3">You can\nmove on\nto the\nnext question!</string>
+    <string name="Tips4_4">Please\nchange\nonly\n&amp; to and!</string>
+    <string name="Tips5_1">Click to\nsee\nthis\nagain!</string>
 
 </resources>

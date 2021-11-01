@@ -25,10 +25,10 @@
         android:id="@+id/tips1_text1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="시작버튼을\n눌러\n게임시작!"
+        android:text="@string/Tips1_1"
         android:textStyle="bold"
         android:textColor="@color/hard_color"
-        android:fontFamily="@font/font_digital"
+        android:fontFamily="@font/font_basic"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -41,7 +41,7 @@
 
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeMaxTextSize="100sp"
         android:autoSizeStepGranularity="2sp"
         />
 
@@ -49,10 +49,10 @@
         android:id="@+id/tips1_text2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="설정버튼을\n눌러\n볼륨조절!"
+        android:text="@string/Tips1_2"
         android:textStyle="bold"
         android:textColor="@color/hard_color"
-        android:fontFamily="@font/font_digital"
+        android:fontFamily="@font/font_basic"
         android:gravity="center"
 
         app:layout_constraintTop_toTopOf="parent"
@@ -61,12 +61,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.83"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintHeight_percent="0.18"
         app:layout_constraintWidth_percent="0.22"
 
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="40sp"
+        android:autoSizeMaxTextSize="100sp"
         android:autoSizeStepGranularity="2sp"
         />
 
@@ -74,10 +74,10 @@
         android:id="@+id/tips1_text3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="종료버튼을\n눌러\n게임종료!"
+        android:text="@string/Tips1_3"
         android:textStyle="bold"
         android:textColor="@color/hard_color"
-        android:fontFamily="@font/font_digital"
+        android:fontFamily="@font/font_basic"
         android:gravity="center"
 
         app:layout_constraintTop_toTopOf="parent"
@@ -91,7 +91,7 @@
 
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeMaxTextSize="100sp"
         android:autoSizeStepGranularity="2sp"
         />
 

@@ -25,11 +25,10 @@
         android:id="@+id/tips3_text1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fontFamily="@font/font_digital"
+        android:fontFamily="@font/font_basic"
         android:scaleType="fitXY"
-        android:text="난이도\n마다\n제한\n시간이\n달라요!"
+        android:text="@string/Tips3_1"
         android:textColor="@color/hard_color"
-        android:textStyle="bold"
         android:gravity="center"
 
         app:layout_constraintTop_toTopOf="parent"
@@ -38,12 +37,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.40"
         app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintHeight_percent="0.17"
-        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_percent="0.24"
+        app:layout_constraintWidth_percent="0.22"
 
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeMaxTextSize="100sp"
         android:autoSizeStepGranularity="2sp"
         >
 
@@ -53,25 +52,24 @@
         android:id="@+id/tips3_text2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fontFamily="@font/font_digital"
+        android:fontFamily="@font/font_basic"
         android:scaleType="fitXY"
-        android:text="원하는\n난이도를\n선택\n하세요!"
+        android:text="@string/Tips3_2"
         android:textColor="@color/hard_color"
-        android:textStyle="bold"
         android:gravity="center"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@id/tips3_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.82"
+        app:layout_constraintVertical_bias="0.88"
         app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintHeight_percent="0.14"
-        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintWidth_percent="0.22"
 
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeMaxTextSize="100sp"
         android:autoSizeStepGranularity="2sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
