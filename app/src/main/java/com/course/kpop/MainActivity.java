@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
         if(mediaplayer_main==null)
         {
             // BGN 실행
-            mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic2);
+            mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic_new);
             mediaplayer_main.setLooping(true);
             mediaplayer_main.start();
 
