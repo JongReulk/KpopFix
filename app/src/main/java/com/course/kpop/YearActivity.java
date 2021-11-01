@@ -90,7 +90,6 @@ public class YearActivity extends AppCompatActivity {
 
         Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
         year_Title.startAnimation(textfadein);
-        year_scroll.startAnimation(textfadein);
 
         // 리모콘 애니메이션
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
