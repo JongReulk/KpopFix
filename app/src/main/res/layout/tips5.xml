@@ -29,7 +29,7 @@
         android:fontFamily="@font/font_digital"
         android:gravity="center"
         android:scaleType="fitXY"
-        android:text=""
+        android:text="다시 팁을 보고싶다면 클릭!"
         android:textColor="@color/hard_color"
         android:textStyle="bold"
 
