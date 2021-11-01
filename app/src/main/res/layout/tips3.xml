@@ -27,19 +27,27 @@
         android:layout_height="0dp"
         android:fontFamily="@font/font_digital"
         android:scaleType="fitXY"
-        android:text="난이도마다 제한시간이 달라요!"
+        android:text="난이도\n마다\n제한\n시간이\n달라요!"
         android:textColor="@color/hard_color"
         android:textStyle="bold"
         android:gravity="center"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintHorizontal_bias="0.951"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.422"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/tips3_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.40"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintHeight_percent="0.17"
+        app:layout_constraintWidth_percent="0.2"
+
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="13sp"
+        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeStepGranularity="2sp"
+        >
+
+    </TextView>
 
     <TextView
         android:id="@+id/tips3_text2"
@@ -47,18 +55,23 @@
         android:layout_height="0dp"
         android:fontFamily="@font/font_digital"
         android:scaleType="fitXY"
-        android:text="원하는 난이도를 선택하세요!"
+        android:text="원하는\n난이도를\n선택\n하세요!"
         android:textColor="@color/hard_color"
         android:textStyle="bold"
         android:gravity="center"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintHorizontal_bias="0.939"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.811"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/tips3_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.82"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintWidth_percent="0.2"
+
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="13sp"
+        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeStepGranularity="2sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@
     <string name="Confirm">정답 확인</string>
     <string name="Next">다음</string>
     <string name="Finish">종료</string>
-    <string name="Setting">설정</string>
+    <stringㄴ name="Setting">설정</stringㄴ>
     <string name="Bgm">배경음악</string>
     <string name="SFX">효과음</string>
     <string name="Cancel">취소</string>
@@ -25,5 +25,13 @@
     <string name="INTERNET">인터넷</string>
     <string name="InternetWarning">인터넷 연결이 되어 있지 않습니다.\n인터넷 연결 후 다시 시도해주세요.</string>
     <string name="BackQuit">한 번 더 뒤로 버튼을 누르면 종료됩니다.</string>
+    <string name="Tips1_1">시작버튼을\n눌러\n게임시작!</string>
+    <string name="Tips1_2">설정버튼을\n눌러\n볼륨조절!</string>
+    <string name="Tips1_3">종료버튼을\n눌러\n게임종료!</string>
+    <string name="Tips2_1">원하는\n연도를\n골라보세요!</string>
+    <string name="Tips2_2">랜덤으로도\n플레이\n해봐요!</string>
+    <string name="Tips2_3">모든 연도로\n플레이\n해봐요!</string>
+    <string name="tips2_4">화살표로\n고르고\nOK버튼을\n눌러\n원하는\n연도를\n선택\n하세요!</string>
+    <string name="Tips3_1">난이도\n마다\n제한\n시간이\n달라요!</string>
 
 </resources>

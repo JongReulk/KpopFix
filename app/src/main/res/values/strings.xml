@@ -25,5 +25,13 @@
     <string name="INTERNET">INTERNET</string>
     <string name="InternetWarning">There is no internet connection.\nPlease try again after connecting to the internet.</string>
     <string name="BackQuit">Press the back button once more to exit.</string>
+    <string name="Tips1_1">Start\nthe game\nby pressing\nthe start button!</string>
+    <string name="Tips1_2">Press\nthe\nsetting button\nto adjust\nthe volume!</string>
+    <string name="Tips1_3">Click\nthe\nquit button\nto end\nthe game!</string>
+    <string name="Tips2_1">Choose\nthe year\nyou want!</string>
+    <string name="Tips2_2">Try\nplaying\nat random!</string>
+    <string name="Tips2_3">Play\nin any\nyear!</string>
+    <string name="tips2_4">Select\nwith\nthe arrow\nand press\nthe OK\nbutton\nto select\nthe year\nyou want!</string>
+    <string name="Tips3_1">Each\ndifficulty\nhas a\ndifferent\ntime\nlimit!</string>
 
 </resources>

@@ -8,7 +8,7 @@
 
     <!-- 게임스크린샷 이미지 -->
     <ImageView
-        android:id="@+id/tips3_image"
+        android:id="@+id/tips5_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
@@ -24,21 +24,26 @@
 
     <TextView
         android:id="@+id/tips5_text1"
-        android:layout_width="92dp"
-        android:layout_height="77dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/font_digital"
         android:gravity="center"
         android:scaleType="fitXY"
-        android:text="다시 팁을 보고싶다면 클릭!"
+        android:text="다시\n보고\n싶다면\n클릭!"
         android:textColor="@color/hard_color"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintHorizontal_bias="0.937"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/tips5_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.68"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintWidth_percent="0.2"
+
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="13sp"
+        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeStepGranularity="2sp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
