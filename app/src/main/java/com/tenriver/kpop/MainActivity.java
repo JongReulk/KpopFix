@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewHighscore;
     private TextView textViewTitle;
 
+    private ImageView imageview_lp;
+
     private long backPressedTime;
 
     private Button tipsButton;
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         TypingEffect textViewTitle = findViewById(R.id.txtTitle);
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
+        imageview_lp = findViewById(R.id.imageView_lp);
 
 
         textViewHighscore.startAnimation(textfadein);
@@ -105,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
 
 
+        Animation lpLotate = AnimationUtils.loadAnimation(getApplication(), R.anim.rotate_lp);
+        imageview_lp.startAnimation(lpLotate);
 
         //Sound
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성

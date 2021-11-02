@@ -13,14 +13,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kpop">
-        <activity android:name="com.tenriver.kpop.QuizMain" />
-        <activity android:name="com.tenriver.kpop.DifficultyActivity" />
-        <activity android:name="com.tenriver.kpop.YearActivity" />
-        <activity android:name="com.tenriver.kpop.MainActivity" />
-        <activity android:name="com.tenriver.kpop.TitleActivity" />
-        <activity android:name="com.tenriver.kpop.TipsActivity" />
+        <activity android:name="com.tenriver.kpop.QuizMain"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.tenriver.kpop.DifficultyActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.tenriver.kpop.YearActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.tenriver.kpop.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.tenriver.kpop.TitleActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.tenriver.kpop.TipsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.tenriver.kpop.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
