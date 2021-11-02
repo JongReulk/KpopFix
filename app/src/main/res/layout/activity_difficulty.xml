@@ -303,4 +303,20 @@
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:id="@+id/imageView_lp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/musiclp"
+
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/Image_TV_difficulty"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHorizontal_bias="0.1"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

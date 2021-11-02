@@ -103,6 +103,17 @@ public class  DifficultyActivity extends AppCompatActivity {
         Boolean bgmCb_difficulty = music.getBoolean("bgmCb",true);
         Boolean effectCb_difficulty = music.getBoolean("effectCb",true);
 
+        ImageView imageview_lp = findViewById(R.id.imageView_lp);
+        Animation lpLotate = AnimationUtils.loadAnimation(getApplication(), R.anim.rotate_lp);
+
+        if(bgmCb_difficulty){
+            imageview_lp.startAnimation(lpLotate);
+        }
+
+        else{
+            imageview_lp.clearAnimation();
+        }
+
         //Sound
         soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC,0);	//작성
         soundID = soundPool.load(this,R.raw.buttonsound1,1);
