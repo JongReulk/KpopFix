@@ -1,4 +1,4 @@
-package com.course.kpop;
+package com.tenriver.kpop;
 
 import org.junit.Test;
 

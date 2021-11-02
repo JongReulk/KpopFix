@@ -1,4 +1,4 @@
-package com.course.kpop;
+package com.tenriver.kpop;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.course.kpop.QuizContract.*;
+import com.tenriver.kpop.QuizContract.*;
 
 import androidx.annotation.Nullable;
 

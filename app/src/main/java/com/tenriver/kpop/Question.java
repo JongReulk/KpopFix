@@ -1,4 +1,4 @@
-package com.course.kpop;
+package com.tenriver.kpop;
 
 public class Question {
     public static final int YEAR_TWOTHOUSANDTEN = 2010;

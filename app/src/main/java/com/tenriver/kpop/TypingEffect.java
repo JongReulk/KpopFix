@@ -1,9 +1,8 @@
-package com.course.kpop;
+package com.tenriver.kpop;
 
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 

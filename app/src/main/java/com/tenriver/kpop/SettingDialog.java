@@ -1,13 +1,10 @@
-package com.course.kpop;
+package com.tenriver.kpop;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 
