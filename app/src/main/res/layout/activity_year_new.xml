@@ -169,15 +169,13 @@
                 android:id="@+id/year_2021"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_year"
-                android:text="2021"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:fontFamily="@font/font_digital"
                 android:layout_marginBottom="5dp"
-                >
-            </Button>
+                android:background="@drawable/btn_year"
+                android:fontFamily="@font/font_digital"
+                android:text="2021"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"></Button>
 
             <Button
                 android:id="@+id/year_random"

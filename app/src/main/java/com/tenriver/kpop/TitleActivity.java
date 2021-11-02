@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 
@@ -163,6 +164,10 @@ public class TitleActivity extends AppCompatActivity {
         TitleTextK.setAlpha(1);
         Animation bounceK = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_text);
         TitleTextK.startAnimation(bounceK);
+
+        ImageView imageview_lp = findViewById(R.id.imageView_lp);
+        Animation lpLotate = AnimationUtils.loadAnimation(getApplication(), R.anim.rotate_lp);
+        imageview_lp.startAnimation(lpLotate);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
