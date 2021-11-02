@@ -186,7 +186,7 @@
         android:id="@+id/imageView_lp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/musiclp22"
+        app:srcCompat="@drawable/musiclp"
         tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="3dp"
 

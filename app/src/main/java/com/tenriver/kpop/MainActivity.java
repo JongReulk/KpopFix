@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
         textViewTitle.startAnimation(textfadein);
 
+
         // BGN 실행
         if(mediaplayer_main ==null){
             mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic_new);
@@ -82,14 +83,19 @@ public class MainActivity extends AppCompatActivity {
         Boolean bgmCb_main = music.getBoolean("bgmCb",true);
         Boolean effectCb_main = music.getBoolean("effectCb",true);
 
+        imageview_lp = findViewById(R.id.imageView_lp);
+        Animation lpLotate = AnimationUtils.loadAnimation(getApplication(), R.anim.rotate_lp);
+
 
         if(mediaplayer_main!=null){
             if(!bgmCb_main){
+                imageview_lp.clearAnimation();
                 mediaplayer_main.setVolume(0,0);
             }
 
             else{
                 mediaplayer_main.setVolume(1,1);
+                imageview_lp.startAnimation(lpLotate);
             }
         }
 
@@ -100,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         TypingEffect textViewTitle = findViewById(R.id.txtTitle);
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
-        imageview_lp = findViewById(R.id.imageView_lp);
+
 
 
         textViewHighscore.startAnimation(textfadein);
@@ -108,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
 
 
-        Animation lpLotate = AnimationUtils.loadAnimation(getApplication(), R.anim.rotate_lp);
-        imageview_lp.startAnimation(lpLotate);
 
         //Sound
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
@@ -400,13 +404,18 @@ public class MainActivity extends AppCompatActivity {
                 musicEditor.putBoolean("effectCb", (effectCb.isChecked()));
                 musicEditor.apply();
 
+                Animation lpLotate = AnimationUtils.loadAnimation(getApplication(), R.anim.rotate_lp);
+
+
                 if(mediaplayer_main!=null){
                     if(!bgmCb.isChecked()){
                         mediaplayer_main.setVolume(0,0);
+                        imageview_lp.clearAnimation();
                     }
 
                     else{
                         mediaplayer_main.setVolume(1,1);
+                        imageview_lp.startAnimation(lpLotate);
                     }
                 }
 
