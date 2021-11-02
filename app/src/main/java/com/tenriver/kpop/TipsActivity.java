@@ -113,6 +113,7 @@ public class TipsActivity extends AppCompatActivity{
                     @Override
                     public void run() {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                         startActivity(intent);
 
                         // 액티비티 이동시 페이드인아웃 연출
@@ -148,6 +149,7 @@ public class TipsActivity extends AppCompatActivity{
                     @Override
                     public void run() {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                         startActivity(intent);
 
                         // 액티비티 이동시 페이드인아웃 연출
@@ -160,6 +162,15 @@ public class TipsActivity extends AppCompatActivity{
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(!mediaplayer_tips.isPlaying()){
+            mediaplayer_tips.start();
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         if(mediaplayer_tips!=null)
@@ -168,6 +179,13 @@ public class TipsActivity extends AppCompatActivity{
             mediaplayer_tips.release();
             mediaplayer_tips = null;
         }
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+
+        mediaplayer_tips.pause();
     }
 
 

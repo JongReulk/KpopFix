@@ -53,6 +53,10 @@ public class  DifficultyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_difficulty);
 
+        if(!MainActivity.mediaplayer_main.isPlaying())
+        {
+            MainActivity.mediaplayer_main.start();
+        }
 
 
         difficulty_title = findViewById(R.id.difficultyTitle);
@@ -167,6 +171,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
                             Quizintent.putExtra("difficulty_time",10000); // 10초
                             Quizintent.putExtra("year_num",year_num_Difficulty);
+                            Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                             startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
                             finish();
                         }
@@ -215,6 +220,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
                             Quizintent.putExtra("difficulty_time",5000); // 5초
                             Quizintent.putExtra("year_num",year_num_Difficulty);
+                            Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                             startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
                             finish();
                         }
@@ -261,6 +267,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
                             Quizintent.putExtra("difficulty_time",3000); // 3초
                             Quizintent.putExtra("year_num",year_num_Difficulty);
+                            Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                             startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
                             finish();
                         }
@@ -296,6 +303,16 @@ public class  DifficultyActivity extends AppCompatActivity {
     }*/
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(!MainActivity.mediaplayer_main.isPlaying())
+        {
+            MainActivity.mediaplayer_main.start();
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         isFinished = true;
@@ -304,6 +321,13 @@ public class  DifficultyActivity extends AppCompatActivity {
         startActivity(yearintent);
         finish();
 
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+
+        MainActivity.mediaplayer_main.pause();
     }
 
     /*

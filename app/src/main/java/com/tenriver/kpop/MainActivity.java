@@ -204,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(getApplicationContext(), YearActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                         startActivityForResult(intent,REQUEST_CODE_QUIZ);
 
                         // 액티비티 이동시 페이드인아웃 연출
@@ -250,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if(mediaplayer_main==null)
+        if(!mediaplayer_main.isPlaying())
         {
             // BGN 실행
             mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic_new);
@@ -439,7 +440,11 @@ public class MainActivity extends AppCompatActivity {
    }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return super.onKeyDown(keyCode, event);
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+
+
+        mediaplayer_main.pause();
+
     }
 }

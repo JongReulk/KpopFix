@@ -119,6 +119,7 @@ public class TitleActivity extends AppCompatActivity {
             }
 
             Intent newIntent = new Intent(this, TipsActivity.class);
+            newIntent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
             startActivity(newIntent);
 
             // 액티비티 이동시 페이드인아웃 연출
@@ -138,6 +139,7 @@ public class TitleActivity extends AppCompatActivity {
             }
 
             Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
             startActivity(intent);
 
             // 액티비티 이동시 페이드인아웃 연출
@@ -160,6 +162,10 @@ public class TitleActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        if(!mediaplayer_title.isPlaying())
+        {
+            mediaplayer_title.start();
+        }
 
         TitleTextK.setAlpha(1);
         Animation bounceK = AnimationUtils.loadAnimation(getApplication(), R.anim.splash_text);
@@ -246,5 +252,12 @@ public class TitleActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+
+        mediaplayer_title.pause();
     }
 }

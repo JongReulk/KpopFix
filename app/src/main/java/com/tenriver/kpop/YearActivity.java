@@ -56,6 +56,12 @@ public class YearActivity extends AppCompatActivity {
         ImageView imageview_lp = findViewById(R.id.imageView_lp);
         Animation lpLotate = AnimationUtils.loadAnimation(getApplication(), R.anim.rotate_lp);
 
+        if(!MainActivity.mediaplayer_main.isPlaying())
+        {
+            MainActivity.mediaplayer_main.start();
+        }
+
+
         if(bgmCb_difficulty){
             imageview_lp.startAnimation(lpLotate);
         }
@@ -284,6 +290,7 @@ public class YearActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(getApplicationContext(),DifficultyActivity.class);
                         intent.putExtra("year_num",year_num); // 10초
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                         startActivityForResult(intent,MainActivity.REQUEST_CODE_QUIZ);
 
                         // 액티비티 이동시 페이드인아웃 연출
@@ -389,12 +396,29 @@ public class YearActivity extends AppCompatActivity {
     }*/
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(!MainActivity.mediaplayer_main.isPlaying())
+        {
+            MainActivity.mediaplayer_main.start();
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
 
         Intent mainintent = new Intent(this,MainActivity.class);
         startActivity(mainintent);
         finish();
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+
+        MainActivity.mediaplayer_main.pause();
     }
 
 }
