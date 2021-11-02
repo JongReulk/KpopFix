@@ -39,5 +39,7 @@
     <string name="Tips4_3">You can\nmove on\nto the\nnext question!</string>
     <string name="Tips4_4">Please\nchange\nonly\n&amp; to and!</string>
     <string name="Tips5_1">Click to\nsee\nthis\nagain!</string>
+    <string name="songexample">E.g) MORE &amp; MORE -> moreandmore or 몰앤몰</string>
+    <string name="nextlevelexample">E.g) Next Level -> nextlevel or 넥스트레벨</string>
 
 </resources>

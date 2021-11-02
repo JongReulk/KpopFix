@@ -137,7 +137,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="(예: Next level, 넥스트레벨)"
+        android:hint="@string/nextlevelexample"
         android:inputType="text"
         android:fontFamily="@font/font_basic"
 
@@ -152,7 +152,7 @@
         android:id="@+id/txt_answer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeMaxTextSize="100sp"
         android:autoSizeMinTextSize="18sp"
         android:autoSizeStepGranularity="2sp"
         android:autoSizeTextType="uniform"
