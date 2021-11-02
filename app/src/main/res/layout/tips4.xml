@@ -44,7 +44,7 @@
 
         app:layout_constraintRight_toRightOf="@id/tips4_image"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintVertical_bias="0.23"
         app:layout_constraintWidth_percent="0.6" />
 
     <TextView
@@ -86,7 +86,7 @@
         app:layout_constraintLeft_toLeftOf="@id/tips4_image"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/tips4_image"
-        app:layout_constraintVertical_bias="0.28"
+        app:layout_constraintVertical_bias="0.22"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintWidth_percent="0.25"
@@ -119,6 +119,32 @@
         android:autoSizeMinTextSize="13sp"
         android:autoSizeMaxTextSize="100sp"
         android:autoSizeStepGranularity="2sp" />
+
+    <TextView
+        android:id="@+id/tips4_text5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="13sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/font_basiclight"
+
+
+        android:gravity="center"
+        android:scaleType="fitXY"
+        android:text="@string/songexample"
+        android:textColor="@color/teal_200"
+        app:layout_constraintBottom_toBottomOf="@id/tips4_image"
+        app:layout_constraintHeight_percent="0.15"
+
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintLeft_toLeftOf="@id/tips4_image"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tips4_text3"
+        app:layout_constraintVertical_bias="0.01"
+        app:layout_constraintWidth_percent="0.35" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
