@@ -168,7 +168,7 @@ public class QuizMain extends YouTubeBaseActivity {
             Log.e("Question", " : "+year_num_string);
         }
 
-        questionCountTotal = 20;
+        questionCountTotal = 10;
         Collections.shuffle(questionList);
 
         // 스피커 애니메이션
