@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             else{
-                soundPoolVolume=1.0f;
+                soundPoolVolume=0.5f;
             }
         }
 
@@ -294,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             else{
-                soundPoolVolume=1.0f;
+                soundPoolVolume=0.5f;
             }
         }
 

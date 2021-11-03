@@ -80,7 +80,7 @@ public class YearActivity extends AppCompatActivity {
             }
 
             else{
-                soundPoolVolume=1.0f;
+                soundPoolVolume=0.5f;
             }
         }
 
