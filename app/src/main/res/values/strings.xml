@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Kpop</string>
     <string name="start">START</string>
-    <string name="Title" translatable="false">K-POP\n게임</string>
+    <string name="Title" translatable="false">KPOP</string>
     <string name="bestscore">Best Score</string>
     <string name="Easy">EASY</string>
     <string name="Normal">" NORMAL "</string>
@@ -41,5 +41,6 @@
     <string name="Tips5_1">Click to\nsee\nthis\nagain!</string>
     <string name="songexample">E.g) MORE &amp; MORE ->\nmoreandmore\nor 모어앤모어</string>
     <string name="nextlevelexample">E.g) Next Level -> nextlevel or 넥스트레벨</string>
+    <string name="MvQuiz">MV QUIZ</string>
 
 </resources>

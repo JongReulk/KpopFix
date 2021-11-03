@@ -33,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
     private int highscore;
     private TextView textViewHighscore;
-    private TextView textViewTitle;
+    private TextView kpop1;
+    private TextView kpop2;
+    private TextView kpop3;
+    private TextView mvquiz;
 
     private ImageView imageview_lp;
 
@@ -67,10 +70,15 @@ public class MainActivity extends AppCompatActivity {
         ConstraintLayout remotebutton = (ConstraintLayout) findViewById(R.id.Remote_button_main);
 
         //텍스트 페이드인
-        textViewTitle = (TextView) findViewById((R.id.txtTitle));
+        kpop1 = (TextView) findViewById((R.id.txtTitle1));
+        kpop2 = (TextView) findViewById((R.id.txtTitle2));
+        kpop3 = (TextView) findViewById((R.id.txtTitle3));
+        mvquiz = (TextView) findViewById((R.id.txtMvQuiz));
         Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
-        textViewTitle.startAnimation(textfadein);
-
+        kpop1.startAnimation(textfadein);
+        kpop2.startAnimation(textfadein);
+        kpop3.startAnimation(textfadein);
+        mvquiz.startAnimation(textfadein);
 
         // BGN 실행
         if(mediaplayer_main ==null){
@@ -86,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageview_lp = findViewById(R.id.imageView_lp);
         Animation lpLotate = AnimationUtils.loadAnimation(getApplication(), R.anim.rotate_lp);
+        imageview_lp.startAnimation(textfadein);
 
 
         if(mediaplayer_main!=null){
@@ -104,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         tipsButton = findViewById(R.id.Main_tips);
         startButton = findViewById(R.id.Main_start);
         textViewHighscore = findViewById(R.id.txtbestScore);
-        TypingEffect textViewTitle = findViewById(R.id.txtTitle);
+        TextView textViewTitle = findViewById(R.id.txtTitle1);
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
 
@@ -126,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             else{
-                soundPoolVolume=0.5f;
+                soundPoolVolume=0.4f;
             }
         }
 
@@ -294,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             else{
-                soundPoolVolume=0.5f;
+                soundPoolVolume=0.4f;
             }
         }
 
