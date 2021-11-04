@@ -31,103 +31,109 @@
         app:layout_constraintLeft_toLeftOf="@+id/Image_TV_year"
         app:layout_constraintRight_toRightOf="@+id/Image_TV_year">
 
-    <TextView
-        android:id="@+id/txtTitle1"
-        android:text="K"
-        android:fontFamily="@font/font_basicbold"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:textColor="@color/title_text_color"
+        <com.tenriver.kpop.OutlineTextView
+            android:id="@+id/txtTitle1"
+            android:text="K"
+            android:fontFamily="@font/font_basicbold"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="@color/title_text_color"
 
-        android:gravity="center"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="28sp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="28sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintHeight_percent="0.2"
-        app:layout_constraintWidth_percent="0.15"
-        app:layout_constraintHorizontal_bias="0.25"
-
-        />
-
-    <TextView
-        android:id="@+id/txtTitle2"
-        android:text="P"
-        android:fontFamily="@font/font_basicbold"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:textColor="@color/title_text_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.15"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:textStroke="true"
+            app:textStrokeWidth="8.0"
+            app:textStrokeColor="@color/white"/>
 
 
-        android:gravity="center"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="28sp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintHeight_percent="0.2"
-        app:layout_constraintWidth_percent="0.15"
-        app:layout_constraintHorizontal_bias="0.42"
-
-        />
+        <com.tenriver.kpop.OutlineTextView
+            android:id="@+id/txtTitle2"
+            android:text="P"
+            android:fontFamily="@font/font_basicbold"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="@color/title_text_color"
 
 
-    <ImageView
-        android:id="@+id/imageView_lp"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:srcCompat="@drawable/musiclp"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="28sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.15"
+            app:layout_constraintHorizontal_bias="0.42"
+
+            app:textStroke="true"
+            app:textStrokeWidth="8.0"
+            app:textStrokeColor="@color/white"/>
 
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.2"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintHorizontal_bias="0.59"
+        <ImageView
+            android:id="@+id/imageView_lp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:srcCompat="@drawable/musiclp"
 
-        />
 
-    <TextView
-        android:id="@+id/txtTitle3"
-        android:text="P"
-        android:fontFamily="@font/font_basicbold"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:textColor="@color/title_text_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.59"
+            />
 
-        android:gravity="center"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="28sp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
+        <com.tenriver.kpop.OutlineTextView
+            android:id="@+id/txtTitle3"
+            android:text="P"
+            android:fontFamily="@font/font_basicbold"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="@color/title_text_color"
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintHeight_percent="0.2"
-        app:layout_constraintWidth_percent="0.15"
-        app:layout_constraintHorizontal_bias="0.76"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="28sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
 
-        />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.15"
+            app:layout_constraintHorizontal_bias="0.76"
+
+            app:textStroke="true"
+            app:textStrokeWidth="8.0"
+            app:textStrokeColor="@color/white"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
+    <com.tenriver.kpop.OutlineTextView
         android:id="@+id/year_Title"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -150,9 +156,11 @@
         app:layout_constraintLeft_toLeftOf="@id/Image_TV_year"
         app:layout_constraintRight_toRightOf="@id/Image_TV_year"
         app:layout_constraintBottom_toBottomOf="@id/Image_TV_year"
-        >
 
-    </TextView>
+        app:textStroke="true"
+        app:textStrokeWidth="10.0"
+        app:textStrokeColor="@color/title_text_color"/>
+
 
     <TextView
         android:layout_width="0dp"

@@ -35,7 +35,7 @@
         app:layout_constraintRight_toRightOf="@+id/Image_TV_difficulty"
         >
 
-        <TextView
+        <com.tenriver.kpop.OutlineTextView
             android:id="@+id/txtTitle1"
             android:text="K"
             android:fontFamily="@font/font_basicbold"
@@ -58,9 +58,11 @@
             app:layout_constraintWidth_percent="0.15"
             app:layout_constraintHorizontal_bias="0.25"
 
-            />
+            app:textStroke="true"
+            app:textStrokeWidth="8.0"
+            app:textStrokeColor="@color/white"/>
 
-        <TextView
+        <com.tenriver.kpop.OutlineTextView
             android:id="@+id/txtTitle2"
             android:text="P"
             android:fontFamily="@font/font_basicbold"
@@ -84,7 +86,9 @@
             app:layout_constraintWidth_percent="0.15"
             app:layout_constraintHorizontal_bias="0.42"
 
-            />
+            app:textStroke="true"
+            app:textStrokeWidth="8.0"
+            app:textStrokeColor="@color/white"/>
 
 
         <ImageView
@@ -105,7 +109,7 @@
 
             />
 
-        <TextView
+        <com.tenriver.kpop.OutlineTextView
             android:id="@+id/txtTitle3"
             android:text="P"
             android:fontFamily="@font/font_basicbold"
@@ -128,9 +132,11 @@
             app:layout_constraintWidth_percent="0.15"
             app:layout_constraintHorizontal_bias="0.76"
 
-            />
+            app:textStroke="true"
+            app:textStrokeWidth="8.0"
+            app:textStrokeColor="@color/white"/>
 
-        <TextView
+        <com.tenriver.kpop.OutlineTextView
             android:id="@+id/difficultyTitle"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -151,7 +157,10 @@
             app:layout_constraintVertical_bias="0.3"
             app:layout_constraintHeight_percent="0.2"
             app:layout_constraintWidth_percent="0.7"
-            />
+
+            app:textStroke="true"
+            app:textStrokeWidth="10.0"
+            app:textStrokeColor="@color/title_text_color"/>
 
 
         <TextView
