@@ -22,7 +22,7 @@
         app:layout_constraintWidth_percent="0.9"
         />
 
-    <TextView
+    <com.tenriver.kpop.OutlineTextView
         android:id="@+id/tips4_text1"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -45,9 +45,13 @@
         app:layout_constraintRight_toRightOf="@id/tips4_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.23"
-        app:layout_constraintWidth_percent="0.6" />
+        app:layout_constraintWidth_percent="0.6"
 
-    <TextView
+        app:textStroke="true"
+        app:textStrokeWidth="16.0"
+        app:textStrokeColor="@color/white"/>
+
+    <com.tenriver.kpop.OutlineTextView
         android:id="@+id/tips4_text2"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -69,9 +73,13 @@
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="13sp"
         android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp" />
+        android:autoSizeStepGranularity="2sp"
 
-    <TextView
+        app:textStroke="true"
+        app:textStrokeWidth="16.0"
+        app:textStrokeColor="@color/white"/>
+
+    <com.tenriver.kpop.OutlineTextView
         android:id="@+id/tips4_text3"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -94,9 +102,13 @@
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="13sp"
         android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp" />
+        android:autoSizeStepGranularity="2sp"
 
-    <TextView
+        app:textStroke="true"
+        app:textStrokeWidth="16.0"
+        app:textStrokeColor="@color/white"/>
+
+    <com.tenriver.kpop.OutlineTextView
         android:id="@+id/tips4_text4"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -118,9 +130,13 @@
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="13sp"
         android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp" />
+        android:autoSizeStepGranularity="2sp"
 
-    <TextView
+        app:textStroke="true"
+        app:textStrokeWidth="16.0"
+        app:textStrokeColor="@color/white"/>
+
+    <com.tenriver.kpop.OutlineTextView
         android:id="@+id/tips4_text5"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -144,7 +160,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tips4_text3"
         app:layout_constraintVertical_bias="0.01"
-        app:layout_constraintWidth_percent="0.35" />
+        app:layout_constraintWidth_percent="0.35"
+
+        app:textStroke="true"
+        app:textStrokeWidth="16.0"
+        app:textStrokeColor="@color/white"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

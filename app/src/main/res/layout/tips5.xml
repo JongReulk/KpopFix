@@ -22,7 +22,7 @@
         app:layout_constraintWidth_percent="0.9"
         />
 
-    <TextView
+    <com.tenriver.kpop.OutlineTextView
         android:id="@+id/tips5_text1"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -45,5 +45,9 @@
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="13sp"
         android:autoSizeMaxTextSize="28sp"
-        android:autoSizeStepGranularity="2sp" />
+        android:autoSizeStepGranularity="2sp"
+
+        app:textStroke="true"
+        app:textStrokeWidth="16.0"
+        app:textStrokeColor="@color/white"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
