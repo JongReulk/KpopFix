@@ -39,6 +39,10 @@ public class  DifficultyActivity extends AppCompatActivity {
     private TextView normalTip;
     private TextView hardTip;
 
+    private TextView kpop1;
+    private TextView kpop2;
+    private TextView kpop3;
+
     private boolean isFinished = false;
 
     //Sound
@@ -70,11 +74,19 @@ public class  DifficultyActivity extends AppCompatActivity {
         normalTip = findViewById(R.id.txt_normaltip);
         hardTip = findViewById(R.id.txt_hardtip);
 
+        kpop1 = (TextView) findViewById((R.id.txtTitle1));
+        kpop2 = (TextView) findViewById((R.id.txtTitle2));
+        kpop3 = (TextView) findViewById((R.id.txtTitle3));
+
+        //페이드인 애니메이션
         Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
         difficulty_title.startAnimation(textfadein);
         easyTip.startAnimation(textfadein);
         normalTip.startAnimation(textfadein);
         hardTip.startAnimation(textfadein);
+        kpop1.startAnimation(textfadein);
+        kpop2.startAnimation(textfadein);
+        kpop3.startAnimation(textfadein);
 
 
         ImageView remote_difficulty = (ImageView) findViewById(R.id.Remote_difficulty);

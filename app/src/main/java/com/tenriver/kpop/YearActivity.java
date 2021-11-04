@@ -35,6 +35,10 @@ public class YearActivity extends AppCompatActivity {
     private int button_num;
     private TextView year_Title;
 
+    private TextView kpop1;
+    private TextView kpop2;
+    private TextView kpop3;
+
     private TextView year_select;
 
     private static boolean isClicked;
@@ -95,14 +99,22 @@ public class YearActivity extends AppCompatActivity {
         year_confirm = findViewById(R.id.year_confirm);
         year_linear = findViewById(R.id.year_linearlayout);
         year_select = findViewById(R.id.txt_selectYear);
+
+        kpop1 = (TextView) findViewById((R.id.txtTitle1));
+        kpop2 = (TextView) findViewById((R.id.txtTitle2));
+        kpop3 = (TextView) findViewById((R.id.txtTitle3));
         View year_v;
 
         year_up.setEnabled(true);
         year_down.setEnabled(true);
         year_confirm.setEnabled(true);
 
+        //페이드인 애니메이션
         Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
         year_Title.startAnimation(textfadein);
+        kpop1.startAnimation(textfadein);
+        kpop2.startAnimation(textfadein);
+        kpop3.startAnimation(textfadein);
 
         // 리모콘 애니메이션
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
