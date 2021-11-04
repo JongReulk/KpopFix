@@ -89,6 +89,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
     boolean isStarted =true;
 
+    boolean isEasy=false;
+
     private static int[] arr = {51000,61000,71000};
 
 
@@ -116,6 +118,7 @@ public class QuizMain extends YouTubeBaseActivity {
         videoLength = intent.getIntExtra("difficulty_time",10000);
 
         if(videoLength == 10000){
+            isEasy=true;
             plus = 10;
         }
 
@@ -146,6 +149,10 @@ public class QuizMain extends YouTubeBaseActivity {
 
         answerText.getBackground().setColorFilter(null);
         //textColorDefaultCd = txtCountDown.getTextColors();
+
+        if(isEasy){
+            playerView.setAlpha(1.0f);
+        }
 
 
 
@@ -242,6 +249,10 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
                 playerView.setAlpha(0.0f);
+
+                if(isEasy){
+                    playerView.setAlpha(1.0f);
+                }
                 txt_answer.setBackground(null);
 
                 nextButton.setEnabled(false);
