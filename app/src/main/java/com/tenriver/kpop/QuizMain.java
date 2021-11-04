@@ -183,6 +183,7 @@ public class QuizMain extends YouTubeBaseActivity {
         rightSpeaker = findViewById(R.id.imageView_speakerright);
 
         Animation speakerleft_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.speaker_leftanim);
+
         leftSpeaker.startAnimation(speakerleft_anim);
         Animation speakerright_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.speaker_rightanim);
         rightSpeaker.startAnimation(speakerright_anim);
