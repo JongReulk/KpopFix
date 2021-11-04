@@ -26,7 +26,7 @@
         android:id="@+id/tips5_text1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fontFamily="@font/font_digital"
+        android:fontFamily="@font/font_basic"
         android:gravity="center"
         android:scaleType="fitXY"
         android:text="@string/Tips5_1"

@@ -35,7 +35,7 @@
 
         android:scaleType="fitXY"
         android:text="@string/Tips4_1"
-        android:textColor="@color/easy_color"
+        android:textColor="@color/title_text_color"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.25"
@@ -150,7 +150,7 @@
         android:gravity="center"
         android:scaleType="fitXY"
         android:text="@string/songexample"
-        android:textColor="@color/teal_200"
+        android:textColor="@color/purple_500"
         app:layout_constraintBottom_toBottomOf="@id/tips4_image"
         app:layout_constraintHeight_percent="0.15"
 
