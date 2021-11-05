@@ -1,6 +1,7 @@
 package com.tenriver.kpop;
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -21,8 +22,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnPaidEventListener;
+import com.google.android.gms.ads.ResponseInfo;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -50,6 +64,8 @@ public class QuizMain extends YouTubeBaseActivity {
     private String korean_Answer;
     private String english_Answer;
     private String real_Answer;
+
+    private InterstitialAd screenAd;
 
     private ColorStateList textColorDefaultRb;
     private ColorStateList textColorDefaultCd;
@@ -83,6 +99,7 @@ public class QuizMain extends YouTubeBaseActivity {
     private static int randomStart;
 
     private boolean isCountStart;
+    private boolean isFirst = true;
 
     private ImageView leftSpeaker;
     private ImageView rightSpeaker;
@@ -102,6 +119,10 @@ public class QuizMain extends YouTubeBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_main);
+
+
+
+
 
         if(MainActivity.mediaplayer_main!=null)
         {
@@ -217,12 +238,66 @@ public class QuizMain extends YouTubeBaseActivity {
 
         musicProgressbar.setMax(videoLength);
 
-        confirmButton.setEnabled(false);
+        confirmButton.setEnabled(true);
         confirmButton.setTextColor(Color.GRAY);
 
 
-        initPlayer();
-        showNextQuestion();
+
+
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        QuizMain.this.screenAd = interstitialAd;
+
+
+                        screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                super.onAdDismissedFullScreenContent();
+
+                                initPlayer();
+                                showNextQuestion();
+
+
+                                /*
+                                handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+
+                                    }
+                                },1000);*/
+
+                            }
+                        });
+
+                        showInterstitial();
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        QuizMain.this.screenAd = null;
+
+
+                    }
+
+                });
+
+
 
 
 
@@ -232,6 +307,7 @@ public class QuizMain extends YouTubeBaseActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 musicProgressbar.setAlpha(0);
                 checkAnswer();
@@ -265,13 +341,55 @@ public class QuizMain extends YouTubeBaseActivity {
 
                 if(questionCounter >= questionCountTotal)
                 {
-                    finishQuiz();
-                }
-                showNextQuestion();
-                leftSpeaker.startAnimation(speakerleft_anim);
-                rightSpeaker.startAnimation(speakerright_anim);
+                    AdRequest adRequest = new AdRequest.Builder().build();
 
-                playVideo();
+                    InterstitialAd.load(QuizMain.this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+                            new InterstitialAdLoadCallback() {
+                                @Override
+                                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                    // The mInterstitialAd reference will be null until
+                                    // an ad is loaded.
+                                    QuizMain.this.screenAd = interstitialAd;
+
+
+                                    screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+
+
+                                            handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    finishQuiz();
+
+                                                }
+                                            },1000);
+
+                                        }
+                                    });
+
+                                    showInterstitial();
+                                }
+
+                                @Override
+                                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                    // Handle the error
+                                    QuizMain.this.screenAd = null;
+
+
+                                }
+
+                            });
+                }
+                else {
+                    showNextQuestion();
+                    leftSpeaker.startAnimation(speakerleft_anim);
+                    rightSpeaker.startAnimation(speakerright_anim);
+
+                    playVideo();
+                }
             }
 
         });
@@ -312,13 +430,16 @@ public class QuizMain extends YouTubeBaseActivity {
                     @Override
                     public void onError(YouTubePlayer.ErrorReason errorReason) {}
                 });
+
                 playVideo();
+
             }
 
             @Override
             public void onInitializationFailure(YouTubePlayer.Provider provider,
                                                 YouTubeInitializationResult youTubeInitializationResult) {
                 // 못 불러왔을 때
+                Log.e("Fail!!","");
             }
         });
     }
@@ -550,6 +671,19 @@ public class QuizMain extends YouTubeBaseActivity {
             countDownTimer.cancel();
         }
     }
+
+
+
+    private void showInterstitial() {
+        if (screenAd != null) {
+            screenAd.show(QuizMain.this);
+            screenAd = null;
+        } else {
+            Log.e("TAG","NO SHOW!");
+        }
+
+    }
+
 }
 
 

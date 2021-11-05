@@ -1,5 +1,6 @@
 package com.tenriver.kpop;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -22,6 +23,13 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import java.util.Random;
 
 public class YearActivity extends AppCompatActivity {
@@ -38,6 +46,8 @@ public class YearActivity extends AppCompatActivity {
     private TextView kpop1;
     private TextView kpop2;
     private TextView kpop3;
+
+    private AdView mAdview;
 
     private TextView year_select;
 
@@ -59,6 +69,20 @@ public class YearActivity extends AppCompatActivity {
 
         ImageView imageview_lp = findViewById(R.id.imageView_lp);
         Animation lpLotate = AnimationUtils.loadAnimation(getApplication(), R.anim.rotate_lp);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        mAdview = findViewById(R.id.yearadView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdview.loadAd(adRequest);
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId("\n" + "ca-app-pub-3940256099942544/6300978111");
 
         if(!MainActivity.mediaplayer_main.isPlaying())
         {

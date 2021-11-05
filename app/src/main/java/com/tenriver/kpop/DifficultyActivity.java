@@ -1,8 +1,11 @@
 package com.tenriver.kpop;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -12,6 +15,7 @@ import android.os.Handler;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,6 +23,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.media.SoundPool;
+
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnPaidEventListener;
+import com.google.android.gms.ads.ResponseInfo;
+import com.google.android.gms.ads.admanager.AdManagerInterstitialAd;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 public class  DifficultyActivity extends AppCompatActivity {
 
@@ -43,6 +62,12 @@ public class  DifficultyActivity extends AppCompatActivity {
     private TextView kpop2;
     private TextView kpop3;
 
+    //광고
+    private AdView mAdview;
+    private InterstitialAd screenAd;
+
+    private static final String SCREENAD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712";
+
     private boolean isFinished = false;
 
     //Sound
@@ -57,10 +82,27 @@ public class  DifficultyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_difficulty);
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+
+
+            }
+        });
+
+        mAdview = findViewById(R.id.difficulty_adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdview.loadAd(adRequest);
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId("\n" + "ca-app-pub-3940256099942544/6300978111");
+
+
         if(!MainActivity.mediaplayer_main.isPlaying())
         {
             MainActivity.mediaplayer_main.start();
         }
+
 
 
         difficulty_title = findViewById(R.id.difficultyTitle);
@@ -179,7 +221,6 @@ public class  DifficultyActivity extends AppCompatActivity {
 
 
                         if(!isFinished){
-
                             Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
                             Quizintent.putExtra("difficulty_time",10000); // 10초
                             Quizintent.putExtra("year_num",year_num_Difficulty);

@@ -1,5 +1,6 @@
 package com.tenriver.kpop;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -24,6 +25,13 @@ import android.widget.Toast;
 
 import android.os.Handler;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE_QUIZ = 101;
@@ -46,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     private Button startButton;
     private Button settingOpen;
     private Button quitButton;
+
+    private AdView mAdview;
 
     SettingDialog settingDialog;
     private float soundPoolVolume;
@@ -79,6 +89,22 @@ public class MainActivity extends AppCompatActivity {
         kpop2.startAnimation(textfadein);
         kpop3.startAnimation(textfadein);
         mvquiz.startAnimation(textfadein);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        mAdview = findViewById(R.id.mainadView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdview.loadAd(adRequest);
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId("\n" + "ca-app-pub-3940256099942544/6300978111");
+
+
 
         // BGN 실행
         if(mediaplayer_main ==null){
