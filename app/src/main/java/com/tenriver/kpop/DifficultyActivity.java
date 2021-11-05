@@ -140,6 +140,28 @@ public class  DifficultyActivity extends AppCompatActivity {
         Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remotebutton_difficulty.startAnimation(RemoteButtonUp);
 
+        RemoteUp.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                easyButton.setEnabled(false);
+                normalButton.setEnabled(false);
+                hardButton.setEnabled(false);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                easyButton.setEnabled(true);
+                normalButton.setEnabled(true);
+                hardButton.setEnabled(true);
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
 
         //텍스트뷰 특정 부분 색깔 바꾸기
         Spannable easyspan = (Spannable) easyTip.getText();

@@ -339,6 +339,27 @@ public class MainActivity extends AppCompatActivity {
         //리모컨이미지 올라옴
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remote.startAnimation(RemoteUp);
+        RemoteUp.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                startButton.setEnabled(false);
+                settingOpen.setEnabled(false);
+                quitButton.setEnabled(false);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                startButton.setEnabled(true);
+                settingOpen.setEnabled(true);
+                quitButton.setEnabled(true);
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
         //리모컨버튼 올라옴
         Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);

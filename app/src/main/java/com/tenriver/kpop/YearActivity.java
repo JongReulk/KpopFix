@@ -144,6 +144,28 @@ public class YearActivity extends AppCompatActivity {
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remote.startAnimation(RemoteUp);
 
+        RemoteUp.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                year_down.setEnabled(false);
+                year_confirm.setEnabled(false);
+                year_up.setEnabled(false);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                year_down.setEnabled(true);
+                year_confirm.setEnabled(true);
+                year_up.setEnabled(true);
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
         Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remotebutton_year.startAnimation(RemoteButtonUp);
 
