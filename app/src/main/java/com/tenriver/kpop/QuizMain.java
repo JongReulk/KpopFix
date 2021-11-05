@@ -357,15 +357,7 @@ public class QuizMain extends YouTubeBaseActivity {
                                         public void onAdDismissedFullScreenContent() {
                                             super.onAdDismissedFullScreenContent();
 
-
-                                            handler = new Handler();
-                                            handler.postDelayed(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    finishQuiz();
-
-                                                }
-                                            },1000);
+                                            finishQuiz();
 
                                         }
                                     });
