@@ -41,7 +41,7 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.tenriver.kpop.SplashActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
 
