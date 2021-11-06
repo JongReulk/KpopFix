@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/drawable/btn_remote.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/drawable/btn_remote_circle.xml" value="0.1984375" />
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/drawable/btn_year.xml" value="0.1984375" />
+        <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/drawable/ic_launcher_new_background.xml" value="0.21979166666666666" />
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/drawable/progress_bg.xml" value="0.2296875" />
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/font/font_digital.xml" value="0.15572916666666667" />
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/layout/activity_difficulty.xml" value="0.19375" />
@@ -22,6 +23,8 @@
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/layout/tips3.xml" value="0.4557235421166307" />
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/layout/tips4.xml" value="0.3658301158301158" />
         <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/layout/tips5.xml" value="0.264" />
+        <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/mipmap-anydpi-v26/ic_new.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/Philip/AndroidStudioProjects/KpopFix/app/src/main/res/mipmap-anydpi-v26/ic_new_round.xml" value="0.22083333333333333" />
       </map>
     </option>
   </component>
