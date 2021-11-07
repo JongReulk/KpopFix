@@ -309,7 +309,7 @@ public class QuizMain extends YouTubeBaseActivity {
             public void onClick(View v) {
 
 
-                musicProgressbar.setAlpha(0);
+                musicProgressbar.setAlpha(1.0f);
                 checkAnswer();
                 leftSpeaker.startAnimation(speakerleft_anim);
                 rightSpeaker.startAnimation(speakerright_anim);
@@ -325,7 +325,7 @@ public class QuizMain extends YouTubeBaseActivity {
                 timeLeftInMillis = COUNTDOWN_IN_MILLIS;
 
 
-                playerView.setAlpha(0.0f);
+                playerView.setAlpha(1.0f);
 
                 if(isEasy){
                     playerView.setAlpha(1.0f);
