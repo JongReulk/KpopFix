@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Kpop</string>
+    <string name="app_name">Kpop 뮤비 퀴즈</string>
     <string name="start">시작</string>
     <string name="bestscore">최고 점수</string>
     <string name="Easy">이지</string>
