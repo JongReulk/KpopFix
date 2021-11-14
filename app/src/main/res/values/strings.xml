@@ -42,5 +42,6 @@
     <string name="songexample">E.g) MORE &amp; MORE ->\nmoreandmore\nor 모어앤모어</string>
     <string name="nextlevelexample">E.g) Next Level -> nextlevel or 넥스트레벨</string>
     <string name="MvQuiz">MV QUIZ</string>
+    <string name="VersionCancel">The update failed.</string>
 
 </resources>

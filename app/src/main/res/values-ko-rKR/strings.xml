@@ -42,5 +42,6 @@
     <string name="songexample">예) MORE &amp; MORE ->\nmoreandmore\n또는 모어앤모어</string>
     <string name="nextlevelexample">예) Next Level -> nextlevel 또는 넥스트레벨</string>
     <string name="MvQuiz">뮤비 퀴즈</string>
+    <string name="VersionCancel">업데이트에 실패했습니다.</string>
 
 </resources>

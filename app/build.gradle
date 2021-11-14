@@ -12,6 +12,7 @@ android {
         targetSdkVersion 31
         versionCode 100
         versionName "1.0.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,13 +35,17 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation files('libs\\YouTubeAndroidPlayerApi.jar')
+    implementation 'com.google.android.play:core:1.10.2'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.google.android.gms:play-services-ads:20.4.0'
 
+    implementation 'com.google.android.play:core:1.10.2'
+
     implementation 'com.ssomai:android.scalablelayout:2.1.6'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'me.relex:circleindicator:2.1.4'
