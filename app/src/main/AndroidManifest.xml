@@ -39,6 +39,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name="com.tenriver.kpop.TipsActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name="com.tenriver.kpop.WarningActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.tenriver.kpop.SplashActivity"
             android:exported="true"

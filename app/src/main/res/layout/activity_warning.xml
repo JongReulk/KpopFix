@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/title_color">
+
+    <com.tenriver.kpop.OutlineTextView
+        android:id="@+id/warning1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="원활한 인터넷 환경에서 플레이해주세요."
+        android:textColor="@color/title_text_color"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:fontFamily="@font/font_digital"
+        android:alpha="1"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.5"
+
+        app:textStroke="true"
+        app:textStrokeWidth="6.0"
+        app:textStrokeColor="@color/white"/>
+
+    <com.tenriver.kpop.OutlineTextView
+        android:id="@+id/warning2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="와이파이 환경에서 플레이를 권장합니다.\n모바일 데이터 사용량을 주의하세요."
+        android:textColor="@color/title_text_color"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:fontFamily="@font/font_digital"
+        android:alpha="1"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.5"
+
+        app:textStroke="true"
+        app:textStrokeWidth="6.0"
+        app:textStrokeColor="@color/white"/>
+
+    <com.tenriver.kpop.OutlineTextView
+        android:id="@+id/warning3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이어폰 또는 헤드셋을 착용해주세요."
+        android:textColor="@color/title_text_color"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:fontFamily="@font/font_digital"
+        android:alpha="1"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.7"
+        app:layout_constraintHorizontal_bias="0.5"
+
+        app:textStroke="true"
+        app:textStrokeWidth="6.0"
+        app:textStrokeColor="@color/white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
