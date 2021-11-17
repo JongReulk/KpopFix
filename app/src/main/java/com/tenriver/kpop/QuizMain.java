@@ -562,7 +562,7 @@ public class QuizMain extends YouTubeBaseActivity {
             txtCountDown.setTextColor(Color.RED);
         }
         else{
-            txtCountDown.setTextColor(Color.BLACK);
+            txtCountDown.setTextColor(Color.GRAY);
         }
     }
 
