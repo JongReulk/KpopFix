@@ -171,9 +171,6 @@ public class QuizMain extends YouTubeBaseActivity {
         answerText.getBackground().setColorFilter(null);
         //textColorDefaultCd = txtCountDown.getTextColors();
 
-        if(isEasy){
-            playerView.setAlpha(1.0f);
-        }
 
 
 
@@ -325,11 +322,8 @@ public class QuizMain extends YouTubeBaseActivity {
                 timeLeftInMillis = COUNTDOWN_IN_MILLIS;
 
 
-                playerView.setAlpha(1.0f);
+                playerView.setAlpha(0.0f);
 
-                if(isEasy){
-                    playerView.setAlpha(1.0f);
-                }
                 txt_answer.setBackground(null);
 
                 nextButton.setEnabled(false);

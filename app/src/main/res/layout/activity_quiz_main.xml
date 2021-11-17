@@ -49,10 +49,11 @@
 
             <!-- 모니터 이미지 -->
              <view
-                android:id="@+id/youtubeView"
-                class="com.google.android.youtube.player.YouTubePlayerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                 android:id="@+id/youtubeView"
+                 class="com.google.android.youtube.player.YouTubePlayerView"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:alpha="0"
                 />
 
 
