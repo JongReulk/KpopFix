@@ -553,10 +553,10 @@ public class QuizMain extends YouTubeBaseActivity {
         txtCountDown.setText(timeFormatted);
 
         if (timeLeftInMillis < 10000) {
-            txtCountDown.setTextColor(Color.RED);
+            txtCountDown.setTextColor(getResources().getColor(R.color.hard_color));
         }
         else{
-            txtCountDown.setTextColor(getResources().getColor(R.color.gray));
+            txtCountDown.setTextColor(getResources().getColor(R.color.teal_200));
         }
     }
 
