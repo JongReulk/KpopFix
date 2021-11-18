@@ -115,6 +115,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
     private TextView txt_answer;
 
+    private String mode_select;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +139,7 @@ public class QuizMain extends YouTubeBaseActivity {
         Intent intent = getIntent();
 
         videoLength = intent.getIntExtra("difficulty_time",10000);
+        mode_select = intent.getStringExtra("game_mode");
 
         if(videoLength == 10000){
             isEasy=true;
@@ -150,6 +153,8 @@ public class QuizMain extends YouTubeBaseActivity {
         if(videoLength == 3000){
             plus = 30;
         }
+
+
 
         int year_num = intent.getIntExtra("year_num",2020);
 
@@ -194,6 +199,14 @@ public class QuizMain extends YouTubeBaseActivity {
         }
 
         questionCountTotal = 10;
+
+
+        if(mode_select.equals("challenge")){
+            plus = 10;
+            questionList = dbHelper.getAllQuestions();
+            questionCountTotal = 100;
+        }
+
         Collections.shuffle(questionList);
 
         // 스피커 애니메이션

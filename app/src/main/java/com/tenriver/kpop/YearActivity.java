@@ -467,7 +467,7 @@ public class YearActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent mainintent = new Intent(this,MainActivity.class);
+        Intent mainintent = new Intent(this,ModeActivity.class);
         startActivity(mainintent);
         finish();
     }

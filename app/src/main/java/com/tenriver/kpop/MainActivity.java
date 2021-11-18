@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(getApplicationContext(), YearActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), ModeActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                         startActivityForResult(intent,REQUEST_CODE_QUIZ);
 

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <!-- 모니터 이미지 -->
+    <ImageView
+        android:id="@+id/Image_TV_mode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/tvframefullfinal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.20"
+        app:layout_constraintHeight_percent="0.44"
+        app:layout_constraintWidth_percent="1"
+        />
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_modeTip"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/Image_TV_mode"
+        app:layout_constraintBottom_toBottomOf="@+id/Image_TV_mode"
+        app:layout_constraintLeft_toLeftOf="@+id/Image_TV_mode"
+        app:layout_constraintRight_toRightOf="@+id/Image_TV_mode"
+        >
+
+        <com.tenriver.kpop.OutlineTextView
+            android:id="@+id/txtTitle1"
+            android:text="K"
+            android:fontFamily="@font/font_basicbold"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="@color/title_text_color"
+
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="28sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.15"
+            app:layout_constraintHorizontal_bias="0.25"
+
+            app:textStroke="true"
+            app:textStrokeWidth="8.0"
+            app:textStrokeColor="@color/white"/>
+
+        <com.tenriver.kpop.OutlineTextView
+            android:id="@+id/txtTitle2"
+            android:text="P"
+            android:fontFamily="@font/font_basicbold"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="@color/title_text_color"
+
+
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="28sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.15"
+            app:layout_constraintHorizontal_bias="0.42"
+
+            app:textStroke="true"
+            app:textStrokeWidth="8.0"
+            app:textStrokeColor="@color/white"/>
+
+
+        <ImageView
+            android:id="@+id/imageView_lp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:srcCompat="@drawable/musiclp"
+
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.59"
+
+            />
+
+        <com.tenriver.kpop.OutlineTextView
+            android:id="@+id/txtTitle3"
+            android:text="P"
+            android:fontFamily="@font/font_basicbold"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="@color/title_text_color"
+
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="28sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.15"
+            app:layout_constraintHorizontal_bias="0.76"
+
+            app:textStroke="true"
+            app:textStrokeWidth="8.0"
+            app:textStrokeColor="@color/white"/>
+
+        <com.tenriver.kpop.OutlineTextView
+            android:id="@+id/ModeTitle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="MODE"
+            android:textColor="@color/white"
+
+            android:gravity="center"
+            android:fontFamily="@font/font_basicbold"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="24sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.7"
+
+            app:textStroke="true"
+            app:textStrokeWidth="10.0"
+            app:textStrokeColor="@color/title_text_color"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+
+            app:layout_constraintTop_toBottomOf="@id/ModeTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            >
+
+        <com.tenriver.kpop.OutlineTextView
+            android:id="@+id/txt_basicmode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="BASIC"
+            android:textSize="60dp"
+            android:fontFamily="@font/font_digital"
+            android:textColor="@color/easy_color"
+            android:bufferType="spannable"
+
+            app:textStroke="true"
+            app:textStrokeWidth="6.0"
+            app:textStrokeColor="@color/white"
+            />
+
+        <com.tenriver.kpop.OutlineTextView
+            android:id="@+id/txt_challenge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:text="100 CHALLENGES"
+            android:fontFamily="@font/font_digital"
+            android:textColor="@color/teal_200"
+            android:bufferType="spannable"
+            android:layout_marginTop="20dp"
+
+            app:textStroke="true"
+            app:textStrokeWidth="6.0"
+            app:textStrokeColor="@color/white"
+            />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    <!-- 리모컨 이미지 -->
+    <ImageView
+        android:id="@+id/Remote_mode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/remotecontrol"
+        android:scaleType="fitXY"
+
+        app:layout_constraintTop_toBottomOf="@id/Image_TV_mode"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHeight_percent="0.38"
+        app:layout_constraintWidth_percent="0.45"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Remote_button_mode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/Remote_mode"
+        app:layout_constraintBottom_toBottomOf="@+id/Remote_mode"
+        app:layout_constraintLeft_toLeftOf="@+id/Remote_mode"
+        app:layout_constraintRight_toRightOf="@+id/Remote_mode"
+        >
+
+        <Button
+            android:id="@+id/basic_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="basic"
+            android:textSize="24sp"
+            android:background="@drawable/btn_remote"
+            android:textColor="@color/white"
+            android:soundEffectsEnabled="false"
+            android:fontFamily="@font/font_basic"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/challenge_Button"
+            app:layout_constraintVertical_bias="0.75"
+            />
+
+        <Button
+            android:id="@+id/challenge_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/basic_Button"
+            android:text=" Challenges "
+            android:textSize="22sp"
+            android:background="@drawable/btn_remote"
+            android:textColor="@color/white"
+            android:soundEffectsEnabled="false"
+            android:fontFamily="@font/font_basic"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.55"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/mode_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
