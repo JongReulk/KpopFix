@@ -614,6 +614,9 @@ public class QuizMain extends YouTubeBaseActivity {
         }
 
         else {
+            if(mode_select.equals("challenge")){
+
+            }
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }
         
@@ -656,7 +659,9 @@ public class QuizMain extends YouTubeBaseActivity {
     @Override
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()){
-            finishQuiz();
+            Intent finishIntent = new Intent(this,MainActivity.class);
+            startActivity(finishIntent);
+            finish();
         }else{
             Toast.makeText(this, getString(R.string.BackQuit), Toast.LENGTH_SHORT).show();
         }
