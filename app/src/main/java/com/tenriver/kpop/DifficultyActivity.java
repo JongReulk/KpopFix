@@ -246,6 +246,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
                             Quizintent.putExtra("difficulty_time",10000); // 10초
                             Quizintent.putExtra("year_num",year_num_Difficulty);
+                            Quizintent.putExtra("game_mode", "");
                             Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                             startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
                             finish();
@@ -295,6 +296,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
                             Quizintent.putExtra("difficulty_time",5000); // 5초
                             Quizintent.putExtra("year_num",year_num_Difficulty);
+                            Quizintent.putExtra("game_mode", "");
                             Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                             startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
                             finish();
@@ -342,6 +344,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                             Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
                             Quizintent.putExtra("difficulty_time",3000); // 3초
                             Quizintent.putExtra("year_num",year_num_Difficulty);
+                            Quizintent.putExtra("game_mode", "");
                             Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                             startActivityForResult(Quizintent,MainActivity.REQUEST_CODE_QUIZ);
                             finish();

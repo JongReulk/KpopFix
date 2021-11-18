@@ -124,8 +124,6 @@ public class ModeActivity extends AppCompatActivity {
         soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);    //작성
         soundID = soundPool.load(this, R.raw.buttonsound1, 1);
 
-        Intent intent = getIntent();
-        final int year_num_Difficulty = intent.getIntExtra("year_num", 2020);
 
         if (soundPool != null) {
             if (!effectCb_difficulty) {
@@ -166,6 +164,7 @@ public class ModeActivity extends AppCompatActivity {
                         if (!isFinished) {
                             Intent Modeintent = new Intent(getApplicationContext(), YearActivity.class);
 
+                            Modeintent.putExtra("game_mode", "challenge"); // challenge 선택
                             Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                             startActivityForResult(Modeintent, MainActivity.REQUEST_CODE_QUIZ);
                             finish();
@@ -208,7 +207,7 @@ public class ModeActivity extends AppCompatActivity {
 
                         if (!isFinished) {
                             Intent Modeintent = new Intent(getApplicationContext(), QuizMain.class);
-                            Modeintent.putExtra("game_mode", "challenge"); // 10초
+                            Modeintent.putExtra("game_mode", "challenge"); // challenge 선택
 
                             Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                             startActivityForResult(Modeintent, MainActivity.REQUEST_CODE_QUIZ);

@@ -49,6 +49,7 @@ import java.util.Random;
 
 public class QuizMain extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
+    public static final String CHALLENGE_HIGH_SCORE = "challengehighScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
 
     YouTubePlayerView playerView;
@@ -117,6 +118,9 @@ public class QuizMain extends YouTubeBaseActivity {
 
     private String mode_select;
 
+    boolean isChallengefinish = false;
+    boolean isBackPressed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,6 +144,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
         videoLength = intent.getIntExtra("difficulty_time",10000);
         mode_select = intent.getStringExtra("game_mode");
+
+        Log.e("TAG : ",mode_select);
 
         if(videoLength == 10000){
             isEasy=true;
@@ -344,6 +350,42 @@ public class QuizMain extends YouTubeBaseActivity {
                 answerText.setText("");
                 answerText.setVisibility(View.VISIBLE);
                 txt_answer.setVisibility(View.GONE);
+
+                if(isChallengefinish){
+                    AdRequest adRequest = new AdRequest.Builder().build();
+
+                    InterstitialAd.load(QuizMain.this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+                            new InterstitialAdLoadCallback() {
+                                @Override
+                                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                    // The mInterstitialAd reference will be null until
+                                    // an ad is loaded.
+                                    QuizMain.this.screenAd = interstitialAd;
+
+
+                                    screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+
+                                            finishQuiz();
+
+                                        }
+                                    });
+
+                                    showInterstitial();
+                                }
+
+                                @Override
+                                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                    // Handle the error
+                                    QuizMain.this.screenAd = null;
+
+
+                                }
+
+                            });
+                }
 
 
                 if(questionCounter >= questionCountTotal)
@@ -615,7 +657,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
         else {
             if(mode_select.equals("challenge")){
-
+                nextButton.setText(getString(R.string.Finish));
+                isChallengefinish = true;
             }
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }
@@ -648,8 +691,16 @@ public class QuizMain extends YouTubeBaseActivity {
 
     private void finishQuiz() {
         isHandler = false;
+        if(isBackPressed){
+            score = 0;
+        }
         Intent resultIntent = new Intent(this,MainActivity.class);
-        resultIntent.putExtra(HIGH_SCORE, score);
+        if(mode_select.equals("challenge")){
+            resultIntent.putExtra(CHALLENGE_HIGH_SCORE, score);
+        }
+        else{
+            resultIntent.putExtra(HIGH_SCORE, score);
+        }
         startActivity(resultIntent);
         Log.e("최고 점수",":" + score);
         //setResult(RESULT_OK, resultIntent);
@@ -659,9 +710,9 @@ public class QuizMain extends YouTubeBaseActivity {
     @Override
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()){
-            Intent finishIntent = new Intent(this,MainActivity.class);
-            startActivity(finishIntent);
-            finish();
+            isBackPressed = true;
+            finishQuiz();
+
         }else{
             Toast.makeText(this, getString(R.string.BackQuit), Toast.LENGTH_SHORT).show();
         }
