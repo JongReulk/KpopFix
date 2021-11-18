@@ -43,5 +43,8 @@
     <string name="nextlevelexample">예) Next Level -> nextlevel 또는 넥스트레벨</string>
     <string name="MvQuiz">뮤비 퀴즈</string>
     <string name="VersionCancel">업데이트에 실패했습니다.</string>
+    <string name="warning_smoothinternet">원활한 인터넷 환경에서\n진행 부탁드립니다.</string>
+    <string name="warning_wifi">" Wi-Fi 환경에서\n플레이하는 것을 권장합니다.\n모바일 데이터 사용량에 유의하세요."</string>
+    <string name="warning_earphones">이어폰이나 헤드셋 착용을 권장합니다.</string>
 
 </resources>
