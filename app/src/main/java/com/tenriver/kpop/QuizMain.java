@@ -325,7 +325,7 @@ public class QuizMain extends YouTubeBaseActivity {
             public void onClick(View v) {
 
 
-                musicProgressbar.setAlpha(1.0f);
+                musicProgressbar.setAlpha(0.0f);
                 checkAnswer();
                 leftSpeaker.startAnimation(speakerleft_anim);
                 rightSpeaker.startAnimation(speakerright_anim);
