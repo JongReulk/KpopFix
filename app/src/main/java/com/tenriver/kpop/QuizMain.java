@@ -3,6 +3,7 @@ package com.tenriver.kpop;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -121,6 +122,12 @@ public class QuizMain extends YouTubeBaseActivity {
     boolean isChallengefinish = false;
     boolean isBackPressed = false;
 
+    // hint button
+    private Button HintButton1; // 다시 듣기
+    private Button HintButton2; // 뮤비 보기
+    private Button HintButton3; // 초성 보기
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -225,8 +232,11 @@ public class QuizMain extends YouTubeBaseActivity {
         Animation speakerright_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.speaker_rightanim);
         rightSpeaker.startAnimation(speakerright_anim);
 
+        // 다음 버튼 비활성화
         nextButton.setEnabled(false);
         nextButton.setTextColor(Color.GRAY);
+
+        // 힌트 버튼 비활성화
 
         isHandler = true;
 
@@ -257,9 +267,43 @@ public class QuizMain extends YouTubeBaseActivity {
         confirmButton.setEnabled(true);
         confirmButton.setTextColor(Color.GRAY);
 
+        // Hint Button
+        HintButton1 = findViewById(R.id.Quiz_hint1);
+        HintButton2 = findViewById(R.id.Quiz_hint2);
+        HintButton3 = findViewById(R.id.Quiz_hint3);
+
+        // 다시 듣기
+        HintButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("다시 듣기","다시듣기 버튼 클릭");
 
 
 
+            }
+        });
+
+        // 뮤비 보기
+        HintButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("뮤비 보기","뮤비보기 버튼 클릭");
+
+
+
+            }
+        });
+
+        // 초성 보기
+        HintButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("초성 보기","초성보기 버튼 클릭");
+
+
+
+            }
+        });
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
