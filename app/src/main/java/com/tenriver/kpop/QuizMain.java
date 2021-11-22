@@ -66,6 +66,7 @@ public class QuizMain extends YouTubeBaseActivity {
     private String korean_Answer;
     private String english_Answer;
     private String real_Answer;
+    private String hint_all;
 
     private InterstitialAd screenAd;
 
@@ -84,6 +85,7 @@ public class QuizMain extends YouTubeBaseActivity {
     private TextView scoreText;
     private TextView correctText;
     private EditText answerText;
+    private TextView hintText;
     
     private Button confirmButton;
     private Button nextButton;
@@ -197,6 +199,8 @@ public class QuizMain extends YouTubeBaseActivity {
         HintButton2 = findViewById(R.id.Quiz_hint2);  // 뮤비 보기
         HintButton3 = findViewById(R.id.Quiz_hint3);  // 초성 보기
 
+        hintText = findViewById(R.id.txt_hintall);
+
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
         if(year_num == 101){
@@ -268,6 +272,8 @@ public class QuizMain extends YouTubeBaseActivity {
         HintButton1.setEnabled(false);
         HintButton2.setEnabled(false);
         HintButton3.setEnabled(false);
+
+        hintText.setVisibility(View.GONE);
 
 
 
@@ -369,6 +375,9 @@ public class QuizMain extends YouTubeBaseActivity {
             public void onClick(View v) {
                 Log.v("초성 보기","초성보기 버튼 클릭");
 
+                hintText.setVisibility(View.VISIBLE);
+                hintText.setText(hint_all);
+
                 HintButton3.setEnabled(false);
 
             }
@@ -398,6 +407,10 @@ public class QuizMain extends YouTubeBaseActivity {
                     player.pause();
                 }
                 timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+
+
+                hintText.setVisibility(View.GONE);
+
 
 
                 playerView.setAlpha(0.0f);
@@ -615,6 +628,7 @@ public class QuizMain extends YouTubeBaseActivity {
             korean_Answer = currentQuestion.getKoreanAnswer(); // 한글 정답
             english_Answer = currentQuestion.getEnglishAnswer2(); // 영어 정답
             real_Answer = currentQuestion.getRealAnswer(); // 풀 정답
+            hint_all = currentQuestion.getHintAll(); // 힌트 가져오기
 
             questionCounter ++;
             txtQuestionCount.setText(questionCounter + " / " + questionCountTotal); // 문제 수 확인

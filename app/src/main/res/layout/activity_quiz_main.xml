@@ -36,6 +36,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/txt_hintall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20dp"
+                android:textSize="25sp"
+
+                android:ellipsize="marquee"
+                android:fontFamily="@font/font_basic"
+                android:gravity="center_horizontal|center_vertical"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+
+                android:text="ANSWER"
+                 />
+
             <ProgressBar
                 android:id="@+id/musicProgressBar"
                 style="?android:attr/progressBarStyleHorizontal"
