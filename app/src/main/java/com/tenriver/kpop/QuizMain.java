@@ -261,59 +261,16 @@ public class QuizMain extends YouTubeBaseActivity {
 
         musicProgressbar.setMax(videoLength);
 
-        confirmButton.setEnabled(true);
+        confirmButton.setEnabled(false);
         confirmButton.setTextColor(Color.GRAY);
 
         // 힌트 버튼 활성화
-        HintButton1.setEnabled(true);
-        HintButton2.setEnabled(true);
-        HintButton3.setEnabled(true);
-
-
-        // 다시 듣기
-        HintButton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.v("다시 듣기","다시듣기 버튼 클릭");
-
-                //musicProgressbar.setProgress(0);
-                musicProgressbar.clearAnimation();
-                musicProgressbar.setProgress(0);
-
-                if(player.isPlaying()){
-                    player.pause();
-                }
-
-
-                leftSpeaker.startAnimation(speakerleft_anim);
-                rightSpeaker.startAnimation(speakerright_anim);
-
-                playVideo();
-
-            }
-        });
-
-        // 뮤비 보기
-        HintButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.v("뮤비 보기","뮤비보기 버튼 클릭");
-
-                playerView.setAlpha(1.0f);
-
-            }
-        });
-
-        // 초성 보기
-        HintButton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.v("초성 보기","초성보기 버튼 클릭");
+        HintButton1.setEnabled(false);
+        HintButton2.setEnabled(false);
+        HintButton3.setEnabled(false);
 
 
 
-            }
-        });
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -368,6 +325,54 @@ public class QuizMain extends YouTubeBaseActivity {
                 });
 
 
+        // 다시 듣기
+        HintButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("다시 듣기","다시듣기 버튼 클릭");
+
+                musicProgressbar.setAlpha(0);
+
+                isStarted = true;
+
+                if(player.isPlaying()){
+                    player.pause();
+                }
+
+                HintButton1.setEnabled(false);
+
+
+                leftSpeaker.startAnimation(speakerleft_anim);
+                rightSpeaker.startAnimation(speakerright_anim);
+
+                playVideo();
+
+            }
+        });
+
+        // 뮤비 보기
+        HintButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("뮤비 보기","뮤비보기 버튼 클릭");
+
+                playerView.setAlpha(1.0f);
+
+                HintButton2.setEnabled(false);
+
+            }
+        });
+
+        // 초성 보기
+        HintButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("초성 보기","초성보기 버튼 클릭");
+
+                HintButton3.setEnabled(false);
+
+            }
+        });
 
 
 
@@ -559,6 +564,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
 
+
             // 지정 시간동안 동영상 재생하기
             handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -620,7 +626,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
             musicProgressbar.setProgress(0);
             isStarted = true;
-            
+
             checkLast();
 
         }
