@@ -365,6 +365,7 @@ public class QuizMain extends YouTubeBaseActivity {
                 playerView.setAlpha(1.0f);
 
                 HintButton2.setEnabled(false);
+                HintButton3.setEnabled(false);
 
             }
         });
@@ -378,6 +379,7 @@ public class QuizMain extends YouTubeBaseActivity {
                 hintText.setVisibility(View.VISIBLE);
                 hintText.setText(hint_all);
 
+                HintButton2.setEnabled(false);
                 HintButton3.setEnabled(false);
 
             }
