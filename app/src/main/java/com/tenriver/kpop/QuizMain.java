@@ -189,14 +189,13 @@ public class QuizMain extends YouTubeBaseActivity {
         answerText.getBackground().setColorFilter(null);
         //textColorDefaultCd = txtCountDown.getTextColors();
 
-
-
-
-
         txtQuestionCount = findViewById(R.id.txtQuestionCount);
         txtCountDown = findViewById(R.id.txtCountDown);
 
-
+        // Hint Button
+        HintButton1 = findViewById(R.id.Quiz_hint1);  // 다시 듣기
+        HintButton2 = findViewById(R.id.Quiz_hint2);  // 뮤비 보기
+        HintButton3 = findViewById(R.id.Quiz_hint3);  // 초성 보기
 
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
@@ -236,8 +235,6 @@ public class QuizMain extends YouTubeBaseActivity {
         nextButton.setEnabled(false);
         nextButton.setTextColor(Color.GRAY);
 
-        // 힌트 버튼 비활성화
-
         isHandler = true;
 
         ImageView remote_quiz = (ImageView) findViewById(R.id.Remote_quizmain);
@@ -267,10 +264,13 @@ public class QuizMain extends YouTubeBaseActivity {
         confirmButton.setEnabled(true);
         confirmButton.setTextColor(Color.GRAY);
 
-        // Hint Button
-        HintButton1 = findViewById(R.id.Quiz_hint1);
-        HintButton2 = findViewById(R.id.Quiz_hint2);
-        HintButton3 = findViewById(R.id.Quiz_hint3);
+        // 힌트 버튼 활성화
+        HintButton1.setEnabled(true);
+        HintButton2.setEnabled(true);
+        HintButton3.setEnabled(true);
+        HintButton1.setAlpha(1.0f);
+        HintButton2.setAlpha(1.0f);
+        HintButton3.setAlpha(1.0f);
 
         // 다시 듣기
         HintButton1.setOnClickListener(new View.OnClickListener() {
@@ -278,7 +278,19 @@ public class QuizMain extends YouTubeBaseActivity {
             public void onClick(View v) {
                 Log.v("다시 듣기","다시듣기 버튼 클릭");
 
+                //musicProgressbar.setProgress(0);
+                musicProgressbar.clearAnimation();
+                musicProgressbar.setProgress(0);
 
+                if(player.isPlaying()){
+                    player.pause();
+                }
+
+
+                leftSpeaker.startAnimation(speakerleft_anim);
+                rightSpeaker.startAnimation(speakerright_anim);
+
+                playVideo();
 
             }
         });
@@ -289,7 +301,7 @@ public class QuizMain extends YouTubeBaseActivity {
             public void onClick(View v) {
                 Log.v("뮤비 보기","뮤비보기 버튼 클릭");
 
-
+                playerView.setAlpha(1.0f);
 
             }
         });
@@ -620,6 +632,14 @@ public class QuizMain extends YouTubeBaseActivity {
     private void startCountDown() {
 
         if(isCountStart) {
+            // 힌트 버튼 활성화
+            HintButton1.setEnabled(true);
+            HintButton2.setEnabled(true);
+            HintButton3.setEnabled(true);
+            HintButton1.setAlpha(1.0f);
+            HintButton2.setAlpha(1.0f);
+            HintButton3.setAlpha(1.0f);
+
             confirmButton.setEnabled(true);
             confirmButton.setTextColor(Color.WHITE);
             timeLeftInMillis = COUNTDOWN_IN_MILLIS;
@@ -667,6 +687,14 @@ public class QuizMain extends YouTubeBaseActivity {
             player.pause();
         }
         countDownTimer.cancel(); // 타이머 종료
+
+        // 힌트 버튼 비활성화
+        HintButton1.setEnabled(false);
+        HintButton2.setEnabled(false);
+        HintButton3.setEnabled(false);
+        HintButton1.setAlpha(0.2f);
+        HintButton2.setAlpha(0.2f);
+        HintButton3.setAlpha(0.2f);
 
         playerView.setAlpha(1.0f);
         nextButton.setEnabled(true);
