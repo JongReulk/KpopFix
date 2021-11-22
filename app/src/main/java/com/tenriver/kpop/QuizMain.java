@@ -268,9 +268,7 @@ public class QuizMain extends YouTubeBaseActivity {
         HintButton1.setEnabled(true);
         HintButton2.setEnabled(true);
         HintButton3.setEnabled(true);
-        HintButton1.setAlpha(1.0f);
-        HintButton2.setAlpha(1.0f);
-        HintButton3.setAlpha(1.0f);
+
 
         // 다시 듣기
         HintButton1.setOnClickListener(new View.OnClickListener() {
@@ -636,9 +634,7 @@ public class QuizMain extends YouTubeBaseActivity {
             HintButton1.setEnabled(true);
             HintButton2.setEnabled(true);
             HintButton3.setEnabled(true);
-            HintButton1.setAlpha(1.0f);
-            HintButton2.setAlpha(1.0f);
-            HintButton3.setAlpha(1.0f);
+
 
             confirmButton.setEnabled(true);
             confirmButton.setTextColor(Color.WHITE);
@@ -692,9 +688,7 @@ public class QuizMain extends YouTubeBaseActivity {
         HintButton1.setEnabled(false);
         HintButton2.setEnabled(false);
         HintButton3.setEnabled(false);
-        HintButton1.setAlpha(0.2f);
-        HintButton2.setAlpha(0.2f);
-        HintButton3.setAlpha(0.2f);
+
 
         playerView.setAlpha(1.0f);
         nextButton.setEnabled(true);

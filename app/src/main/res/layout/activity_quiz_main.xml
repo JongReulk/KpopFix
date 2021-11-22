@@ -201,11 +201,14 @@
         app:layout_constraintRight_toRightOf="@+id/Remote_quizmain"
         >
 
+
+
         <Button
             android:id="@+id/Quiz_hint1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/button_hint1"
+
+            android:background="@drawable/hint1_state"
             android:soundEffectsEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -215,13 +218,14 @@
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintWidth_percent="0.26"
             app:layout_constraintHeight_percent="0.2"
+
             />
 
         <Button
             android:id="@+id/Quiz_hint2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/button_hint2"
+            android:background="@drawable/hint2_state"
             android:soundEffectsEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -237,7 +241,7 @@
             android:id="@+id/Quiz_hint3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/button_hint3"
+            android:background="@drawable/hint3_state"
             android:soundEffectsEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
