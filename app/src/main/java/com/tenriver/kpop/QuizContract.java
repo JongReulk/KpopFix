@@ -13,5 +13,6 @@ public final class QuizContract {
         public static final String COLUMN_ENGLISH_ANSWER = "english_answer";
         public static final String COLUMN_REAL_ANSWER = "real_answer";
         public static final String COLUMN_YEAR = "year";
+        public static final String COLUMN_HINT = "hint_all";
     }
 }
