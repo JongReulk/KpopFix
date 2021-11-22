@@ -119,15 +119,21 @@ public class QuizMain extends YouTubeBaseActivity {
 
     private TextView txt_answer;
 
-    private String mode_select;
+    private int mode_select;
 
     boolean isChallengefinish = false;
     boolean isBackPressed = false;
+    boolean isFinished = false;
+    boolean isError = false;
+
+    private int question_Num;
+
 
     // hint button
     private Button HintButton1; // 다시 듣기
     private Button HintButton2; // 뮤비 보기
     private Button HintButton3; // 초성 보기
+
 
 
     @Override
@@ -137,6 +143,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
 
+        question_Num = 0;
 
 
         if(MainActivity.mediaplayer_main!=null)
@@ -152,9 +159,9 @@ public class QuizMain extends YouTubeBaseActivity {
         Intent intent = getIntent();
 
         videoLength = intent.getIntExtra("difficulty_time",10000);
-        mode_select = intent.getStringExtra("game_mode");
+        mode_select = intent.getIntExtra("game_mode",0);
 
-        Log.e("TAG : ",mode_select);
+        Log.e("TAG : ",""+mode_select);
 
         if(videoLength == 10000){
             isEasy=true;
@@ -217,13 +224,15 @@ public class QuizMain extends YouTubeBaseActivity {
         questionCountTotal = 10;
 
 
-        if(mode_select.equals("challenge")){
+
+
+        if(mode_select==100){
             plus = 10;
             questionList = dbHelper.getAllQuestions();
             questionCountTotal = 100;
         }
 
-        Collections.shuffle(questionList);
+        //Collections.shuffle(questionList);
 
         // 스피커 애니메이션
         leftSpeaker = findViewById(R.id.imageView_speakerleft);
@@ -284,51 +293,8 @@ public class QuizMain extends YouTubeBaseActivity {
             }
         });
 
-        AdRequest adRequest = new AdRequest.Builder().build();
+        LoadAD();
 
-        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
-                new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        // The mInterstitialAd reference will be null until
-                        // an ad is loaded.
-                        QuizMain.this.screenAd = interstitialAd;
-
-
-                        screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                            @Override
-                            public void onAdDismissedFullScreenContent() {
-                                super.onAdDismissedFullScreenContent();
-
-                                initPlayer();
-                                showNextQuestion();
-
-
-                                /*
-                                handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-
-
-                                    }
-                                },1000);*/
-
-                            }
-                        });
-
-                        showInterstitial();
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        // Handle the error
-                        QuizMain.this.screenAd = null;
-
-
-                    }
-
-                });
 
 
         // 다시 듣기
@@ -426,89 +392,75 @@ public class QuizMain extends YouTubeBaseActivity {
                 txt_answer.setVisibility(View.GONE);
 
                 if(isChallengefinish){
-                    AdRequest adRequest = new AdRequest.Builder().build();
+                    //AdRequest adRequest = new AdRequest.Builder().build();
+                    //finishQuiz();
+                    isFinished=true;
 
-                    InterstitialAd.load(QuizMain.this,"ca-app-pub-3940256099942544/1033173712", adRequest,
-                            new InterstitialAdLoadCallback() {
-                                @Override
-                                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                                    // The mInterstitialAd reference will be null until
-                                    // an ad is loaded.
-                                    QuizMain.this.screenAd = interstitialAd;
+                    showInterstitial();
 
 
-                                    screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                        @Override
-                                        public void onAdDismissedFullScreenContent() {
-                                            super.onAdDismissedFullScreenContent();
-
-                                            finishQuiz();
-
-                                        }
-                                    });
-
-                                    showInterstitial();
-                                }
-
-                                @Override
-                                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                                    // Handle the error
-                                    QuizMain.this.screenAd = null;
-
-
-                                }
-
-                            });
                 }
 
 
                 if(questionCounter >= questionCountTotal)
                 {
-                    AdRequest adRequest = new AdRequest.Builder().build();
-
-                    InterstitialAd.load(QuizMain.this,"ca-app-pub-3940256099942544/1033173712", adRequest,
-                            new InterstitialAdLoadCallback() {
-                                @Override
-                                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                                    // The mInterstitialAd reference will be null until
-                                    // an ad is loaded.
-                                    QuizMain.this.screenAd = interstitialAd;
-
-
-                                    screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                        @Override
-                                        public void onAdDismissedFullScreenContent() {
-                                            super.onAdDismissedFullScreenContent();
-
-                                            finishQuiz();
-
-                                        }
-                                    });
-
-                                    showInterstitial();
-                                }
-
-                                @Override
-                                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                                    // Handle the error
-                                    QuizMain.this.screenAd = null;
-
-
-                                }
-
-                            });
+                    showInterstitial();
                 }
                 else {
-                    showNextQuestion();
-                    leftSpeaker.startAnimation(speakerleft_anim);
-                    rightSpeaker.startAnimation(speakerright_anim);
+                    if(!isChallengefinish) {
+                        showNextQuestion();
+                        leftSpeaker.startAnimation(speakerleft_anim);
+                        rightSpeaker.startAnimation(speakerright_anim);
 
-                    playVideo();
+                        playVideo();
+                    }
                 }
             }
 
         });
     } // onCreate
+
+    private void LoadAD() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        QuizMain.this.screenAd = interstitialAd;
+
+                        screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                super.onAdDismissedFullScreenContent();
+                                QuizMain.this.screenAd = null;
+                                if (isFinished){
+                                    finishQuiz();
+                                }
+
+                                else{
+                                    initPlayer();
+                                    showNextQuestion();
+                                }
+                            }
+                        });
+
+                        if(isFirst){
+                            showInterstitial();
+                            isFirst = false;
+                        }
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        QuizMain.this.screenAd = null;
+                    }
+
+                });
+    }
 
     public void initPlayer() {
 
@@ -555,8 +507,9 @@ public class QuizMain extends YouTubeBaseActivity {
                                                 YouTubeInitializationResult youTubeInitializationResult) {
                 // 못 불러왔을 때
                 Log.e("Fail!!","");
-                showNextQuestion();
-                playVideo();
+//                isError = true;
+//                showNextQuestion();
+//                playVideo();
             }
         });
     }
@@ -571,6 +524,26 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
             player.loadVideo(question, randomStart);
+
+            if(isStarted) {
+
+                handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (!player.isPlaying()) {
+                            isError = true;
+                            showNextQuestion();
+                            playVideo();
+                        } else {
+                            handler.removeCallbacks(this);
+                        }
+
+
+                    }
+                }, 2000);
+            }
 
 
             ObjectAnimator progressAnimation = ObjectAnimator.ofInt(musicProgressbar, "progress", 0,musicProgressbar.getMax() );
@@ -633,7 +606,13 @@ public class QuizMain extends YouTubeBaseActivity {
             hint_all = currentQuestion.getHintAll(); // 힌트 가져오기
 
             questionCounter ++;
-            txtQuestionCount.setText(questionCounter + " / " + questionCountTotal); // 문제 수 확인
+            if(!isError){
+                question_Num++;
+            }
+            else{
+                isError = false;
+            }
+            txtQuestionCount.setText(question_Num + " / " + questionCountTotal); // 문제 수 확인
             confirmButton.setText(getString(R.string.Confirm));
 
 
@@ -744,8 +723,9 @@ public class QuizMain extends YouTubeBaseActivity {
         }
 
         else {
-            if(mode_select.equals("challenge")){
+            if(mode_select==100){
                 nextButton.setText(getString(R.string.Finish));
+                LoadAD();
                 isChallengefinish = true;
             }
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
@@ -772,6 +752,8 @@ public class QuizMain extends YouTubeBaseActivity {
             nextButton.setText(getString(R.string.Next));
         }
         else{
+            LoadAD();
+            isFinished=true;
             nextButton.setText(getString(R.string.Finish));
         }
     }
@@ -779,20 +761,26 @@ public class QuizMain extends YouTubeBaseActivity {
 
     private void finishQuiz() {
         isHandler = false;
-        if(isBackPressed){
+        if (isBackPressed) {
             score = 0;
         }
-        Intent resultIntent = new Intent(this,MainActivity.class);
-        if(mode_select.equals("challenge")){
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        if (mode_select == 100) {
             resultIntent.putExtra(CHALLENGE_HIGH_SCORE, score);
-        }
-        else{
+        } else {
             resultIntent.putExtra(HIGH_SCORE, score);
         }
         startActivity(resultIntent);
-        Log.e("최고 점수",":" + score);
+
+        Log.e("최고 점수", ":" + score);
         //setResult(RESULT_OK, resultIntent);
-        finish();
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        }, 1000);
     }
 
     @Override

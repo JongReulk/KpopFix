@@ -164,9 +164,9 @@ public class ModeActivity extends AppCompatActivity {
                         if (!isFinished) {
                             Intent Modeintent = new Intent(getApplicationContext(), YearActivity.class);
 
-                            Modeintent.putExtra("game_mode", "challenge"); // challenge 선택
+                            Modeintent.putExtra("game_mode", 100); // challenge 선택
                             Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                            startActivityForResult(Modeintent, MainActivity.REQUEST_CODE_QUIZ);
+                            startActivity(Modeintent);
                             finish();
                         } else {
                             handler.removeCallbacks(this);
@@ -207,10 +207,10 @@ public class ModeActivity extends AppCompatActivity {
 
                         if (!isFinished) {
                             Intent Modeintent = new Intent(getApplicationContext(), QuizMain.class);
-                            Modeintent.putExtra("game_mode", "challenge"); // challenge 선택
+                            Modeintent.putExtra("game_mode", 100); // challenge 선택
 
                             Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                            startActivityForResult(Modeintent, MainActivity.REQUEST_CODE_QUIZ);
+                            startActivity(Modeintent);
                             finish();
                         } else {
                             handler.removeCallbacks(this);
