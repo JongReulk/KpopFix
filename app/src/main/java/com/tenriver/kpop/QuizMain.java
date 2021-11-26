@@ -127,6 +127,7 @@ public class QuizMain extends YouTubeBaseActivity {
     boolean isError = false;
 
     private int question_Num;
+    private int error_Num;
 
 
     // hint button
@@ -144,6 +145,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
         question_Num = 0;
+        error_Num = 1;
 
 
         if(MainActivity.mediaplayer_main!=null)
@@ -360,7 +362,6 @@ public class QuizMain extends YouTubeBaseActivity {
             @Override
             public void onClick(View v) {
 
-
                 musicProgressbar.setAlpha(0.0f);
                 checkAnswer();
                 leftSpeaker.startAnimation(speakerleft_anim);
@@ -375,6 +376,7 @@ public class QuizMain extends YouTubeBaseActivity {
                     player.pause();
                 }
                 timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+                error_Num = 1;
 
 
                 hintText.setVisibility(View.GONE);
@@ -481,6 +483,7 @@ public class QuizMain extends YouTubeBaseActivity {
                     @Override
                     public void onLoaded(String s) {
                         Log.e("PlayerView", "onLoaded 호출됨: " + s);
+
                     }
 
                     @Override
@@ -495,10 +498,19 @@ public class QuizMain extends YouTubeBaseActivity {
                     public void onVideoEnded() {}
 
                     @Override
-                    public void onError(YouTubePlayer.ErrorReason errorReason) {}
+                    public void onError(YouTubePlayer.ErrorReason errorReason) {
+                        Log.d("로그", "init player 에러발생"+errorReason);
+
+                        isError = true;
+
+                        showNextQuestion();
+                        playVideo();
+
+                    }
                 });
 
                 playVideo();
+
 
             }
 
@@ -507,9 +519,7 @@ public class QuizMain extends YouTubeBaseActivity {
                                                 YouTubeInitializationResult youTubeInitializationResult) {
                 // 못 불러왔을 때
                 Log.e("Fail!!","");
-//                isError = true;
-//                showNextQuestion();
-//                playVideo();
+
             }
         });
     }
@@ -522,28 +532,11 @@ public class QuizMain extends YouTubeBaseActivity {
 //                player.cueVideo(videoId); // 여기에 있으면 동영상 재생이 안됨.
             }
 
-
             player.loadVideo(question, randomStart);
 
-            if(isStarted) {
-
-                handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        if (!player.isPlaying()) {
-                            isError = true;
-                            showNextQuestion();
-                            playVideo();
-                        } else {
-                            handler.removeCallbacks(this);
-                        }
 
 
-                    }
-                }, 2000);
-            }
+
 
 
             ObjectAnimator progressAnimation = ObjectAnimator.ofInt(musicProgressbar, "progress", 0,musicProgressbar.getMax() );
