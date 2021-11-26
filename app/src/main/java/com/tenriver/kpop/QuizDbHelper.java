@@ -16,7 +16,7 @@ import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MyKpopQuiz.db";
-    private static final int DATABASE_VERSION = 12; // 데이터베이스 버전 항상 다르게 하기 ( 2021.11.26 기준 7)
+    private static final int DATABASE_VERSION = 13; // 데이터베이스 버전 항상 다르게 하기 ( 2021.11.26 기준 7)
 
     private SQLiteDatabase db;
 
@@ -463,12 +463,12 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Question question = new Question();
-                question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
-                question.setKoreanAnswer(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_KOREAN_ANSWER)));
-                question.setEnglishAnswer2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_ENGLISH_ANSWER)));
-                question.setRealAnswer(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_REAL_ANSWER)));
-                question.setYear(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_YEAR)));
-                question.setHintAll(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_HINT)));
+                question.setQuestion(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_QUESTION)));
+                question.setKoreanAnswer(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_KOREAN_ANSWER)));
+                question.setEnglishAnswer2(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_ENGLISH_ANSWER)));
+                question.setRealAnswer(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_REAL_ANSWER)));
+                question.setYear(c.getInt(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_YEAR)));
+                question.setHintAll(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_HINT)));
                 questionList.add(question);
             } while (c.moveToNext());
         }
@@ -495,12 +495,12 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Question question = new Question();
-                question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
-                question.setKoreanAnswer(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_KOREAN_ANSWER)));
-                question.setEnglishAnswer2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_ENGLISH_ANSWER)));
-                question.setRealAnswer(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_REAL_ANSWER)));
-                question.setYear(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_YEAR)));
-                question.setHintAll(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_HINT)));
+                question.setQuestion(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_QUESTION)));
+                question.setKoreanAnswer(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_KOREAN_ANSWER)));
+                question.setEnglishAnswer2(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_ENGLISH_ANSWER)));
+                question.setRealAnswer(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_REAL_ANSWER)));
+                question.setYear(c.getInt(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_YEAR)));
+                question.setHintAll(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_HINT)));
                 questionList.add(question);
             } while (c.moveToNext());
         }
