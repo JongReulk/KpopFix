@@ -46,7 +46,6 @@ public class TipsActivity extends AppCompatActivity{
         Boolean effectCb_tips = music.getBoolean("effectCb",true);
 
         // 버튼
-        close = findViewById(R.id.close_Button);
         closeforever = findViewById(R.id.closeforever_Button);
 
         if(mediaplayer_tips!=null){
@@ -94,6 +93,7 @@ public class TipsActivity extends AppCompatActivity{
             }
         });
 
+        /*
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +122,7 @@ public class TipsActivity extends AppCompatActivity{
                     }
                 }, 600); //딜레이 타임 조절
             }
-        });
+        });*/
 
         closeforever.setOnClickListener(new View.OnClickListener() {
             @Override
