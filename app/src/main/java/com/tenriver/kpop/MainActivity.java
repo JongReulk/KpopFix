@@ -191,11 +191,12 @@ public class MainActivity extends AppCompatActivity {
                 settingOpen.setTextColor(Color.GRAY);
                 quitButton.setTextColor(Color.GRAY);
 
+                /*
                 // 다시보지않기
                 SharedPreferences closef = getSharedPreferences(TitleActivity.SHARED_CLOSE,MODE_PRIVATE);
                 SharedPreferences.Editor closeEditor = closef.edit();
                 closeEditor.putBoolean("closeforever", true);
-                closeEditor.apply();
+                closeEditor.apply();*/
 
                 if(mediaplayer_main!=null)
                 {
@@ -204,8 +205,8 @@ public class MainActivity extends AppCompatActivity {
                     mediaplayer_main = null;
                 }
 
-                Intent intent = new Intent(getApplicationContext(), TipsActivity.class);
-                startActivity(intent);
+                Intent tipintent = new Intent(getApplicationContext(), TipsActivity.class);
+                startActivity(tipintent);
 
                 finish();
             }

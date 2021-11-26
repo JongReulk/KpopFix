@@ -132,7 +132,7 @@ public class TipsActivity extends AppCompatActivity{
                 SharedPreferences.Editor closeEditor = closef.edit();
                 closeEditor.putBoolean("closeforever", false);
                 closeEditor.apply();
-                Boolean close_Tips = closef.getBoolean("closeforever",true);
+                Boolean close_Tips = closef.getBoolean("closeforever",false);
 
                 // bgm 끄기
                 if(mediaplayer_tips!=null)

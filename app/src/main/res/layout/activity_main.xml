@@ -222,7 +222,7 @@
             android:id="@+id/Main_tips"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@android:drawable/ic_dialog_info"
+            android:background="@drawable/tips_image"
             android:soundEffectsEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
