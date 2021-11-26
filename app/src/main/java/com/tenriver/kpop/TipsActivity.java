@@ -58,8 +58,7 @@ public class TipsActivity extends AppCompatActivity{
             }
         }
 
-        // 핸들러
-        Handler handler = new Handler();
+
 
         //가로 슬라이드 뷰 Fragment
         //ViewPager2
@@ -132,7 +131,6 @@ public class TipsActivity extends AppCompatActivity{
                 SharedPreferences.Editor closeEditor = closef.edit();
                 closeEditor.putBoolean("closeforever", false);
                 closeEditor.apply();
-                Boolean close_Tips = closef.getBoolean("closeforever",false);
 
                 // bgm 끄기
                 if(mediaplayer_tips!=null)
@@ -145,6 +143,8 @@ public class TipsActivity extends AppCompatActivity{
                 closeforever.setEnabled(false);
                 closeforever.setTextColor(Color.GRAY);
 
+                // 핸들러
+                Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
