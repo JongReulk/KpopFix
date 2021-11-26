@@ -186,12 +186,12 @@
             android:text="BASIC"
             android:textSize="60dp"
             android:fontFamily="@font/font_digital"
-            android:textColor="@color/easy_color"
+            android:textColor="@color/basic_color1"
             android:bufferType="spannable"
 
             app:textStroke="true"
             app:textStrokeWidth="6.0"
-            app:textStrokeColor="@color/white"
+            app:textStrokeColor="@color/basic_color2"
             />
 
         <com.tenriver.kpop.OutlineTextView
@@ -203,13 +203,13 @@
             android:textSize="50dp"
             android:text="100 CHALLENGES"
             android:fontFamily="@font/font_digital"
-            android:textColor="@color/teal_200"
+            android:textColor="@color/yellow"
             android:bufferType="spannable"
             android:layout_marginTop="20dp"
 
             app:textStroke="true"
             app:textStrokeWidth="6.0"
-            app:textStrokeColor="@color/white"
+            app:textStrokeColor="@color/hard_color"
             />
         </LinearLayout>
 
