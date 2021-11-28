@@ -206,7 +206,7 @@ public class ModeActivity extends AppCompatActivity {
                     public void run() {
 
                         if (!isFinished) {
-                            Intent Modeintent = new Intent(getApplicationContext(), QuizMain.class);
+                            Intent Modeintent = new Intent(getApplicationContext(), QuizChallenge.class);
                             Modeintent.putExtra("game_mode", 100); // challenge 선택
 
                             Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);

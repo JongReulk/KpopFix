@@ -25,7 +25,9 @@
             android:value="ca-app-pub-3940256099942544~3347511713"/>
 
 
-
+        <activity android:name="com.tenriver.kpop.QuizChallenge"
+            android:screenOrientation="portrait"
+            />
         <activity android:name="com.tenriver.kpop.QuizMain"
             android:screenOrientation="portrait"
             />

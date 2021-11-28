@@ -142,7 +142,7 @@ public class QuizMain extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_main);
 
-
+        Log.d("start","quiz main activity start!");
 
         question_Num = 0;
         error_Num = 1;
