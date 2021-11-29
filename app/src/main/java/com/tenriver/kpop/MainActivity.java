@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String SHARED_MUSIC = "sharedMusic";
     public static final String SHARED_POINT = "sharedPoint";
     public static final String KEY_HIGHSCORE = "keyhighscore";
+    public static final String KEY_POINT = "keypoint";
 
     private int highscore;
     private TextView textViewHighscore;
@@ -190,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // 포인트 받아오기
-        updatePoint();
+        loadPoint();
 
         tipsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -312,17 +313,8 @@ public class MainActivity extends AppCompatActivity {
         loadHighscore();
         Intent intent = getIntent();
         int score = intent.getIntExtra(QuizMain.HIGH_SCORE, 0);
-        pointNow = score / 5;
 
-        SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
-
-        totalPoint = point.getInt("point",100);
-        totalPoint = totalPoint + pointNow;
-        txtpoint.setText("Point : "+totalPoint);
-
-        SharedPreferences.Editor pointEditor = point.edit();
-        pointEditor.putInt(KEY_HIGHSCORE,highscore);
-        pointEditor.apply();
+        updatePoint();
 
 
 
@@ -434,12 +426,28 @@ public class MainActivity extends AppCompatActivity {
         textViewHighscore.setText("Best: " + highscore);
     }
 
-    private void updatePoint() {
+    private void loadPoint() {
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
-        totalPoint = point.getInt("point",100);
+        totalPoint = point.getInt(KEY_POINT,100);
         txtpoint.setText("Point : "+totalPoint);
 
+    }
+
+    private void updatePoint() {
+        Intent intent = getIntent();
+        int score = intent.getIntExtra(QuizMain.HIGH_SCORE, 0);
+        pointNow = score / 5;
+
+        SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
+
+        totalPoint = point.getInt(KEY_POINT,100);
+        totalPoint = totalPoint + pointNow;
+        txtpoint.setText("Point : "+totalPoint);
+
+        SharedPreferences.Editor pointEditor = point.edit();
+        pointEditor.putInt(KEY_POINT,totalPoint);
+        pointEditor.apply();
     }
 
     @Override

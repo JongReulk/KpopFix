@@ -48,6 +48,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import static com.tenriver.kpop.MainActivity.KEY_POINT;
+import static com.tenriver.kpop.MainActivity.SHARED_POINT;
+
 public class QuizMain extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
     public static final String CHALLENGE_HIGH_SCORE = "challengehighScore";
@@ -135,8 +138,10 @@ public class QuizMain extends YouTubeBaseActivity {
     private Button HintButton2; // 뮤비 보기
     private Button HintButton3; // 초성 보기
 
+    // point
+    private int hintPoint;
 
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -285,7 +290,11 @@ public class QuizMain extends YouTubeBaseActivity {
         HintButton3.setEnabled(false);
 
         hintText.setVisibility(View.GONE);
+        
+        // 포인트 가져오기
+        SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
+        hintPoint = point.getInt(KEY_POINT,100);
 
 
 
@@ -303,23 +312,30 @@ public class QuizMain extends YouTubeBaseActivity {
         HintButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("다시 듣기","다시듣기 버튼 클릭");
+                if (hintPoint < 10){
+                    Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
 
-                musicProgressbar.setAlpha(0);
-
-                isStarted = true;
-
-                if(player.isPlaying()){
-                    player.pause();
                 }
+                else {
+                    hintPoint = hintPoint - 10;
 
-                HintButton1.setEnabled(false);
+                    Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
+                    Log.v("다시 듣기", "다시듣기 버튼 클릭");
 
+                    musicProgressbar.setAlpha(0);
 
-                leftSpeaker.startAnimation(speakerleft_anim);
-                rightSpeaker.startAnimation(speakerright_anim);
+                    isStarted = true;
 
-                playVideo();
+                    if (player.isPlaying()) {
+                        player.pause();
+                    }
+                    HintButton1.setEnabled(false);
+
+                    leftSpeaker.startAnimation(speakerleft_anim);
+                    rightSpeaker.startAnimation(speakerright_anim);
+
+                    playVideo();
+                }
 
             }
         });
@@ -328,12 +344,21 @@ public class QuizMain extends YouTubeBaseActivity {
         HintButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("뮤비 보기","뮤비보기 버튼 클릭");
+                if (hintPoint < 20){
+                    Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
 
-                playerView.setAlpha(1.0f);
+                }
 
-                HintButton2.setEnabled(false);
-                HintButton3.setEnabled(false);
+                else {
+                    hintPoint = hintPoint - 20;
+                    Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
+                    Log.v("뮤비 보기", "뮤비보기 버튼 클릭");
+
+                    playerView.setAlpha(1.0f);
+
+                    HintButton2.setEnabled(false);
+                    HintButton3.setEnabled(false);
+                }
 
             }
         });
@@ -342,13 +367,22 @@ public class QuizMain extends YouTubeBaseActivity {
         HintButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("초성 보기","초성보기 버튼 클릭");
+                if (hintPoint < 30) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
+                    Log.v("초성 보기", "초성보기 버튼 클릭");
+                }
 
-                hintText.setVisibility(View.VISIBLE);
-                hintText.setText(hint_all);
+                else {
+                    hintPoint = hintPoint - 30;
 
-                HintButton2.setEnabled(false);
-                HintButton3.setEnabled(false);
+                    Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
+
+                    hintText.setVisibility(View.VISIBLE);
+                    hintText.setText(hint_all);
+
+                    HintButton2.setEnabled(false);
+                    HintButton3.setEnabled(false);
+                }
 
             }
         });
@@ -763,6 +797,7 @@ public class QuizMain extends YouTubeBaseActivity {
         } else {
             resultIntent.putExtra(HIGH_SCORE, score);
         }
+        updateHintPoint();
         startActivity(resultIntent);
 
         Log.e("최고 점수", ":" + score);
@@ -774,6 +809,15 @@ public class QuizMain extends YouTubeBaseActivity {
                 finish();
             }
         }, 1000);
+    }
+
+    private void updateHintPoint() {
+
+        SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
+
+        SharedPreferences.Editor pointEditor = point.edit();
+        pointEditor.putInt(KEY_POINT,hintPoint);
+        pointEditor.apply();
     }
 
     @Override

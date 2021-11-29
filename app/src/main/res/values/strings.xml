@@ -46,5 +46,7 @@
     <string name="warning_smoothinternet">Please proceed in a\nsmooth Internet environment.</string>
     <string name="warning_wifi">We recommend playing in a\nWi-Fi environment.\nBe mindful of your mobile data usage.</string>
     <string name="warning_earphones">It is recommended to\n wear earphones or a headset.</string>
+    <string name="lessPoint">Not enough points!</string>
+    <string name="currentPoint">Current points :</string>
 
 </resources>
