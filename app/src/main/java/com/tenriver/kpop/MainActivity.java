@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_QUIZ = 101;
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String SHARED_MUSIC = "sharedMusic";
+    public static final String SHARED_POINT = "sharedPoint";
     public static final String KEY_HIGHSCORE = "keyhighscore";
 
     private int highscore;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView kpop2;
     private TextView kpop3;
     private TextView mvquiz;
+
 
     private ImageView imageview_lp;
 
@@ -69,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
     // MediaPlayer 객체생성
     public static MediaPlayer mediaplayer_main;
+
+    //point 관련
+    private TextView txtpoint;
+    private int pointNow;
+    private int totalPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         tipsButton = findViewById(R.id.Main_tips);
         startButton = findViewById(R.id.Main_start);
         textViewHighscore = findViewById(R.id.txtbestScore);
+        txtpoint = findViewById(R.id.txtPoint);
         TextView textViewTitle = findViewById(R.id.txtTitle1);
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
@@ -149,7 +157,8 @@ public class MainActivity extends AppCompatActivity {
 
         //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
 
-
+        
+        
 
         //Sound
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
@@ -178,6 +187,10 @@ public class MainActivity extends AppCompatActivity {
         textViewTitle.setText("");
         textViewTitle.setCharacterDelay(150);
         textViewTitle.animateText(getString(R.string.Title));*/
+
+
+        // 포인트 받아오기
+        updatePoint();
 
         tipsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -299,6 +312,20 @@ public class MainActivity extends AppCompatActivity {
         loadHighscore();
         Intent intent = getIntent();
         int score = intent.getIntExtra(QuizMain.HIGH_SCORE, 0);
+        pointNow = score / 5;
+
+        SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
+
+        totalPoint = point.getInt("point",100);
+        totalPoint = totalPoint + pointNow;
+        txtpoint.setText("Point : "+totalPoint);
+
+        SharedPreferences.Editor pointEditor = point.edit();
+        pointEditor.putInt(KEY_HIGHSCORE,highscore);
+        pointEditor.apply();
+
+
+
         Log.e("점수를 받았는가","?" + score);
         if (score > highscore){
             updateHighscore(score);
@@ -405,6 +432,14 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         highscore = prefs.getInt(KEY_HIGHSCORE, 0);
         textViewHighscore.setText("Best: " + highscore);
+    }
+
+    private void updatePoint() {
+        SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
+
+        totalPoint = point.getInt("point",100);
+        txtpoint.setText("Point : "+totalPoint);
+
     }
 
     @Override
