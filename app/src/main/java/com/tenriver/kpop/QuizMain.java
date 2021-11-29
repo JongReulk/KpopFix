@@ -53,7 +53,6 @@ import static com.tenriver.kpop.MainActivity.SHARED_POINT;
 
 public class QuizMain extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
-    public static final String CHALLENGE_HIGH_SCORE = "challengehighScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
 
     YouTubePlayerView playerView;
@@ -165,9 +164,8 @@ public class QuizMain extends YouTubeBaseActivity {
         Intent intent = getIntent();
 
         videoLength = intent.getIntExtra("difficulty_time",10000);
-        mode_select = intent.getIntExtra("game_mode",0);
 
-        Log.e("TAG : ",""+mode_select);
+
 
         if(videoLength == 10000){
             isEasy=true;
@@ -231,13 +229,6 @@ public class QuizMain extends YouTubeBaseActivity {
         questionCountTotal = 10;
 
 
-
-
-        if(mode_select==100){
-            plus = 10;
-            questionList = dbHelper.getAllQuestions();
-            questionCountTotal = 100;
-        }
 
         Collections.shuffle(questionList);
 
@@ -756,11 +747,6 @@ public class QuizMain extends YouTubeBaseActivity {
         }
 
         else {
-            if(mode_select==100){
-                nextButton.setText(getString(R.string.Finish));
-                LoadAD();
-                isChallengefinish = true;
-            }
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }
         
@@ -798,11 +784,9 @@ public class QuizMain extends YouTubeBaseActivity {
             score = 0;
         }
         Intent resultIntent = new Intent(this, MainActivity.class);
-        if (mode_select == 100) {
-            resultIntent.putExtra(CHALLENGE_HIGH_SCORE, score);
-        } else {
-            resultIntent.putExtra(HIGH_SCORE, score);
-        }
+
+        resultIntent.putExtra(HIGH_SCORE, score);
+
         updateHintPoint();
         startActivity(resultIntent);
 

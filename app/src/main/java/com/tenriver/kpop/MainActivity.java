@@ -41,8 +41,13 @@ public class MainActivity extends AppCompatActivity {
     public static final String KEY_HIGHSCORE = "keyhighscore";
     public static final String KEY_POINT = "keypoint";
 
-    private int highscore;
-    private TextView textViewHighscore;
+    public static final String BASICMODE_HIGHSCORE = "basichighscore";
+    public static final String CHALLENGEMODE_HIGHSCORE = "challengehighscore";
+
+    private int basichighscore;
+    private int challengehighscore;
+    private TextView txtbasicHighscore;
+    private TextView txtchallengeHighscore;
     private TextView kpop1;
     private TextView kpop2;
     private TextView kpop3;
@@ -149,19 +154,14 @@ public class MainActivity extends AppCompatActivity {
 
         tipsButton = findViewById(R.id.Main_tips);
         startButton = findViewById(R.id.Main_start);
-        textViewHighscore = findViewById(R.id.txtbestScore);
+        txtbasicHighscore = findViewById(R.id.txtbasicbestScore);
 
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
 
 
+        txtbasicHighscore.startAnimation(textfadein);
 
-        textViewHighscore.startAnimation(textfadein);
-
-        //audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
-
-        
-        
 
         //Sound
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
@@ -176,21 +176,6 @@ public class MainActivity extends AppCompatActivity {
                 soundPoolVolume=0.4f;
             }
         }
-
-
-        Handler handler = new Handler();
-        // 타이핑 이펙트
-
-        /*
-        textViewHighscore.setText("");
-        textViewHighscore.setCharacterDelay(150);
-        textViewHighscore.animateText(getString(R.string.bestscore));*/
-
-        /*
-        textViewTitle.setText("");
-        textViewTitle.setCharacterDelay(150);
-        textViewTitle.animateText(getString(R.string.Title));*/
-
 
         // 포인트 받아오기
         loadPoint();
@@ -318,10 +303,8 @@ public class MainActivity extends AppCompatActivity {
 
         updatePoint();
 
-
-
         Log.e("점수를 받았는가","?" + score);
-        if (score > highscore){
+        if (score > basichighscore){
             updateHighscore(score);
         }
 
@@ -413,26 +396,31 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     private void updateHighscore(int highscoreNew){
-        highscore = highscoreNew;
-        textViewHighscore.setText("Best: " + highscore);
+        basichighscore = highscoreNew;
+        txtbasicHighscore.setText("" + basichighscore);
 
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(KEY_HIGHSCORE,highscore);
+        editor.putInt(KEY_HIGHSCORE,basichighscore);
         editor.apply();
     }
 
     private void loadHighscore() {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-        highscore = prefs.getInt(KEY_HIGHSCORE, 0);
-        textViewHighscore.setText("Best: " + highscore);
+        basichighscore = prefs.getInt(KEY_HIGHSCORE, 0);
+        if(basichighscore <= 0) {
+            txtbasicHighscore.setText("Basic");
+        }
+        else{
+            txtbasicHighscore.setText("" + basichighscore);
+        }
     }
 
     private void loadPoint() {
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
         totalPoint = point.getInt(KEY_POINT,100);
-        txtpoint.setText("Point : "+totalPoint);
+        txtpoint.setText(""+totalPoint);
 
     }
 
@@ -445,7 +433,7 @@ public class MainActivity extends AppCompatActivity {
 
         totalPoint = point.getInt(KEY_POINT,100);
         totalPoint = totalPoint + pointNow;
-        txtpoint.setText("Point : "+totalPoint);
+        txtpoint.setText(""+totalPoint);
 
         SharedPreferences.Editor pointEditor = point.edit();
         pointEditor.putInt(KEY_POINT,totalPoint);
