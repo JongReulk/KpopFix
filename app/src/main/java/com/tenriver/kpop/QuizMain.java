@@ -239,7 +239,7 @@ public class QuizMain extends YouTubeBaseActivity {
             questionCountTotal = 100;
         }
 
-        //Collections.shuffle(questionList);
+        Collections.shuffle(questionList);
 
         // 스피커 애니메이션
         leftSpeaker = findViewById(R.id.imageView_speakerleft);
