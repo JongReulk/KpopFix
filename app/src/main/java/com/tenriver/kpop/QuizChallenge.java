@@ -58,7 +58,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
     //static String API_KEY ="AIzaSyDImlmmX6mnicXNlzed8TH1cn5YN62hBN0"; // 구글 콘솔사이트에서 발급받는 키
     static String API_KEY ="AIzaSyCnt7CWC3z_t_OimQLUwJ5-yXf6C6F83-A";
-    static int score = 0;
+    static int score_challenge = 0;
     static int plus = 0;
     static int videoLength;// 이지 노말 하드에 따라서 바뀜
 
@@ -155,7 +155,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
             MainActivity.mediaplayer_main = null;
         }
 
-        score = 0;
+        score_challenge = 0;
 
 
         Intent intent = getIntent();
@@ -702,7 +702,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
         if(answer.equals(korean_Answer) || answer.equals(english_Answer)){
             correctText.setVisibility(View.VISIBLE);
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_green));
-            score = score+plus; // 점수 책정 방식
+            score_challenge = score_challenge+plus; // 점수 책정 방식
             handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -724,7 +724,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }
 
-        scoreText.setText(""+score); // 점수 텍스트 변경
+        scoreText.setText(""+score_challenge); // 점수 텍스트 변경
         //confirmButton.setVisibility(View.GONE);
 
         playVideo(); // 비디오 재생
@@ -755,17 +755,17 @@ public class QuizChallenge extends YouTubeBaseActivity {
     private void finishQuiz() {
         isHandler = false;
         if (isBackPressed) {
-            score = 0;
+            score_challenge = 0;
         }
         Intent resultIntent = new Intent(this, MainActivity.class);
         if (mode_select == 100) {
-            resultIntent.putExtra(CHALLENGE_HIGH_SCORE, score);
+            resultIntent.putExtra(CHALLENGE_HIGH_SCORE, score_challenge);
         } else {
-            resultIntent.putExtra(HIGH_SCORE, score);
+            resultIntent.putExtra(HIGH_SCORE, score_challenge);
         }
         startActivity(resultIntent);
 
-        Log.e("최고 점수", ":" + score);
+        Log.e("최고 점수", ":" + score_challenge);
         //setResult(RESULT_OK, resultIntent);
         handler = new Handler();
         handler.postDelayed(new Runnable() {
