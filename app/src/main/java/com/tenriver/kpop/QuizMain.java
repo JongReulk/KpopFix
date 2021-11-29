@@ -130,7 +130,6 @@ public class QuizMain extends YouTubeBaseActivity {
     boolean isError = false;
 
     private int question_Num;
-    private int error_Num;
 
 
     // hint button
@@ -151,7 +150,6 @@ public class QuizMain extends YouTubeBaseActivity {
         Log.d("start","quiz main activity start!");
 
         question_Num = 0;
-        error_Num = 1;
 
 
         if(MainActivity.mediaplayer_main!=null)
@@ -419,7 +417,6 @@ public class QuizMain extends YouTubeBaseActivity {
                     player.pause();
                 }
                 timeLeftInMillis = COUNTDOWN_IN_MILLIS;
-                error_Num = 1;
 
 
                 hintText.setVisibility(View.GONE);
