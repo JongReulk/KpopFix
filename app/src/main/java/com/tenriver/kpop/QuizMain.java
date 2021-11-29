@@ -140,6 +140,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
     // point
     private int hintPoint;
+    private TextView txtHintPoint;
 
     
     @Override
@@ -214,6 +215,7 @@ public class QuizMain extends YouTubeBaseActivity {
         HintButton3 = findViewById(R.id.Quiz_hint3);  // 초성 보기
 
         hintText = findViewById(R.id.txt_hintall);
+        txtHintPoint = findViewById(R.id.txt_HintPoint);
 
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
@@ -296,6 +298,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
         hintPoint = point.getInt(KEY_POINT,100);
 
+        txtHintPoint.setText(""+hintPoint);
+
 
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -319,6 +323,7 @@ public class QuizMain extends YouTubeBaseActivity {
                 else {
                     hintPoint = hintPoint - 10;
 
+                    txtHintPoint.setText(""+hintPoint);
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
                     Log.v("다시 듣기", "다시듣기 버튼 클릭");
 
@@ -351,6 +356,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
                 else {
                     hintPoint = hintPoint - 20;
+
+                    txtHintPoint.setText(""+hintPoint);
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
                     Log.v("뮤비 보기", "뮤비보기 버튼 클릭");
 
@@ -374,6 +381,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
                 else {
                     hintPoint = hintPoint - 30;
+
+                    txtHintPoint.setText(""+hintPoint);
 
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
 
