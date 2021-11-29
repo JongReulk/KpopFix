@@ -92,11 +92,14 @@ public class MainActivity extends AppCompatActivity {
         kpop2 = (TextView) findViewById((R.id.txtTitle2));
         kpop3 = (TextView) findViewById((R.id.txtTitle3));
         mvquiz = (TextView) findViewById((R.id.txtMvQuiz));
+        txtpoint = findViewById(R.id.txtPoint);
+
         Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
         kpop1.startAnimation(textfadein);
         kpop2.startAnimation(textfadein);
         kpop3.startAnimation(textfadein);
         mvquiz.startAnimation(textfadein);
+        txtpoint.startAnimation(textfadein);
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -147,8 +150,7 @@ public class MainActivity extends AppCompatActivity {
         tipsButton = findViewById(R.id.Main_tips);
         startButton = findViewById(R.id.Main_start);
         textViewHighscore = findViewById(R.id.txtbestScore);
-        txtpoint = findViewById(R.id.txtPoint);
-        TextView textViewTitle = findViewById(R.id.txtTitle1);
+
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
 
