@@ -48,5 +48,6 @@
     <string name="warning_earphones">이어폰이나 헤드셋 착용을 권장합니다.</string>
     <string name="lessPoint">포인트가 부족합니다!</string>
     <string name="currentPoint">현재 포인트 :</string>
+    <string name="lessCount">힌트를 더이상 쓸 수 없습니다.</string>
 
 </resources>

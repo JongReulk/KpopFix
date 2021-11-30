@@ -48,5 +48,6 @@
     <string name="warning_earphones">It is recommended to\n wear earphones or a headset.</string>
     <string name="lessPoint">Not enough points!</string>
     <string name="currentPoint">Current points :</string>
+    <string name="lessCount">Can not use hint anymore.</string>
 
 </resources>

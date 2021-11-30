@@ -141,6 +141,9 @@ public class QuizChallenge extends YouTubeBaseActivity {
     private int hintPoint;
     private TextView txtHintPoint;
 
+    // hint count : 챌린지모드는 힌트횟수제한 5개
+    private int hintCount = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,10 +185,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
             plus = 30;
         }
 
-
-
         int year_num = intent.getIntExtra("year_num",2020);
-
 
         confirmButton = findViewById(R.id.confirmButton);
         nextButton = findViewById(R.id.nextButton);
@@ -314,9 +314,14 @@ public class QuizChallenge extends YouTubeBaseActivity {
         HintButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hintPoint < 10){
-                    Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
+                if (hintCount <= 0){
+                    Toast.makeText(getApplicationContext(), getString(R.string.lessCount), Toast.LENGTH_SHORT).show();
+                    Log.v("힌트횟수소진","힌트사용횟수 모두 사용");
+                }
 
+                else if (hintPoint < 10){
+                    Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
+                    Log.v("포인트부족","포인트가 부족함");
                 }
                 else {
                     hintPoint = hintPoint - 10;
@@ -324,6 +329,8 @@ public class QuizChallenge extends YouTubeBaseActivity {
                     txtHintPoint.setText(""+hintPoint);
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
                     Log.v("다시 듣기", "다시듣기 버튼 클릭");
+                    hintCount--; // 힌트사용
+                    Log.v("남은 힌트횟수", "남은 힌트 횟수 : "+ hintCount);
 
                     musicProgressbar.setAlpha(0);
 
@@ -347,17 +354,23 @@ public class QuizChallenge extends YouTubeBaseActivity {
         HintButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hintPoint < 20){
-                    Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
-
+                if (hintCount <= 0){
+                    Toast.makeText(getApplicationContext(), getString(R.string.lessCount), Toast.LENGTH_SHORT).show();
+                    Log.v("힌트횟수소진","힌트사용횟수 모두 사용");
                 }
 
+                else if (hintPoint < 10){
+                    Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
+                    Log.v("포인트부족","포인트가 부족함");
+                }
                 else {
                     hintPoint = hintPoint - 20;
 
                     txtHintPoint.setText(""+hintPoint);
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
                     Log.v("뮤비 보기", "뮤비보기 버튼 클릭");
+                    hintCount--; // 힌트사용
+                    Log.v("남은 힌트횟수", "남은 힌트 횟수 : "+ hintCount);
 
                     playerView.setAlpha(1.0f);
 
@@ -372,17 +385,24 @@ public class QuizChallenge extends YouTubeBaseActivity {
         HintButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hintPoint < 30) {
-                    Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
-                    Log.v("초성 보기", "초성보기 버튼 클릭");
+                if (hintCount <= 0){
+                    Toast.makeText(getApplicationContext(), getString(R.string.lessCount), Toast.LENGTH_SHORT).show();
+                    Log.v("힌트횟수소진","힌트사용횟수 모두 사용");
                 }
 
+                else if (hintPoint < 10){
+                    Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
+                    Log.v("포인트부족","포인트가 부족함");
+                }
                 else {
                     hintPoint = hintPoint - 30;
 
                     txtHintPoint.setText(""+hintPoint);
 
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
+                    Log.v("초성 보기", "초성보기 버튼 클릭");
+                    hintCount--; // 힌트사용
+                    Log.v("남은 힌트횟수", "남은 힌트 횟수 : "+ hintCount);
 
                     hintText.setVisibility(View.VISIBLE);
                     hintText.setText(hint_all);
