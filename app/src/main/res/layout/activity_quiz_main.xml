@@ -48,7 +48,7 @@
                 android:textSize="25sp"
 
                 android:ellipsize="marquee"
-                android:fontFamily="@font/font_basic"
+                android:fontFamily="@font/font_basicbold"
                 android:gravity="center_horizontal|center_vertical"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
