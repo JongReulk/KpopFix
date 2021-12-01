@@ -179,7 +179,7 @@
             <com.tenriver.kpop.OutlineTextView
                 android:id="@+id/txtbasicbestScore"
                 android:layout_marginTop="10dp"
-                android:text="@string/bestscore"
+                android:text="Basic"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:textStyle="bold"
@@ -189,10 +189,7 @@
                 android:bufferType="spannable"
                 android:fontFamily="@font/font_digital"
 
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="24sp"
-                android:autoSizeMaxTextSize="100sp"
-                android:autoSizeStepGranularity="2sp"
+                android:textSize="40sp"
 
                 app:textStroke="true"
                 app:textStrokeWidth="8.0"
@@ -202,7 +199,7 @@
             <com.tenriver.kpop.OutlineTextView
                 android:id="@+id/txtChallengebestScore"
                 android:layout_marginTop="10dp"
-                android:text="@string/bestscore"
+                android:text="Challenge"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:textStyle="bold"
@@ -212,10 +209,7 @@
                 android:bufferType="spannable"
                 android:fontFamily="@font/font_digital"
 
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="24sp"
-                android:autoSizeMaxTextSize="100sp"
-                android:autoSizeStepGranularity="2sp"
+                android:textSize="40sp"
 
                 app:textStroke="true"
                 app:textStrokeWidth="8.0"
