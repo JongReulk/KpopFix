@@ -489,12 +489,22 @@ public class MainActivity extends AppCompatActivity {
 
         Random random = new Random();
         Integer adPoint;
-        Integer adRandom = random.nextInt(5);
+        Integer adRandom = random.nextInt(4);
+
+        if(adRandom == 0){
+            adPoint = 60;
+            Toast.makeText(this, getString(R.string.congratulation), Toast.LENGTH_SHORT).show();
+        }
+
+        else{
+            adPoint = 30;
+            Toast.makeText(this, getString(R.string.point_30), Toast.LENGTH_SHORT).show();
+        }
 
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
         totalPoint = point.getInt(KEY_POINT,100);
-        totalPoint = totalPoint + pointNow;
+        totalPoint = totalPoint + adPoint;
         txtpoint.setText(""+totalPoint);
 
         SharedPreferences.Editor pointEditor = point.edit();
@@ -620,30 +630,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showRewardedAd() {
-        mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-            @Override
-            public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-                Log.d("로그", "Ad 보여주기 실패");
-            }
-
-            @Override
-            public void onAdShowedFullScreenContent() {
-                Log.d("로그", "Ad 보여주기");
-                mRewardedAd = null;
-            }
-
-            @Override
-            public void onAdDismissedFullScreenContent() {
-                Log.d("로그", "Ad 닫기");
-                loadRewardedAd();
-            }
-
-        });
         if (mRewardedAd != null) {
+            mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                    Log.d("로그", "Ad 보여주기 실패");
+                }
+
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    Log.d("로그", "Ad 보여주기");
+                    mRewardedAd = null;
+                }
+
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    Log.d("로그", "Ad 닫기");
+                    loadRewardedAd();
+                }
+
+            });
+
             mRewardedAd.show(this, new OnUserEarnedRewardListener() {
                 @Override
                 public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
                     Log.d("로그", "유저가 보상을 받았습니다.");
+                    getAdPoint();
                 }
             });
         }

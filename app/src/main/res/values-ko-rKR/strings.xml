@@ -50,5 +50,7 @@
     <string name="currentPoint">현재 포인트 :</string>
     <string name="lessCount">힌트를 더 이상 쓸 수 없습니다.</string>
     <string name="tryAgain">잠시 후 다시 시도해 주세요.</string>
+    <string name="congratulation">축하합니다! 60포인트를 얻었습니다!!!</string>
+    <string name="point_30">30포인트를 획득하였습니다!!</string>
 
 </resources>
