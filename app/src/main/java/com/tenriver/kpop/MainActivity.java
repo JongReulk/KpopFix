@@ -25,12 +25,21 @@ import android.widget.Toast;
 
 import android.os.Handler;
 
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String BASICMODE_HIGHSCORE = "basichighscore";
     public static final String CHALLENGEMODE_HIGHSCORE = "challengehighscore";
+
+    private static final String REWARD_AD_ID = "ca-app-pub-3940256099942544/5224354917";
 
     private int basichighscore;
     private int challengehighscore;
@@ -65,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
     private Button quitButton;
 
     private AdView mAdview;
+    private Button rewardAdButton;
+    private RewardedAd mRewardedAd;
 
     SettingDialog settingDialog;
     private float soundPoolVolume;
@@ -120,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
         adView.setAdUnitId("\n" + "ca-app-pub-3940256099942544/6300978111");
+
+        rewardAdButton = findViewById(R.id.RewardAdButton);
+
 
 
 
@@ -182,6 +198,12 @@ public class MainActivity extends AppCompatActivity {
 
         // 포인트 받아오기
         loadPoint();
+
+        loadRewardedAd();
+
+
+
+
 
         tipsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -280,6 +302,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 finish();
 
+            }
+        });
+
+
+        rewardAdButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showRewardedAd();
             }
         });
 
@@ -387,23 +417,6 @@ public class MainActivity extends AppCompatActivity {
         quitButton.setTextColor(Color.WHITE);
     }
 
-    /*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.e("데이터를 받았는가","?"+requestCode +" , " + resultCode + " , " + data);
-
-        if (requestCode == REQUEST_CODE_QUIZ){
-            if (resultCode == RESULT_OK){
-                int score = data.getIntExtra(QuizMain.HIGH_SCORE, 0);
-                Log.e("점수를 받았는가","?" + score);
-                if (score > highscore){
-                    updateHighscore(score);
-                }
-            }
-        }
-    }*/
-
     private void updateHighscore(int highscoreNew){
         basichighscore = highscoreNew;
         txtbasicHighscore.setText("" + basichighscore);
@@ -460,6 +473,23 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int score = intent.getIntExtra(QuizMain.HIGH_SCORE, 0);
         pointNow = score / 5;
+
+        SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
+
+        totalPoint = point.getInt(KEY_POINT,100);
+        totalPoint = totalPoint + pointNow;
+        txtpoint.setText(""+totalPoint);
+
+        SharedPreferences.Editor pointEditor = point.edit();
+        pointEditor.putInt(KEY_POINT,totalPoint);
+        pointEditor.apply();
+    }
+
+    private void getAdPoint() {
+
+        Random random = new Random();
+        Integer adPoint;
+        Integer adRandom = random.nextInt(5);
 
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
@@ -568,5 +598,70 @@ public class MainActivity extends AppCompatActivity {
 
         mediaplayer_main.pause();
 
+    }
+
+    // 보상형 광고
+    private void loadRewardedAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mRewardedAd.load(this, REWARD_AD_ID, adRequest, new RewardedAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                mRewardedAd = rewardedAd;
+                Log.d("로그", "광고 load 완료");
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                mRewardedAd = null;
+                Log.d("로그", ""+loadAdError);
+            }
+        });
+
+    }
+
+    private void showRewardedAd() {
+        mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+            @Override
+            public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                Log.d("로그", "Ad 보여주기 실패");
+            }
+
+            @Override
+            public void onAdShowedFullScreenContent() {
+                Log.d("로그", "Ad 보여주기");
+                mRewardedAd = null;
+            }
+
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                Log.d("로그", "Ad 닫기");
+                loadRewardedAd();
+            }
+
+        });
+        if (mRewardedAd != null) {
+            mRewardedAd.show(this, new OnUserEarnedRewardListener() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    Log.d("로그", "유저가 보상을 받았습니다.");
+                }
+            });
+        }
+        else {
+            Toast.makeText(this, getString(R.string.tryAgain), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!mediaplayer_main.isPlaying())
+        {
+            // BGN 실행
+            mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic_new);
+            mediaplayer_main.setLooping(true);
+            mediaplayer_main.start();
+
+        }
     }
 }

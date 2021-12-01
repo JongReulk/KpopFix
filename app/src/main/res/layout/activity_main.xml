@@ -330,6 +330,9 @@
             app:layout_constraintVertical_bias="0.15"
             />
 
+
+
+
         <TextView
             android:id="@+id/txtPoint"
             android:layout_width="wrap_content"
@@ -363,6 +366,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0"
         />
+
+    <Button
+        android:id="@+id/RewardAdButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="광고보고\n포인트얻기"
+        android:gravity="center"
+        android:background="@drawable/btn_remote"
+        android:fontFamily="@font/font_basic"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.7"
+        app:layout_constraintHorizontal_bias="0.05"/>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

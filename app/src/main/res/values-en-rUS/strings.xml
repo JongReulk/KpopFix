@@ -49,5 +49,6 @@
     <string name="lessPoint">Not enough points!</string>
     <string name="currentPoint">Current points :</string>
     <string name="lessCount">Can not use hint anymore.</string>
+    <string name="tryAgain">Please try again in a few minutes.</string>
 
 </resources>
