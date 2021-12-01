@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String SHARED_MUSIC = "sharedMusic";
     public static final String SHARED_POINT = "sharedPoint";
     public static final String KEY_HIGHSCORE = "keyhighscore";
+    public static final String KEY_CHALLENGEHIGHSCORE = "keychallengehighscore";
     public static final String KEY_POINT = "keypoint";
 
     public static final String BASICMODE_HIGHSCORE = "basichighscore";
@@ -155,12 +156,14 @@ public class MainActivity extends AppCompatActivity {
         tipsButton = findViewById(R.id.Main_tips);
         startButton = findViewById(R.id.Main_start);
         txtbasicHighscore = findViewById(R.id.txtbasicbestScore);
+        txtchallengeHighscore = findViewById(R.id.txtChallengebestScore);
 
         settingOpen = findViewById(R.id.setting_Button);
         quitButton = findViewById(R.id.quit_Button);
 
 
         txtbasicHighscore.startAnimation(textfadein);
+        txtchallengeHighscore.startAnimation(textfadein);
 
 
         //Sound
@@ -298,14 +301,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         loadHighscore();
+        loadchallengeHighscore();
         Intent intent = getIntent();
         int score = intent.getIntExtra(QuizMain.HIGH_SCORE, 0);
+        int challengescore = intent.getIntExtra(QuizChallenge.CHALLENGE_HIGH_SCORE, 0);
 
         updatePoint();
 
         Log.e("점수를 받았는가","?" + score);
         if (score > basichighscore){
             updateHighscore(score);
+        }
+
+        if (challengescore > challengehighscore) {
+            updatechallengeHighscore(challengescore);
         }
 
 
@@ -415,6 +424,29 @@ public class MainActivity extends AppCompatActivity {
             txtbasicHighscore.setText("" + basichighscore);
         }
     }
+
+    private void loadchallengeHighscore() {
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        challengehighscore = prefs.getInt(KEY_CHALLENGEHIGHSCORE, 0);
+        if(challengehighscore <= 0) {
+            txtchallengeHighscore.setText("Challenge");
+        }
+        else{
+            txtchallengeHighscore.setText("" + challengehighscore);
+        }
+    }
+
+    private void updatechallengeHighscore(int challengeNew){
+        challengehighscore = challengeNew;
+        txtchallengeHighscore.setText("" + challengehighscore);
+
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(KEY_CHALLENGEHIGHSCORE,challengehighscore);
+        editor.apply();
+    }
+
+
 
     private void loadPoint() {
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);

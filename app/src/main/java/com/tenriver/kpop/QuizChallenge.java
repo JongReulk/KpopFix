@@ -170,21 +170,6 @@ public class QuizChallenge extends YouTubeBaseActivity {
         videoLength = intent.getIntExtra("difficulty_time",10000);
         mode_select = intent.getIntExtra("game_mode",0);
 
-        Log.e("TAG : ",""+mode_select);
-
-        if(videoLength == 10000){
-            isEasy=true;
-            plus = 10;
-        }
-
-        if(videoLength == 5000){
-            plus = 20;
-        }
-
-        if(videoLength == 3000){
-            plus = 30;
-        }
-
         int year_num = intent.getIntExtra("year_num",2020);
 
         confirmButton = findViewById(R.id.confirmButton);
@@ -217,27 +202,12 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
-        if(year_num == 101){
-            questionList = dbHelper.getAllQuestions();
-        }
-        else {
-            String year_num_string = String.valueOf(year_num);
-            Log.e("year_QUIZMAIN", " : " +year_num_string);
 
-            questionList = dbHelper.getQuestions(year_num_string);
-            Log.e("Question", " : "+year_num_string);
-        }
+        // challenge 모드 전용 선언
+        plus = 10;
+        questionList = dbHelper.getAllQuestions();
+        questionCountTotal = 100;
 
-        questionCountTotal = 10;
-
-
-
-
-        if(mode_select==100){
-            plus = 10;
-            questionList = dbHelper.getAllQuestions();
-            questionCountTotal = 100;
-        }
 
         Collections.shuffle(questionList);
 
@@ -818,11 +788,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
             score_challenge = 0;
         }
         Intent resultIntent = new Intent(this, MainActivity.class);
-        if (mode_select == 100) {
-            resultIntent.putExtra(CHALLENGE_HIGH_SCORE, score_challenge);
-        } else {
-            resultIntent.putExtra(HIGH_SCORE, score_challenge);
-        }
+        resultIntent.putExtra(CHALLENGE_HIGH_SCORE, score_challenge);
         updateHintPoint();
         startActivity(resultIntent);
 
