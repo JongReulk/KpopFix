@@ -142,7 +142,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
     private TextView txtHintPoint;
 
     // hint count : 챌린지모드는 힌트횟수제한 5개
-    private int hintCount = 1;
+    private int hintCount = 5;
 
 
     @Override
