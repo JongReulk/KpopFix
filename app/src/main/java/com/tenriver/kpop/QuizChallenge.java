@@ -143,6 +143,8 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
     // hint count : 챌린지모드는 힌트횟수제한 5개
     private int hintCount = 5;
+    private int hintCountTotal = 5;
+    private TextView txthintCount;
 
 
     @Override
@@ -199,6 +201,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
         hintText = findViewById(R.id.txt_hintall);
         txtHintPoint = findViewById(R.id.txt_HintPoint);
+        txthintCount = findViewById(R.id.txt_HintCount);
 
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
@@ -268,6 +271,8 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
         txtHintPoint.setText(""+hintPoint);
 
+        txthintCount.setText(hintCount + "/" + hintCountTotal);
+
 
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -300,6 +305,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
                     Log.v("다시 듣기", "다시듣기 버튼 클릭");
                     hintCount--; // 힌트사용
+                    txthintCount.setText(hintCount + "/" + hintCountTotal);
                     Log.v("남은 힌트횟수", "남은 힌트 횟수 : "+ hintCount);
 
                     musicProgressbar.setAlpha(0);
@@ -340,6 +346,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
                     Log.v("뮤비 보기", "뮤비보기 버튼 클릭");
                     hintCount--; // 힌트사용
+                    txthintCount.setText(hintCount + "/" + hintCountTotal);
                     Log.v("남은 힌트횟수", "남은 힌트 횟수 : "+ hintCount);
 
                     playerView.setAlpha(1.0f);
@@ -372,6 +379,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
                     Log.v("초성 보기", "초성보기 버튼 클릭");
                     hintCount--; // 힌트사용
+                    txthintCount.setText(hintCount + "/" + hintCountTotal);
                     Log.v("남은 힌트횟수", "남은 힌트 횟수 : "+ hintCount);
 
                     hintText.setVisibility(View.VISIBLE);
