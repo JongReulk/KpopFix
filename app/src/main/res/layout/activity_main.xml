@@ -176,7 +176,7 @@
             android:layout_margin="20dp"
             >
 
-            <TextView
+            <com.tenriver.kpop.OutlineTextView
                 android:id="@+id/txtbasicbestScore"
                 android:layout_marginTop="10dp"
                 android:text="@string/bestscore"
@@ -185,7 +185,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:textColor="@color/white"
+                android:textColor="@color/basic_color1"
                 android:bufferType="spannable"
                 android:fontFamily="@font/font_digital"
 
@@ -193,9 +193,13 @@
                 android:autoSizeMinTextSize="24sp"
                 android:autoSizeMaxTextSize="100sp"
                 android:autoSizeStepGranularity="2sp"
+
+                app:textStroke="true"
+                app:textStrokeWidth="8.0"
+                app:textStrokeColor="@color/basic_color2"
                 />
 
-            <TextView
+            <com.tenriver.kpop.OutlineTextView
                 android:id="@+id/txtChallengebestScore"
                 android:layout_marginTop="10dp"
                 android:text="@string/bestscore"
@@ -204,7 +208,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:textColor="@color/white"
+                android:textColor="@color/yellow"
                 android:bufferType="spannable"
                 android:fontFamily="@font/font_digital"
 
@@ -212,6 +216,10 @@
                 android:autoSizeMinTextSize="24sp"
                 android:autoSizeMaxTextSize="100sp"
                 android:autoSizeStepGranularity="2sp"
+
+                app:textStroke="true"
+                app:textStrokeWidth="8.0"
+                app:textStrokeColor="@color/hard_color"
                 />
         </LinearLayout>
 
