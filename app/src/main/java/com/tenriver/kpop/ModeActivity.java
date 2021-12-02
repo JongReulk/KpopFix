@@ -14,7 +14,10 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,21 +42,23 @@ public class ModeActivity extends AppCompatActivity {
 
     private float soundPoolVolume;
 
-    Button basicButton;
-    Button challengeButton;
-    TextView basicTxt;
-    TextView challengeTxt;
+    private ImageButton mode_up;
+    private ImageButton mode_down;
+    private Button mode_confirm;
+
+    private TextView kpop1;
+    private TextView kpop2;
+    private TextView kpop3;
+    private TextView mode_Title;
+
+    private TextView basicTxt;
+    private TextView challengeTxt;
+    private int currentMode = 0; // 0은 basic, 1은 challenge
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gamemode);
-
-
-        basicButton = findViewById(R.id.basic_Button);
-        challengeButton = findViewById(R.id.challenge_Button);
-        basicTxt = findViewById(R.id.txt_basicmode);
-        challengeTxt = findViewById(R.id.txt_challenge);
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -75,28 +80,50 @@ public class ModeActivity extends AppCompatActivity {
             MainActivity.mediaplayer_main.start();
         }
 
-
         ImageView remote_mode = (ImageView) findViewById(R.id.Remote_mode);
         ConstraintLayout remotebutton_mode = (ConstraintLayout) findViewById(R.id.Remote_button_mode);
+
+        basicTxt = findViewById(R.id.txt_basicmode);
+        challengeTxt = findViewById(R.id.txt_challenge);
+
+        mode_up = findViewById(R.id.mode_up);
+        mode_down = findViewById(R.id.mode_down);
+        mode_confirm = findViewById(R.id.mode_confirm);
+
+        kpop1 = (TextView) findViewById((R.id.txtTitle1));
+        kpop2 = (TextView) findViewById((R.id.txtTitle2));
+        kpop3 = (TextView) findViewById((R.id.txtTitle3));
+        mode_Title = findViewById(R.id.mode_Title);
+
+        mode_up.setEnabled(true);
+        mode_down.setEnabled(true);
+        mode_confirm.setEnabled(true);
+
+        //페이드인 애니메이션
+        Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
+        kpop1.startAnimation(textfadein);
+        kpop2.startAnimation(textfadein);
+        kpop3.startAnimation(textfadein);
+        mode_Title.startAnimation(textfadein);
+        basicTxt.startAnimation(textfadein);
+        challengeTxt.setVisibility(View.GONE); // 처음 시작은 basic이므로 챌린지는 보이지않게
 
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remote_mode.startAnimation(RemoteUp);
 
-        Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
-        remotebutton_mode.startAnimation(RemoteButtonUp);
-
         RemoteUp.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                basicButton.setEnabled(false);
-                challengeButton.setEnabled(false);
+                mode_down.setEnabled(false);
+                mode_confirm.setEnabled(false);
+                mode_up.setEnabled(false);
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                basicButton.setEnabled(true);
-                challengeButton.setEnabled(true);
-
+                mode_down.setEnabled(true);
+                mode_confirm.setEnabled(true);
+                mode_up.setEnabled(true);
             }
 
             @Override
@@ -105,6 +132,8 @@ public class ModeActivity extends AppCompatActivity {
             }
         });
 
+        Animation RemoteButtonUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
+        remotebutton_mode.startAnimation(RemoteButtonUp);
 
         SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC, MODE_PRIVATE);
 
@@ -124,7 +153,6 @@ public class ModeActivity extends AppCompatActivity {
         soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);    //작성
         soundID = soundPool.load(this, R.raw.buttonsound1, 1);
 
-
         if (soundPool != null) {
             if (!effectCb_difficulty) {
                 soundPoolVolume = 0.0f;
@@ -133,90 +161,109 @@ public class ModeActivity extends AppCompatActivity {
             }
         }
 
-        basicButton.setOnClickListener(new View.OnClickListener() {
+        mode_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
-
-                basicButton.setEnabled(false);
-                challengeButton.setEnabled(false);
-
-                basicButton.setTextColor(Color.GRAY);
-                challengeButton.setTextColor(Color.GRAY);
-
-
-                challengeTxt.setVisibility(View.GONE);
-
-                //리모컨이미지 내려감
-                Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                remote_mode.startAnimation(RemoteDown);
-
-                //리모컨버튼 내려감
-                Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                remotebutton_mode.startAnimation(RemoteButtonDown);
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-
-                        if (!isFinished) {
-                            Intent Modeintent = new Intent(getApplicationContext(), YearActivity.class);
-
-                            Modeintent.putExtra("game_mode", 100); // challenge 선택
-                            Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                            startActivity(Modeintent);
-                            finish();
-                        } else {
-                            handler.removeCallbacks(this);
-                        }
-
-                    }
-                }, 600);
-
+                if( currentMode == 1)
+                {
+                    currentMode = 0;
+                    challengeTxt.setVisibility(View.GONE);
+                    basicTxt.setVisibility(View.VISIBLE);
+                }
             }
         });
 
-        challengeButton.setOnClickListener(new View.OnClickListener() {
+        mode_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
+                if( currentMode == 0)
+                {
+                    currentMode = 1;
+                    challengeTxt.setVisibility(View.VISIBLE);
+                    basicTxt.setVisibility(View.GONE);
+                }
+            }
+        });
 
-                basicButton.setEnabled(false);
-                challengeButton.setEnabled(false);
+        mode_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // basic mode
+                if( currentMode == 0 )
+                {
+                    soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
 
-                basicButton.setTextColor(Color.GRAY);
-                challengeButton.setTextColor(Color.GRAY);
+                    mode_down.setEnabled(false);
+                    mode_up.setEnabled(false);
+                    mode_confirm.setEnabled(false);
 
-                basicTxt.setVisibility(View.GONE);
+                    mode_confirm.setTextColor(Color.GRAY);
 
+                    //리모컨이미지 내려감
+                    Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remote_mode.startAnimation(RemoteDown);
 
-                //리모컨이미지 내려감
-                Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                remote_mode.startAnimation(RemoteDown);
+                    //리모컨버튼 내려감
+                    Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remotebutton_mode.startAnimation(RemoteButtonDown);
 
-                //리모컨버튼 내려감
-                Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                remotebutton_mode.startAnimation(RemoteButtonDown);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
 
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
+                            if (!isFinished) {
+                                Intent Modeintent = new Intent(getApplicationContext(), YearActivity.class);
 
-                        if (!isFinished) {
-                            Intent Modeintent = new Intent(getApplicationContext(), QuizChallenge.class);
-                            Modeintent.putExtra("game_mode", 100); // challenge 선택
+                                Modeintent.putExtra("game_mode", 100); // challenge 선택
+                                Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                startActivity(Modeintent);
+                                finish();
+                            } else {
+                                handler.removeCallbacks(this);
+                            }
 
-                            Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                            startActivity(Modeintent);
-                            finish();
-                        } else {
-                            handler.removeCallbacks(this);
                         }
-                    }
-                }, 600);
+                    }, 600);
+                }
+
+                // challenge mode
+                if ( currentMode == 1 )
+                {
+                    soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
+
+                    mode_down.setEnabled(false);
+                    mode_up.setEnabled(false);
+                    mode_confirm.setEnabled(false);
+
+                    mode_confirm.setTextColor(Color.GRAY);
+
+                    //리모컨이미지 내려감
+                    Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remote_mode.startAnimation(RemoteDown);
+
+                    //리모컨버튼 내려감
+                    Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remotebutton_mode.startAnimation(RemoteButtonDown);
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (!isFinished) {
+                                Intent Modeintent = new Intent(getApplicationContext(), QuizChallenge.class);
+                                Modeintent.putExtra("game_mode", 100); // challenge 선택
+
+                                Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                startActivity(Modeintent);
+                                finish();
+                            } else {
+                                handler.removeCallbacks(this);
+                            }
+                        }
+                    }, 600);
+                }
             }
         });
     }

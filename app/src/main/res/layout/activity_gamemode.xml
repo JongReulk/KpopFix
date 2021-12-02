@@ -137,86 +137,88 @@
             app:textStrokeWidth="8.0"
             app:textStrokeColor="@color/white"/>
 
-        <com.tenriver.kpop.OutlineTextView
-            android:id="@+id/ModeTitle"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="MODE"
-            android:textColor="@color/white"
-
-            android:gravity="center"
-            android:fontFamily="@font/font_basicbold"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="24sp"
-            android:autoSizeMaxTextSize="100sp"
-            android:autoSizeStepGranularity="2sp"
-
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_bias="0.3"
-            app:layout_constraintHeight_percent="0.2"
-            app:layout_constraintWidth_percent="0.7"
-
-            app:textStroke="true"
-            app:textStrokeWidth="10.0"
-            app:textStrokeColor="@color/title_text_color"/>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:gravity="center"
-
-            app:layout_constraintTop_toBottomOf="@id/ModeTitle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-
-            >
-
-        <com.tenriver.kpop.OutlineTextView
-            android:id="@+id/txt_basicmode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:text="BASIC"
-            android:textSize="60dp"
-            android:fontFamily="@font/font_digital"
-            android:textColor="@color/basic_color1"
-            android:bufferType="spannable"
-
-            app:textStroke="true"
-            app:textStrokeWidth="6.0"
-            app:textStrokeColor="@color/basic_color2"
-            />
-
-        <com.tenriver.kpop.OutlineTextView
-            android:id="@+id/txt_challenge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="50dp"
-            android:text="100 CHALLENGES"
-            android:fontFamily="@font/font_digital"
-            android:textColor="@color/challenge_color1"
-            android:bufferType="spannable"
-            android:layout_marginTop="20dp"
-
-            app:textStroke="true"
-            app:textStrokeWidth="6.0"
-            app:textStrokeColor="@color/challenge_color2"
-            />
-        </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.tenriver.kpop.OutlineTextView
+        android:id="@+id/mode_Title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
 
+        android:gravity="center"
+        android:text="MODE"
+        android:fontFamily="@font/font_basicbold"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="24sp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeStepGranularity="2sp"
 
+        android:textColor="@color/white"
+        app:layout_constraintVertical_bias="0.28"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintWidth_percent="0.5"
+
+        app:layout_constraintTop_toTopOf="@id/Image_TV_mode"
+        app:layout_constraintLeft_toLeftOf="@id/Image_TV_mode"
+        app:layout_constraintRight_toRightOf="@id/Image_TV_mode"
+        app:layout_constraintBottom_toBottomOf="@id/Image_TV_mode"
+
+        app:textStroke="true"
+        app:textStrokeWidth="10.0"
+        app:textStrokeColor="@color/title_text_color"/>
+
+    <com.tenriver.kpop.OutlineTextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/txt_basicmode"
+        app:layout_constraintHeight_percent="0.23"
+        app:layout_constraintWidth_percent="0.9"
+        android:gravity="center"
+        android:text="BASIC"
+        android:textStyle="bold"
+        android:fontFamily="@font/font_digital"
+        android:textColor="@color/basic_color1"
+
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="24sp"
+        android:autoSizeMaxTextSize="120sp"
+        android:autoSizeStepGranularity="2sp"
+
+        app:layout_constraintTop_toBottomOf="@+id/mode_Title"
+        app:layout_constraintLeft_toLeftOf="@id/Image_TV_mode"
+        app:layout_constraintRight_toRightOf="@id/Image_TV_mode"
+        app:layout_constraintBottom_toBottomOf="@id/Image_TV_mode"
+
+        app:textStroke="true"
+        app:textStrokeWidth="12.0"
+        app:textStrokeColor="@color/basic_color2"
+        />
+
+    <com.tenriver.kpop.OutlineTextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/txt_challenge"
+        app:layout_constraintHeight_percent="0.23"
+        app:layout_constraintWidth_percent="0.9"
+        android:gravity="center"
+        android:text="100\nCHALLENGES"
+        android:textStyle="bold"
+        android:fontFamily="@font/font_digital"
+        android:textColor="@color/challenge_color1"
+
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="24sp"
+        android:autoSizeMaxTextSize="120sp"
+        android:autoSizeStepGranularity="2sp"
+
+        app:layout_constraintTop_toBottomOf="@+id/mode_Title"
+        app:layout_constraintLeft_toLeftOf="@id/Image_TV_mode"
+        app:layout_constraintRight_toRightOf="@id/Image_TV_mode"
+        app:layout_constraintBottom_toBottomOf="@id/Image_TV_mode"
+
+        app:textStroke="true"
+        app:textStrokeWidth="12.0"
+        app:textStrokeColor="@color/challenge_color2"
+        />
 
     <!-- 리모컨 이미지 -->
     <ImageView
@@ -246,44 +248,63 @@
         app:layout_constraintRight_toRightOf="@+id/Remote_mode"
         >
 
-        <Button
-            android:id="@+id/basic_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Basic"
-            android:textSize="24sp"
-            android:textAllCaps="false"
-            android:background="@drawable/btn_remote"
-            android:textColor="@color/white"
-            android:soundEffectsEnabled="false"
-            android:fontFamily="@font/font_basic"
+        <ImageButton
+            android:id="@+id/mode_up"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:background="@android:color/transparent"
 
-            app:layout_constraintTop_toTopOf="parent"
+            android:soundEffectsEnabled="false"
+
+            android:src="@drawable/uparrow"
+            android:text="up"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/challenge_Button"
-            app:layout_constraintVertical_bias="0.75"
-            />
+            app:layout_constraintBottom_toTopOf="@id/mode_confirm"
+            app:layout_constraintVertical_bias="1"
+            >
+
+        </ImageButton>
 
         <Button
-            android:id="@+id/challenge_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/basic_Button"
-            android:text=" Challenges "
-            android:textAllCaps="false"
-            android:textSize="24sp"
-            android:background="@drawable/btn_remote"
-            android:textColor="@color/white"
+            android:id="@+id/mode_confirm"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_remote_circle"
             android:soundEffectsEnabled="false"
-            android:fontFamily="@font/font_basic"
 
+            android:text="OK"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:fontFamily="@font/font_basic"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.55"
-            />
+            app:layout_constraintVertical_bias="0.5"
+
+            >
+        </Button>
+
+        <ImageButton
+            android:id="@+id/mode_down"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+
+            android:background="@android:color/transparent"
+            android:src="@drawable/downarrow"
+            app:layout_constraintTop_toBottomOf="@id/mode_confirm"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            >
+        </ImageButton>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
