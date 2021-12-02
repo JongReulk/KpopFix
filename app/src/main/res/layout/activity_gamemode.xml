@@ -203,13 +203,13 @@
             android:textSize="50dp"
             android:text="100 CHALLENGES"
             android:fontFamily="@font/font_digital"
-            android:textColor="@color/yellow"
+            android:textColor="@color/challenge_color1"
             android:bufferType="spannable"
             android:layout_marginTop="20dp"
 
             app:textStroke="true"
             app:textStrokeWidth="6.0"
-            app:textStrokeColor="@color/hard_color"
+            app:textStrokeColor="@color/challenge_color2"
             />
         </LinearLayout>
 

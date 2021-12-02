@@ -208,7 +208,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:textColor="@color/yellow"
+                android:textColor="@color/challenge_color1"
                 android:bufferType="spannable"
                 android:fontFamily="@font/font_digital"
 
@@ -219,7 +219,7 @@
 
                 app:textStroke="true"
                 app:textStrokeWidth="8.0"
-                app:textStrokeColor="@color/hard_color"
+                app:textStrokeColor="@color/challenge_color2"
                 />
         </LinearLayout>
 
