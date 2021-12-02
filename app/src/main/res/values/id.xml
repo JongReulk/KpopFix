@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Google Play game services IDs. Save this file as res/values/games-ids.xml in your project.-->
+<resources>
+    <!--app_id-->
+    <string name="app_id" translatable="false">625182011319</string>
+    <!--package_name-->
+    <string name="package_name" translatable="false">com.tenriver.kpop</string>
+    <!--leaderboard KPOP MV QUIZ HIGHSCORE-->
+    <string name="leaderboard_kpop_mv_quiz_highscore" translatable="false">CgkIt9-B_pgSEAIQAg</string>
+</resources>

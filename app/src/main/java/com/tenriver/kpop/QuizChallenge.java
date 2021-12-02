@@ -754,11 +754,10 @@ public class QuizChallenge extends YouTubeBaseActivity {
         }
 
         else {
-            if(mode_select==100){
-                nextButton.setText(getString(R.string.Finish));
-                LoadAD();
-                isChallengefinish = true;
-            }
+            nextButton.setText(getString(R.string.Finish));
+            LoadAD();
+            isChallengefinish = true;
+
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }
 

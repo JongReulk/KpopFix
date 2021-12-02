@@ -1,6 +1,7 @@
 package com.tenriver.kpop;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -38,6 +39,13 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.tasks.Task;
 
 import java.util.Random;
 
@@ -55,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String CHALLENGEMODE_HIGHSCORE = "challengehighscore";
 
     private static final String REWARD_AD_ID = "ca-app-pub-3940256099942544/5224354917";
+
+    //로그인 관련
+    private static final int RC_SIGN_IN=9001;
+    private static final int RC_LEADERBOARD_UI = 9004;
+    static GoogleSignInAccount googleSignInAccount=null;
 
     private int basichighscore;
     private int challengehighscore;
@@ -99,6 +112,11 @@ public class MainActivity extends AppCompatActivity {
 
     private Toast adToast;
 
+    // 로그인 및 랭킹 관련
+    private Button loginbtn;
+    private Button submitbtn;
+    private Button boardbtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
         adView.setAdUnitId("\n" + "ca-app-pub-3940256099942544/6300978111");
 
         rewardAdButton = findViewById(R.id.RewardAdButton);
+
+        //로그인 및 랭킹 관련
+        loginbtn = findViewById(R.id.login_btn);
+        submitbtn = findViewById(R.id.submit_btn);
+        boardbtn = findViewById(R.id.leaderboard_btn);
 
 
 
@@ -316,6 +339,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        loginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginIntent();
+            }
+        });
+
+        submitbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submit();
+            }
+        });
+
+        boardbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rank();
+            }
+        });
 
     }
 
@@ -677,6 +720,84 @@ public class MainActivity extends AppCompatActivity {
             mediaplayer_main.setLooping(true);
             mediaplayer_main.start();
 
+        }
+    }
+
+    private void submit() {
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        challengehighscore = prefs.getInt(KEY_CHALLENGEHIGHSCORE, 0);
+
+        try {
+            // 여러 개의 리더보드를 만든다면 이 리더보드 ID를 여러 개 저장해야 함
+            Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                    .submitScore(getString(R.string.leaderboard_kpop_mv_quiz_highscore),challengehighscore);
+            Toast.makeText(this, "점수 업로드 성공",Toast.LENGTH_SHORT).show();
+        }catch (Exception e) {
+            Toast.makeText(this, "점수 업로드 실패",Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    private void rank() {
+        try {
+            
+            Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                    .getLeaderboardIntent(getString(R.string.leaderboard_kpop_mv_quiz_highscore))
+                    .addOnSuccessListener(intent -> {
+                        startActivityForResult(intent, RC_LEADERBOARD_UI);
+                    });
+            Toast.makeText(this, "점수 업로드 성공",Toast.LENGTH_SHORT).show();
+        }catch(Exception e) {
+            Toast.makeText(this, "리더보드 불러오기 실패",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void LoginIntent() {
+        // 반드시 DEFAULT_GAMES_SIGN_IN 으로 해주기
+        GoogleSignInClient signInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
+        Intent loginintent = signInClient.getSignInIntent();
+        startActivityForResult(loginintent, RC_SIGN_IN);
+    }
+
+    private void signinsilently(){
+        GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build();
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if(GoogleSignIn.hasPermissions(account, signInOptions.getScopeArray())){
+            // 이미 로그인 되어있을 경우
+            googleSignInAccount = account;
+            findViewById(R.id.login_btn).setVisibility(View.INVISIBLE);
+            findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
+            findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
+        }
+        else{
+            // 로그인 안됨
+            Toast.makeText(this, "오프라인입니다. 로그인하세요.",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // 로그인 화면으로 얻은 계정을 'Task'를 이용해 받기
+        if(requestCode==RC_SIGN_IN){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            // 오류 발생할 수 있으므로 예외 처리
+            try {
+                googleSignInAccount=task.getResult(ApiException.class);
+
+                // 로그인 성공 시시
+               findViewById(R.id.login_btn).setVisibility(View.INVISIBLE);
+               findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
+               findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
+               Toast.makeText(this, "로그인 성공",Toast.LENGTH_SHORT).show();
+            } catch (ApiException apiException){
+                String message = apiException.getMessage();
+                if(message==null || message.isEmpty()) {
+                    Toast.makeText(this, message+" 오류 발생",Toast.LENGTH_SHORT).show();
+                }
+
+            }
         }
     }
 }
