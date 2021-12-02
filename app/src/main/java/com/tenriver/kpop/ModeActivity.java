@@ -51,8 +51,10 @@ public class ModeActivity extends AppCompatActivity {
     private TextView kpop3;
     private TextView mode_Title;
 
-    private TextView basicTxt;
-    private TextView challengeTxt;
+    // 각 모드 리니어레이아웃
+    private LinearLayout basic_linear;
+    private LinearLayout challenge_linear;
+
     private int currentMode = 0; // 0은 basic, 1은 challenge
 
     @Override
@@ -83,8 +85,8 @@ public class ModeActivity extends AppCompatActivity {
         ImageView remote_mode = (ImageView) findViewById(R.id.Remote_mode);
         ConstraintLayout remotebutton_mode = (ConstraintLayout) findViewById(R.id.Remote_button_mode);
 
-        basicTxt = findViewById(R.id.txt_basicmode);
-        challengeTxt = findViewById(R.id.txt_challenge);
+        basic_linear = findViewById(R.id.basic_linear);
+        challenge_linear = findViewById(R.id.challenge_linear);
 
         mode_up = findViewById(R.id.mode_up);
         mode_down = findViewById(R.id.mode_down);
@@ -105,8 +107,8 @@ public class ModeActivity extends AppCompatActivity {
         kpop2.startAnimation(textfadein);
         kpop3.startAnimation(textfadein);
         mode_Title.startAnimation(textfadein);
-        basicTxt.startAnimation(textfadein);
-        challengeTxt.setVisibility(View.GONE); // 처음 시작은 basic이므로 챌린지는 보이지않게
+        //basic_linear.startAnimation(textfadein);
+        challenge_linear.setVisibility(View.GONE); // 처음 시작은 basic이므로 챌린지는 보이지않게
 
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remote_mode.startAnimation(RemoteUp);
@@ -167,8 +169,8 @@ public class ModeActivity extends AppCompatActivity {
                 if( currentMode == 1)
                 {
                     currentMode = 0;
-                    challengeTxt.setVisibility(View.GONE);
-                    basicTxt.setVisibility(View.VISIBLE);
+                    challenge_linear.setVisibility(View.GONE);
+                    basic_linear.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -179,8 +181,8 @@ public class ModeActivity extends AppCompatActivity {
                 if( currentMode == 0)
                 {
                     currentMode = 1;
-                    challengeTxt.setVisibility(View.VISIBLE);
-                    basicTxt.setVisibility(View.GONE);
+                    challenge_linear.setVisibility(View.VISIBLE);
+                    basic_linear.setVisibility(View.GONE);
                 }
             }
         });
