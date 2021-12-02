@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
     private int pointNow;
     private int totalPoint;
 
+    private Toast adToast;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -493,12 +495,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(adRandom == 0){
             adPoint = 60;
-            Toast.makeText(this, getString(R.string.congratulation), Toast.LENGTH_SHORT).show();
+            adToast = Toast.makeText(this, getString(R.string.congratulation), Toast.LENGTH_SHORT);
         }
 
         else{
             adPoint = 30;
-            Toast.makeText(this, getString(R.string.point_30), Toast.LENGTH_SHORT).show();
+            adToast = Toast.makeText(this, getString(R.string.point_30), Toast.LENGTH_SHORT);
         }
 
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
@@ -646,6 +648,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onAdDismissedFullScreenContent() {
                     Log.d("로그", "Ad 닫기");
+                    adToast.show();
                     loadRewardedAd();
                 }
 

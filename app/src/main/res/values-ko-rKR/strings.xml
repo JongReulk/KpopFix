@@ -52,5 +52,6 @@
     <string name="tryAgain">잠시 후 다시 시도해 주세요.</string>
     <string name="congratulation">축하합니다! 60포인트를 얻었습니다!!!</string>
     <string name="point_30">30포인트를 획득하였습니다!!</string>
+    <string name="seeAd">광고보고\n포인트얻기</string>
 
 </resources>

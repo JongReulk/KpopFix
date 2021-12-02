@@ -52,5 +52,6 @@
     <string name="tryAgain">Please try again in a few minutes.</string>
     <string name="congratulation">Congratulations! got 60 points!!!</string>
     <string name="point_30">You have earned 30 points!!</string>
+    <string name="seeAd">See Ad\nGet Points</string>
 
 </resources>
