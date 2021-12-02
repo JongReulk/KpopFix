@@ -404,6 +404,24 @@
         app:layout_constraintHorizontal_bias="0.5"/>
 
     <Button
+        android:id="@+id/logout_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:background="@drawable/btn_interior"
+        android:fontFamily="@font/font_basic"
+        android:textColor="@color/gray"
+        android:padding="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/Remote_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
+    <Button
         android:id="@+id/leaderboard_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

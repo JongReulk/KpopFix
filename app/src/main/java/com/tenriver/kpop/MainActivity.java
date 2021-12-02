@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
     private Button loginbtn;
     private Button submitbtn;
     private Button boardbtn;
+    private Button logoutbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
         kpop3.startAnimation(textfadein);
         mvquiz.startAnimation(textfadein);
         txtpoint.startAnimation(textfadein);
+
+        signinsilently();
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -357,6 +360,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 rank();
+            }
+        });
+
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signout();
             }
         });
 
@@ -723,6 +733,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void signout() {
+        GoogleSignInClient signInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
+        signInClient.signOut().addOnSuccessListener(this, task -> {
+            findViewById(R.id.login_btn).setVisibility(View.VISIBLE);
+            findViewById(R.id.leaderboard_btn).setVisibility(View.INVISIBLE);
+            findViewById(R.id.logout_btn).setVisibility(View.INVISIBLE);
+            findViewById(R.id.submit_btn).setVisibility(View.INVISIBLE);
+        });
+    }
+
     private void submit() {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         challengehighscore = prefs.getInt(KEY_CHALLENGEHIGHSCORE, 0);
@@ -767,6 +787,7 @@ public class MainActivity extends AppCompatActivity {
             googleSignInAccount = account;
             findViewById(R.id.login_btn).setVisibility(View.INVISIBLE);
             findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
+            findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
             findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
         }
         else{
@@ -788,6 +809,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // 로그인 성공 시시
                findViewById(R.id.login_btn).setVisibility(View.INVISIBLE);
+                findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
                findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
                findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
                Toast.makeText(this, "로그인 성공",Toast.LENGTH_SHORT).show();
