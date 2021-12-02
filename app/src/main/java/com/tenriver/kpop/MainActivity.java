@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         mvquiz.startAnimation(textfadein);
         txtpoint.startAnimation(textfadein);
 
-        signinsilently();
+
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         loginbtn = findViewById(R.id.login_btn);
         submitbtn = findViewById(R.id.submit_btn);
         boardbtn = findViewById(R.id.leaderboard_btn);
+        logoutbtn = findViewById(R.id.logout_btn);
 
 
 
@@ -223,6 +224,8 @@ public class MainActivity extends AppCompatActivity {
                 soundPoolVolume=0.4f;
             }
         }
+
+        signinsilently();
 
         // 포인트 받아오기
         loadPoint();
