@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
-        android:text="1/10"
+        android:text="1/100"
         android:fontFamily="@font/font_basic"
 
         app:layout_constraintTop_toTopOf="parent"
