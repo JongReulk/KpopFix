@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     private AdView mAdview;
     private Button rewardAdButton;
     private RewardedAd mRewardedAd;
+    private boolean isEarned = false;
 
     SettingDialog settingDialog;
     private float soundPoolVolume;
@@ -549,7 +550,7 @@ public class MainActivity extends AppCompatActivity {
         Integer adPoint;
         Integer adRandom = random.nextInt(4);
 
-        adToast = null;
+
 
         if(adRandom == 0){
             adPoint = 60;
@@ -708,8 +709,9 @@ public class MainActivity extends AppCompatActivity {
                 public void onAdDismissedFullScreenContent() {
                     Log.d("로그", "Ad 닫기");
 
-                    if(adToast!=null){
+                    if(isEarned){
                         adToast.show();
+                        isEarned = false;
                     }
                     loadRewardedAd();
                 }
@@ -720,6 +722,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
                     Log.d("로그", "유저가 보상을 받았습니다.");
+                    isEarned = true;
                     getAdPoint();
                 }
             });
