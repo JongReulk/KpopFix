@@ -11,6 +11,7 @@ import android.text.Spannable;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -55,6 +56,13 @@ public class ModeActivity extends AppCompatActivity {
     private LinearLayout basic_linear;
     private LinearLayout challenge_linear;
 
+    // 리니어레이아웃 안의 모드 텍스트
+    private TextView basic_text;
+    private TextView challenge_text;
+
+    Animation anim;
+
+    // 현재 골라진 모드를 숫자로 지정
     private int currentMode = 0; // 0은 basic, 1은 challenge
 
     @Override
@@ -87,6 +95,8 @@ public class ModeActivity extends AppCompatActivity {
 
         basic_linear = findViewById(R.id.basic_linear);
         challenge_linear = findViewById(R.id.challenge_linear);
+        basic_text = findViewById(R.id.txt_basicmode);
+        challenge_text = findViewById(R.id.txt_challengemode);
 
         mode_up = findViewById(R.id.mode_up);
         mode_down = findViewById(R.id.mode_down);
@@ -100,6 +110,13 @@ public class ModeActivity extends AppCompatActivity {
         mode_up.setEnabled(true);
         mode_down.setEnabled(true);
         mode_confirm.setEnabled(true);
+
+        // text blink animation
+        anim = new AlphaAnimation(0.0f,1.0f);
+        anim.setDuration(100);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
 
         //페이드인 애니메이션
         Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
@@ -193,6 +210,8 @@ public class ModeActivity extends AppCompatActivity {
                 // basic mode
                 if( currentMode == 0 )
                 {
+                    basic_text.startAnimation(anim);
+
                     soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
 
                     mode_down.setEnabled(false);
@@ -232,6 +251,8 @@ public class ModeActivity extends AppCompatActivity {
                 // challenge mode
                 if ( currentMode == 1 )
                 {
+                    challenge_text.startAnimation(anim);
+
                     soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
 
                     mode_down.setEnabled(false);
