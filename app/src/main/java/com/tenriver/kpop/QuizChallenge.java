@@ -441,18 +441,16 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
                 }
 
-
-                if(questionCounter >= questionCountTotal)
-                {
-                    showInterstitial();
-                }
                 else {
-                    if(!isChallengefinish) {
+                    if (questionCounter >= questionCountTotal) {
+                        showInterstitial();
+                    } else {
                         showNextQuestion();
                         leftSpeaker.startAnimation(speakerleft_anim);
                         rightSpeaker.startAnimation(speakerright_anim);
 
                         playVideo();
+
                     }
                 }
             }
@@ -755,8 +753,8 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
         else {
             nextButton.setText(getString(R.string.Finish));
-            LoadAD();
             isChallengefinish = true;
+            LoadAD();
 
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }
