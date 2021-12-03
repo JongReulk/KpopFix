@@ -53,5 +53,7 @@
     <string name="congratulation">축하합니다! 60포인트를 얻었습니다!!!</string>
     <string name="point_30">30포인트를 획득하였습니다!!</string>
     <string name="seeAd">광고보고\n포인트얻기</string>
+    <string name="fatalerror">치명적인 오류가 발생했습니다.</string>
+    <string name="waitasecond">잠시만 기다려주세요.</string>
 
 </resources>

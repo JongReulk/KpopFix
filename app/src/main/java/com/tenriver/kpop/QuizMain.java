@@ -60,6 +60,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
     //static String API_KEY ="AIzaSyDImlmmX6mnicXNlzed8TH1cn5YN62hBN0"; // 구글 콘솔사이트에서 발급받는 키
     static String API_KEY ="AIzaSyCnt7CWC3z_t_OimQLUwJ5-yXf6C6F83-A";
+    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
     static int score = 0;
     static int plus = 0;
     static int videoLength;// 이지 노말 하드에 따라서 바뀜
@@ -456,29 +457,13 @@ public class QuizMain extends YouTubeBaseActivity {
     private void LoadAD() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+        InterstitialAd.load(this,INTERSTITIAL_AD_ID, adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         // The mInterstitialAd reference will be null until
                         // an ad is loaded.
                         QuizMain.this.screenAd = interstitialAd;
-
-                        screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                            @Override
-                            public void onAdDismissedFullScreenContent() {
-                                super.onAdDismissedFullScreenContent();
-                                QuizMain.this.screenAd = null;
-                                if (isFinished){
-                                    finishQuiz();
-                                }
-
-                                else{
-                                    initPlayer();
-                                    showNextQuestion();
-                                }
-                            }
-                        });
 
                         if(isFirst){
                             showInterstitial();
@@ -490,6 +475,7 @@ public class QuizMain extends YouTubeBaseActivity {
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         // Handle the error
                         QuizMain.this.screenAd = null;
+                        Toast.makeText(getApplicationContext(), getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
                     }
 
                 });
@@ -531,6 +517,7 @@ public class QuizMain extends YouTubeBaseActivity {
                     @Override
                     public void onError(YouTubePlayer.ErrorReason errorReason) {
                         Log.d("로그", "init player 에러발생"+errorReason);
+                        Toast.makeText(getApplicationContext(), getString(R.string.waitasecond), Toast.LENGTH_SHORT).show();
 
                         isError = true;
 
@@ -550,7 +537,7 @@ public class QuizMain extends YouTubeBaseActivity {
                                                 YouTubeInitializationResult youTubeInitializationResult) {
                 // 못 불러왔을 때
                 Log.e("Fail!!","");
-
+                Toast.makeText(getApplicationContext(), getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -771,7 +758,7 @@ public class QuizMain extends YouTubeBaseActivity {
             nextButton.setText(getString(R.string.Next));
         }
         else{
-            LoadAD();
+            //LoadAD();
             isFinished=true;
             nextButton.setText(getString(R.string.Finish));
         }
@@ -835,10 +822,28 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
     private void showInterstitial() {
+        screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                super.onAdDismissedFullScreenContent();
+                QuizMain.this.screenAd = null;
+                if (isFinished){
+                    finishQuiz();
+                }
+
+                else{
+                    initPlayer();
+                    showNextQuestion();
+                }
+                LoadAD();
+            }
+        });
+
         if (screenAd != null) {
             screenAd.show(QuizMain.this);
             screenAd = null;
         } else {
+            Toast.makeText(this, getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
             Log.e("TAG","NO SHOW!");
         }
 

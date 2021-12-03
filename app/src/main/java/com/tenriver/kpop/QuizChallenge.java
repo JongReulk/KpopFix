@@ -484,6 +484,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                         // Handle the error
                         QuizChallenge.this.screenAd = null;
                         Log.d("로그", loadAdError+" 에러발생");
+                        Toast.makeText(getApplicationContext(), getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
                     }
 
                 });
@@ -525,6 +526,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                     @Override
                     public void onError(YouTubePlayer.ErrorReason errorReason) {
                         Log.d("로그", "init player 에러발생"+errorReason);
+                        Toast.makeText(getApplicationContext(), getString(R.string.waitasecond), Toast.LENGTH_SHORT).show();
 
                         isError = true;
 
@@ -544,7 +546,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                                                 YouTubeInitializationResult youTubeInitializationResult) {
                 // 못 불러왔을 때
                 Log.e("Fail!!","");
-
+                Toast.makeText(getApplicationContext(), getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -854,7 +856,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
             screenAd = null;
 
         } else {
-
+            Toast.makeText(this, getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
             Log.e("TAG","NO SHOW!");
         }
 

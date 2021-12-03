@@ -53,5 +53,7 @@
     <string name="congratulation">Congratulations! Got 60 points!!!</string>
     <string name="point_30">You have earned 30 points!!</string>
     <string name="seeAd">See Ad\nGet Points</string>
+    <string name="fatalerror">A fatal error has occurred.</string>
+    <string name="waitasecond">Please wait a moment.</string>
 
 </resources>
