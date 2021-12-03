@@ -549,6 +549,8 @@ public class MainActivity extends AppCompatActivity {
         Integer adPoint;
         Integer adRandom = random.nextInt(4);
 
+        adToast = null;
+
         if(adRandom == 0){
             adPoint = 60;
             adToast = Toast.makeText(this, getString(R.string.congratulation), Toast.LENGTH_SHORT);
@@ -689,6 +691,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showRewardedAd() {
         if (mRewardedAd != null) {
+
             mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
@@ -704,7 +707,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onAdDismissedFullScreenContent() {
                     Log.d("로그", "Ad 닫기");
-                    adToast.show();
+
+                    if(adToast!=null){
+                        adToast.show();
+                    }
                     loadRewardedAd();
                 }
 
@@ -717,6 +723,7 @@ public class MainActivity extends AppCompatActivity {
                     getAdPoint();
                 }
             });
+
         }
         else {
             Toast.makeText(this, getString(R.string.tryAgain), Toast.LENGTH_SHORT).show();
