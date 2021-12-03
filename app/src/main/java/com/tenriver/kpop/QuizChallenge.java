@@ -336,7 +336,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                     Log.v("힌트횟수소진","힌트사용횟수 모두 사용");
                 }
 
-                else if (hintPoint < 10){
+                else if (hintPoint < 20){
                     Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
                     Log.v("포인트부족","포인트가 부족함");
                 }
@@ -368,7 +368,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                     Log.v("힌트횟수소진","힌트사용횟수 모두 사용");
                 }
 
-                else if (hintPoint < 10){
+                else if (hintPoint < 30){
                     Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
                     Log.v("포인트부족","포인트가 부족함");
                 }
