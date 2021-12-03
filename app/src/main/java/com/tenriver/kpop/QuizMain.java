@@ -537,7 +537,6 @@ public class QuizMain extends YouTubeBaseActivity {
                                                 YouTubeInitializationResult youTubeInitializationResult) {
                 // 못 불러왔을 때
                 Log.e("Fail!!","");
-                Toast.makeText(getApplicationContext(), getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
             }
         });
     }
