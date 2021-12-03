@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 로그인 및 랭킹 관련
     private Button loginbtn;
+    private Button submitbtn;
     private Button boardbtn;
     private Button logoutbtn;
 
@@ -161,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
 
         //로그인 및 랭킹 관련
         loginbtn = findViewById(R.id.login_btn);
+        submitbtn = findViewById(R.id.submit_btn);
         boardbtn = findViewById(R.id.leaderboard_btn);
         logoutbtn = findViewById(R.id.logout_btn);
 
@@ -351,6 +353,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        submitbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submit();
+            }
+        });
 
         boardbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -745,6 +753,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.login_btn).setVisibility(View.VISIBLE);
             findViewById(R.id.leaderboard_btn).setVisibility(View.INVISIBLE);
             findViewById(R.id.logout_btn).setVisibility(View.INVISIBLE);
+            findViewById(R.id.submit_btn).setVisibility(View.INVISIBLE);
         });
     }
 
@@ -793,7 +802,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.login_btn).setVisibility(View.INVISIBLE);
             findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
             findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
-            Toast.makeText(this, "로그인 성공",Toast.LENGTH_SHORT).show();
+            findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
         }
         else{
             // 로그인 안됨
@@ -816,6 +825,7 @@ public class MainActivity extends AppCompatActivity {
                findViewById(R.id.login_btn).setVisibility(View.INVISIBLE);
                 findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
                findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
+               findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
                Toast.makeText(this, "로그인 성공",Toast.LENGTH_SHORT).show();
             } catch (ApiException apiException){
                 String message = apiException.getMessage();
