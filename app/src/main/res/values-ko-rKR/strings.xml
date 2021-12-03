@@ -55,5 +55,9 @@
     <string name="seeAd">광고보고\n포인트얻기</string>
     <string name="fatalerror">치명적인 오류가 발생했습니다.</string>
     <string name="waitasecond">잠시만 기다려주세요.</string>
+    <string name="scoreupdate">점수\n업데이트</string>
+    <string name="login">로그인</string>
+    <string name="logout">로그아웃</string>
+    <string name="ranking">랭킹</string>
 
 </resources>

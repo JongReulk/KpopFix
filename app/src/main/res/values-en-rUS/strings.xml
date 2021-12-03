@@ -55,5 +55,9 @@
     <string name="seeAd">See Ad\nGet Points</string>
     <string name="fatalerror">A fatal error has occurred.</string>
     <string name="waitasecond">Please wait a moment.</string>
+    <string name="scoreupdate">Score\nUpdate</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="ranking">Ranking</string>
 
 </resources>
