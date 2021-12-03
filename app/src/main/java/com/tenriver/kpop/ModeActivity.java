@@ -124,7 +124,6 @@ public class ModeActivity extends AppCompatActivity {
         kpop2.startAnimation(textfadein);
         kpop3.startAnimation(textfadein);
         mode_Title.startAnimation(textfadein);
-        //basic_linear.startAnimation(textfadein);
         challenge_linear.setVisibility(View.GONE); // 처음 시작은 basic이므로 챌린지는 보이지않게
 
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);

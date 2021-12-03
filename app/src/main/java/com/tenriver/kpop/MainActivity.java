@@ -685,6 +685,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 mRewardedAd = null;
+                loadRewardedAd();
                 Log.d("로그", ""+loadAdError);
             }
         });
