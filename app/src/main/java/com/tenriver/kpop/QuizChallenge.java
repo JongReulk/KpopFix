@@ -55,6 +55,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
     public static final String CHALLENGE_HIGH_SCORE = "challengehighScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
+    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
 
     YouTubePlayerView playerView;
     YouTubePlayer player;
@@ -461,40 +462,28 @@ public class QuizChallenge extends YouTubeBaseActivity {
     private void LoadAD() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+        InterstitialAd.load(this,INTERSTITIAL_AD_ID, adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+
                         // The mInterstitialAd reference will be null until
                         // an ad is loaded.
                         QuizChallenge.this.screenAd = interstitialAd;
-
-                        screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                            @Override
-                            public void onAdDismissedFullScreenContent() {
-                                super.onAdDismissedFullScreenContent();
-                                QuizChallenge.this.screenAd = null;
-                                if (isFinished){
-                                    finishQuiz();
-                                }
-
-                                else{
-                                    initPlayer();
-                                    showNextQuestion();
-                                }
-                            }
-                        });
 
                         if(isFirst){
                             showInterstitial();
                             isFirst = false;
                         }
+
+
                     }
 
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         // Handle the error
                         QuizChallenge.this.screenAd = null;
+                        Log.d("로그", loadAdError+" 에러발생");
                     }
 
                 });
@@ -754,7 +743,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
         else {
             nextButton.setText(getString(R.string.Finish));
             isChallengefinish = true;
-            LoadAD();
+            //LoadAD();
 
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }
@@ -780,7 +769,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
             nextButton.setText(getString(R.string.Next));
         }
         else{
-            LoadAD();
+            //LoadAD();
             isFinished=true;
             nextButton.setText(getString(R.string.Finish));
         }
@@ -842,10 +831,30 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
 
     private void showInterstitial() {
+
+        screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                super.onAdDismissedFullScreenContent();
+                QuizChallenge.this.screenAd = null;
+                if (isFinished){
+                    finishQuiz();
+                }
+
+                else{
+                    initPlayer();
+                    showNextQuestion();
+                }
+                LoadAD();
+            }
+        });
+
         if (screenAd != null) {
             screenAd.show(QuizChallenge.this);
             screenAd = null;
+
         } else {
+
             Log.e("TAG","NO SHOW!");
         }
 
