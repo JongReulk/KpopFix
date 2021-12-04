@@ -45,6 +45,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.Random;
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     //로그인 관련
     private static final int RC_SIGN_IN=9001;
+    private static final int RC_ACHIEVEMENT_UI = 9003;
     private static final int RC_LEADERBOARD_UI = 9004;
     static GoogleSignInAccount googleSignInAccount=null;
 
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
     private Button submitbtn;
     private Button boardbtn;
     private Button logoutbtn;
+    private Button achievementbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
         submitbtn = findViewById(R.id.submit_btn);
         boardbtn = findViewById(R.id.leaderboard_btn);
         logoutbtn = findViewById(R.id.logout_btn);
+        achievementbtn = findViewById(R.id.achievement_btn);
 
 
 
@@ -371,6 +375,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signout();
+            }
+        });
+
+        achievementbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAchievements();
             }
         });
 
@@ -809,6 +820,22 @@ public class MainActivity extends AppCompatActivity {
             // 로그인 안됨
             Toast.makeText(this, "오프라인입니다. 로그인하세요.",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void showAchievements() {
+        try {
+            Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                    .getAchievementsIntent()
+                    .addOnSuccessListener(new OnSuccessListener<Intent>() {
+                        @Override
+                        public void onSuccess(Intent intent) {
+                            startActivityForResult(intent, RC_ACHIEVEMENT_UI);
+                        }
+                    });
+        } catch (Exception e) {
+            Log.d("로그", "업적 불러오기 실패");
+        }
+        
     }
 
     @Override
