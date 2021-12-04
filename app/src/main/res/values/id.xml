@@ -5,6 +5,10 @@
     <string name="app_id" translatable="false">625182011319</string>
     <!--package_name-->
     <string name="package_name" translatable="false">com.tenriver.kpop</string>
+    <!--achievement Start lightly (Easy)-->
+    <string name="achievement_start_lightly_easy" translatable="false">CgkIt9-B_pgSEAIQAw</string>
+    <!--achievement Start lightly (Normal)-->
+    <string name="achievement_start_lightly_normal" translatable="false">CgkIt9-B_pgSEAIQBA</string>
     <!--leaderboard KPOP MV QUIZ HIGHSCORE-->
     <string name="leaderboard_kpop_mv_quiz_highscore" translatable="false">CgkIt9-B_pgSEAIQAg</string>
 </resources>

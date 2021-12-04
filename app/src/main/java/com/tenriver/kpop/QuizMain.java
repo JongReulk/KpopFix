@@ -38,6 +38,9 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.games.Games;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -171,10 +174,22 @@ public class QuizMain extends YouTubeBaseActivity {
         if(videoLength == 10000){
             isEasy=true;
             plus = 10;
+            try {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .unlock(getString(R.string.achievement_start_lightly_easy));
+            }catch (Exception e) {
+                Log.d("로그", "업적 업로드 실패");
+            }
         }
 
         if(videoLength == 5000){
             plus = 20;
+            try {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .unlockImmediate(getString(R.string.achievement_start_lightly_normal));
+            }catch (Exception e) {
+                Log.d("로그", "업적 업로드 실패");
+            }
         }
 
         if(videoLength == 3000){
