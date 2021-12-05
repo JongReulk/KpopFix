@@ -59,5 +59,10 @@
     <string name="login">로그인</string>
     <string name="logout">로그아웃</string>
     <string name="ranking">랭킹</string>
+    <string name="offline">오프라인입니다. 로그인 해주세요!</string>
+    <string name="loginsucceed">로그인 성공!</string>
+    <string name="loginFail">로그인 실패!</string>
+    <string name="updateSuccess">점수 업데이트 성공!</string>
+    <string name="updateFail">점수 업데이트 실패!</string>
 
 </resources>

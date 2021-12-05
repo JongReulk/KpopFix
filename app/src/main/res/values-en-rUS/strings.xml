@@ -59,5 +59,10 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="ranking">Ranking</string>
+    <string name="offline">Offline. Please log in!</string>
+    <string name="loginsucceed">log-in succeed!</string>
+    <string name="loginFail">Login failed!</string>
+    <string name="updateSuccess">Score update success!</string>
+    <string name="updateFail">Score update failed!</string>
 
 </resources>

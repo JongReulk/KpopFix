@@ -171,7 +171,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
         videoLength = intent.getIntExtra("difficulty_time",10000);
 
-        /*
+
         try {
             GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
             gamesClient.setViewForPopups(findViewById(R.id.googlePopupQuizMain));
@@ -179,7 +179,7 @@ public class QuizMain extends YouTubeBaseActivity {
             Toast.makeText(getApplicationContext(), "알림 불러오기 성공!", Toast.LENGTH_SHORT).show();
         } catch(Exception e){
             Log.d("로그", "알림 불러오기 실패");
-        }*/
+        }
 
 
 
@@ -189,9 +189,6 @@ public class QuizMain extends YouTubeBaseActivity {
             try {
                 Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
                         .unlock(getString(R.string.achievement_start_lightly_easy));
-                GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
-                gamesClient.setViewForPopups(findViewById(R.id.googlePopupQuizMain));
-                Toast.makeText(getApplicationContext(), "알림 불러오기 성공!", Toast.LENGTH_SHORT).show();
             }catch (Exception e) {
                 Log.d("로그", "업적 업로드 실패");
             }

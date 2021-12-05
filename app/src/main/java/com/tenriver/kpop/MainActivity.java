@@ -783,24 +783,22 @@ public class MainActivity extends AppCompatActivity {
             // 여러 개의 리더보드를 만든다면 이 리더보드 ID를 여러 개 저장해야 함
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
                     .submitScore(getString(R.string.leaderboard_kpop_mv_quiz_highscore),challengehighscore);
-            Toast.makeText(this, "점수 업로드 성공",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.updateSuccess,Toast.LENGTH_SHORT).show();
         }catch (Exception e) {
-            Toast.makeText(this, "점수 업로드 실패",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.updateFail,Toast.LENGTH_SHORT).show();
 
         }
     }
 
     private void rank() {
         try {
-            
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
                     .getLeaderboardIntent(getString(R.string.leaderboard_kpop_mv_quiz_highscore))
                     .addOnSuccessListener(intent -> {
                         startActivityForResult(intent, RC_LEADERBOARD_UI);
                     });
-            Toast.makeText(this, "점수 업로드 성공",Toast.LENGTH_SHORT).show();
         }catch(Exception e) {
-            Toast.makeText(this, "리더보드 불러오기 실패",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.tryAgain), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -828,7 +826,6 @@ public class MainActivity extends AppCompatActivity {
                 GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
                 gamesClient.setViewForPopups(findViewById(R.id.googlePopup));
                 gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
-                Toast.makeText(this,"어서오세요! " + account +" 님", Toast.LENGTH_SHORT).show();
             } catch(Exception e){
                 Log.d("로그", "팝업 불러오기 실패");
             }
@@ -836,7 +833,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             // 로그인 안됨
-            Toast.makeText(this, "오프라인입니다. 로그인하세요.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.offline),Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -872,20 +869,18 @@ public class MainActivity extends AppCompatActivity {
                findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
                findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
                findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
-               Toast.makeText(this, "로그인 성공",Toast.LENGTH_SHORT).show();
+               Toast.makeText(this, getString(R.string.loginsucceed),Toast.LENGTH_SHORT).show();
 
                 try {
                     GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
                     gamesClient.setViewForPopups(findViewById(R.id.googlePopup));
                     gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
-                    Toast.makeText(this,"팝업 준비완료!", Toast.LENGTH_SHORT);
                 } catch(Exception e){
-                    Toast.makeText(this,"팝업 준비실패 ㅜㅜㅜ", Toast.LENGTH_SHORT);
                 }
             } catch (ApiException apiException){
                 String message = apiException.getMessage();
                 if(message==null || message.isEmpty()) {
-                    Toast.makeText(this, message+" 오류 발생",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.loginFail),Toast.LENGTH_SHORT).show();
                 }
 
             }
