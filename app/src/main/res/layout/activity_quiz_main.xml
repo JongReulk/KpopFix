@@ -7,6 +7,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+
+
     <ImageView
         android:id="@+id/Image_TV_quizmain"
         android:layout_width="0dp"
@@ -363,6 +365,18 @@
         app:layout_constraintHeight_percent="0.3"
         app:layout_constraintWidth_percent="0.25"
         />
+
+    <FrameLayout
+        android:id="@+id/googlePopupQuizMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

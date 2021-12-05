@@ -9,6 +9,8 @@
     <string name="achievement_start_lightly_easy" translatable="false">CgkIt9-B_pgSEAIQAw</string>
     <!--achievement Start lightly (Normal)-->
     <string name="achievement_start_lightly_normal" translatable="false">CgkIt9-B_pgSEAIQBA</string>
+    <!--achievement Start lightly (Hard)-->
+    <string name="achievement_start_lightly_hard" translatable="false">CgkIt9-B_pgSEAIQBQ</string>
     <!--leaderboard KPOP MV QUIZ HIGHSCORE-->
     <string name="leaderboard_kpop_mv_quiz_highscore" translatable="false">CgkIt9-B_pgSEAIQAg</string>
 </resources>

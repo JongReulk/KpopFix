@@ -14,6 +14,7 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -45,6 +46,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
@@ -231,6 +233,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         signinsilently();
+
+
+
+        
 
         // 포인트 받아오기
         loadPoint();
@@ -802,12 +808,14 @@ public class MainActivity extends AppCompatActivity {
         // 반드시 DEFAULT_GAMES_SIGN_IN 으로 해주기
         GoogleSignInClient signInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
         Intent loginintent = signInClient.getSignInIntent();
+
         startActivityForResult(loginintent, RC_SIGN_IN);
     }
 
     private void signinsilently(){
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
         if(GoogleSignIn.hasPermissions(account, signInOptions.getScopeArray())){
             // 이미 로그인 되어있을 경우
             googleSignInAccount = account;
@@ -815,6 +823,16 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
             findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
             findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
+
+            try {
+                GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
+                gamesClient.setViewForPopups(findViewById(R.id.googlePopup));
+                gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+                Toast.makeText(this,"어서오세요! " + account +" 님", Toast.LENGTH_SHORT).show();
+            } catch(Exception e){
+                Log.d("로그", "팝업 불러오기 실패");
+            }
+
         }
         else{
             // 로그인 안됨
@@ -851,10 +869,19 @@ public class MainActivity extends AppCompatActivity {
 
                 // 로그인 성공 시시
                findViewById(R.id.login_btn).setVisibility(View.INVISIBLE);
-                findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
+               findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
                findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
                findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
                Toast.makeText(this, "로그인 성공",Toast.LENGTH_SHORT).show();
+
+                try {
+                    GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
+                    gamesClient.setViewForPopups(findViewById(R.id.googlePopup));
+                    gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+                    Toast.makeText(this,"팝업 준비완료!", Toast.LENGTH_SHORT);
+                } catch(Exception e){
+                    Toast.makeText(this,"팝업 준비실패 ㅜㅜㅜ", Toast.LENGTH_SHORT);
+                }
             } catch (ApiException apiException){
                 String message = apiException.getMessage();
                 if(message==null || message.isEmpty()) {
