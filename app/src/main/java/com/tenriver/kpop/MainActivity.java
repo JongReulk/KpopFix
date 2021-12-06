@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String KEY_HIGHSCORE = "keyhighscore";
     public static final String KEY_CHALLENGEHIGHSCORE = "keychallengehighscore";
     public static final String KEY_POINT = "keypoint";
+    public static final String KEY_AD_TIME = "adtime";
 
     public static final String BASICMODE_HIGHSCORE = "basichighscore";
     public static final String CHALLENGEMODE_HIGHSCORE = "challengehighscore";
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtpoint;
     private int pointNow;
     private int totalPoint;
+    private int ad_time;
 
     private Toast adToast;
 
@@ -544,6 +546,32 @@ public class MainActivity extends AppCompatActivity {
         totalPoint = point.getInt(KEY_POINT,100);
         txtpoint.setText(""+totalPoint);
 
+        try {
+            if(totalPoint >2000) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_many_drops_make_a_shower), 5);
+            }
+            else if(totalPoint >1000) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_many_drops_make_a_shower), 4);
+            }
+            else if(totalPoint >500) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_many_drops_make_a_shower), 3);
+            }
+            else if(totalPoint >300) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_many_drops_make_a_shower), 2);
+            }
+            else if(totalPoint >200) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_many_drops_make_a_shower), 5);
+            }
+
+        } catch(Exception e){
+            Log.d("로그", "포인트 업적 실패");
+        }
+
     }
 
     private void updatePoint() {
@@ -553,13 +581,13 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
-        totalPoint = point.getInt(KEY_POINT,100);
         totalPoint = totalPoint + pointNow;
-        txtpoint.setText(""+totalPoint);
 
         SharedPreferences.Editor pointEditor = point.edit();
         pointEditor.putInt(KEY_POINT,totalPoint);
         pointEditor.apply();
+
+        loadPoint();
     }
 
     private void getAdPoint() {
@@ -567,8 +595,6 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
         Integer adPoint;
         Integer adRandom = random.nextInt(4);
-
-
 
         if(adRandom == 0){
             adPoint = 60;
@@ -582,13 +608,47 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
-        totalPoint = point.getInt(KEY_POINT,100);
         totalPoint = totalPoint + adPoint;
-        txtpoint.setText(""+totalPoint);
 
         SharedPreferences.Editor pointEditor = point.edit();
         pointEditor.putInt(KEY_POINT,totalPoint);
         pointEditor.apply();
+
+        SharedPreferences adtimes = getSharedPreferences("sharedad",MODE_PRIVATE);
+
+        ad_time = adtimes.getInt(KEY_AD_TIME,0);
+        ad_time ++;
+
+        try {
+            if(ad_time >200) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_has_anyone_seen_more_ads_than_me), 4);
+            }
+            else if(ad_time >100) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_has_anyone_seen_more_ads_than_me), 3);
+            }
+            else if(ad_time >50) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_has_anyone_seen_more_ads_than_me), 2);
+            }
+            else if(ad_time >10) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_has_anyone_seen_more_ads_than_me), 1);
+            }
+
+
+        } catch(Exception e){
+            Log.d("로그", "포인트 업적 실패");
+        }
+
+        SharedPreferences.Editor adEditor = adtimes.edit();
+        adEditor.putInt(KEY_AD_TIME,ad_time);
+        adEditor.apply();
+
+
+
+        loadPoint();
     }
 
     @Override
