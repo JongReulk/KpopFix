@@ -64,5 +64,6 @@
     <string name="loginFail">Login failed!</string>
     <string name="updateSuccess">Score update success!</string>
     <string name="updateFail">Score update failed!</string>
+    <string name="achievement">Achievement</string>
 
 </resources>

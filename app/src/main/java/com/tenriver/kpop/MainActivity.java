@@ -772,6 +772,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.leaderboard_btn).setVisibility(View.INVISIBLE);
             findViewById(R.id.logout_btn).setVisibility(View.INVISIBLE);
             findViewById(R.id.submit_btn).setVisibility(View.INVISIBLE);
+            findViewById(R.id.achievement_btn).setVisibility(View.INVISIBLE);
         });
     }
 
@@ -821,6 +822,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
             findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
             findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
+            findViewById(R.id.achievement_btn).setVisibility(View.VISIBLE);
 
             try {
                 GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
@@ -869,6 +871,7 @@ public class MainActivity extends AppCompatActivity {
                findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
                findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
                findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
+               findViewById(R.id.achievement_btn).setVisibility(View.VISIBLE);
                Toast.makeText(this, getString(R.string.loginsucceed),Toast.LENGTH_SHORT).show();
 
                 try {

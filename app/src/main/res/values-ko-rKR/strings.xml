@@ -64,5 +64,6 @@
     <string name="loginFail">로그인 실패!</string>
     <string name="updateSuccess">점수 업데이트 성공!</string>
     <string name="updateFail">점수 업데이트 실패!</string>
+    <string name="achievement">업적</string>
 
 </resources>
