@@ -412,6 +412,10 @@ public class QuizMain extends YouTubeBaseActivity {
                     hintText.setVisibility(View.VISIBLE);
                     hintText.setText(hint_all);
 
+                    hintText.setSingleLine(true);
+                    hintText.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                    hintText.setSelected(true);
+
                     HintButton2.setEnabled(false);
                     HintButton3.setEnabled(false);
                 }
