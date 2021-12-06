@@ -60,6 +60,9 @@ public class QuizMain extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
 
+    private static final String QUIZ_SHARED = "quizshared";
+    private static final String BASIC_PLAY_TIME = "basicplaytime";
+
     YouTubePlayerView playerView;
     YouTubePlayer player;
 
@@ -118,7 +121,6 @@ public class QuizMain extends YouTubeBaseActivity {
 
     boolean isStarted =true;
 
-    boolean isEasy=false;
 
     private static int[] arr = {51000,61000,71000};
 
@@ -145,6 +147,9 @@ public class QuizMain extends YouTubeBaseActivity {
     // point
     private int hintPoint;
     private TextView txtHintPoint;
+
+    // 플레이 횟수
+    private int basic_playtime = 0;
 
     
     @Override
@@ -184,7 +189,6 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
         if(videoLength == 10000){
-            isEasy=true;
             plus = 10;
             try {
                 Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
@@ -322,6 +326,10 @@ public class QuizMain extends YouTubeBaseActivity {
         hintPoint = point.getInt(KEY_POINT,100);
 
         txtHintPoint.setText(""+hintPoint);
+
+        SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
+
+        basic_playtime = quiz_shared.getInt(BASIC_PLAY_TIME,0);
 
 
 
@@ -589,16 +597,9 @@ public class QuizMain extends YouTubeBaseActivity {
             player.loadVideo(question, randomStart);
 
 
-
-
-
-
             ObjectAnimator progressAnimation = ObjectAnimator.ofInt(musicProgressbar, "progress", 0,musicProgressbar.getMax() );
             progressAnimation.setDuration(musicProgressbar.getMax());
             progressAnimation.setInterpolator(new LinearInterpolator());
-
-
-
 
             // 지정 시간동안 동영상 재생하기
             handler = new Handler();
@@ -806,11 +807,73 @@ public class QuizMain extends YouTubeBaseActivity {
         if (isBackPressed) {
             score = 0;
         }
+
+        basic_playtime++;
+
+        try {
+            if (basic_playtime > 500) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_effort_never_betrays), 5);
+            }
+            else if (basic_playtime > 300) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_effort_never_betrays), 4);
+            }
+            else if (basic_playtime > 100) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_effort_never_betrays), 3);
+            }
+            else if (basic_playtime > 50) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_effort_never_betrays), 2);
+            }
+            else if (basic_playtime > 10) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_effort_never_betrays), 1);
+            }
+
+        } catch(Exception e){
+            Log.d("로그", "챌린지 업적 불러오기 실패");
+        }
+
+        if(videoLength == 10000){
+            if(score == 100){
+                try {
+                    Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                            .unlock(getString(R.string.achievement_easy_mode_master));
+                }catch (Exception e) {
+                    Log.d("로그", "업적 업로드 실패");
+                }
+            }
+        }
+
+        if(videoLength == 5000){
+            if(score == 200){
+                try {
+                    Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                            .unlock(getString(R.string.achievement_normal_mode_master));
+                }catch (Exception e) {
+                    Log.d("로그", "업적 업로드 실패");
+                }
+            }
+        }
+
+        if(videoLength == 3000){
+            if(score == 300){
+                try {
+                    Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                            .unlock(getString(R.string.achievement_hard_mode_master));
+                }catch (Exception e) {
+                    Log.d("로그", "업적 업로드 실패");
+                }
+            }
+        }
         Intent resultIntent = new Intent(this, MainActivity.class);
 
         resultIntent.putExtra(HIGH_SCORE, score);
 
         updateHintPoint();
+        updateChallengePlayTime();
         startActivity(resultIntent);
 
         Log.e("최고 점수", ":" + score);
@@ -831,6 +894,14 @@ public class QuizMain extends YouTubeBaseActivity {
         SharedPreferences.Editor pointEditor = point.edit();
         pointEditor.putInt(KEY_POINT,hintPoint);
         pointEditor.apply();
+    }
+
+    private void updateChallengePlayTime() {
+        SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
+
+        SharedPreferences.Editor quizeditor = quiz_shared.edit();
+        quizeditor.putInt(BASIC_PLAY_TIME,basic_playtime);
+        quizeditor.apply();
     }
 
     @Override

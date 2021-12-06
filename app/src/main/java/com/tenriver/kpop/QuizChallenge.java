@@ -59,7 +59,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
     private static final long COUNTDOWN_IN_MILLIS = 30500;
     private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
 
-    private static final String CHALLENGE_SHARED = "challengeshared";
+    private static final String QUIZ_SHARED = "quizshared";
     private static final String CHALLENGE_PLAY_TIME = "challengeplaytime";
 
     YouTubePlayerView playerView;
@@ -282,9 +282,9 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
         txthintCount.setText(hintCount + "/" + hintCountTotal);
 
-        SharedPreferences challenge_shared = getSharedPreferences(CHALLENGE_SHARED,MODE_PRIVATE);
+        SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
 
-        challenge_playtime = challenge_shared.getInt(CHALLENGE_PLAY_TIME,0);
+        challenge_playtime = quiz_shared.getInt(CHALLENGE_PLAY_TIME,0);
 
 
 
@@ -848,6 +848,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
         resultIntent.putExtra(CHALLENGE_HIGH_SCORE, score_challenge);
 
         updateHintPoint();
+        updateChallengePlayTime();
         startActivity(resultIntent);
 
         Log.e("최고 점수", ":" + score_challenge);
@@ -859,6 +860,14 @@ public class QuizChallenge extends YouTubeBaseActivity {
                 finish();
             }
         }, 1000);
+    }
+
+    private void updateChallengePlayTime() {
+        SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
+
+        SharedPreferences.Editor quizeditor = quiz_shared.edit();
+        quizeditor.putInt(CHALLENGE_PLAY_TIME,challenge_playtime);
+        quizeditor.apply();
     }
 
     private void updateHintPoint() {
