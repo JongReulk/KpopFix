@@ -38,6 +38,8 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.games.Games;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -56,6 +58,9 @@ public class QuizChallenge extends YouTubeBaseActivity {
     public static final String CHALLENGE_HIGH_SCORE = "challengehighScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
     private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
+
+    private static final String CHALLENGE_SHARED = "challengeshared";
+    private static final String CHALLENGE_PLAY_TIME = "challengeplaytime";
 
     YouTubePlayerView playerView;
     YouTubePlayer player;
@@ -146,6 +151,9 @@ public class QuizChallenge extends YouTubeBaseActivity {
     private int hintCount = 5;
     private int hintCountTotal = 5;
     private TextView txthintCount;
+
+    // 플레이 횟수
+    private int challenge_playtime = 0;
 
 
     @Override
@@ -273,6 +281,10 @@ public class QuizChallenge extends YouTubeBaseActivity {
         txtHintPoint.setText(""+hintPoint);
 
         txthintCount.setText(hintCount + "/" + hintCountTotal);
+
+        SharedPreferences challenge_shared = getSharedPreferences(CHALLENGE_SHARED,MODE_PRIVATE);
+
+        challenge_playtime = challenge_shared.getInt(CHALLENGE_PLAY_TIME,0);
 
 
 
@@ -785,8 +797,56 @@ public class QuizChallenge extends YouTubeBaseActivity {
         if (isBackPressed) {
             score_challenge = 0;
         }
+        challenge_playtime++;
+
+        try {
+            if (score_challenge > 1000) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_road_to_challenge_master), 4);
+            }
+            else if (score_challenge > 500) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_road_to_challenge_master), 3);
+            }
+            else if (score_challenge > 300) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_road_to_challenge_master), 2);
+            }
+            else if (score_challenge > 100) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_road_to_challenge_master), 1);
+            }
+        } catch(Exception e){
+            Log.d("로그", "챌린지 업적 불러오기 실패");
+        }
+
+        try {
+            if (challenge_playtime > 100) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_a_challenger_is_beautiful), 4);
+            }
+            else if (challenge_playtime > 50) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_a_challenger_is_beautiful), 3);
+            }
+            else if (challenge_playtime > 30) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_a_challenger_is_beautiful), 2);
+            }
+            else if (challenge_playtime > 10) {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .increment(getString(R.string.achievement_a_challenger_is_beautiful), 1);
+            }
+            else {
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                        .unlock(getString(R.string.achievement_can_you_challenge));
+            }
+        } catch(Exception e){
+            Log.d("로그", "챌린지 업적 불러오기 실패");
+        }
         Intent resultIntent = new Intent(this, MainActivity.class);
         resultIntent.putExtra(CHALLENGE_HIGH_SCORE, score_challenge);
+
         updateHintPoint();
         startActivity(resultIntent);
 
