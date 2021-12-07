@@ -374,6 +374,18 @@ public class TitleActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+        if(mediaplayer_title.isPlaying())
+        {
+            // BGM 중지
+            mediaplayer_title.pause();
+
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
