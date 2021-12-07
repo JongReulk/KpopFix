@@ -872,8 +872,10 @@ public class QuizMain extends YouTubeBaseActivity {
 
         resultIntent.putExtra(HIGH_SCORE, score);
 
+        hintPoint = hintPoint + 20;
+
         updateHintPoint();
-        updateChallengePlayTime();
+        updateBasicPlayTime();
         startActivity(resultIntent);
 
         Log.e("최고 점수", ":" + score);
@@ -896,7 +898,7 @@ public class QuizMain extends YouTubeBaseActivity {
         pointEditor.apply();
     }
 
-    private void updateChallengePlayTime() {
+    private void updateBasicPlayTime() {
         SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
 
         SharedPreferences.Editor quizeditor = quiz_shared.edit();
