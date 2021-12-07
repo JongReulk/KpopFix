@@ -3,8 +3,10 @@ package com.tenriver.kpop;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -50,6 +52,8 @@ public class TitleActivity extends AppCompatActivity {
 
     InternetDialog internetDialog;
 
+    private BroadcastReceiver receiver;
+    private IntentFilter intentFilter;
 
 
     public static final String SHARED_CLOSE = "sharedClose";
@@ -135,6 +139,28 @@ public class TitleActivity extends AppCompatActivity {
                 mediaplayer_title.setVolume(1,1);
             }
         }
+
+        // 전원 버튼 감지
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+        intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                    if(mediaplayer_title.isPlaying())
+                    {
+                        // BGM 중지
+                        mediaplayer_title.pause();
+
+                    }
+                }
+
+            }
+        };
+
+        registerReceiver(receiver, intentFilter);
 
         //타이틀 텍스트뷰
         TitleTextK = (TextView) findViewById(R.id.titletextK);
@@ -303,7 +329,12 @@ public class TitleActivity extends AppCompatActivity {
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
 
-        mediaplayer_title.pause();
+        if(mediaplayer_title.isPlaying())
+        {
+            // BGM 중지
+            mediaplayer_title.pause();
+
+        }
     }
 
 

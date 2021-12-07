@@ -2,7 +2,10 @@ package com.tenriver.kpop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -28,6 +31,9 @@ public class TipsActivity extends AppCompatActivity{
 
     private Button close;
     private Button closeforever;
+
+    private BroadcastReceiver receiver;
+    private IntentFilter intentFilter;
 
 
 
@@ -57,6 +63,28 @@ public class TipsActivity extends AppCompatActivity{
                 mediaplayer_tips.setVolume(1,1);
             }
         }
+
+        // 전원 버튼 감지
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+        intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                    if(mediaplayer_tips.isPlaying())
+                    {
+                        // BGM 중지
+                        mediaplayer_tips.pause();
+
+                    }
+                }
+
+            }
+        };
+
+        registerReceiver(receiver, intentFilter);
 
 
 
@@ -185,7 +213,12 @@ public class TipsActivity extends AppCompatActivity{
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
 
-        mediaplayer_tips.pause();
+        if(mediaplayer_tips.isPlaying())
+        {
+            // BGM 중지
+            mediaplayer_tips.pause();
+
+        }
     }
 
 

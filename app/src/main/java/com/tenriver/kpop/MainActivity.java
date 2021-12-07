@@ -5,7 +5,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -126,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
     private Button logoutbtn;
     private Button achievementbtn;
 
+    // 전원 버튼 감지
+    private BroadcastReceiver receiver;
+    private IntentFilter intentFilter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
         //리모컨 이미지
         ImageView remote = (ImageView) findViewById(R.id.Remote_main);
         ConstraintLayout remotebutton = (ConstraintLayout) findViewById(R.id.Remote_button_main);
+
+
+
+
 
         //텍스트 페이드인
         kpop1 = (TextView) findViewById((R.id.txtTitle1));
@@ -206,6 +217,29 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        // 전원 버튼 감지
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+        intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                    if(mediaplayer_main.isPlaying())
+                    {
+                        // BGM 중지
+                        mediaplayer_main.pause();
+
+                    }
+
+                }
+
+            }
+        };
+
+        registerReceiver(receiver, intentFilter);
+
 
         tipsButton = findViewById(R.id.Main_tips);
         startButton = findViewById(R.id.Main_start);
@@ -233,6 +267,8 @@ public class MainActivity extends AppCompatActivity {
                 soundPoolVolume=0.4f;
             }
         }
+
+
 
         signinsilently();
 
@@ -276,6 +312,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 Intent tipintent = new Intent(getApplicationContext(), TipsActivity.class);
+                tipintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                 startActivity(tipintent);
 
                 finish();
@@ -745,7 +782,12 @@ public class MainActivity extends AppCompatActivity {
         super.onUserLeaveHint();
 
 
-        mediaplayer_main.pause();
+        if(mediaplayer_main.isPlaying())
+        {
+            // BGM 중지
+            mediaplayer_main.pause();
+
+        }
 
     }
 
