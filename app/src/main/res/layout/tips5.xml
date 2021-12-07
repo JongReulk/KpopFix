@@ -24,30 +24,61 @@
 
     <com.tenriver.kpop.OutlineTextView
         android:id="@+id/tips5_text1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="199dp"
+        android:layout_height="120dp"
+        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeMinTextSize="13sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
         android:fontFamily="@font/font_basic"
         android:gravity="center"
+
         android:scaleType="fitXY"
         android:text="@string/Tips5_1"
         android:textColor="@color/hard_color"
         android:textStyle="bold"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/tips5_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.70"
-        app:layout_constraintHorizontal_bias="1"
         app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintRight_toRightOf="@id/tips5_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.207"
         app:layout_constraintWidth_percent="0.2"
 
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="13sp"
+        app:textStroke="true"
+        app:textStrokeColor="@color/white"
+        app:textStrokeWidth="16.0" />
+
+    <com.tenriver.kpop.OutlineTextView
+        android:id="@+id/tips5_text2"
+        android:layout_width="197dp"
+        android:layout_height="115dp"
         android:autoSizeMaxTextSize="28sp"
+        android:autoSizeMinTextSize="13sp"
         android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/font_basic"
+        android:gravity="center"
+
+        android:scaleType="fitXY"
+        android:text="@string/Tips5_2"
+        android:textColor="@color/hard_color"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHorizontal_bias="0.845"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintRight_toRightOf="@id/tips5_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.431"
+        app:layout_constraintWidth_percent="0.2"
 
         app:textStroke="true"
-        app:textStrokeWidth="16.0"
-        app:textStrokeColor="@color/white"/>
+        app:textStrokeColor="@color/white"
+        app:textStrokeWidth="16.0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

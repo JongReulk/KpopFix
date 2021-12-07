@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -11,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:src="@drawable/tips2timage"
+        android:src="@drawable/tips2image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -23,113 +24,58 @@
 
     <com.tenriver.kpop.OutlineTextView
         android:id="@+id/tips2_text1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="136dp"
+        android:layout_height="96dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="13sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/font_basic"
+
+        android:gravity="center"
         android:scaleType="fitXY"
         android:text="@string/Tips2_1"
         android:textColor="@color/hard_color"
-        android:fontFamily="@font/font_basic"
-        android:gravity="center"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/tips2_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.28"
-        app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintRight_toRightOf="@id/tips2_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.303"
         app:layout_constraintWidth_percent="0.27"
 
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
-
         app:textStroke="true"
-        app:textStrokeWidth="16.0"
-        app:textStrokeColor="@color/white"/>
+        app:textStrokeColor="@color/white"
+        app:textStrokeWidth="16.0" />
 
     <com.tenriver.kpop.OutlineTextView
         android:id="@+id/tips2_text2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="190dp"
+        android:layout_height="101dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="13sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/font_basic"
+
+        android:gravity="center"
         android:scaleType="fitXY"
         android:text="@string/Tips2_2"
         android:textColor="@color/hard_color"
-        android:fontFamily="@font/font_basic"
-        android:gravity="center"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/tips2_image"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.35"
-        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintLeft_toLeftOf="@id/tips2_image"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.787"
         app:layout_constraintWidth_percent="0.26"
 
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
-
         app:textStroke="true"
-        app:textStrokeWidth="16.0"
-        app:textStrokeColor="@color/white"/>
+        app:textStrokeColor="@color/white"
+        app:textStrokeWidth="16.0" />
 
-    <com.tenriver.kpop.OutlineTextView
-        android:id="@+id/tips2_text3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
-        android:text="@string/Tips2_3"
-        android:textColor="@color/hard_color"
-        android:fontFamily="@font/font_basic"
-        android:gravity="center"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/tips2_image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.45"
-        app:layout_constraintHorizontal_bias="0.87"
-        app:layout_constraintHeight_percent="0.13"
-        app:layout_constraintWidth_percent="0.27"
-
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
-
-        app:textStroke="true"
-        app:textStrokeWidth="16.0"
-        app:textStrokeColor="@color/white"/>
-
-    <com.tenriver.kpop.OutlineTextView
-        android:id="@+id/tips2_text4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
-        android:text="@string/tips2_4"
-        android:textColor="@color/hard_color"
-        android:fontFamily="@font/font_basic"
-        android:gravity="center"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/tips2_image"
-        app:layout_constraintBottom_toBottomOf="@id/tips2_image"
-        app:layout_constraintVertical_bias="1"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintHeight_percent="0.35"
-        app:layout_constraintWidth_percent="0.23"
-
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
-
-        app:textStroke="true"
-        app:textStrokeWidth="16.0"
-        app:textStrokeColor="@color/white"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
