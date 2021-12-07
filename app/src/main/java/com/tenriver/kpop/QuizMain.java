@@ -872,7 +872,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
         resultIntent.putExtra(HIGH_SCORE, score);
 
-        hintPoint = hintPoint + 20;
+        hintPoint = hintPoint + 10;
 
         updateHintPoint();
         updateBasicPlayTime();
