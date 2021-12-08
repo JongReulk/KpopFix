@@ -33,6 +33,9 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import static com.tenriver.kpop.MainActivity.KEY_POINT;
+import static com.tenriver.kpop.MainActivity.SHARED_POINT;
+
 public class ModeActivity extends AppCompatActivity {
 
     private boolean isFinished = false;
@@ -55,15 +58,23 @@ public class ModeActivity extends AppCompatActivity {
     // 각 모드 리니어레이아웃
     private LinearLayout basic_linear;
     private LinearLayout challenge_linear;
+    private LinearLayout beginner_linear;
+    
 
     // 리니어레이아웃 안의 모드 텍스트
     private TextView basic_text;
     private TextView challenge_text;
+    private TextView beginner_text;
 
     Animation anim;
 
     // 현재 골라진 모드를 숫자로 지정
-    private int currentMode = 0; // 0은 basic, 1은 challenge
+    private int currentMode = 0; // -1은 beginner 0은 basic, 1은 challenge
+
+    private static final String MODE_SHARED = "modeshared";
+    private static final String GAMEMODE_SELECT = "gamemodeselect";
+
+    private int select_num;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,8 +106,10 @@ public class ModeActivity extends AppCompatActivity {
 
         basic_linear = findViewById(R.id.basic_linear);
         challenge_linear = findViewById(R.id.challenge_linear);
+        beginner_linear = findViewById(R.id.beginner_linear);
         basic_text = findViewById(R.id.txt_basicmode);
         challenge_text = findViewById(R.id.txt_challengemode);
+        beginner_text = findViewById(R.id.txt_basicmode);
 
         mode_up = findViewById(R.id.mode_up);
         mode_down = findViewById(R.id.mode_down);
@@ -125,6 +138,7 @@ public class ModeActivity extends AppCompatActivity {
         kpop3.startAnimation(textfadein);
         mode_Title.startAnimation(textfadein);
         challenge_linear.setVisibility(View.GONE); // 처음 시작은 basic이므로 챌린지는 보이지않게
+        beginner_linear.setVisibility(View.GONE); // 비기너 안보임
 
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remote_mode.startAnimation(RemoteUp);
@@ -182,11 +196,20 @@ public class ModeActivity extends AppCompatActivity {
         mode_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( currentMode == 1)
+                if( currentMode == 0)
+                {
+                    currentMode = -1;
+                    challenge_linear.setVisibility(View.GONE);
+                    basic_linear.setVisibility(View.GONE);
+                    beginner_linear.setVisibility(View.VISIBLE);
+                }
+
+                else if( currentMode == 1)
                 {
                     currentMode = 0;
                     challenge_linear.setVisibility(View.GONE);
                     basic_linear.setVisibility(View.VISIBLE);
+                    beginner_linear.setVisibility(View.GONE);
                 }
             }
         });
@@ -194,11 +217,19 @@ public class ModeActivity extends AppCompatActivity {
         mode_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( currentMode == 0)
+                if( currentMode == -1)
+                {
+                    currentMode = 0;
+                    challenge_linear.setVisibility(View.GONE);
+                    basic_linear.setVisibility(View.VISIBLE);
+                    beginner_linear.setVisibility(View.GONE);
+                }
+                else if( currentMode == 0)
                 {
                     currentMode = 1;
                     challenge_linear.setVisibility(View.VISIBLE);
                     basic_linear.setVisibility(View.GONE);
+                    beginner_linear.setVisibility(View.GONE);
                 }
             }
         });
@@ -206,9 +237,13 @@ public class ModeActivity extends AppCompatActivity {
         mode_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // basic mode
-                if( currentMode == 0 )
+                // beginner mode
+                if( currentMode == -1 )
                 {
+                    select_num = currentMode;
+
+                    updateMode();
+
                     basic_text.startAnimation(anim);
 
                     soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
@@ -235,7 +270,50 @@ public class ModeActivity extends AppCompatActivity {
                             if (!isFinished) {
                                 Intent Modeintent = new Intent(getApplicationContext(), YearActivity.class);
 
-                                Modeintent.putExtra("game_mode", 100); // challenge 선택
+                                Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                startActivity(Modeintent);
+                                finish();
+                            } else {
+                                handler.removeCallbacks(this);
+                            }
+
+                        }
+                    }, 600);
+                }
+
+                // basic mode
+                else if( currentMode == 0 )
+                {
+                    select_num = currentMode;
+
+                    updateMode();
+
+                    basic_text.startAnimation(anim);
+
+                    soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
+
+                    mode_down.setEnabled(false);
+                    mode_up.setEnabled(false);
+                    mode_confirm.setEnabled(false);
+
+                    mode_confirm.setTextColor(Color.GRAY);
+
+                    //리모컨이미지 내려감
+                    Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remote_mode.startAnimation(RemoteDown);
+
+                    //리모컨버튼 내려감
+                    Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remotebutton_mode.startAnimation(RemoteButtonDown);
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (!isFinished) {
+                                Intent Modeintent = new Intent(getApplicationContext(), YearActivity.class);
+
                                 Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                                 startActivity(Modeintent);
                                 finish();
@@ -248,7 +326,7 @@ public class ModeActivity extends AppCompatActivity {
                 }
 
                 // challenge mode
-                if ( currentMode == 1 )
+                else if ( currentMode == 1 )
                 {
                     challenge_text.startAnimation(anim);
 
@@ -275,7 +353,6 @@ public class ModeActivity extends AppCompatActivity {
 
                             if (!isFinished) {
                                 Intent Modeintent = new Intent(getApplicationContext(), QuizChallenge.class);
-                                Modeintent.putExtra("game_mode", 100); // challenge 선택
 
                                 Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                                 startActivity(Modeintent);
@@ -290,25 +367,6 @@ public class ModeActivity extends AppCompatActivity {
         });
     }
 
-
-    /*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.e("데이터를 받았는가","?");
-
-        if (requestCode == MainActivity.REQUEST_CODE_QUIZ){
-            if (resultCode == RESULT_OK){
-                int score = data.getIntExtra(QuizMain.HIGH_SCORE, 0);
-                Log.e("점수를 받았는가22","?" + score);
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra(QuizMain.HIGH_SCORE, score);
-                Log.e("최고 점수",":" + score);
-                setResult(RESULT_OK, resultIntent);
-                finish();
-            }
-        }
-    }*/
 
     @Override
     protected void onStart() {
@@ -338,22 +396,14 @@ public class ModeActivity extends AppCompatActivity {
         MainActivity.mediaplayer_main.pause();
     }
 
-    /*
-    private void updateHighscore(int highscoreNew){
-        highscore = highscoreNew;
-        textViewHighscore.setText("최고 점수: " + highscore);
+    private void updateMode() {
+        SharedPreferences modeshared = getSharedPreferences(MODE_SHARED,MODE_PRIVATE);
 
-        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(KEY_HIGHSCORE,highscore);
-        editor.apply();
+        SharedPreferences.Editor modeEditor = modeshared.edit();
+        modeEditor.putInt(GAMEMODE_SELECT,select_num);
+        modeEditor.apply();
     }
 
-    private void loadHighscore() {
-        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-        highscore = prefs.getInt(KEY_HIGHSCORE, 0);
-        textViewHighscore.setText("최고 점수: " + highscore);
-    }*/
 
 
 }

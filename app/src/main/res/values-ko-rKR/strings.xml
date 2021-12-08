@@ -66,8 +66,10 @@
     <string name="updateSuccess">점수 업데이트 성공!</string>
     <string name="updateFail">점수 업데이트 실패!</string>
     <string name="achievement">업적</string>
-    <string name="basicmodedescription">3가지 난이도, 힌트 무제한</string>
+    <string name="basicmodedescription">3가지 난이도, 힌트 무제한, 노래만</string>
     <string name="challengemodedescription">랜덤 100곡, 5번의 힌트</string>
     <string name="ChallengemodeName">도전\n100곡</string>
+    <string name="beginnermodedescription">3가지 난이도, 힌트 무제한, 뮤비와 노래</string>
+    <string name="mode">모드</string>
 
 </resources>

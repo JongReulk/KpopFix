@@ -39,6 +39,9 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
+import static com.tenriver.kpop.MainActivity.KEY_POINT;
+import static com.tenriver.kpop.MainActivity.SHARED_POINT;
+
 public class  DifficultyActivity extends AppCompatActivity {
 
     private Button easyButton;
@@ -76,6 +79,12 @@ public class  DifficultyActivity extends AppCompatActivity {
 
     private float soundPoolVolume;
 
+    // 모드 선택 변수
+    private static final String MODE_SHARED = "modeshared";
+    private static final String GAMEMODE_SELECT = "gamemodeselect";
+
+    private int mode_select;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -89,6 +98,11 @@ public class  DifficultyActivity extends AppCompatActivity {
 
             }
         });
+
+        // 포인트 가져오기
+        SharedPreferences mode_shared = getSharedPreferences(MODE_SHARED,MODE_PRIVATE);
+
+        mode_select = mode_shared.getInt(GAMEMODE_SELECT,0);
 
         mAdview = findViewById(R.id.difficulty_adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -243,12 +257,21 @@ public class  DifficultyActivity extends AppCompatActivity {
 
 
                         if(!isFinished){
-                            Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
-                            Quizintent.putExtra("difficulty_time",10000); // 10초
-                            Quizintent.putExtra("year_num",year_num_Difficulty);
-                            Quizintent.putExtra("game_mode", 0);
-                            Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                            startActivity(Quizintent);
+                            if (mode_select==0){
+                                Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
+                                Quizintent.putExtra("difficulty_time",5000); // 5초
+                                Quizintent.putExtra("year_num",year_num_Difficulty);
+                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                startActivity(Quizintent);
+                            }
+
+                            else {
+                                Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
+                                Quizintent.putExtra("difficulty_time",5000); // 5초
+                                Quizintent.putExtra("year_num",year_num_Difficulty);
+                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                startActivity(Quizintent);
+                            }
                             finish();
                         }
 
@@ -293,13 +316,23 @@ public class  DifficultyActivity extends AppCompatActivity {
                     public void run() {
 
                         if(!isFinished){
-                            Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
-                            Quizintent.putExtra("difficulty_time",5000); // 5초
-                            Quizintent.putExtra("year_num",year_num_Difficulty);
-                            Quizintent.putExtra("game_mode", 0);
-                            Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                            startActivity(Quizintent);
+                            if (mode_select==0){
+                                Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
+                                Quizintent.putExtra("difficulty_time",5000); // 5초
+                                Quizintent.putExtra("year_num",year_num_Difficulty);
+                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                startActivity(Quizintent);
+                            }
+
+                            else {
+                                Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
+                                Quizintent.putExtra("difficulty_time",5000); // 5초
+                                Quizintent.putExtra("year_num",year_num_Difficulty);
+                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                startActivity(Quizintent);
+                            }
                             finish();
+
                         }
 
                         else{
@@ -341,12 +374,21 @@ public class  DifficultyActivity extends AppCompatActivity {
                     public void run() {
 
                         if(!isFinished){
-                            Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
-                            Quizintent.putExtra("difficulty_time",3000); // 3초
-                            Quizintent.putExtra("year_num",year_num_Difficulty);
-                            Quizintent.putExtra("game_mode", 0);
-                            Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                            startActivity(Quizintent);
+                            if (mode_select==0){
+                                Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
+                                Quizintent.putExtra("difficulty_time",5000); // 5초
+                                Quizintent.putExtra("year_num",year_num_Difficulty);
+                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                startActivity(Quizintent);
+                            }
+
+                            else {
+                                Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
+                                Quizintent.putExtra("difficulty_time",5000); // 5초
+                                Quizintent.putExtra("year_num",year_num_Difficulty);
+                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                startActivity(Quizintent);
+                            }
                             finish();
                         }
 

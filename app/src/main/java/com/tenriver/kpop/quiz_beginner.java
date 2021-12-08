@@ -56,7 +56,7 @@ import java.util.Random;
 import static com.tenriver.kpop.MainActivity.KEY_POINT;
 import static com.tenriver.kpop.MainActivity.SHARED_POINT;
 
-public class QuizMain extends YouTubeBaseActivity {
+public class quiz_beginner extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
 
@@ -71,9 +71,8 @@ public class QuizMain extends YouTubeBaseActivity {
     private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
     static int score = 0;
     static int plus = 0;
-    private int pointplus = 0;
     static int videoLength;// 이지 노말 하드에 따라서 바뀜
-    
+
     private String question;
     private String korean_Answer;
     private String english_Answer;
@@ -98,7 +97,7 @@ public class QuizMain extends YouTubeBaseActivity {
     private TextView correctText;
     private EditText answerText;
     private TextView hintText;
-    
+
     private Button confirmButton;
     private Button nextButton;
     private boolean isHandler = true;
@@ -141,21 +140,18 @@ public class QuizMain extends YouTubeBaseActivity {
 
     // hint button
     private Button HintButton1; // 다시 듣기
-    private Button HintButton2; // 뮤비 보기
     private Button HintButton3; // 초성 보기
 
     // point
     private int hintPoint;
     private TextView txtHintPoint;
 
-    // 플레이 횟수
-    private int basic_playtime = 0;
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_main);
+        setContentView(R.layout.activity_quiz_beginner);
 
         Log.d("start","quiz main activity start!");
 
@@ -190,32 +186,14 @@ public class QuizMain extends YouTubeBaseActivity {
 
         if(videoLength == 10000){
             plus = 10;
-            try {
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                        .unlock(getString(R.string.achievement_start_lightly_easy));
-            }catch (Exception e) {
-                Log.d("로그", "업적 업로드 실패");
-            }
         }
 
         if(videoLength == 5000){
             plus = 20;
-            try {
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                        .unlock(getString(R.string.achievement_start_lightly_normal));
-            }catch (Exception e) {
-                Log.d("로그", "업적 업로드 실패");
-            }
         }
 
         if(videoLength == 3000){
             plus = 30;
-            try {
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                        .unlockImmediate(getString(R.string.achievement_start_lightly_hard));
-            }catch (Exception e) {
-                Log.d("로그", "업적 업로드 실패");
-            }
         }
 
 
@@ -245,7 +223,6 @@ public class QuizMain extends YouTubeBaseActivity {
 
         // Hint Button
         HintButton1 = findViewById(R.id.Quiz_hint1);  // 다시 듣기
-        HintButton2 = findViewById(R.id.Quiz_hint2);  // 뮤비 보기
         HintButton3 = findViewById(R.id.Quiz_hint3);  // 초성 보기
 
         hintText = findViewById(R.id.txt_hintall);
@@ -315,11 +292,10 @@ public class QuizMain extends YouTubeBaseActivity {
 
         // 힌트 버튼 활성화
         HintButton1.setEnabled(false);
-        HintButton2.setEnabled(false);
         HintButton3.setEnabled(false);
 
-        hintText.setVisibility(View.GONE);
-        
+        hintText.setText("");
+
         // 포인트 가져오기
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
@@ -328,8 +304,6 @@ public class QuizMain extends YouTubeBaseActivity {
         txtHintPoint.setText(""+hintPoint);
 
         SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
-
-        basic_playtime = quiz_shared.getInt(BASIC_PLAY_TIME,0);
 
 
 
@@ -376,30 +350,6 @@ public class QuizMain extends YouTubeBaseActivity {
             }
         });
 
-        // 뮤비 보기
-        HintButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (hintPoint < 20){
-                    Toast.makeText(getApplicationContext(), getString(R.string.lessPoint), Toast.LENGTH_SHORT).show();
-
-                }
-
-                else {
-                    hintPoint = hintPoint - 20;
-
-                    txtHintPoint.setText(""+hintPoint);
-                    Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
-                    Log.v("뮤비 보기", "뮤비보기 버튼 클릭");
-
-                    playerView.setAlpha(1.0f);
-
-                    HintButton2.setEnabled(false);
-                    HintButton3.setEnabled(false);
-                }
-
-            }
-        });
 
         // 초성 보기
         HintButton3.setOnClickListener(new View.OnClickListener() {
@@ -417,14 +367,13 @@ public class QuizMain extends YouTubeBaseActivity {
 
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
 
-                    hintText.setVisibility(View.VISIBLE);
                     hintText.setText(hint_all);
 
                     hintText.setSingleLine(true);
                     hintText.setEllipsize(TextUtils.TruncateAt.MARQUEE);
                     hintText.setSelected(true);
 
-                    HintButton2.setEnabled(false);
+
                     HintButton3.setEnabled(false);
                 }
 
@@ -456,11 +405,11 @@ public class QuizMain extends YouTubeBaseActivity {
                 timeLeftInMillis = COUNTDOWN_IN_MILLIS;
 
 
-                hintText.setVisibility(View.GONE);
+                hintText.setText("");
 
 
 
-                playerView.setAlpha(0.0f);
+                playerView.setAlpha(1.0f);
 
                 txt_answer.setBackground(null);
 
@@ -508,7 +457,7 @@ public class QuizMain extends YouTubeBaseActivity {
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         // The mInterstitialAd reference will be null until
                         // an ad is loaded.
-                        QuizMain.this.screenAd = interstitialAd;
+                        quiz_beginner.this.screenAd = interstitialAd;
 
                         if(isFirst){
                             showInterstitial();
@@ -519,7 +468,7 @@ public class QuizMain extends YouTubeBaseActivity {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         // Handle the error
-                        QuizMain.this.screenAd = null;
+                        quiz_beginner.this.screenAd = null;
                         Toast.makeText(getApplicationContext(), getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
                     }
 
@@ -681,7 +630,6 @@ public class QuizMain extends YouTubeBaseActivity {
         if(isCountStart) {
             // 힌트 버튼 활성화
             HintButton1.setEnabled(true);
-            HintButton2.setEnabled(true);
             HintButton3.setEnabled(true);
 
 
@@ -724,7 +672,7 @@ public class QuizMain extends YouTubeBaseActivity {
         }
     }
 
-    // 영어인지 한글인지 확인 
+    // 영어인지 한글인지 확인
     // 영어면 소문자로 변환하고 검사
     // 한글이면 바로 검사
     private void checkAnswer() {
@@ -735,7 +683,6 @@ public class QuizMain extends YouTubeBaseActivity {
 
         // 힌트 버튼 비활성화
         HintButton1.setEnabled(false);
-        HintButton2.setEnabled(false);
         HintButton3.setEnabled(false);
 
 
@@ -744,7 +691,7 @@ public class QuizMain extends YouTubeBaseActivity {
         nextButton.setTextColor(Color.WHITE);
         confirmButton.setEnabled(false);
         confirmButton.setTextColor(Color.GRAY);
-        
+
         //좌우 공백 및 띄어쓰기 공백 없애기
         String answer = answerText.getText().toString().trim().replace(" ","");
         //answer.replaceAll(" ","");
@@ -773,7 +720,7 @@ public class QuizMain extends YouTubeBaseActivity {
         else {
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }
-        
+
         scoreText.setText(""+score); // 점수 텍스트 변경
         //confirmButton.setVisibility(View.GONE);
 
@@ -805,82 +752,18 @@ public class QuizMain extends YouTubeBaseActivity {
     private void finishQuiz() {
         isHandler = false;
 
-
-        basic_playtime++;
-
-        try {
-            if (basic_playtime > 500) {
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                        .increment(getString(R.string.achievement_effort_never_betrays), 5);
-            }
-            else if (basic_playtime > 300) {
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                        .increment(getString(R.string.achievement_effort_never_betrays), 4);
-            }
-            else if (basic_playtime > 100) {
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                        .increment(getString(R.string.achievement_effort_never_betrays), 3);
-            }
-            else if (basic_playtime > 50) {
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                        .increment(getString(R.string.achievement_effort_never_betrays), 2);
-            }
-            else if (basic_playtime > 10) {
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                        .increment(getString(R.string.achievement_effort_never_betrays), 1);
-            }
-
-        } catch(Exception e){
-            Log.d("로그", "챌린지 업적 불러오기 실패");
-        }
-
-        if(videoLength == 10000){
-            if(score == 100){
-                try {
-                    Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                            .unlock(getString(R.string.achievement_easy_mode_master));
-                }catch (Exception e) {
-                    Log.d("로그", "업적 업로드 실패");
-                }
-            }
-        }
-
-        if(videoLength == 5000){
-            if(score == 200){
-                try {
-                    Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                            .unlock(getString(R.string.achievement_normal_mode_master));
-                }catch (Exception e) {
-                    Log.d("로그", "업적 업로드 실패");
-                }
-            }
-        }
-
-        if(videoLength == 3000){
-            if(score == 300){
-                try {
-                    Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                            .unlock(getString(R.string.achievement_hard_mode_master));
-                }catch (Exception e) {
-                    Log.d("로그", "업적 업로드 실패");
-                }
-            }
-        }
         Intent resultIntent = new Intent(this, MainActivity.class);
 
         resultIntent.putExtra(HIGH_SCORE, score);
 
-        pointplus = 10;
-
+        hintPoint = hintPoint + 10;
 
         if (isBackPressed) {
             score = 0;
-            pointplus = 0;
-            basic_playtime--;
+            hintPoint=0;
         }
 
         updateHintPoint();
-        updateBasicPlayTime();
         startActivity(resultIntent);
 
         Log.e("최고 점수", ":" + score);
@@ -898,19 +781,11 @@ public class QuizMain extends YouTubeBaseActivity {
 
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
-        hintPoint = hintPoint + pointplus;
         SharedPreferences.Editor pointEditor = point.edit();
         pointEditor.putInt(KEY_POINT,hintPoint);
         pointEditor.apply();
     }
 
-    private void updateBasicPlayTime() {
-        SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
-
-        SharedPreferences.Editor quizeditor = quiz_shared.edit();
-        quizeditor.putInt(BASIC_PLAY_TIME,basic_playtime);
-        quizeditor.apply();
-    }
 
     @Override
     public void onBackPressed() {
@@ -941,7 +816,7 @@ public class QuizMain extends YouTubeBaseActivity {
             @Override
             public void onAdDismissedFullScreenContent() {
                 super.onAdDismissedFullScreenContent();
-                QuizMain.this.screenAd = null;
+                quiz_beginner.this.screenAd = null;
                 if (isFinished){
                     finishQuiz();
                 }
@@ -955,7 +830,7 @@ public class QuizMain extends YouTubeBaseActivity {
         });
 
         if (screenAd != null) {
-            screenAd.show(QuizMain.this);
+            screenAd.show(quiz_beginner.this);
             screenAd = null;
         } else {
             Toast.makeText(this, getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();

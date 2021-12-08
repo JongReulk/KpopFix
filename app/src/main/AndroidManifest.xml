@@ -19,40 +19,51 @@
         android:roundIcon="@mipmap/icon__round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kpop">
+
         <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-3940256099942544~3347511713" />
 
-
-        <activity android:name="com.tenriver.kpop.QuizChallenge"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"
-            />
-        <activity android:name="com.tenriver.kpop.QuizMain"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"
-            />
-        <activity android:name="com.tenriver.kpop.DifficultyActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.tenriver.kpop.YearActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.tenriver.kpop.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.tenriver.kpop.TitleActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.tenriver.kpop.TipsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.tenriver.kpop.WarningActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.tenriver.kpop.ModeActivity"
-            android:screenOrientation="portrait"/>
         <activity
-            android:name="com.tenriver.kpop.SplashActivity"
+            android:name=".quiz_beginner"
+            android:screenOrientation="portrait"
+            />
+
+        <activity
+            android:name=".QuizChallenge"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".QuizMain"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".DifficultyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".YearActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TitleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TipsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WarningActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ModeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,14 +73,10 @@
 
         <meta-data
             android:name="com.google.android.gms.games.APP_ID"
-            android:value="@string/app_id"/>
-
+            android:value="@string/app_id" />
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
-
-
-
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
