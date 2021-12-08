@@ -194,6 +194,18 @@ public class TipsActivity extends AppCompatActivity{
         super.onStart();
 
         if(!mediaplayer_tips.isPlaying()){
+            SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC,MODE_PRIVATE);
+            Boolean bgmCb_tips = music.getBoolean("bgmCb",true);
+
+            if(mediaplayer_tips!=null){
+                if(!bgmCb_tips){
+                    mediaplayer_tips.setVolume(0,0);
+                }
+
+                else{
+                    mediaplayer_tips.setVolume(1,1);
+                }
+            }
             mediaplayer_tips.start();
         }
     }
