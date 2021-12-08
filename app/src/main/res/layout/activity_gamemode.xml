@@ -173,6 +173,7 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:weightSum="3"
 
         app:layout_constraintBottom_toBottomOf="@+id/Image_TV_mode"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -182,13 +183,20 @@
         <com.tenriver.kpop.OutlineTextView
             android:id="@+id/txt_beginnermode"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:bufferType="spannable"
             android:fontFamily="@font/font_digital"
             android:gravity="center"
             android:text="Beginner"
             android:textColor="@color/beige"
-            android:textSize="90sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="22sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
             android:textStyle="bold"
 
             app:textStroke="true"
@@ -198,14 +206,21 @@
         <com.tenriver.kpop.OutlineTextView
             android:id="@+id/txt_beginnermode2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:bufferType="spannable"
             android:fontFamily="@font/font_digital"
             android:gravity="center"
             android:text="@string/beginnermodedescription"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="15sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
             android:textStyle="bold"
 
             app:textStroke="true"
@@ -219,6 +234,7 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:weightSum="3"
 
         app:layout_constraintBottom_toBottomOf="@+id/Image_TV_mode"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -228,13 +244,21 @@
         <com.tenriver.kpop.OutlineTextView
             android:id="@+id/txt_basicmode"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:bufferType="spannable"
             android:fontFamily="@font/font_digital"
+            android:layout_weight="2"
             android:gravity="center"
             android:text="BASIC"
             android:textColor="@color/basic_color1"
-            android:textSize="107sp"
+
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="22sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
             android:textStyle="bold"
 
             app:textStroke="true"
@@ -244,14 +268,21 @@
         <com.tenriver.kpop.OutlineTextView
             android:id="@+id/txt_basicmode2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="0dp"
             android:bufferType="spannable"
             android:fontFamily="@font/font_digital"
             android:gravity="center"
             android:text="@string/basicmodedescription"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:layout_weight="1"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="15sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
             android:textStyle="bold"
 
             app:textStroke="true"
@@ -265,6 +296,7 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:weightSum="3"
 
         app:layout_constraintBottom_toBottomOf="@+id/Image_TV_mode"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -274,13 +306,20 @@
         <com.tenriver.kpop.OutlineTextView
             android:id="@+id/txt_challengemode"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:bufferType="spannable"
             android:fontFamily="@font/font_digital"
             android:gravity="center"
             android:text="100\nChallenges"
             android:textColor="@color/challenge_color1"
-            android:textSize="55sp"
+
+
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
+
             android:textStyle="bold"
 
             app:textStroke="true"
@@ -290,14 +329,24 @@
         <com.tenriver.kpop.OutlineTextView
             android:id="@+id/txt_challengemode2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
             android:bufferType="spannable"
+            android:layout_weight="1"
             android:fontFamily="@font/font_digital"
             android:gravity="center"
             android:text="@string/challengemodedescription"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+
+
+
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
             android:textStyle="bold"
 
             app:textStroke="true"
