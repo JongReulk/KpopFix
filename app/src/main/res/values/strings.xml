@@ -66,5 +66,8 @@
     <string name="updateSuccess">Score update success!</string>
     <string name="updateFail">Score update failed!</string>
     <string name="achievement">Achievement</string>
+    <string name="basicmodedescription">3 Levels, Free Hint</string>
+    <string name="challengemodedescription">100 Random Songs, 5 Hint only</string>
+    <string name="ChallengemodeName">100\nChallenges</string>
 
 </resources>
