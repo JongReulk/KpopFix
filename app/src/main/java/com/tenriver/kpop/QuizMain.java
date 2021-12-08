@@ -71,7 +71,7 @@ public class QuizMain extends YouTubeBaseActivity {
     private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
     static int score = 0;
     static int plus = 0;
-    private int pointplus = 0;
+    static int pointplus = 0;
     static int videoLength;// 이지 노말 하드에 따라서 바뀜
     
     private String question;
@@ -145,7 +145,7 @@ public class QuizMain extends YouTubeBaseActivity {
     private Button HintButton3; // 초성 보기
 
     // point
-    private int hintPoint;
+    private static int hintPoint;
     private TextView txtHintPoint;
 
     // 플레이 횟수

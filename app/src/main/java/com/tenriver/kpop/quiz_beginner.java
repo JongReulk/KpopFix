@@ -145,6 +145,7 @@ public class quiz_beginner extends YouTubeBaseActivity {
     // point
     private int hintPoint;
     private TextView txtHintPoint;
+    private static int pointplus;
 
 
 
@@ -756,11 +757,12 @@ public class quiz_beginner extends YouTubeBaseActivity {
 
         resultIntent.putExtra(HIGH_SCORE, score);
 
-        hintPoint = hintPoint + 10;
+        pointplus = 10;
+
 
         if (isBackPressed) {
             score = 0;
-            hintPoint=0;
+            pointplus = 0;
         }
 
         updateHintPoint();
@@ -781,6 +783,7 @@ public class quiz_beginner extends YouTubeBaseActivity {
 
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
+        hintPoint = hintPoint + pointplus;
         SharedPreferences.Editor pointEditor = point.edit();
         pointEditor.putInt(KEY_POINT,hintPoint);
         pointEditor.apply();
