@@ -328,10 +328,20 @@ public class TitleActivity extends AppCompatActivity {
     @Override
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
+        SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC,MODE_PRIVATE);
+
+        Boolean bgmCb_title = music.getBoolean("bgmCb",true);
 
         if(mediaplayer_title.isPlaying())
         {
             // BGM 중지
+            if(!bgmCb_title){
+                mediaplayer_title.setVolume(0,0);
+            }
+
+            else{
+                mediaplayer_title.setVolume(1,1);
+            }
             mediaplayer_title.pause();
 
         }
@@ -377,12 +387,8 @@ public class TitleActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        if(mediaplayer_title.isPlaying())
-        {
-            // BGM 중지
-            mediaplayer_title.pause();
+        finish();
 
-        }
     }
 
     @Override
