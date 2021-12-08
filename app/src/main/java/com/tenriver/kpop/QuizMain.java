@@ -804,9 +804,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
     private void finishQuiz() {
         isHandler = false;
-        if (isBackPressed) {
-            score = 0;
-        }
+
 
         basic_playtime++;
 
@@ -873,6 +871,12 @@ public class QuizMain extends YouTubeBaseActivity {
         resultIntent.putExtra(HIGH_SCORE, score);
 
         hintPoint = hintPoint + 10;
+
+        if (isBackPressed) {
+            score = 0;
+            hintPoint=0;
+            basic_playtime--;
+        }
 
         updateHintPoint();
         updateBasicPlayTime();

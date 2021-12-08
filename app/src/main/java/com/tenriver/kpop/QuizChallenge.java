@@ -794,9 +794,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
     private void finishQuiz() {
         isHandler = false;
-        if (isBackPressed) {
-            score_challenge = 0;
-        }
+
         challenge_playtime++;
 
         try {
@@ -846,6 +844,11 @@ public class QuizChallenge extends YouTubeBaseActivity {
         }
         Intent resultIntent = new Intent(this, MainActivity.class);
         resultIntent.putExtra(CHALLENGE_HIGH_SCORE, score_challenge);
+
+        if (isBackPressed) {
+            score_challenge = 0;
+            challenge_playtime--;
+        }
 
         updateHintPoint();
         updateChallengePlayTime();
