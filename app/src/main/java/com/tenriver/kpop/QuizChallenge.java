@@ -128,7 +128,6 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
     private TextView txt_answer;
 
-    private int mode_select;
 
     boolean isChallengefinish = false;
     boolean isBackPressed = false;
@@ -179,7 +178,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
         Intent intent = getIntent();
 
         videoLength = intent.getIntExtra("difficulty_time",10000);
-        mode_select = intent.getIntExtra("game_mode",0);
+
 
         int year_num = intent.getIntExtra("year_num",2020);
 

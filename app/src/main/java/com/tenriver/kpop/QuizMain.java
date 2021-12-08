@@ -129,7 +129,6 @@ public class QuizMain extends YouTubeBaseActivity {
 
     private TextView txt_answer;
 
-    private int mode_select;
 
     boolean isChallengefinish = false;
     boolean isBackPressed = false;
