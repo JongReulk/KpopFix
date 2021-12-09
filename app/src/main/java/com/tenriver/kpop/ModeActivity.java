@@ -109,7 +109,7 @@ public class ModeActivity extends AppCompatActivity {
         beginner_linear = findViewById(R.id.beginner_linear);
         basic_text = findViewById(R.id.txt_basicmode);
         challenge_text = findViewById(R.id.txt_challengemode);
-        beginner_text = findViewById(R.id.txt_basicmode);
+        beginner_text = findViewById(R.id.txt_beginnermode);
 
         mode_up = findViewById(R.id.mode_up);
         mode_down = findViewById(R.id.mode_down);
@@ -244,7 +244,7 @@ public class ModeActivity extends AppCompatActivity {
 
                     updateMode();
 
-                    basic_text.startAnimation(anim);
+                    beginner_text.startAnimation(anim);
 
                     soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
 
