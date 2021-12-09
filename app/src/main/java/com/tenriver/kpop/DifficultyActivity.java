@@ -259,7 +259,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                         if(!isFinished){
                             if (mode_select==0){
                                 Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
-                                Quizintent.putExtra("difficulty_time",5000); // 5초
+                                Quizintent.putExtra("difficulty_time",10000); // 5초
                                 Quizintent.putExtra("year_num",year_num_Difficulty);
                                 Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                                 startActivity(Quizintent);
@@ -267,7 +267,7 @@ public class  DifficultyActivity extends AppCompatActivity {
 
                             else {
                                 Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
-                                Quizintent.putExtra("difficulty_time",5000); // 5초
+                                Quizintent.putExtra("difficulty_time",10000); // 5초
                                 Quizintent.putExtra("year_num",year_num_Difficulty);
                                 Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                                 startActivity(Quizintent);
@@ -376,7 +376,7 @@ public class  DifficultyActivity extends AppCompatActivity {
                         if(!isFinished){
                             if (mode_select==0){
                                 Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
-                                Quizintent.putExtra("difficulty_time",5000); // 5초
+                                Quizintent.putExtra("difficulty_time",3000); // 5초
                                 Quizintent.putExtra("year_num",year_num_Difficulty);
                                 Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                                 startActivity(Quizintent);
@@ -384,7 +384,7 @@ public class  DifficultyActivity extends AppCompatActivity {
 
                             else {
                                 Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
-                                Quizintent.putExtra("difficulty_time",5000); // 5초
+                                Quizintent.putExtra("difficulty_time",3000); // 5초
                                 Quizintent.putExtra("year_num",year_num_Difficulty);
                                 Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                                 startActivity(Quizintent);
