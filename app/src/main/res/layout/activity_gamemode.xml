@@ -36,6 +36,8 @@
         app:layout_constraintRight_toRightOf="@+id/Image_TV_mode"
         >
 
+
+
         <com.tenriver.kpop.OutlineTextView
             android:id="@+id/txtTitle1"
             android:text="K"
@@ -192,6 +194,7 @@
             android:textColor="@color/beige"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
 
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="22sp"
@@ -311,6 +314,7 @@
             android:bufferType="spannable"
             android:fontFamily="@font/font_digital"
             android:gravity="center"
+            android:layout_marginTop="10dp"
             android:text="100\nChallenges"
             android:textColor="@color/challenge_color1"
 
@@ -337,7 +341,7 @@
             android:gravity="center"
             android:text="@string/challengemodedescription"
             android:textColor="@color/white"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
 
@@ -353,6 +357,7 @@
             app:textStrokeColor="@color/title_text_color"
             app:textStrokeWidth="3.0" />
     </LinearLayout>
+
 
     <!-- 리모컨 이미지 -->
     <ImageView
@@ -456,6 +461,31 @@
         app:layout_constraintVertical_bias="0"
         />
 
+    <ImageView
+        android:id="@+id/upPink"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/uparrowpink"
+
+        app:layout_constraintTop_toBottomOf="@id/mode_Title"
+        app:layout_constraintLeft_toLeftOf="@id/mode_Title"
+        app:layout_constraintRight_toRightOf="@id/mode_Title"
+
+
+        />
+
+    <ImageView
+        android:id="@+id/downPink"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/downarrowpink"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintLeft_toLeftOf="@id/Image_TV_mode"
+        app:layout_constraintRight_toRightOf="@id/Image_TV_mode"
+        app:layout_constraintBottom_toBottomOf="@id/Image_TV_mode"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

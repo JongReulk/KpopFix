@@ -66,6 +66,9 @@ public class ModeActivity extends AppCompatActivity {
     private TextView challenge_text;
     private TextView beginner_text;
 
+    private ImageView Uparrowpink;
+    private ImageView Downarrowpink;
+
     Animation anim;
 
     // 현재 골라진 모드를 숫자로 지정
@@ -95,6 +98,10 @@ public class ModeActivity extends AppCompatActivity {
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
         adView.setAdUnitId("\n" + "ca-app-pub-3940256099942544/6300978111");
+
+        Uparrowpink = findViewById(R.id.upPink);
+        Downarrowpink = findViewById(R.id.downPink);
+
 
 
         if (!MainActivity.mediaplayer_main.isPlaying()) {
@@ -196,16 +203,20 @@ public class ModeActivity extends AppCompatActivity {
         mode_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( currentMode == 0)
+                if( currentMode == 0) // basic에서 Beginner
                 {
                     currentMode = -1;
+                    Uparrowpink.setVisibility(View.INVISIBLE);
+                    Downarrowpink.setVisibility(View.VISIBLE);
                     challenge_linear.setVisibility(View.GONE);
                     basic_linear.setVisibility(View.GONE);
                     beginner_linear.setVisibility(View.VISIBLE);
                 }
 
-                else if( currentMode == 1)
+                else if( currentMode == 1) // Challenge에서 basic
                 {
+                    Uparrowpink.setVisibility(View.VISIBLE);
+                    Downarrowpink.setVisibility(View.VISIBLE);
                     currentMode = 0;
                     challenge_linear.setVisibility(View.GONE);
                     basic_linear.setVisibility(View.VISIBLE);
@@ -217,16 +228,20 @@ public class ModeActivity extends AppCompatActivity {
         mode_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( currentMode == -1)
+                if( currentMode == -1) // beginner에서 basic
                 {
                     currentMode = 0;
+                    Uparrowpink.setVisibility(View.VISIBLE);
+                    Downarrowpink.setVisibility(View.VISIBLE);
                     challenge_linear.setVisibility(View.GONE);
                     basic_linear.setVisibility(View.VISIBLE);
                     beginner_linear.setVisibility(View.GONE);
                 }
-                else if( currentMode == 0)
+                else if( currentMode == 0) // basic에서 challenge
                 {
                     currentMode = 1;
+                    Uparrowpink.setVisibility(View.VISIBLE);
+                    Downarrowpink.setVisibility(View.INVISIBLE);
                     challenge_linear.setVisibility(View.VISIBLE);
                     basic_linear.setVisibility(View.GONE);
                     beginner_linear.setVisibility(View.GONE);
