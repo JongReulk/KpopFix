@@ -61,17 +61,17 @@
     <string name="updateSuccess">Score update success!</string>
     <string name="updateFail">Score update failed!</string>
     <string name="achievement">Achievement</string>
-    <string name="basicmodedescription">3 Levels, Free Hint\nSong only</string>
+    <string name="beginnermodedescription">3 Levels, Free Hint\nMV and SONG</string>
+    <string name="basicmodedescription">3 Levels, Free Hint\SONG only</string>
     <string name="challengemodedescription">100 Random Songs, 5 Hint only</string>
     <string name="ChallengemodeName">100\nChallenges</string>
-    <string name="beginnermodedescription">3 Levels, Free Hint\nMV and SONG</string>
     <string name="mode">Mode</string>
     <string name="Easy">EASY</string>
     <string name="Normal">" NORMAL "</string>
     <string name="Hard">HARD</string>
-    <string name="Easy2">10 seconds time limit</string>
-    <string name="Normal2">5 seconds time limit</string>
-    <string name="Hard2">3 seconds time limit</string>
+    <string name="Easy2">TIME LIMIT 30s, LISTENING 10s</string>
+    <string name="Normal2">TIME LIMIT 30s, LISTENING 5s</string>
+    <string name="Hard2">TIME LIMIT 30s, LISTENING 3s</string>
     <string name="Difficulty">DIFFICULTY</string>
     <string name="Gamestart">The Game will begin.\nGET READY!</string>
 </resources>
