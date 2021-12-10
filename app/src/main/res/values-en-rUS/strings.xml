@@ -3,11 +3,6 @@
     <string name="app_name">Kpop MV Quiz</string>
     <string name="start">START</string>
     <string name="bestscore">Best Score</string>
-    <string name="Easy">EASY</string>
-    <string name="Normal">" NORMAL "</string>
-    <string name="Hard">HARD</string>
-    <string name="Difficulty">DIFFICULTY</string>
-    <string name="Gamestart">The Game will begin.\nGET READY!</string>
     <string name="Confirm">" Confirm "</string>
     <string name="Next">NEXT</string>
     <string name="Finish">FINISH</string>
@@ -71,5 +66,12 @@
     <string name="ChallengemodeName">100\nChallenges</string>
     <string name="beginnermodedescription">3 Levels, Free Hint\nMV and SONG</string>
     <string name="mode">Mode</string>
-
+    <string name="Easy">EASY</string>
+    <string name="Normal">" NORMAL "</string>
+    <string name="Hard">HARD</string>
+    <string name="Easy2">10 seconds time limit</string>
+    <string name="Normal2">5 seconds time limit</string>
+    <string name="Hard2">3 seconds time limit</string>
+    <string name="Difficulty">DIFFICULTY</string>
+    <string name="Gamestart">The Game will begin.\nGET READY!</string>
 </resources>

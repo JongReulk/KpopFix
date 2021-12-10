@@ -17,10 +17,13 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.media.SoundPool;
 
@@ -57,9 +60,6 @@ public class  DifficultyActivity extends AppCompatActivity {
     private ConstraintLayout layout_caution;
     private ConstraintLayout layout_tip;
 
-    private TextView easyTip;
-    private TextView normalTip;
-    private TextView hardTip;
 
     private TextView kpop1;
     private TextView kpop2;
@@ -84,6 +84,30 @@ public class  DifficultyActivity extends AppCompatActivity {
     private static final String GAMEMODE_SELECT = "gamemodeselect";
 
     private int mode_select;
+
+    // 버튼
+    private ImageButton df_up;
+    private ImageButton df_down;
+    private Button df_confirm;
+
+    // 각 모드 리니어레이아웃
+    private LinearLayout easy_linear;
+    private LinearLayout normal_linear;
+    private LinearLayout hard_linear;
+
+
+    // 리니어레이아웃 안의 모드 텍스트
+    private TextView easy_text;
+    private TextView normal_text;
+    private TextView hard_text;
+
+    // 현재 골라진 난이도를 숫자로 지정
+    private int currentMode = -1; // -1은 easy 0은 normal, 1은 hard
+
+    private ImageView Uparrowpink;
+    private ImageView Downarrowpink;
+
+    Animation anim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,40 +135,48 @@ public class  DifficultyActivity extends AppCompatActivity {
         adView.setAdSize(AdSize.BANNER);
         adView.setAdUnitId("\n" + "ca-app-pub-3940256099942544/6300978111");
 
+        Uparrowpink = findViewById(R.id.upPink);
+        Downarrowpink = findViewById(R.id.downPink);
 
         if(!MainActivity.mediaplayer_main.isPlaying())
         {
             MainActivity.mediaplayer_main.start();
         }
 
+        easy_linear = findViewById(R.id.easy_linear);
+        normal_linear = findViewById(R.id.normal_linear);
+        hard_linear = findViewById(R.id.hard_linear);
+        easy_text = findViewById(R.id.txt_easy);
+        normal_text = findViewById(R.id.txt_normal);
+        hard_text = findViewById(R.id.txt_hard);
 
+        df_up = findViewById(R.id.difficulty_up);
+        df_down = findViewById(R.id.difficulty_down);
+        df_confirm = findViewById(R.id.difficulty_confirm);
 
-        difficulty_title = findViewById(R.id.difficultyTitle);
-        easyButton = findViewById(R.id.easy_Button);
-        normalButton = findViewById(R.id.normal_Button);
-        hardButton = findViewById(R.id.hard_Button);
-
-        textLevel = findViewById(R.id.txt_level);
-
-        easyTip = findViewById(R.id.txt_easytip);
-        normalTip = findViewById(R.id.txt_normaltip);
-        hardTip = findViewById(R.id.txt_hardtip);
+        difficulty_title = findViewById(R.id.difficulty_Title);
 
         kpop1 = (TextView) findViewById((R.id.txtTitle1));
         kpop2 = (TextView) findViewById((R.id.txtTitle2));
         kpop3 = (TextView) findViewById((R.id.txtTitle3));
 
+        // text blink animation
+        anim = new AlphaAnimation(0.0f,1.0f);
+        anim.setDuration(100);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+
         //페이드인 애니메이션
         Animation textfadein = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in_text);
         difficulty_title.startAnimation(textfadein);
-        easyTip.startAnimation(textfadein);
-        normalTip.startAnimation(textfadein);
-        hardTip.startAnimation(textfadein);
         kpop1.startAnimation(textfadein);
         kpop2.startAnimation(textfadein);
         kpop3.startAnimation(textfadein);
-
-
+        normal_linear.setVisibility(View.GONE); // 처음 시작은 easy이므로 normal은 보이지않게
+        hard_linear.setVisibility(View.GONE); // hard 안보임
+        Uparrowpink.setVisibility(View.GONE); // 위 화살표 안보임
+        
         ImageView remote_difficulty = (ImageView) findViewById(R.id.Remote_difficulty);
         ConstraintLayout remotebutton_difficulty = (ConstraintLayout) findViewById(R.id.Remote_button_difficulty);
 
@@ -157,16 +189,16 @@ public class  DifficultyActivity extends AppCompatActivity {
         RemoteUp.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                easyButton.setEnabled(false);
-                normalButton.setEnabled(false);
-                hardButton.setEnabled(false);
+                df_down.setEnabled(false);
+                df_up.setEnabled(false);
+                df_confirm.setEnabled(false);
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                easyButton.setEnabled(true);
-                normalButton.setEnabled(true);
-                hardButton.setEnabled(true);
+                df_down.setEnabled(true);
+                df_up.setEnabled(true);
+                df_confirm.setEnabled(true);
 
             }
 
@@ -175,22 +207,6 @@ public class  DifficultyActivity extends AppCompatActivity {
 
             }
         });
-
-
-        //텍스트뷰 특정 부분 색깔 바꾸기
-        Spannable easyspan = (Spannable) easyTip.getText();
-        easyspan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.easy_color)), 0, 4, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-
-        Spannable normalspan = (Spannable) normalTip.getText();
-        normalspan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.teal_200)), 0, 6, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-
-        Spannable hardspan = (Spannable) hardTip.getText();
-        hardspan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.hard_color)), 0, 4, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-
-        layout_caution = findViewById(R.id.layout_caution);
-        layout_tip = findViewById(R.id.layout_difficultyTip);
-
-        layout_caution.setVisibility(View.GONE);
 
         SharedPreferences music = getSharedPreferences(MainActivity.SHARED_MUSIC,MODE_PRIVATE);
 
@@ -225,181 +241,219 @@ public class  DifficultyActivity extends AppCompatActivity {
             }
         }
 
-        easyButton.setOnClickListener(new View.OnClickListener() {
+        df_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
+                if( currentMode == 0)
+                {
+                    currentMode = -1;
+                    Uparrowpink.setVisibility(View.INVISIBLE);
+                    Downarrowpink.setVisibility(View.VISIBLE);
+                    hard_linear.setVisibility(View.GONE);
+                    normal_linear.setVisibility(View.GONE);
+                    easy_linear.setVisibility(View.VISIBLE);
 
-                easyButton.setEnabled(false);
-                normalButton.setEnabled(false);
-                hardButton.setEnabled(false);
-                easyButton.setTextColor(Color.GRAY);
-                normalButton.setTextColor(Color.GRAY);
-                hardButton.setTextColor(Color.GRAY);
+                }
 
-                layout_tip.setVisibility(View.GONE);
-                layout_caution.setVisibility(View.VISIBLE);
-                textLevel.setText(getString(R.string.Easy));
-                textLevel.setTextColor(getResources().getColor(R.color.easy_color));
-
-                //리모컨이미지 내려감
-                Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                remote_difficulty.startAnimation(RemoteDown);
-
-                //리모컨버튼 내려감
-                Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                remotebutton_difficulty.startAnimation(RemoteButtonDown);
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-
-                        if(!isFinished){
-                            if (mode_select==0){
-                                Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
-                                Quizintent.putExtra("difficulty_time",10000); // 5초
-                                Quizintent.putExtra("year_num",year_num_Difficulty);
-                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                                startActivity(Quizintent);
-                            }
-
-                            else {
-                                Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
-                                Quizintent.putExtra("difficulty_time",10000); // 5초
-                                Quizintent.putExtra("year_num",year_num_Difficulty);
-                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                                startActivity(Quizintent);
-                            }
-                            finish();
-                        }
-
-                        else{
-                            handler.removeCallbacks(this);
-                        }
-
-                    }
-                },600);
-
+                else if( currentMode == 1)
+                {
+                    currentMode = 0;
+                    Uparrowpink.setVisibility(View.VISIBLE);
+                    Downarrowpink.setVisibility(View.VISIBLE);
+                    hard_linear.setVisibility(View.GONE);
+                    normal_linear.setVisibility(View.VISIBLE);
+                    easy_linear.setVisibility(View.GONE);
+                }
             }
         });
 
-        normalButton.setOnClickListener(new View.OnClickListener() {
+        df_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
-
-                easyButton.setEnabled(false);
-                normalButton.setEnabled(false);
-                hardButton.setEnabled(false);
-                easyButton.setTextColor(Color.GRAY);
-                normalButton.setTextColor(Color.GRAY);
-                hardButton.setTextColor(Color.GRAY);
-
-                layout_tip.setVisibility(View.GONE);
-                layout_caution.setVisibility(View.VISIBLE);
-                textLevel.setText(getString(R.string.Normal));
-                textLevel.setTextColor(getResources().getColor(R.color.teal_200));
-
-                //리모컨이미지 내려감
-                Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                remote_difficulty.startAnimation(RemoteDown);
-
-                //리모컨버튼 내려감
-                Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                remotebutton_difficulty.startAnimation(RemoteButtonDown);
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        if(!isFinished){
-                            if (mode_select==0){
-                                Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
-                                Quizintent.putExtra("difficulty_time",5000); // 5초
-                                Quizintent.putExtra("year_num",year_num_Difficulty);
-                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                                startActivity(Quizintent);
-                            }
-
-                            else {
-                                Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
-                                Quizintent.putExtra("difficulty_time",5000); // 5초
-                                Quizintent.putExtra("year_num",year_num_Difficulty);
-                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                                startActivity(Quizintent);
-                            }
-                            finish();
-
-                        }
-
-                        else{
-                            handler.removeCallbacks(this);
-                        }
-                    }
-                },600);
+                if( currentMode == -1)
+                {
+                    currentMode = 0;
+                    Uparrowpink.setVisibility(View.VISIBLE);
+                    Downarrowpink.setVisibility(View.VISIBLE);
+                    hard_linear.setVisibility(View.GONE);
+                    normal_linear.setVisibility(View.VISIBLE);
+                    easy_linear.setVisibility(View.GONE);
+                }
+                else if( currentMode == 0)
+                {
+                    currentMode = 1;
+                    Uparrowpink.setVisibility(View.VISIBLE);
+                    Downarrowpink.setVisibility(View.INVISIBLE);
+                    hard_linear.setVisibility(View.VISIBLE);
+                    normal_linear.setVisibility(View.GONE);
+                    easy_linear.setVisibility(View.GONE);
+                }
             }
         });
 
-        hardButton.setOnClickListener(new View.OnClickListener() {
+        df_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundID,soundPoolVolume,soundPoolVolume,0,0,1f);
+                // easy
+                if( currentMode == -1 )
+                {
+                    easy_text.startAnimation(anim);
 
-                easyButton.setEnabled(false);
-                normalButton.setEnabled(false);
-                hardButton.setEnabled(false);
-                easyButton.setTextColor(Color.GRAY);
-                normalButton.setTextColor(Color.GRAY);
-                hardButton.setTextColor(Color.GRAY);
+                    soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
 
-                layout_tip.setVisibility(View.GONE);
-                layout_caution.setVisibility(View.VISIBLE);
-                textLevel.setText(getString(R.string.Hard));
-                textLevel.setTextColor(getResources().getColor(R.color.hard_color));
+                    df_down.setEnabled(false);
+                    df_up.setEnabled(false);
+                    df_confirm.setEnabled(false);
 
-                //리모컨이미지 내려감
-                Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                remote_difficulty.startAnimation(RemoteDown);
+                    df_confirm.setTextColor(Color.GRAY);
 
-                //리모컨버튼 내려감
-                Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
-                remotebutton_difficulty.startAnimation(RemoteButtonDown);
+                    //리모컨이미지 내려감
+                    Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remote_difficulty.startAnimation(RemoteDown);
 
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
+                    //리모컨버튼 내려감
+                    Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remotebutton_difficulty.startAnimation(RemoteButtonDown);
 
-                        if(!isFinished){
-                            if (mode_select==0){
-                                Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
-                                Quizintent.putExtra("difficulty_time",3000); // 5초
-                                Quizintent.putExtra("year_num",year_num_Difficulty);
-                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                                startActivity(Quizintent);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+
+                            if(!isFinished){
+                                if (mode_select==0){
+                                    Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
+                                    Quizintent.putExtra("difficulty_time",10000); // 10초
+                                    Quizintent.putExtra("year_num",year_num_Difficulty);
+                                    Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                    startActivity(Quizintent);
+                                }
+
+                                else {
+                                    Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
+                                    Quizintent.putExtra("difficulty_time",10000); // 10초
+                                    Quizintent.putExtra("year_num",year_num_Difficulty);
+                                    Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                    startActivity(Quizintent);
+                                }
+                                finish();
                             }
 
-                            else {
-                                Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
-                                Quizintent.putExtra("difficulty_time",3000); // 5초
-                                Quizintent.putExtra("year_num",year_num_Difficulty);
-                                Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-                                startActivity(Quizintent);
+                            else{
+                                handler.removeCallbacks(this);
                             }
-                            finish();
-                        }
 
-                        else{
-                            handler.removeCallbacks(this);
                         }
-                    }
-                },600);
+                    },600);
+                }
+
+                // normal
+                else if( currentMode == 0 )
+                {
+                    normal_text.startAnimation(anim);
+
+                    soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
+
+                    df_down.setEnabled(false);
+                    df_up.setEnabled(false);
+                    df_confirm.setEnabled(false);
+
+                    df_confirm.setTextColor(Color.GRAY);
+
+                    //리모컨이미지 내려감
+                    Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remote_difficulty.startAnimation(RemoteDown);
+
+                    //리모컨버튼 내려감
+                    Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remotebutton_difficulty.startAnimation(RemoteButtonDown);
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if(!isFinished){
+                                if (mode_select==0){
+                                    Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
+                                    Quizintent.putExtra("difficulty_time",5000); // 5초
+                                    Quizintent.putExtra("year_num",year_num_Difficulty);
+                                    Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                    startActivity(Quizintent);
+                                }
+
+                                else {
+                                    Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
+                                    Quizintent.putExtra("difficulty_time",5000); // 5초
+                                    Quizintent.putExtra("year_num",year_num_Difficulty);
+                                    Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                    startActivity(Quizintent);
+                                }
+                                finish();
+
+                            }
+
+                            else{
+                                handler.removeCallbacks(this);
+                            }
+                        }
+                    },600);
+                }
+
+                // hard
+                else if ( currentMode == 1 )
+                {
+                    hard_text.startAnimation(anim);
+
+                    soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
+
+                    df_down.setEnabled(false);
+                    df_up.setEnabled(false);
+                    df_confirm.setEnabled(false);
+
+                    df_confirm.setTextColor(Color.GRAY);
+
+                    //리모컨이미지 내려감
+                    Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remote_difficulty.startAnimation(RemoteDown);
+
+                    //리모컨버튼 내려감
+                    Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remotebutton_difficulty.startAnimation(RemoteButtonDown);
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if(!isFinished){
+                                if (mode_select==0){
+                                    Intent Quizintent = new Intent(getApplicationContext(),QuizMain.class);
+                                    Quizintent.putExtra("difficulty_time",3000); // 3초
+                                    Quizintent.putExtra("year_num",year_num_Difficulty);
+                                    Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                    startActivity(Quizintent);
+                                }
+
+                                else {
+                                    Intent Quizintent = new Intent(getApplicationContext(),quiz_beginner.class);
+                                    Quizintent.putExtra("difficulty_time",3000); // 3초
+                                    Quizintent.putExtra("year_num",year_num_Difficulty);
+                                    Quizintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                    startActivity(Quizintent);
+                                }
+                                finish();
+                            }
+
+                            else{
+                                handler.removeCallbacks(this);
+                            }
+                        }
+                    },600);
+                }
             }
         });
-
     }
 
 

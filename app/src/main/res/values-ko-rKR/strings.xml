@@ -3,11 +3,6 @@
     <string name="app_name">Kpop 뮤비 퀴즈</string>
     <string name="start">시작</string>
     <string name="bestscore">최고 점수</string>
-    <string name="Easy">이지</string>
-    <string name="Normal">노말</string>
-    <string name="Hard">하드</string>
-    <string name="Difficulty">난이도</string>
-    <string name="Gamestart">잠시 후 게임이 시작됩니다.\n준비하세요!</string>
     <string name="Confirm">정답 확인</string>
     <string name="Next">다음</string>
     <string name="Finish">종료</string>
@@ -71,5 +66,12 @@
     <string name="ChallengemodeName">도전\n100곡</string>
     <string name="beginnermodedescription">3가지 난이도, 힌트 무제한\n뮤비와 노래</string>
     <string name="mode">모드</string>
-
+    <string name="Easy">이지</string>
+    <string name="Normal">노말</string>
+    <string name="Hard">하드</string>
+    <string name="Easy2">10초 듣고 맞추기</string>
+    <string name="Normal2">5초 듣고 맞추기</string>
+    <string name="Hard2">3초 듣고 맞추기</string>
+    <string name="Difficulty">난이도</string>
+    <string name="Gamestart">잠시 후 게임이 시작됩니다.\n준비하세요!</string>
 </resources>
