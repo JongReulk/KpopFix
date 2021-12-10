@@ -171,6 +171,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="3"
+        android:layout_marginBottom="10dp"
 
         app:layout_constraintBottom_toBottomOf="@+id/Image_TV_difficulty"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -187,8 +188,11 @@
             android:gravity="center"
             android:text="@string/Easy"
             android:textColor="@color/easy_color"
+
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+
 
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="22sp"
@@ -211,7 +215,7 @@
             android:gravity="center"
             android:text="@string/Easy2"
             android:textColor="@color/white"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
 
@@ -234,6 +238,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="3"
+        android:layout_marginBottom="10dp"
 
         app:layout_constraintBottom_toBottomOf="@+id/Image_TV_difficulty"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -249,10 +254,12 @@
             android:layout_weight="2"
             android:gravity="center"
             android:text="@string/Normal"
+
             android:textColor="@color/basic_color1"
 
-            android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
 
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="22sp"
@@ -275,7 +282,7 @@
             android:gravity="center"
             android:text="@string/Normal2"
             android:textColor="@color/white"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
 
@@ -298,6 +305,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="3"
+        android:layout_marginBottom="10dp"
 
         app:layout_constraintBottom_toBottomOf="@+id/Image_TV_difficulty"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -313,6 +321,9 @@
             android:fontFamily="@font/font_digital"
             android:gravity="center"
             android:text="@string/Hard"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
             android:textColor="@color/hard_color"
 
             android:autoSizeTextType="uniform"
@@ -337,7 +348,7 @@
             android:gravity="center"
             android:text="@string/Hard2"
             android:textColor="@color/white"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
 
