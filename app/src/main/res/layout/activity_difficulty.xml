@@ -201,7 +201,7 @@
             android:textStyle="bold"
 
             app:textStroke="true"
-            app:textStrokeColor="@color/title_text_color"
+            app:textStrokeColor="@color/basic_color2"
             app:textStrokeWidth="6.0" />
 
         <com.tenriver.kpop.OutlineTextView

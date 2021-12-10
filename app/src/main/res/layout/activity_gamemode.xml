@@ -314,7 +314,7 @@
             android:bufferType="spannable"
             android:fontFamily="@font/font_digital"
             android:gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="100\nChallenges"
             android:textColor="@color/challenge_color1"
 
