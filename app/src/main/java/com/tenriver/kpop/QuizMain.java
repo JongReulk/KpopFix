@@ -131,7 +131,6 @@ public class QuizMain extends YouTubeBaseActivity {
     private TextView txt_answer;
 
 
-    boolean isChallengefinish = false;
     boolean isBackPressed = false;
     boolean isFinished = false;
     boolean isError = false;
@@ -150,6 +149,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
     // 플레이 횟수
     private int basic_playtime = 0;
+
+    private ImageView endimage;
 
     
     @Override
@@ -250,6 +251,9 @@ public class QuizMain extends YouTubeBaseActivity {
 
         hintText = findViewById(R.id.txt_hintall);
         txtHintPoint = findViewById(R.id.txt_HintPoint);
+
+        // end 이미지
+        endimage = findViewById(R.id.EndImage);
 
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
@@ -470,29 +474,30 @@ public class QuizMain extends YouTubeBaseActivity {
                 answerText.setVisibility(View.VISIBLE);
                 txt_answer.setVisibility(View.GONE);
 
-                if(isChallengefinish){
-                    //AdRequest adRequest = new AdRequest.Builder().build();
-                    //finishQuiz();
-                    isFinished=true;
 
-                    showInterstitial();
-
-
-                }
 
 
                 if(questionCounter >= questionCountTotal)
                 {
-                    showInterstitial();
+                    endimage.setVisibility(View.VISIBLE);
+                    Animation end_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in);
+                    endimage.startAnimation(end_anim);
+                    handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            showInterstitial();
+                        }
+                    },2000);
                 }
                 else {
-                    if(!isChallengefinish) {
-                        showNextQuestion();
-                        leftSpeaker.startAnimation(speakerleft_anim);
-                        rightSpeaker.startAnimation(speakerright_anim);
 
-                        playVideo();
-                    }
+                    showNextQuestion();
+                    leftSpeaker.startAnimation(speakerleft_anim);
+                    rightSpeaker.startAnimation(speakerright_anim);
+
+                    playVideo();
+
                 }
             }
 

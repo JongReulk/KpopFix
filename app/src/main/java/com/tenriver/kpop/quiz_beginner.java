@@ -57,7 +57,7 @@ import static com.tenriver.kpop.MainActivity.KEY_POINT;
 import static com.tenriver.kpop.MainActivity.SHARED_POINT;
 
 public class quiz_beginner extends YouTubeBaseActivity {
-    public static final String HIGH_SCORE = "highScore";
+    public static final String BEGINNERHIGH_SCORE = "beginnerhighScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
 
     private static final String QUIZ_SHARED = "quizshared";
@@ -130,7 +130,6 @@ public class quiz_beginner extends YouTubeBaseActivity {
     private TextView txt_answer;
 
 
-    boolean isChallengefinish = false;
     boolean isBackPressed = false;
     boolean isFinished = false;
     boolean isError = false;
@@ -147,6 +146,7 @@ public class quiz_beginner extends YouTubeBaseActivity {
     private TextView txtHintPoint;
     private static int pointplus;
 
+    private ImageView endimage;
 
 
     @Override
@@ -229,6 +229,7 @@ public class quiz_beginner extends YouTubeBaseActivity {
         hintText = findViewById(R.id.txt_hintall);
         txtHintPoint = findViewById(R.id.txt_HintPoint);
 
+
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
         if(year_num == 101){
@@ -297,6 +298,9 @@ public class quiz_beginner extends YouTubeBaseActivity {
 
         hintText.setText("");
 
+        // end Image
+        endimage = findViewById(R.id.EndImage);
+
         // 포인트 가져오기
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
@@ -333,7 +337,7 @@ public class quiz_beginner extends YouTubeBaseActivity {
                     Toast.makeText(getApplicationContext(), getString(R.string.currentPoint) + hintPoint, Toast.LENGTH_SHORT).show();
                     Log.v("다시 듣기", "다시듣기 버튼 클릭");
 
-                    musicProgressbar.setAlpha(0);
+                    musicProgressbar.setAlpha(0.0f);
 
                     isStarted = true;
 
@@ -391,6 +395,8 @@ public class quiz_beginner extends YouTubeBaseActivity {
             public void onClick(View v) {
 
                 musicProgressbar.setAlpha(0.0f);
+                musicProgressbar.clearAnimation();
+                musicProgressbar.setProgress(musicProgressbar.getMax());
                 checkAnswer();
                 leftSpeaker.startAnimation(speakerleft_anim);
                 rightSpeaker.startAnimation(speakerright_anim);
@@ -420,29 +426,27 @@ public class quiz_beginner extends YouTubeBaseActivity {
                 answerText.setVisibility(View.VISIBLE);
                 txt_answer.setVisibility(View.GONE);
 
-                if(isChallengefinish){
-                    //AdRequest adRequest = new AdRequest.Builder().build();
-                    //finishQuiz();
-                    isFinished=true;
-
-                    showInterstitial();
-
-
-                }
-
 
                 if(questionCounter >= questionCountTotal)
                 {
-                    showInterstitial();
+                    endimage.setVisibility(View.VISIBLE);
+                    Animation end_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in);
+                    endimage.startAnimation(end_anim);
+                    handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            showInterstitial();
+                        }
+                    },2000);
                 }
                 else {
-                    if(!isChallengefinish) {
-                        showNextQuestion();
-                        leftSpeaker.startAnimation(speakerleft_anim);
-                        rightSpeaker.startAnimation(speakerright_anim);
+                    showNextQuestion();
+                    leftSpeaker.startAnimation(speakerleft_anim);
+                    rightSpeaker.startAnimation(speakerright_anim);
 
-                        playVideo();
-                    }
+                    playVideo();
+
                 }
             }
 
@@ -755,7 +759,7 @@ public class quiz_beginner extends YouTubeBaseActivity {
 
         Intent resultIntent = new Intent(this, MainActivity.class);
 
-        resultIntent.putExtra(HIGH_SCORE, score);
+        resultIntent.putExtra(BEGINNERHIGH_SCORE, score);
 
         pointplus = 10;
 

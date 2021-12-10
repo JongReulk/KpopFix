@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int RC_LEADERBOARD_UI = 9004;
     static GoogleSignInAccount googleSignInAccount=null;
 
+    private int beginnerscore;
     private int basichighscore;
     private int challengehighscore;
     private TextView txtbasicHighscore;
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
     //point 관련
     private TextView txtpoint;
     private int pointNow;
+    private int pointBeginner;
     private int totalPoint;
     private int ad_time;
 
@@ -272,6 +274,8 @@ public class MainActivity extends AppCompatActivity {
 
         signinsilently();
 
+        pointNow = 0;
+        pointBeginner = 0;
 
 
         
@@ -614,11 +618,17 @@ public class MainActivity extends AppCompatActivity {
     private void updatePoint() {
         Intent intent = getIntent();
         int score = intent.getIntExtra(QuizMain.HIGH_SCORE, 0);
-        pointNow = score / 5;
+        int beginnerscore = intent.getIntExtra(quiz_beginner.BEGINNERHIGH_SCORE, 0);
+        if(score > 0) {
+            pointNow = score / 5;
+        }
+        else if(beginnerscore > 0){
+            pointBeginner = beginnerscore / 5;
+        }
 
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
-        totalPoint = totalPoint + pointNow;
+        totalPoint = totalPoint + pointNow + pointBeginner;
 
         SharedPreferences.Editor pointEditor = point.edit();
         pointEditor.putInt(KEY_POINT,totalPoint);
