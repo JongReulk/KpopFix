@@ -481,7 +481,7 @@
         android:layout_height="12dp"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/downarrowpink"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintLeft_toLeftOf="@id/Image_TV_mode"
         app:layout_constraintRight_toRightOf="@id/Image_TV_mode"
         app:layout_constraintBottom_toBottomOf="@id/Image_TV_mode"
