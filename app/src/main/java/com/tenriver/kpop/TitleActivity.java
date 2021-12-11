@@ -149,11 +149,12 @@ public class TitleActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-                    if(mediaplayer_title.isPlaying())
-                    {
-                        // BGM 중지
-                        mediaplayer_title.pause();
+                    if(mediaplayer_title!=null) {
+                        if (mediaplayer_title.isPlaying()) {
+                            // BGM 중지
+                            mediaplayer_title.pause();
 
+                        }
                     }
                 }
 

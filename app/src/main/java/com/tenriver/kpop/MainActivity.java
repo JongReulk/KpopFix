@@ -270,6 +270,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        try {
+            GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
+            gamesClient.setViewForPopups(findViewById(R.id.googlePopupQuizMain));
+            //gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+            Toast.makeText(getApplicationContext(), "알림 불러오기 성공!", Toast.LENGTH_SHORT).show();
+        } catch(Exception e){
+            Log.d("로그", "알림 불러오기 실패");
+        }
+
 
 
         signinsilently();
@@ -278,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
         pointBeginner = 0;
 
 
-        
+
 
         // 포인트 받아오기
         loadPoint();
@@ -785,7 +794,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-   }
+    }
 
     @Override
     protected void onUserLeaveHint() {
@@ -957,7 +966,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.d("로그", "업적 불러오기 실패");
         }
-        
+
     }
 
     @Override
@@ -972,12 +981,12 @@ public class MainActivity extends AppCompatActivity {
                 googleSignInAccount=task.getResult(ApiException.class);
 
                 // 로그인 성공 시시
-               findViewById(R.id.login_btn).setVisibility(View.INVISIBLE);
-               findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
-               findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
-               findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
-               findViewById(R.id.achievement_btn).setVisibility(View.VISIBLE);
-               Toast.makeText(this, getString(R.string.loginsucceed),Toast.LENGTH_SHORT).show();
+                findViewById(R.id.login_btn).setVisibility(View.INVISIBLE);
+                findViewById(R.id.logout_btn).setVisibility(View.VISIBLE);
+                findViewById(R.id.leaderboard_btn).setVisibility(View.VISIBLE);
+                findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
+                findViewById(R.id.achievement_btn).setVisibility(View.VISIBLE);
+                Toast.makeText(this, getString(R.string.loginsucceed),Toast.LENGTH_SHORT).show();
 
             } catch (ApiException apiException){
                 String message = apiException.getMessage();
