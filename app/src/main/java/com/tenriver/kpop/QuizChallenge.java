@@ -114,8 +114,8 @@ public class QuizChallenge extends YouTubeBaseActivity {
     private boolean isCountStart;
     private boolean isFirst = true;
 
-    private ImageView leftSpeaker;
-    private ImageView rightSpeaker;
+    private ImageView allSpeaker;
+
 
     boolean isStarted =true;
 
@@ -227,14 +227,12 @@ public class QuizChallenge extends YouTubeBaseActivity {
         Collections.shuffle(questionList);
 
         // 스피커 애니메이션
-        leftSpeaker = findViewById(R.id.imageView_speakerleft);
-        rightSpeaker = findViewById(R.id.imageView_speakerright);
+        allSpeaker = findViewById(R.id.imageView_speakerall);
 
-        Animation speakerleft_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.speaker_leftanim);
+        Animation allSpeaker_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.speaker_allspeaker);
+        allSpeaker.startAnimation(allSpeaker_anim);
 
-        leftSpeaker.startAnimation(speakerleft_anim);
-        Animation speakerright_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.speaker_rightanim);
-        rightSpeaker.startAnimation(speakerright_anim);
+
 
         // 다음 버튼 비활성화
         nextButton.setEnabled(false);
@@ -333,8 +331,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                     }
                     HintButton1.setEnabled(false);
 
-                    leftSpeaker.startAnimation(speakerleft_anim);
-                    rightSpeaker.startAnimation(speakerright_anim);
+                    allSpeaker.startAnimation(allSpeaker_anim);
 
                     playVideo();
                 }
@@ -422,8 +419,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
                 musicProgressbar.setAlpha(0.0f);
                 checkAnswer();
-                leftSpeaker.startAnimation(speakerleft_anim);
-                rightSpeaker.startAnimation(speakerright_anim);
+                allSpeaker.startAnimation(allSpeaker_anim);
             }
         });
 
@@ -483,8 +479,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                         },2000);
                     } else {
                         showNextQuestion();
-                        leftSpeaker.startAnimation(speakerleft_anim);
-                        rightSpeaker.startAnimation(speakerright_anim);
+                        allSpeaker.startAnimation(allSpeaker_anim);
 
                         playVideo();
 
@@ -633,8 +628,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
                             player.pause();
                             musicProgressbar.setProgress(musicProgressbar.getMax());
                             musicProgressbar.clearAnimation();
-                            rightSpeaker.clearAnimation();
-                            leftSpeaker.clearAnimation();
+                            allSpeaker.clearAnimation();
                         }
                     }
 
