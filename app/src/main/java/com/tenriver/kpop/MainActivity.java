@@ -936,13 +936,6 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.submit_btn).setVisibility(View.VISIBLE);
             findViewById(R.id.achievement_btn).setVisibility(View.VISIBLE);
 
-            try {
-                GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
-                gamesClient.setViewForPopups(findViewById(R.id.googlePopup));
-                gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
-            } catch(Exception e){
-                Log.d("로그", "팝업 불러오기 실패");
-            }
 
         }
         else{
@@ -986,12 +979,6 @@ public class MainActivity extends AppCompatActivity {
                findViewById(R.id.achievement_btn).setVisibility(View.VISIBLE);
                Toast.makeText(this, getString(R.string.loginsucceed),Toast.LENGTH_SHORT).show();
 
-                try {
-                    GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
-                    gamesClient.setViewForPopups(findViewById(R.id.googlePopup));
-                    gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
-                } catch(Exception e){
-                }
             } catch (ApiException apiException){
                 String message = apiException.getMessage();
                 if(message==null || message.isEmpty()) {
