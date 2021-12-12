@@ -72,7 +72,7 @@ public class ModeActivity extends AppCompatActivity {
     Animation anim;
 
     // 현재 골라진 모드를 숫자로 지정
-    private int currentMode = 0; // -1은 beginner 0은 basic, 1은 challenge
+    private int currentMode = -1; // -1은 beginner 0은 basic, 1은 challenge
 
     private static final String MODE_SHARED = "modeshared";
     private static final String GAMEMODE_SELECT = "gamemodeselect";
@@ -144,8 +144,13 @@ public class ModeActivity extends AppCompatActivity {
         kpop2.startAnimation(textfadein);
         kpop3.startAnimation(textfadein);
         mode_Title.startAnimation(textfadein);
-        challenge_linear.setVisibility(View.GONE); // 처음 시작은 basic이므로 챌린지는 보이지않게
-        beginner_linear.setVisibility(View.GONE); // 비기너 안보임
+        basic_linear.setVisibility(View.GONE);
+        challenge_linear.setVisibility(View.GONE); // 처음 시작은 beginner이므로 챌린지는 보이지않게
+
+        Uparrowpink.setVisibility(View.INVISIBLE);
+        Downarrowpink.setVisibility(View.VISIBLE);
+
+
 
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remote_mode.startAnimation(RemoteUp);

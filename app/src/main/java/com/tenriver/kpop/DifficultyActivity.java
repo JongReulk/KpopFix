@@ -126,7 +126,7 @@ public class  DifficultyActivity extends AppCompatActivity {
         // 포인트 가져오기
         SharedPreferences mode_shared = getSharedPreferences(MODE_SHARED,MODE_PRIVATE);
 
-        mode_select = mode_shared.getInt(GAMEMODE_SELECT,0);
+        mode_select = mode_shared.getInt(GAMEMODE_SELECT,-1);
 
         mAdview = findViewById(R.id.difficulty_adView);
         AdRequest adRequest = new AdRequest.Builder().build();
