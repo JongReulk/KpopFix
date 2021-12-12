@@ -800,12 +800,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
 
+        if(mediaplayer_main!=null) {
 
-        if(mediaplayer_main.isPlaying())
-        {
-            // BGM 중지
-            mediaplayer_main.pause();
+            if (mediaplayer_main.isPlaying()) {
+                // BGM 중지
+                mediaplayer_main.pause();
 
+            }
         }
 
     }

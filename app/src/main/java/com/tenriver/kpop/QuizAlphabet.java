@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -61,6 +62,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
     private static final long COUNTDOWN_IN_MILLIS = 30500;
 
     private static final String QUIZ_SHARED = "quizshared";
+    public static final String SHARED_MUSIC = "sharedMusic";
     
     private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
     static int score = 0;
@@ -91,6 +93,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
     private EditText answerText;
     private TextView txtAlpha;
     private TextView txtSinger;
+    private TextView correctText;
 
     private Button confirmButton;
     private Button nextButton;
@@ -128,6 +131,9 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
     private ImageView endimage;
 
+    // MediaPlayer 객체생성
+    public static MediaPlayer mediaplayer_alphabet;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,13 +146,38 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
         plus = 10;
 
-
+        // 메인 bgm 꺼주기
         if(MainActivity.mediaplayer_main!=null)
         {
             MainActivity.mediaplayer_main.stop();
             MainActivity.mediaplayer_main.release();
             MainActivity.mediaplayer_main = null;
         }
+
+        // BGN 실행
+        if(mediaplayer_alphabet ==null){
+            mediaplayer_alphabet = MediaPlayer.create(this, R.raw.chosungmusic);
+            mediaplayer_alphabet.setLooping(true);
+            mediaplayer_alphabet.start();
+        }
+
+        SharedPreferences music = getSharedPreferences(SHARED_MUSIC,MODE_PRIVATE);
+
+        Boolean bgmCb_main = music.getBoolean("bgmCb",true);
+        Boolean effectCb_main = music.getBoolean("effectCb",true);
+
+
+
+        if(mediaplayer_alphabet!=null){
+            if(!bgmCb_main){
+                mediaplayer_alphabet.setVolume(0,0);
+            }
+
+            else{
+                mediaplayer_alphabet.setVolume(1,1);
+            }
+        }
+
 
         score = 0;
 
@@ -175,7 +206,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
         answerText = findViewById(R.id.editText);
 
-        answerText.getBackground().setColorFilter(null);
+        answerText.setBackground(getResources().getDrawable(R.drawable.border_button_gray));
         //textColorDefaultCd = txtCountDown.getTextColors();
 
         txtQuestionCount = findViewById(R.id.txtQuestionCount);
@@ -187,6 +218,9 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
         txtHintPoint = findViewById(R.id.txt_HintPoint);
 
+        correctText = findViewById(R.id.correctText);
+        correctText.setVisibility(View.GONE);
+
         // end 이미지
         endimage = findViewById(R.id.EndImage);
         
@@ -196,6 +230,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
         txtSinger.setVisibility(View.INVISIBLE);
         txtAlpha.setText("");
+
 
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
@@ -329,6 +364,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
                 timeLeftInMillis = COUNTDOWN_IN_MILLIS;
 
+                answerText.setBackground(getResources().getDrawable(R.drawable.border_button_gray));
 
                 nextButton.setEnabled(false);
                 nextButton.setTextColor(Color.GRAY);
@@ -342,6 +378,8 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
                 if(questionCounter >= questionCountTotal)
                 {
+                    txtAlpha.setVisibility(View.GONE);
+                    txtSinger.setVisibility(View.GONE);
                     endimage.setVisibility(View.VISIBLE);
                     Animation end_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in);
                     endimage.startAnimation(end_anim);
@@ -504,7 +542,15 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         if(answer.equals(korean_Answer) || answer.equals(english_Answer)){
             answerText.setBackground(getResources().getDrawable(R.drawable.border_button_green));
             score = score+plus; // 점수 책정 방식
+            correctText.setVisibility(View.VISIBLE);
+            handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    correctText.setVisibility(View.GONE);
 
+                }
+            }, 1000);
 
 
         }
@@ -571,12 +617,43 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         pointEditor.putInt(KEY_POINT,hintPoint);
         pointEditor.apply();
     }
-    
+
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+
+        if(mediaplayer_alphabet!=null) {
+
+            if (mediaplayer_alphabet.isPlaying()) {
+                // BGM 중지
+                mediaplayer_alphabet.pause();
+
+            }
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(mediaplayer_alphabet!=null) {
+
+            mediaplayer_alphabet.start();
+        }
+
+    }
 
     @Override
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()){
             isBackPressed = true;
+            if(mediaplayer_alphabet!=null)
+            {
+                mediaplayer_alphabet.stop();
+                mediaplayer_alphabet.release();
+                mediaplayer_alphabet = null;
+            }
             finishQuiz();
 
         }else{
