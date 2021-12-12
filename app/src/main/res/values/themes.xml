@@ -3,7 +3,7 @@
     <style name="Theme.Kpop" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/gray</item>
-        <item name="colorPrimaryVariant">@color/heavypink</item>
+        <item name="colorPrimaryVariant">@color/heavypink2</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:windowBackground">@color/lightpink</item>
         <!-- Secondary brand color. -->

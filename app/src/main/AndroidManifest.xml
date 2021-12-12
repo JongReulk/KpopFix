@@ -37,7 +37,7 @@
         <activity
             android:name=".QuizMain"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".DifficultyActivity"
             android:screenOrientation="portrait" />
