@@ -15,17 +15,19 @@ public class Question {
     private String realAnswer;
     private int year;
     private String hintAll;
+    private String singer;
 
     public Question() {}
 
     //constructor
-    public Question(String question, String koreanAnswer, String englishAnswer2, String realAnswer, int year, String hintAll) {
+    public Question(String question, String koreanAnswer, String englishAnswer2, String realAnswer, int year, String hintAll, String singer) {
         this.question = question;
         this.koreanAnswer = koreanAnswer;
         this.englishAnswer2 = englishAnswer2;
         this.realAnswer = realAnswer;
         this.year = year;
         this.hintAll = hintAll;
+        this.singer = singer;
     }
 
 
@@ -76,6 +78,14 @@ public class Question {
 
     public void setHintAll(String hintAll) {
         this.hintAll = hintAll;
+    }
+
+    public String getSinger() {
+        return singer;
+    }
+
+    public void setSinger(String singer) {
+        this.singer = singer;
     }
 
     public static int[] getAllYear() {
