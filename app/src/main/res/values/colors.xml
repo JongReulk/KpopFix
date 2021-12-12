@@ -22,4 +22,6 @@
     <color name="light_title_color">#6C6969</color>
     <color name="heavypink">#AEA3A1</color>
     <color name="heavypink2">#80AEA3A1</color>
+    <color name="consonants_color1">#CC70FD</color>
+    <color name="consonants_color2">#9F93A3</color>
 </resources>

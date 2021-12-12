@@ -108,8 +108,6 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
     boolean isStarted =true;
 
-    
-
 
     boolean isBackPressed = false;
     boolean isFinished = false;
@@ -134,11 +132,13 @@ public class QuizAlphabet extends YouTubeBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_main);
+        setContentView(R.layout.activity_quiz_alphabet);
 
         Log.d("start","quiz alphabet activity start!");
 
         question_Num = 0;
+
+        plus = 10;
 
 
         if(MainActivity.mediaplayer_main!=null)
@@ -189,10 +189,13 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
         // end 이미지
         endimage = findViewById(R.id.EndImage);
+        
+        // 문제와 가수 텍스트
         txtAlpha = findViewById(R.id.txt_alphabet);
         txtSinger = findViewById(R.id.txt_singer);
 
         txtSinger.setVisibility(View.INVISIBLE);
+        txtAlpha.setText("");
 
         // DB 관련 선언
         QuizDbHelper dbHelper = new QuizDbHelper(this);
@@ -229,8 +232,8 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
         isHandler = true;
 
-        ImageView remote_quiz = (ImageView) findViewById(R.id.Remote_quizmain);
-        ConstraintLayout remotebutton_quiz = (ConstraintLayout) findViewById(R.id.Remote_button_quizmain);
+        ImageView remote_quiz = (ImageView) findViewById(R.id.Remote_quizalphabet);
+        ConstraintLayout remotebutton_quiz = (ConstraintLayout) findViewById(R.id.Remote_button_alphabet);
 
         Animation RemoteUp = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_up);
         remote_quiz.startAnimation(RemoteUp);
@@ -255,13 +258,9 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
         SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
 
-        txtAlpha.setSingleLine(true);
-        txtAlpha.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-        txtAlpha.setSelected(true);
 
-        txtSinger.setSingleLine(true);
-        txtSinger.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-        txtSinger.setSelected(true);
+
+
 
 
 
@@ -294,6 +293,9 @@ public class QuizAlphabet extends YouTubeBaseActivity {
                     isStarted = true;
 
                     txtSinger.setVisibility(View.VISIBLE);
+                    txtSinger.setSingleLine(true);
+                    txtSinger.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                    txtSinger.setSelected(true);
 
                     HintButton1.setEnabled(false);
 
@@ -334,7 +336,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
                 answerText.setVisibility(View.VISIBLE);
 
                 txtSinger.setVisibility(View.INVISIBLE);
-
+                txtSinger.setText("");
 
 
 
@@ -411,6 +413,9 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             confirmButton.setText(getString(R.string.Confirm));
 
             txtAlpha.setText(alphabet_Question);
+            txtAlpha.setSingleLine(true);
+            txtAlpha.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+            txtAlpha.setSelected(true);
             txtSinger.setText(singer_hint);
 
 
@@ -419,6 +424,8 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
 
             isStarted = true;
+
+            startCountDown();
 
             checkLast();
 
@@ -508,7 +515,6 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
         scoreText.setText(""+score); // 점수 텍스트 변경
 
-        answerText.setVisibility(View.INVISIBLE);
 
     }
 

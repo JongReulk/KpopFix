@@ -59,12 +59,14 @@ public class ModeActivity extends AppCompatActivity {
     private LinearLayout basic_linear;
     private LinearLayout challenge_linear;
     private LinearLayout beginner_linear;
+    private LinearLayout consonants_linear;
     
 
     // 리니어레이아웃 안의 모드 텍스트
     private TextView basic_text;
     private TextView challenge_text;
     private TextView beginner_text;
+    private TextView consonants_text;
 
     private ImageView Uparrowpink;
     private ImageView Downarrowpink;
@@ -114,9 +116,11 @@ public class ModeActivity extends AppCompatActivity {
         basic_linear = findViewById(R.id.basic_linear);
         challenge_linear = findViewById(R.id.challenge_linear);
         beginner_linear = findViewById(R.id.beginner_linear);
+        consonants_linear = findViewById(R.id.consonants_linear);
         basic_text = findViewById(R.id.txt_basicmode);
         challenge_text = findViewById(R.id.txt_challengemode);
         beginner_text = findViewById(R.id.txt_beginnermode);
+        consonants_text = findViewById(R.id.txt_consonantsmode);
 
         mode_up = findViewById(R.id.mode_up);
         mode_down = findViewById(R.id.mode_down);
@@ -146,6 +150,7 @@ public class ModeActivity extends AppCompatActivity {
         mode_Title.startAnimation(textfadein);
         basic_linear.setVisibility(View.GONE);
         challenge_linear.setVisibility(View.GONE); // 처음 시작은 beginner이므로 챌린지는 보이지않게
+        consonants_linear.setVisibility(View.GONE);
 
         Uparrowpink.setVisibility(View.INVISIBLE);
         Downarrowpink.setVisibility(View.VISIBLE);
@@ -216,6 +221,7 @@ public class ModeActivity extends AppCompatActivity {
                     challenge_linear.setVisibility(View.GONE);
                     basic_linear.setVisibility(View.GONE);
                     beginner_linear.setVisibility(View.VISIBLE);
+                    consonants_linear.setVisibility(View.GONE);
                 }
 
                 else if( currentMode == 1) // Challenge에서 basic
@@ -226,6 +232,18 @@ public class ModeActivity extends AppCompatActivity {
                     challenge_linear.setVisibility(View.GONE);
                     basic_linear.setVisibility(View.VISIBLE);
                     beginner_linear.setVisibility(View.GONE);
+                    consonants_linear.setVisibility(View.GONE);
+                }
+
+                else if (currentMode == 2) // Consonants에서 challenge
+                {
+                    Uparrowpink.setVisibility(View.VISIBLE);
+                    Downarrowpink.setVisibility(View.VISIBLE);
+                    currentMode = 1;
+                    challenge_linear.setVisibility(View.GONE);
+                    basic_linear.setVisibility(View.VISIBLE);
+                    beginner_linear.setVisibility(View.GONE);
+                    consonants_linear.setVisibility(View.GONE);
                 }
             }
         });
@@ -241,15 +259,27 @@ public class ModeActivity extends AppCompatActivity {
                     challenge_linear.setVisibility(View.GONE);
                     basic_linear.setVisibility(View.VISIBLE);
                     beginner_linear.setVisibility(View.GONE);
+                    consonants_linear.setVisibility(View.GONE);
                 }
                 else if( currentMode == 0) // basic에서 challenge
                 {
                     currentMode = 1;
                     Uparrowpink.setVisibility(View.VISIBLE);
-                    Downarrowpink.setVisibility(View.INVISIBLE);
+                    Downarrowpink.setVisibility(View.VISIBLE);
                     challenge_linear.setVisibility(View.VISIBLE);
                     basic_linear.setVisibility(View.GONE);
                     beginner_linear.setVisibility(View.GONE);
+                    consonants_linear.setVisibility(View.GONE);
+                }
+                else if( currentMode == 1) // challenge에서 consonants
+                {
+                    currentMode = 2;
+                    Uparrowpink.setVisibility(View.VISIBLE);
+                    Downarrowpink.setVisibility(View.INVISIBLE);
+                    challenge_linear.setVisibility(View.GONE);
+                    basic_linear.setVisibility(View.GONE);
+                    beginner_linear.setVisibility(View.GONE);
+                    consonants_linear.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -373,6 +403,48 @@ public class ModeActivity extends AppCompatActivity {
 
                             if (!isFinished) {
                                 Intent Modeintent = new Intent(getApplicationContext(), QuizChallenge.class);
+
+                                Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+                                startActivity(Modeintent);
+                                finish();
+                            } else {
+                                handler.removeCallbacks(this);
+                            }
+                        }
+                    }, 600);
+                }
+
+                else if ( currentMode == 2 ) // consonants 모드 일때
+                {
+                    select_num = currentMode;
+
+                    updateMode();
+
+                    consonants_text.startAnimation(anim);
+
+                    soundPool.play(soundID, soundPoolVolume, soundPoolVolume, 0, 0, 1f);
+
+                    mode_down.setEnabled(false);
+                    mode_up.setEnabled(false);
+                    mode_confirm.setEnabled(false);
+
+                    mode_confirm.setTextColor(Color.GRAY);
+
+                    //리모컨이미지 내려감
+                    Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remote_mode.startAnimation(RemoteDown);
+
+                    //리모컨버튼 내려감
+                    Animation RemoteButtonDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
+                    remotebutton_mode.startAnimation(RemoteButtonDown);
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (!isFinished) {
+                                Intent Modeintent = new Intent(getApplicationContext(), YearActivity.class);
 
                                 Modeintent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                                 startActivity(Modeintent);

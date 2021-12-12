@@ -123,7 +123,7 @@ public class  DifficultyActivity extends AppCompatActivity {
             }
         });
 
-        // 포인트 가져오기
+        // 모드 뭐 선택했는지 가져오기
         SharedPreferences mode_shared = getSharedPreferences(MODE_SHARED,MODE_PRIVATE);
 
         mode_select = mode_shared.getInt(GAMEMODE_SELECT,-1);
