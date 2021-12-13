@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -134,6 +136,13 @@ public class QuizAlphabet extends YouTubeBaseActivity {
     // MediaPlayer 객체생성
     public static MediaPlayer mediaplayer_alphabet;
 
+    //Sound
+    SoundPool soundPool;	//작성
+    int correctSound;		    //작성
+    int wrongSound;
+
+    private float soundPoolVolume;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,6 +184,21 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
             else{
                 mediaplayer_alphabet.setVolume(1,1);
+            }
+        }
+
+        //Sound
+        soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC,0);	//작성
+        wrongSound = soundPool.load(this,R.raw.wrongsound,1);
+        correctSound = soundPool.load(this,R.raw.correctsound,1);
+
+        if(soundPool!=null){
+            if(!effectCb_main){
+                soundPoolVolume=0.0f;
+            }
+
+            else{
+                soundPoolVolume=1f;
             }
         }
 
@@ -540,6 +564,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
         // 내용 비교 위해서 equals 사용
         if(answer.equals(korean_Answer) || answer.equals(english_Answer)){
+            soundPool.play(correctSound,soundPoolVolume,soundPoolVolume,0,0,1f);
             answerText.setBackground(getResources().getDrawable(R.drawable.border_button_green));
             score = score+plus; // 점수 책정 방식
             correctText.setVisibility(View.VISIBLE);
@@ -556,6 +581,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         }
 
         else {
+            soundPool.play(wrongSound,soundPoolVolume,soundPoolVolume,0,0,1f);
             answerText.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }
 
