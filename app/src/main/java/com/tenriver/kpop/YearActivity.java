@@ -262,33 +262,6 @@ public class YearActivity extends AppCompatActivity {
             }
         });
 
-        year_down.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                View year_v = year_linear.getChildAt(button_num);
-                year_v.setSelected(false);
-
-                button_num = button_total-1;
-                year_v = year_linear.getChildAt(button_num);
-                year_v.setSelected(true);
-                Button year_b = (Button)year_v;
-                year_b.setTextColor(getResources().getColor(R.color.black));
-                year_b.setTextSize(24);
-
-                Handler handler = new Handler();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        year_scroll.fullScroll(year_scroll.FOCUS_DOWN);
-
-                    }
-                });
-
-                return true;
-            }
-        });
-
 
 
         year_confirm.setOnClickListener(new View.OnClickListener() {
@@ -429,32 +402,6 @@ public class YearActivity extends AppCompatActivity {
             }
         });
 
-        year_up.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                View year_v = year_linear.getChildAt(button_num);
-                year_v.setSelected(false);
-
-                button_num = 0;
-                year_v = year_linear.getChildAt(button_num);
-                year_v.setSelected(true);
-                Button year_b = (Button)year_v;
-                year_b.setTextColor(getResources().getColor(R.color.black));
-                year_b.setTextSize(24);
-
-                Handler handler = new Handler();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        year_scroll.fullScroll(year_scroll.FOCUS_UP);
-
-                    }
-                });
-
-                return true;
-            }
-        });
 
     }
 
