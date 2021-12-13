@@ -74,4 +74,6 @@
     <string name="Hard2">TIME LIMIT 30s, LISTENING 3s</string>
     <string name="Difficulty">DIFFICULTY</string>
     <string name="Gamestart">The Game will begin.\nGET READY!</string>
+    <string name="consonantquiz">Consonant Quiz</string>
+    <string name="consonant_description">Look at the consonants\nand guess the song title!</string>
 </resources>

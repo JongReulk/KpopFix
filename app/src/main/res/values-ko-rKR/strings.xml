@@ -74,4 +74,6 @@
     <string name="Hard2">30초 제한, 3초간 노래 듣기</string>
     <string name="Difficulty">난이도</string>
     <string name="Gamestart">잠시 후 게임이 시작됩니다.\n준비하세요!</string>
+    <string name="consonantquiz">초성 퀴즈</string>
+    <string name="consonant_description">초성을 보고\n 노래 제목을 맞춰보세요!</string>
 </resources>

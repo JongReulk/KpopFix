@@ -638,6 +638,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences point = getSharedPreferences(SHARED_POINT,MODE_PRIVATE);
 
         totalPoint = totalPoint + pointNow + pointBeginner;
+        //totalPoint = 1000;
 
         SharedPreferences.Editor pointEditor = point.edit();
         pointEditor.putInt(KEY_POINT,totalPoint);

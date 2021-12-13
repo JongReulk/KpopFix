@@ -285,6 +285,9 @@ public class quiz_beginner extends YouTubeBaseActivity {
         randomTotal = arr[randomInt] + videoLength;
         randomStart = arr[randomInt];
 
+        randomTotal = 61000;
+        randomStart = 51000;
+
         musicProgressbar = findViewById(R.id.musicProgressBar);
 
         musicProgressbar.setMax(videoLength);
@@ -430,6 +433,7 @@ public class quiz_beginner extends YouTubeBaseActivity {
                 if(questionCounter >= questionCountTotal)
                 {
                     endimage.setVisibility(View.VISIBLE);
+                    hintText.setVisibility(View.INVISIBLE);
                     Animation end_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.fade_in);
                     endimage.startAnimation(end_anim);
                     handler = new Handler();

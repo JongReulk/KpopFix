@@ -240,8 +240,8 @@ public class ModeActivity extends AppCompatActivity {
                     Uparrowpink.setVisibility(View.VISIBLE);
                     Downarrowpink.setVisibility(View.VISIBLE);
                     currentMode = 1;
-                    challenge_linear.setVisibility(View.GONE);
-                    basic_linear.setVisibility(View.VISIBLE);
+                    challenge_linear.setVisibility(View.VISIBLE);
+                    basic_linear.setVisibility(View.GONE);
                     beginner_linear.setVisibility(View.GONE);
                     consonants_linear.setVisibility(View.GONE);
                 }

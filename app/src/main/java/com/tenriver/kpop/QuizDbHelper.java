@@ -16,7 +16,7 @@ import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MyKpopQuiz.db";
-    private static final int DATABASE_VERSION = 15; // 데이터베이스 버전 항상 다르게 하기 ( 2021.11.26 기준 7)
+    private static final int DATABASE_VERSION = 17; // 데이터베이스 버전 항상 다르게 하기 ( 2021.11.26 기준 7)
 
     private SQLiteDatabase db;
 
@@ -60,7 +60,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
         Question q1 = new Question("4TWR90KJl84", "넥스트레벨","nextlevel","Next Level - Aespa",2021, "ㄴㅅㅌ ㄹㅂ / n**t l**e*","aespa (에스파)");	addQuestion(q1);
         Question q2 = new Question("WMweEpGlu_U", "버터","butter","Butter - BTS",2021, "ㅂㅌ / b**t**","BTS (방탄소년단)");	addQuestion(q2);
-        Question q3 = new Question("Kevp2lFKSOg", "스트로베리문","strawberrymoon","strawberry moon - 아이유",2021, "ㅅㅌㄹㅂㄹ ㅁ / s**a**e**y m**n","IU(아이유)");	addQuestion(q3);
+        Question q3 = new Question("sqgxcCjD04s", "스트로베리문","strawberrymoon","strawberry moon - 아이유",2021, "ㅅㅌㄹㅂㄹ ㅁ / s**a**e**y m**n","IU(아이유)");	addQuestion(q3);
         Question q4 = new Question("SdHQkkRc-hc", "말해뭐해","talklove","말해! 뭐해? (Talk Love) -  K.will(케이윌)",2016, "ㅁㅎㅁㅎ / t**k l**e"," K.will(케이윌)");	addQuestion(q4);
         Question q5 = new Question("cIGgSI1uhKI", "봄이좋냐","whatthespring","봄이 좋냐?? (What The Spring??) - 10cm",2016, " ㅂㅇ ㅈㄴ / w**t t** s**i**","10cm");	addQuestion(q5);
         Question q6 = new Question("_3tIkwvUjJg", "이프유","ifyou","If You - Ailee(에일리)",2016, "ㅇㅍ ㅇ / i* y**","Ailee(에일리)");	addQuestion(q6);
@@ -73,7 +73,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q13 = new Question("bwmSjveL3Lc", "붐바야","boombayah","붐바야 (BOOMBAYAH) - BLACKPINK",2016, "ㅂㅂㅇ / b**m**y**","BLACKPINK");	addQuestion(q13);
         Question q14 = new Question("9pdj4iJD08s", "불장난","playingwithfire","불장난 (Playing With Fire) - BLACKPINK",2016, "ㅂㅈㄴ / p**y**g w**h f**e","BLACKPINK");	addQuestion(q14);
         Question q15 = new Question("9U8uA702xrE", "우주를줄게","galaxy","우주를 줄게 (GALAXY) - BOL4(볼빨간사춘기)",2016, "ㅇㅈㄹ ㅈㄱ / g**a**","BOL4(볼빨간사춘기)");	addQuestion(q15);
-        Question q16 = new Question("y5MAgMVwfFs", "좋다고말해","tellmeyoulikeme","좋다고 말해 - BOL4(볼빨간사춘기)",2016, "ㅈㄷㄱ ㅁㅎ / t**l m* y** l**e m*","BOL4(볼빨간사춘기)");	addQuestion(q16);
+        Question q16 = new Question("y5MAgMVwfFs", "좋다고말해","tellmeyoulikeme","좋다고 말해 (Tell me You Love me) - BOL4(볼빨간사춘기)",2016, "ㅈㄷㄱ ㅁㅎ / t**l m* y** l**e m*","BOL4(볼빨간사춘기)");	addQuestion(q16);
         Question q17 = new Question("hmE9f-TEutc", "피땀눈물","bloodsweatandtears","피 땀 눈물 (Blood Sweat & Tears) - BTS (방탄소년단)",2016, "ㅍ ㄸ ㄴㅁ / b**o* s**a* a** t**r*","BTS (방탄소년단)");	addQuestion(q17);
         Question q18 = new Question("4ujQOR2DMFM", "불타오르네","fire","불타오르네 (FIRE) - BTS (방탄소년단)",2016, "ㅂㅌㅇㄹㄴ / f**e","BTS (방탄소년단)");	addQuestion(q18);
         Question q19 = new Question("fTc5tuEn6_U", "에브리타임","everytime","Everytime - CHEN(첸)XPunch(펀치)",2016, "ㅇㅂㄹㅌㅇ / e**r* t**e","CHEN(첸)XPunch(펀치)");	addQuestion(q19);
@@ -101,7 +101,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q41 = new Question("bstWoRsocaw", "내옆에그대인걸","besideme","내 옆에 그대인걸 (Beside me) - 다비치 (DAVICHI)",2016, "ㄴ ㅇㅇ ㄱㄷㅇㄱ / b* s**e m*","다비치 (DAVICHI)");	addQuestion(q41);
         Question q42 = new Question("QbhmTM1cRro", "넌이즈뭔들","yourethebest","넌 is 뭔들 (You're the best) - 마마무 (MAMAMOO)",2016, "ㄴ ㅇㅈ ㅁㄷ / y**r* t** b**t","마마무 (MAMAMOO)");	addQuestion(q42);
         Question q43 = new Question("y2OFPvYxZuY", "데칼코마니","decalcomanie","데칼코마니 (Décalcomanie)  - 마마무 (MAMAMOO)",2016, "ㄷㅋㅋㅁㄴ / d**a**o**n**","마마무 (MAMAMOO)");	addQuestion(q43);
-        Question q44 = new Question("BbQG-S4mU0U", "쏘쏘","soso","쏘쏘 - 백아연",2016, "ㅆㅆ / s* s*","백아연");	addQuestion(q44);
+        Question q44 = new Question("BbQG-S4mU0U", "쏘쏘","soso","쏘쏘 (SO-SO) - 백아연",2016, "ㅆㅆ / s* s*","백아연");	addQuestion(q44);
         Question q45 = new Question("QL5KqjOZo6M", "같은곳에서","inthesameplace","같은 곳에서 (In the Same Place) - 소녀온탑 (Girls On Top)",2016, "ㄱㅇ ㄱㅇㅅ / i* t** s**e p**c*","소녀온탑 (Girls On Top)");	addQuestion(q45);
         Question q46 = new Question("WfYgbFBFe1E", "드림","dream","Dream - 수지(Suzy), 백현(BAEKHYUN)",2016, "ㄷㄹ / d**a*","수지(Suzy), 백현(BAEKHYUN)");	addQuestion(q46);
         Question q47 = new Question("LJVUjmNMF8c", "아이라이크댓","ilikethat","I Like That - 씨스타(SISTAR)",2016, "ㅇㅇ ㄹㅇㅋ ㄷ / i l**e t**t","씨스타(SISTAR)");	addQuestion(q47);
@@ -109,12 +109,12 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q49 = new Question("MfYPKZl7W1w", "널사랑하지않아","idontloveyou","널 사랑하지 않아 (I Don't Love You) - 어반자카파(Urban Zakapa)",2016, "ㄴ ㅅㄹㅎㅈ ㅇㅇ / i d**t l**e y**","어반자카파(Urban Zakapa)");	addQuestion(q49);
         Question q50 = new Question("erErBFKPbMY", "봄인가봐","springlove","봄인가 봐 (Spring Love) - 에릭남 X 웬디",2016, "ㅂㅇㄱ ㅂ / s**i** l**e","에릭남 X 웬디");	addQuestion(q50);
         Question q51 = new Question("1ZhDsPdvl6c", "너그리고나","navillera","너 그리고 나 (NAVILLERA) - GFRIEND(여자친구)",2016, "ㄴ ㄱㄹㄱ ㄴ / n**i**e**","GFRIEND(여자친구)");	addQuestion(q51);
-        Question q52 = new Question("L-2M_-QLs8k", "내가저지른사랑","theloveicommitted","내가 저지른 사랑 - 임창정",2016, "ㄴㄱ ㅈㅈㄹ ㅅㄹ / t** l**e I c**m**t**","임창정");	addQuestion(q52);
+        Question q52 = new Question("L-2M_-QLs8k", "내가저지른사랑","theloveicommitted","내가 저지른 사랑 (The Love I Committed) - 임창정",2016, "ㄴㄱ ㅈㅈㄹ ㅅㄹ / t** l**e I c**m**t**","임창정");	addQuestion(q52);
         Question q53 = new Question("nQRBLrtohxA", "사랑에빠졌죠","falleninlove","사랑에 빠졌죠(당신만이) Fallen in Love(Only With You) - 장범준 (Beom June Jang)",2016, "ㅅㄹㅇ ㅃㅈㅈ / f**l** i* l**e","장범준 (Beom June Jang)");	addQuestion(q53);
         Question q54 = new Question("EjHAgoN2KtU", "너였다면","ifitisyou","너였다면 (If It Is You) - 정승환 (Jung Seung-Hwan)",2016, "ㄴㅇㄷㅁ / i* i* i* y**","정승환 (Jung Seung-Hwan)");	addQuestion(q54);
         Question q55 = new Question("xbf2c0JBJic", "너는나나는너","iamyouyouareme","너는 나 나는 너 (I am you, you are me) - 지코 (ZICO)",2016, "ㄴㄴ ㄴ ㄴㄴ ㄴ / i a* y** y** a** m*","지코 (ZICO)");	addQuestion(q55);
         Question q56 = new Question("h9mvVTgfKCs", "사랑이었다","itwaslove","사랑이었다 (Feat. LUNA of f(x)) - 지코 (ZICO)",2016, "ㅅㄹㅇㅇㄷ / i* w** l**e","지코 (ZICO)");	addQuestion(q56);
-        Question q57 = new Question("I7EwLNhPgpg", "돌아오지마","dontcomeback","돌아오지마 - 헤이즈 (Heize)",2016, "ㄷㅇㅇㅈㅁ / d**t c**e b**k","헤이즈 (Heize)");	addQuestion(q57);
+        Question q57 = new Question("I7EwLNhPgpg", "돌아오지마","dontcomeback","돌아오지마 (Don't Come Back) - 헤이즈 (Heize)",2016, "ㄷㅇㅇㅈㅁ / d**t c**e b**k","헤이즈 (Heize)");	addQuestion(q57);
         Question q58 = new Question("8Oz7DG76ibY", "다이노소어","dinosaur","DINOSAUR - AKMU",2017, "ㄷㅇㄴㅅㅇ / d**o**u*","AKMU");	addQuestion(q58);
         Question q59 = new Question("NRlDo3JuzfI", "익스큐즈미","excuseme","Excuse Me - AOA",2017, "ㅇㅅㅋㅈㅁ / e**u** m*","AOA");	addQuestion(q59);
         Question q60 = new Question("RIWRyggt-QY", "봄의 나라 이야기","aprilstory","봄의 나라 이야기 (April Story) - APRIL(에이프릴)",2017, "ㅂㅇ ㄴㄹ ㅇㅇㄱ / a**i* s**r*","APRIL(에이프릴)");	addQuestion(q60);
@@ -299,7 +299,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q241 = new Question("PdDfuWJc9dA", "위올라이","wealllie","We All Lie - 하진 (Ha Jin)",2019, "ㅇ ㅇ ㄹㅇ / w* a** l**","하진 (Ha Jin)");	addQuestion(q241);
         Question q242 = new Question("lpka6ymCkIY", "떨어지는낙엽까지도","fallingleavesarebeautiful","떨어지는 낙엽까지도 (Falling Leaves are Beautiful) - 헤이즈 (Heize)",2019, "ㄸㅇㅈㄴ ㄴㅇㄲㅈㄷ / f**l**g l**v** a** b**u**f**","헤이즈 (Heize)");	addQuestion(q242);
         Question q243 = new Question("ByHNlfmmT-w", "위돈톡투게더","wedonttalktogether","We don't talk together - 헤이즈 (Heize)",2019, "ㅇ ㄷ ㅌ ㅌㄱㄷ / w* d**t t**k t**e**e*","헤이즈 (Heize)");	addQuestion(q243);
-        Question q244 = new Question("U_dpIqCDcZk", "헤어지자","goodbye","헤어지자 - 휘인 (Whee In)",2019, "ㅎㅇㅈㅈ / g**d**e","휘인 (Whee In)");	addQuestion(q244);
+        Question q244 = new Question("U_dpIqCDcZk", "헤어지자","goodbye","헤어지자 (Good bye) - 휘인 (Whee In)",2019, "ㅎㅇㅈㅈ / g**d**e","휘인 (Whee In)");	addQuestion(q244);
         Question q245 = new Question("om3n2ni8luE", "오마이갓","ohmygod","Oh my god - (여자)아이들((G)I-DLE)",2020, "ㅇ ㅁㅇ ㄱ / o* m* g**","(여자)아이들((G)I-DLE)");	addQuestion(q245);
         Question q246 = new Question("HPQ5mqovXHo", "덤디덤디","dumdidumdi","덤디덤디 (DUMDi DUMDi) - (여자)아이들((G)I-DLE)",2020, "ㄷㄷㄷㄷ / d**d* d**d*","(여자)아이들((G)I-DLE)");	addQuestion(q246);
         Question q247 = new Question("WqzTRK5GPWQ", "덤더럼","dumhdurum","덤더럼(Dumhdurum) - Apink(에이핑크)",2020, "ㄷㄷㄹ / d**h**r**","Apink(에이핑크)");	addQuestion(q247);
@@ -337,7 +337,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q279 = new Question("dM5gMsePq-o", "러브쉽","loveship","Loveship - Paul Kim(폴킴), CHUNG HA(청하)",2020, "ㄹㅂㅅ / l**e**i*","Paul Kim(폴킴), CHUNG HA(청하)");	addQuestion(q279);
         Question q280 = new Question("6jzH6_KOsKk", "널디러브","nerdylove","Nerdy Love (Feat. 백예린 Yerin Baek) - pH-1",2020, "ㄴㄷ ㄹㅂ / n**d* l**e","pH-1");	addQuestion(q280);
         Question q281 = new Question("Ujb-gvqsoi0", "몬스터","monster","Monster - Red Velvet - IRENE & SEULGI",2020, "ㅁㅅㅌ / m**s**r","Red Velvet - IRENE & SEULGI");	addQuestion(q281);
-        Question q282 = new Question("GTcM3qCeup0", "미래","future","미래 - Red Velvet (레드벨벳)",2020, "ㅁㄹ / f**u**","Red Velvet (레드벨벳)");	addQuestion(q282);
+        Question q282 = new Question("GTcM3qCeup0", "미래","future","미래 (Future) - Red Velvet (레드벨벳)",2020, "ㅁㄹ / f**u**","Red Velvet (레드벨벳)");	addQuestion(q282);
         Question q283 = new Question("PXE2Ykf8fXQ", "돈터치미","donttouchme","DON'T TOUCH ME - REFUND SISTERS(환불원정대)",2020, "ㄷ ㅌㅊ ㅁ / d**t t**c* m*","REFUND SISTERS(환불원정대)");	addQuestion(q283);
         Question q284 = new Question("jZfrmtU6B8k", "새드","sad","Sad - Sonnet Son(손승연)",2020, "ㅅㄷ / s**","Sonnet Son(손승연)");	addQuestion(q284);
         Question q285 = new Question("Ygrv55VRRas", "사랑하자","letslove","사랑, 하자 (Let’s Love) - SUHO 수호",2020, "ㅅㄹㅎㅈ / l**s l**e","SUHO 수호");	addQuestion(q285);
@@ -345,7 +345,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q287 = new Question("CM4CkVFmTds", "아이캔스탑미","icantstopme","I CAN'T STOP ME - TWICE(트와이스)",2020, "ㅇㅇ ㅋ ㅅㅌ ㅁ / i c**t s**p m*","TWICE(트와이스)");	addQuestion(q287);
         Question q288 = new Question("mH0_XpSHkZo", "모어앤모어","moreandmore","MORE & MORE - TWICE(트와이스)",2020, "ㅁㅇ ㅇ ㅁㅇ / m**e a** m**e","TWICE(트와이스)");	addQuestion(q288);
         Question q289 = new Question("uqmv4xBLt5k", "시작","startover","시작(Start Over) - 가호 (Gaho)",2020, "ㅅㅈ / s**r* o**r","가호 (Gaho)");	addQuestion(q289);
-        Question q290 = new Question("YbVlhdoo13s", "내마음이움찔했던순간","themomentmyheart","내 마음이 움찔했던 순간 - 규현(KYUHYUN)",2020, "ㄴ ㅁㅇㅇ ㅇㅉㅎㄷ ㅅㄱ / t** m**e** m* h**r*","규현(KYUHYUN)");	addQuestion(q290);
+        Question q290 = new Question("YbVlhdoo13s", "내마음이움찔했던순간","themomentmyheart","내 마음이 움찔했던 순간 (The Moment My Heart) - 규현(KYUHYUN)",2020, "ㄴ ㅁㅇㅇ ㅇㅉㅎㄷ ㅅㄱ / t** m**e** m* h**r*","규현(KYUHYUN)");	addQuestion(q290);
         Question q291 = new Question("xYvO_mYfOfk", "그때그아인","somedaytheboy","그때 그 아인 (Someday, The Boy) - 김필 (Kim Feel)",2020, "ㄱㄸ ㄱ ㅇㅇ / s**e**y t** b**","김필 (Kim Feel)");	addQuestion(q291);
         Question q292 = new Question("MRrXRlVd0P0", "테스형","mrtes","테스형!(Mr.Tes!) - 나훈아",2020, "ㅌㅅㅎ / m* t**","나훈아");	addQuestion(q292);
         Question q293 = new Question("dfl9KIX1WpU", "딩가딩가","dingga","딩가딩가 (Dingga) - 마마무 (MAMAMOO)",2020, "ㄷㄱㄷㄱ / d**g**","마마무 (MAMAMOO)");	addQuestion(q293);
