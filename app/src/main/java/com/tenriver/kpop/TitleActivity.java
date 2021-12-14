@@ -124,6 +124,12 @@ public class TitleActivity extends AppCompatActivity {
             internetOk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(mediaplayer_title!=null)
+                    {
+                        mediaplayer_title.stop();
+                        mediaplayer_title.release();
+                        mediaplayer_title = null;
+                    }
                     finish();
                 }
             });
@@ -388,6 +394,12 @@ public class TitleActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+        if(mediaplayer_title!=null)
+        {
+            mediaplayer_title.stop();
+            mediaplayer_title.release();
+            mediaplayer_title = null;
+        }
         finish();
 
     }
