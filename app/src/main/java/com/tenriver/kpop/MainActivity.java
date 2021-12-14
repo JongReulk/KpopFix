@@ -145,9 +145,6 @@ public class MainActivity extends AppCompatActivity {
         ConstraintLayout remotebutton = (ConstraintLayout) findViewById(R.id.Remote_button_main);
 
 
-
-
-
         //텍스트 페이드인
         kpop1 = (TextView) findViewById((R.id.txtTitle1));
         kpop2 = (TextView) findViewById((R.id.txtTitle2));
@@ -906,7 +903,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             // 여러 개의 리더보드를 만든다면 이 리더보드 ID를 여러 개 저장해야 함
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                    .submitScore(getString(R.string.leaderboard_kpop_mv_quiz_highscore),challengehighscore);
+                    .submitScore(getString(R.string.leaderboard_kpop_mv_quiz_challenge_highscore),challengehighscore);
             Toast.makeText(this, R.string.updateSuccess,Toast.LENGTH_SHORT).show();
         }catch (Exception e) {
             Toast.makeText(this, R.string.updateFail,Toast.LENGTH_SHORT).show();
@@ -917,7 +914,7 @@ public class MainActivity extends AppCompatActivity {
     private void rank() {
         try {
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                    .getLeaderboardIntent(getString(R.string.leaderboard_kpop_mv_quiz_highscore))
+                    .getLeaderboardIntent(getString(R.string.leaderboard_kpop_mv_quiz_challenge_highscore))
                     .addOnSuccessListener(intent -> {
                         startActivityForResult(intent, RC_LEADERBOARD_UI);
                     });

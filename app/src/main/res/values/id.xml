@@ -29,6 +29,6 @@
     <string name="achievement_many_drops_make_a_shower" translatable="false">CgkIt9-B_pgSEAIQDQ</string>
     <!--achievement Has Anyone Seen More Ads than Me?-->
     <string name="achievement_has_anyone_seen_more_ads_than_me" translatable="false">CgkIt9-B_pgSEAIQDg</string>
-    <!--leaderboard KPOP MV QUIZ HIGHSCORE-->
-    <string name="leaderboard_kpop_mv_quiz_highscore" translatable="false">CgkIt9-B_pgSEAIQAg</string>
+    <!--leaderboard KPOP MV QUIZ CHALLENGE HIGHSCORE-->
+    <string name="leaderboard_kpop_mv_quiz_challenge_highscore" translatable="false">CgkIt9-B_pgSEAIQAg</string>
 </resources>
