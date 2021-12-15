@@ -76,6 +76,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
     private String english_Answer;
     private String alphabet_Question;
     private String singer_hint;
+    private String realAnswer;
     
     private InterstitialAd screenAd;
 
@@ -96,6 +97,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
     private TextView txtAlpha;
     private TextView txtSinger;
     private TextView correctText;
+    private TextView realAnswerText;
 
     private Button confirmButton;
     private Button nextButton;
@@ -251,9 +253,11 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         // 문제와 가수 텍스트
         txtAlpha = findViewById(R.id.txt_alphabet);
         txtSinger = findViewById(R.id.txt_singer);
+        realAnswerText = findViewById(R.id.txt_real_answer);
 
         txtSinger.setVisibility(View.INVISIBLE);
         txtAlpha.setText("");
+        realAnswerText.setVisibility(View.INVISIBLE);
 
 
         // DB 관련 선언
@@ -318,11 +322,6 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
 
 
-
-
-
-
-
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
@@ -379,6 +378,11 @@ public class QuizAlphabet extends YouTubeBaseActivity {
                 checkAnswer();
                 leftSpeaker.startAnimation(speakerleft_anim);
                 rightSpeaker.startAnimation(speakerright_anim);
+                realAnswerText.setVisibility(View.VISIBLE);
+                realAnswerText.setSingleLine(true);
+                realAnswerText.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                realAnswerText.setSelected(true);
+                realAnswerText.setText(realAnswer);
             }
         });
 
@@ -398,6 +402,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
                 txtSinger.setVisibility(View.INVISIBLE);
                 txtSinger.setText("");
 
+                realAnswerText.setVisibility(View.INVISIBLE);
 
 
                 if(questionCounter >= questionCountTotal)
@@ -463,6 +468,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             english_Answer = currentQuestion.getEnglishAnswer2(); // 영어 정답
             alphabet_Question = currentQuestion.getHintAll();
             singer_hint = currentQuestion.getSinger();
+            realAnswer = currentQuestion.getRealAnswer();
 
             questionCounter ++;
             if(!isError){

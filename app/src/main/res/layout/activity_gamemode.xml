@@ -379,6 +379,7 @@
             android:gravity="center"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
             android:text="@string/consonantquiz"
             android:textColor="@color/consonants_color1"
 
