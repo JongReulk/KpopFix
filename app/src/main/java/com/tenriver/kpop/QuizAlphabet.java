@@ -469,6 +469,8 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             alphabet_Question = currentQuestion.getHintAll();
             singer_hint = currentQuestion.getSinger();
             realAnswer = currentQuestion.getRealAnswer();
+            txtAlpha.setEllipsize(null);
+            txtSinger.setEllipsize(null);
 
             questionCounter ++;
             if(!isError){
@@ -481,10 +483,20 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             confirmButton.setText(getString(R.string.Confirm));
 
             txtAlpha.setText(alphabet_Question);
-            txtAlpha.setSingleLine(true);
-            txtAlpha.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-            txtAlpha.setSelected(true);
             txtSinger.setText(singer_hint);
+            handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    txtAlpha.setSingleLine(true);
+                    txtAlpha.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                    txtAlpha.setSelected(true);
+                    txtSinger.setSingleLine(true);
+                    txtSinger.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                    txtSinger.setSelected(true);
+                }
+            },1000);
+
 
 
             //카운트 다운 시작
