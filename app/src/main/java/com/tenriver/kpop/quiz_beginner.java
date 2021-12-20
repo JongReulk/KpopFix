@@ -361,7 +361,6 @@ public class quiz_beginner extends YouTubeBaseActivity {
         }
         else{
             isFirst = false;
-            LoadAD();
             initPlayer();
             showNextQuestion();
         }

@@ -334,7 +334,6 @@ public class QuizChallenge extends YouTubeBaseActivity {
         }
         else{
             isFirst = false;
-            LoadAD();
             initPlayer();
             showNextQuestion();
         }

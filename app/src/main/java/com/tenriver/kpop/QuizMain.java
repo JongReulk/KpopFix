@@ -384,7 +384,6 @@ public class QuizMain extends YouTubeBaseActivity {
         }
         else{
             isFirst = false;
-            LoadAD();
             initPlayer();
             showNextQuestion();
         }

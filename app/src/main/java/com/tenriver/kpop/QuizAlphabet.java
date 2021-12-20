@@ -367,7 +367,6 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         }
         else{
             isFirst = false;
-            LoadAD();
             showNextQuestion();
         }
 
@@ -508,6 +507,8 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             txtAlpha.setEllipsize(null);
             txtSinger.setEllipsize(null);
 
+
+
             questionCounter ++;
             if(!isError){
                 question_Num++;
@@ -524,16 +525,21 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    // confirm 버튼 누를 수 있음
                     txtAlpha.setSingleLine(true);
                     txtAlpha.setEllipsize(TextUtils.TruncateAt.MARQUEE);
                     txtAlpha.setSelected(true);
                     txtSinger.setSingleLine(true);
                     txtSinger.setEllipsize(TextUtils.TruncateAt.MARQUEE);
                     txtSinger.setSelected(true);
+
+                    confirmButton.setEnabled(true);
+                    confirmButton.setTextColor(Color.WHITE);
                 }
             },1000);
 
 
+            //co
 
             //카운트 다운 시작
             isCountStart = true;
@@ -555,8 +561,6 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             // 힌트 버튼 활성화
             HintButton1.setEnabled(true);
 
-            confirmButton.setEnabled(true);
-            confirmButton.setTextColor(Color.WHITE);
             timeLeftInMillis = COUNTDOWN_IN_MILLIS;
             countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
                 @Override
