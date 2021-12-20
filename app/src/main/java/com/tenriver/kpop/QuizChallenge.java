@@ -60,7 +60,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
     public static final String CHALLENGE_HIGH_SCORE = "challengehighScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
-    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-4697644976729834/3739724481";
+    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
 
     private static final String QUIZ_SHARED = "quizshared";
     private static final String CHALLENGE_PLAY_TIME = "challengeplaytime";
@@ -159,6 +159,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
     private ImageView endimage;
 
+    private int randomAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -327,7 +328,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
         });
 
         Random Adrandom = new Random();
-        int randomAd = Adrandom.nextInt(3);
+        randomAd = Adrandom.nextInt(3);
 
         if(randomAd == 0){
             LoadAD();
@@ -817,7 +818,12 @@ public class QuizChallenge extends YouTubeBaseActivity {
         else {
             nextButton.setText(getString(R.string.Finish));
             isChallengefinish = true;
-            //LoadAD();
+            if(randomAd == 0){
+
+            }
+            else{
+                LoadAD();
+            }
 
             txt_answer.setBackground(getResources().getDrawable(R.drawable.border_button_red));
         }

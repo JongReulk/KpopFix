@@ -69,7 +69,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
     private static final String QUIZ_SHARED = "quizshared";
     public static final String SHARED_MUSIC = "sharedMusic";
     
-    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-4697644976729834/3739724481";
+    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
     static int score = 0;
     static int plus = 0;
     static int pointplus = 0;
@@ -147,6 +147,8 @@ public class QuizAlphabet extends YouTubeBaseActivity {
     int wrongSound;
 
     private float soundPoolVolume;
+
+    private int randomAd;
 
 
     @Override
@@ -360,7 +362,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         });
 
         Random Adrandom = new Random();
-        int randomAd = Adrandom.nextInt(3);
+        randomAd = Adrandom.nextInt(3);
 
         if(randomAd == 0){
             LoadAD();
@@ -666,7 +668,12 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             nextButton.setText(getString(R.string.Next));
         }
         else{
-            //LoadAD();
+            if(randomAd==0) {
+
+            }
+            else{
+                LoadAD();
+            }
             isFinished=true;
             nextButton.setText(getString(R.string.Finish));
         }

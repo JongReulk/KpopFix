@@ -71,7 +71,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
     //static String API_KEY ="AIzaSyDImlmmX6mnicXNlzed8TH1cn5YN62hBN0"; // 구글 콘솔사이트에서 발급받는 키
     static String API_KEY ="AIzaSyCnt7CWC3z_t_OimQLUwJ5-yXf6C6F83-A";
-    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-4697644976729834/3739724481";
+    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
     static int score = 0;
     static int plus = 0;
     static int pointplus = 0;
@@ -156,6 +156,8 @@ public class QuizMain extends YouTubeBaseActivity {
     private int basic_playtime = 0;
 
     private ImageView endimage;
+
+    private int randomAd;
 
     
     @Override
@@ -377,7 +379,7 @@ public class QuizMain extends YouTubeBaseActivity {
         });
 
         Random Adrandom = new Random();
-        int randomAd = Adrandom.nextInt(3);
+        randomAd = Adrandom.nextInt(3);
 
         if(randomAd == 0){
             LoadAD();
@@ -846,7 +848,12 @@ public class QuizMain extends YouTubeBaseActivity {
             nextButton.setText(getString(R.string.Next));
         }
         else{
-            //LoadAD();
+            if(randomAd == 0){
+
+            }
+            else{
+                LoadAD();
+            }
             isFinished=true;
             nextButton.setText(getString(R.string.Finish));
         }

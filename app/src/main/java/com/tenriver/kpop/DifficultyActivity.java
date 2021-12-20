@@ -69,8 +69,6 @@ public class  DifficultyActivity extends AppCompatActivity {
     private AdView mAdview;
     private InterstitialAd screenAd;
 
-    private static final String SCREENAD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712";
-
     private boolean isFinished = false;
 
     //Sound
@@ -133,7 +131,7 @@ public class  DifficultyActivity extends AppCompatActivity {
         mAdview.loadAd(adRequest);
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("\n" + "ca-app-pub-4697644976729834/5430729037");
+        adView.setAdUnitId("\n" + "ca-app-pub-3940256099942544/6300978111");
 
         Uparrowpink = findViewById(R.id.upPink);
         Downarrowpink = findViewById(R.id.downPink);
