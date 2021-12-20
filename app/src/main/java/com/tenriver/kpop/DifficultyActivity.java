@@ -133,7 +133,7 @@ public class  DifficultyActivity extends AppCompatActivity {
         mAdview.loadAd(adRequest);
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("\n" + "ca-app-pub-3940256099942544/6300978111");
+        adView.setAdUnitId("\n" + "ca-app-pub-4697644976729834/5430729037");
 
         Uparrowpink = findViewById(R.id.upPink);
         Downarrowpink = findViewById(R.id.downPink);

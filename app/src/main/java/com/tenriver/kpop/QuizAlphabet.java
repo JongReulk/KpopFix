@@ -2,6 +2,7 @@ package com.tenriver.kpop;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -10,6 +11,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -66,7 +69,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
     private static final String QUIZ_SHARED = "quizshared";
     public static final String SHARED_MUSIC = "sharedMusic";
     
-    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
+    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-4697644976729834/3739724481";
     static int score = 0;
     static int plus = 0;
     static int pointplus = 0;
@@ -214,7 +217,6 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
             gamesClient.setViewForPopups(findViewById(R.id.googlePopupQuizMain));
             //gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
-            Toast.makeText(getApplicationContext(), "알림 불러오기 성공!", Toast.LENGTH_SHORT).show();
         } catch(Exception e){
             Log.d("로그", "알림 불러오기 실패");
         }
@@ -322,13 +324,52 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
 
 
+        InternetDialog internetDialog;
+        // 인터넷 연결 확인
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        // 인터넷이 연결되어있을 때
+        if(!isConnected){
+
+            internetDialog = new InternetDialog(this);
+            internetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            Button internetOk = internetDialog.findViewById(R.id.btn_Internetconfirm);
+
+            internetDialog.setCancelable(false); // 밖에 선택해도 창이 안꺼짐
+            internetDialog.show();
+
+            internetOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    finish();
+                }
+            });
+        }
+
+
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
             }
         });
 
-        LoadAD();
+        Random Adrandom = new Random();
+        int randomAd = Adrandom.nextInt(3);
+
+        if(randomAd == 0){
+            LoadAD();
+        }
+        else{
+            isFirst = false;
+            LoadAD();
+            showNextQuestion();
+        }
 
 
 
@@ -376,13 +417,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             public void onClick(View v) {
 
                 checkAnswer();
-                leftSpeaker.startAnimation(speakerleft_anim);
-                rightSpeaker.startAnimation(speakerright_anim);
-                realAnswerText.setVisibility(View.VISIBLE);
-                realAnswerText.setSingleLine(true);
-                realAnswerText.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-                realAnswerText.setSelected(true);
-                realAnswerText.setText(realAnswer);
+
             }
         });
 
@@ -454,6 +489,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
                         // Handle the error
                         QuizAlphabet.this.screenAd = null;
                         Toast.makeText(getApplicationContext(), getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
+                        showNextQuestion();
                     }
 
                 });
@@ -571,6 +607,17 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         nextButton.setTextColor(Color.WHITE);
         confirmButton.setEnabled(false);
         confirmButton.setTextColor(Color.GRAY);
+
+        Animation speakerleft_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.speaker_leftanim);
+        Animation speakerright_anim = AnimationUtils.loadAnimation(getApplication(), R.anim.speaker_rightanim);
+
+        leftSpeaker.startAnimation(speakerleft_anim);
+        rightSpeaker.startAnimation(speakerright_anim);
+        realAnswerText.setVisibility(View.VISIBLE);
+        realAnswerText.setSingleLine(true);
+        realAnswerText.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        realAnswerText.setSelected(true);
+        realAnswerText.setText(realAnswer);
 
         //좌우 공백 및 띄어쓰기 공백 없애기
         String answer = answerText.getText().toString().trim().replace(" ","");

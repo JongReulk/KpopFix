@@ -2,11 +2,14 @@ package com.tenriver.kpop;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -57,7 +60,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
     public static final String CHALLENGE_HIGH_SCORE = "challengehighScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
-    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
+    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-4697644976729834/3739724481";
 
     private static final String QUIZ_SHARED = "quizshared";
     private static final String CHALLENGE_PLAY_TIME = "challengeplaytime";
@@ -288,6 +291,34 @@ public class QuizChallenge extends YouTubeBaseActivity {
         challenge_playtime = quiz_shared.getInt(CHALLENGE_PLAY_TIME,0);
 
 
+        InternetDialog internetDialog;
+        // 인터넷 연결 확인
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        // 인터넷이 연결되어있을 때
+        if(!isConnected){
+
+            internetDialog = new InternetDialog(this);
+            internetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            Button internetOk = internetDialog.findViewById(R.id.btn_Internetconfirm);
+
+            internetDialog.setCancelable(false); // 밖에 선택해도 창이 안꺼짐
+            internetDialog.show();
+
+            internetOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    finish();
+                }
+            });
+        }
+
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -295,7 +326,18 @@ public class QuizChallenge extends YouTubeBaseActivity {
             }
         });
 
-        LoadAD();
+        Random Adrandom = new Random();
+        int randomAd = Adrandom.nextInt(3);
+
+        if(randomAd == 0){
+            LoadAD();
+        }
+        else{
+            isFirst = false;
+            LoadAD();
+            initPlayer();
+            showNextQuestion();
+        }
 
 
 
@@ -516,6 +558,8 @@ public class QuizChallenge extends YouTubeBaseActivity {
                         QuizChallenge.this.screenAd = null;
                         Log.d("로그", loadAdError+" 에러발생");
                         Toast.makeText(getApplicationContext(), getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
+                        initPlayer();
+                        showNextQuestion();
                     }
 
                 });

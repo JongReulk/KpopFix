@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String BASICMODE_HIGHSCORE = "basichighscore";
     public static final String CHALLENGEMODE_HIGHSCORE = "challengehighscore";
 
-    private static final String REWARD_AD_ID = "ca-app-pub-3940256099942544/5224354917";
+    private static final String REWARD_AD_ID = "ca-app-pub-4697644976729834/1491484020";
 
     //로그인 관련
     private static final int RC_SIGN_IN=9001;
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         mAdview.loadAd(adRequest);
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("\n" + "ca-app-pub-3940256099942544/6300978111");
+        adView.setAdUnitId("\n" + "ca-app-pub-4697644976729834/5430729037");
 
         rewardAdButton = findViewById(R.id.RewardAdButton);
 
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
             GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
             gamesClient.setViewForPopups(findViewById(R.id.googlePopupQuizMain));
             //gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
-            Toast.makeText(getApplicationContext(), "알림 불러오기 성공!", Toast.LENGTH_SHORT).show();
+
         } catch(Exception e){
             Log.d("로그", "알림 불러오기 실패");
         }

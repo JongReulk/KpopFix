@@ -2,11 +2,14 @@ package com.tenriver.kpop;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -68,7 +71,7 @@ public class QuizMain extends YouTubeBaseActivity {
 
     //static String API_KEY ="AIzaSyDImlmmX6mnicXNlzed8TH1cn5YN62hBN0"; // 구글 콘솔사이트에서 발급받는 키
     static String API_KEY ="AIzaSyCnt7CWC3z_t_OimQLUwJ5-yXf6C6F83-A";
-    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
+    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-4697644976729834/3739724481";
     static int score = 0;
     static int plus = 0;
     static int pointplus = 0;
@@ -79,6 +82,8 @@ public class QuizMain extends YouTubeBaseActivity {
     private String english_Answer;
     private String real_Answer;
     private String hint_all;
+
+    InternetDialog internetDialog;
 
     private InterstitialAd screenAd;
 
@@ -182,7 +187,7 @@ public class QuizMain extends YouTubeBaseActivity {
             GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
             gamesClient.setViewForPopups(findViewById(R.id.googlePopupQuizMain));
             //gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
-            Toast.makeText(getApplicationContext(), "알림 불러오기 성공!", Toast.LENGTH_SHORT).show();
+
         } catch(Exception e){
             Log.d("로그", "알림 불러오기 실패");
         }
@@ -336,6 +341,34 @@ public class QuizMain extends YouTubeBaseActivity {
         basic_playtime = quiz_shared.getInt(BASIC_PLAY_TIME,0);
 
 
+        // 인터넷 연결 확인
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        // 인터넷이 연결되어있을 때
+        if(!isConnected){
+
+            internetDialog = new InternetDialog(this);
+            internetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            Button internetOk = internetDialog.findViewById(R.id.btn_Internetconfirm);
+
+            internetDialog.setCancelable(false); // 밖에 선택해도 창이 안꺼짐
+            internetDialog.show();
+
+            internetOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    
+                    finish();
+                }
+            });
+        }
+
+
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -343,7 +376,19 @@ public class QuizMain extends YouTubeBaseActivity {
             }
         });
 
-        LoadAD();
+        Random Adrandom = new Random();
+        int randomAd = Adrandom.nextInt(3);
+
+        if(randomAd == 0){
+            LoadAD();
+        }
+        else{
+            isFirst = false;
+            LoadAD();
+            initPlayer();
+            showNextQuestion();
+        }
+
 
 
 
@@ -525,7 +570,9 @@ public class QuizMain extends YouTubeBaseActivity {
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         // Handle the error
                         QuizMain.this.screenAd = null;
-                        Toast.makeText(getApplicationContext(), getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.waitasecond), Toast.LENGTH_SHORT).show();
+                        initPlayer();
+                        showNextQuestion();
                     }
 
                 });
