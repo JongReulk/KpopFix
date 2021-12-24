@@ -187,8 +187,8 @@ public class QuizMain extends YouTubeBaseActivity {
 
         try {
             GamesClient gamesClient = Games.getGamesClient(this,GoogleSignIn.getLastSignedInAccount(this));
-            gamesClient.setViewForPopups(findViewById(R.id.googlePopupQuizMain));
-            //gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+            gamesClient.setViewForPopups(findViewById(R.id.content));
+            gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
 
         } catch(Exception e){
             Log.d("로그", "알림 불러오기 실패");
