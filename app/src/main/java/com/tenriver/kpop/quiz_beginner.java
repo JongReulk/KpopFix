@@ -442,8 +442,10 @@ public class quiz_beginner extends YouTubeBaseActivity {
             public void onClick(View v) {
 
                 musicProgressbar.setAlpha(0.0f);
-                musicProgressbar.clearAnimation();
-                musicProgressbar.setProgress(musicProgressbar.getMax());
+
+                //musicProgressbar.clearAnimation();
+                //musicProgressbar.setProgress(musicProgressbar.getMax());
+
                 checkAnswer();
                 leftSpeaker.startAnimation(speakerleft_anim);
                 rightSpeaker.startAnimation(speakerright_anim);
@@ -687,9 +689,16 @@ public class quiz_beginner extends YouTubeBaseActivity {
             HintButton1.setEnabled(true);
             HintButton3.setEnabled(true);
 
+            handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // confirm 버튼 누를 수 있음
+                    confirmButton.setEnabled(true);
+                    confirmButton.setTextColor(Color.WHITE);
+                }
+            },1000);
 
-            confirmButton.setEnabled(true);
-            confirmButton.setTextColor(Color.WHITE);
             timeLeftInMillis = COUNTDOWN_IN_MILLIS;
             countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
                 @Override
@@ -740,10 +749,18 @@ public class quiz_beginner extends YouTubeBaseActivity {
         HintButton1.setEnabled(false);
         HintButton3.setEnabled(false);
 
-
         playerView.setAlpha(1.0f);
-        nextButton.setEnabled(true);
-        nextButton.setTextColor(Color.WHITE);
+
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // next 버튼 누를 수 있음
+                nextButton.setEnabled(true);
+                nextButton.setTextColor(Color.WHITE);
+            }
+        },1000);
+
         confirmButton.setEnabled(false);
         confirmButton.setTextColor(Color.GRAY);
 

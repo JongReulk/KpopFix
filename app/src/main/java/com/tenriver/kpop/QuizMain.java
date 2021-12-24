@@ -737,9 +737,16 @@ public class QuizMain extends YouTubeBaseActivity {
             HintButton2.setEnabled(true);
             HintButton3.setEnabled(true);
 
+            handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // confirm 버튼 누를 수 있음
+                    confirmButton.setEnabled(true);
+                    confirmButton.setTextColor(Color.WHITE);
+                }
+            },1000);
 
-            confirmButton.setEnabled(true);
-            confirmButton.setTextColor(Color.WHITE);
             timeLeftInMillis = COUNTDOWN_IN_MILLIS;
             countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
                 @Override
@@ -791,10 +798,18 @@ public class QuizMain extends YouTubeBaseActivity {
         HintButton2.setEnabled(false);
         HintButton3.setEnabled(false);
 
-
         playerView.setAlpha(1.0f);
-        nextButton.setEnabled(true);
-        nextButton.setTextColor(Color.WHITE);
+
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // next 버튼 누를 수 있음
+                nextButton.setEnabled(true);
+                nextButton.setTextColor(Color.WHITE);
+            }
+        },1000);
+
         confirmButton.setEnabled(false);
         confirmButton.setTextColor(Color.GRAY);
         
