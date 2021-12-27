@@ -226,11 +226,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-                    if(mediaplayer_main.isPlaying())
-                    {
-                        // BGM 중지
-                        mediaplayer_main.pause();
-
+                    if(mediaplayer_main!=null) {
+                        if (mediaplayer_main.isPlaying()) {
+                            // BGM 중지
+                            mediaplayer_main.pause();
+                        }
                     }
 
                 }
@@ -876,13 +876,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(!mediaplayer_main.isPlaying())
-        {
-            // BGN 실행
-            mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic_new);
-            mediaplayer_main.setLooping(true);
-            mediaplayer_main.start();
+        if(mediaplayer_main!=null) {
 
+            if (!mediaplayer_main.isPlaying()) {
+                // BGN 실행
+                mediaplayer_main = MediaPlayer.create(this, R.raw.selectmusic_new);
+                mediaplayer_main.setLooping(true);
+                mediaplayer_main.start();
+
+            }
         }
     }
 

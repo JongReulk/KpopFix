@@ -65,33 +65,6 @@ public class TitleActivity extends AppCompatActivity {
 
 
 
-        // 앱 업데이트 매니저 초기화
-        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
-
-        // 업데이트를 체크하는데 사용되는 인텐트 리턴
-        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-
-        // Checks that the platform will allow the specified type of update.
-        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> { // appUpdateManager이 추가되는데 성공하면 발생하는 이벤트
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE // UpdateAvailability.UPDATE_AVAILABLE == 2 이면 앱 true
-                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) { // 허용된 타입의 앱 업데이트이면 실행 (AppUpdateType.IMMEDIATE || AppUpdateType.FLEXIBLE)
-                // 업데이트가 가능하고, 상위 버전 코드의 앱이 존재하면 업데이트를 실행한다.
-                try {
-                    appUpdateManager.startUpdateFlowForResult(
-                            // getAppUpdateInfo() 에 의해 리턴된 인텐트
-                            appUpdateInfo,
-                            // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
-                            AppUpdateType.IMMEDIATE,
-                            // 현재 업데이트 요청을 만든 액티비티
-                            this,
-                            // onActivityResult에서 사용될 REQUEST_CODE
-                            MY_REQUEST_CODE);
-                } catch (IntentSender.SendIntentException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
 
 
         // BGN 실행
@@ -155,13 +128,7 @@ public class TitleActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-                    if(mediaplayer_title!=null) {
-                        if (mediaplayer_title.isPlaying()) {
-                            // BGM 중지
-                            mediaplayer_title.pause();
-
-                        }
-                    }
+                    finish();
                 }
 
             }
@@ -357,40 +324,6 @@ public class TitleActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == MY_REQUEST_CODE) {
-            if (resultCode != RESULT_OK)
-            {
-                Toast.makeText(getApplicationContext(),getString(R.string.VersionCancel),Toast.LENGTH_SHORT).show();
-                AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
-                Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-
-                appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
-                    if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                            // flexible한 업데이트를 위해서는 AppUpdateType.FLEXIBLE을 사용한다.
-                            && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                        // 업데이트를 다시 요청한다.
-                        try {
-                            appUpdateManager.startUpdateFlowForResult(
-                                    // getAppUpdateInfo() 에 의해 리턴된 인텐트
-                                    appUpdateInfo,
-                                    // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
-                                    AppUpdateType.IMMEDIATE,
-                                    // 현재 업데이트 요청을 만든 액티비티
-                                    this,
-                                    // onActivityResult에서 사용될 REQUEST_CODE
-                                    MY_REQUEST_CODE);
-                        } catch (IntentSender.SendIntentException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }
-        }
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
 
@@ -404,31 +337,4 @@ public class TitleActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
-
-        appUpdateManager.
-                getAppUpdateInfo().
-                addOnSuccessListener(
-                        appUpdateInfo -> {
-                            if (appUpdateInfo.updateAvailability()
-                            == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                                try {
-                                    appUpdateManager.startUpdateFlowForResult(
-                                            appUpdateInfo,
-                                            AppUpdateType.IMMEDIATE,
-                                            this,
-                                            MY_REQUEST_CODE);
-                                }
-                                catch (Exception e)
-                                {
-                                    e.printStackTrace();
-
-                                }
-                            }
-                        });
-    }
 }

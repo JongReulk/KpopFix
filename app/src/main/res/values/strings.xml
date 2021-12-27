@@ -76,4 +76,5 @@
     <string name="Gamestart">The Game will begin.\nGET READY!</string>
     <string name="consonantquiz">Consonant Quiz</string>
     <string name="consonant_description">Look at the consonants\nand guess the song title!</string>
+    <string name="videointernet">There is no internet connection. Please restart the game after connecting to the internet.</string>
 </resources>

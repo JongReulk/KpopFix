@@ -16,7 +16,7 @@ import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MyKpopQuiz.db";
-    private static final int DATABASE_VERSION = 20; // 데이터베이스 버전 항상 다르게 하기 ( 2021.12.25 기준 20)
+    private static final int DATABASE_VERSION = 21; // 데이터베이스 버전 항상 다르게 하기 ( 2021.12.25 기준 21)
 
     private SQLiteDatabase db;
 

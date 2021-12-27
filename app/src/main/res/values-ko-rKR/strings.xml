@@ -76,4 +76,5 @@
     <string name="Gamestart">잠시 후 게임이 시작됩니다.\n준비하세요!</string>
     <string name="consonantquiz">초성 퀴즈</string>
     <string name="consonant_description">초성을 보고\n 노래 제목을 맞춰보세요!</string>
+    <string name="videointernet">인터넷 연결이 되어 있지 않습니다. 인터넷 연결 후 게임을 다시 시작해주세요.</string>
 </resources>

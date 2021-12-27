@@ -326,51 +326,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         SharedPreferences quiz_shared = getSharedPreferences(QUIZ_SHARED,MODE_PRIVATE);
 
 
-        InternetDialog internetDialog;
-        // 인터넷 연결 확인
-        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-
-        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-
-        // 인터넷이 연결되어있을 때
-        if(!isConnected){
-
-            internetDialog = new InternetDialog(this);
-            internetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-            Button internetOk = internetDialog.findViewById(R.id.btn_Internetconfirm);
-
-            internetDialog.setCancelable(false); // 밖에 선택해도 창이 안꺼짐
-            internetDialog.show();
-
-            internetOk.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    finish();
-                }
-            });
-        }
-
-
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
-            }
-        });
-
-        Random Adrandom = new Random();
-        randomAd = Adrandom.nextInt(3);
-
-        if(randomAd == 0){
-            LoadAD();
-        }
-        else{
-            isFirst = false;
-            showNextQuestion();
-        }
+        showNextQuestion();
 
 
 
@@ -452,7 +408,7 @@ public class QuizAlphabet extends YouTubeBaseActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            showInterstitial();
+                            finishQuiz();
                         }
                     },2000);
                 }
@@ -467,35 +423,6 @@ public class QuizAlphabet extends YouTubeBaseActivity {
 
         });
     } // onCreate
-
-    private void LoadAD() {
-        AdRequest adRequest = new AdRequest.Builder().build();
-
-        InterstitialAd.load(this,INTERSTITIAL_AD_ID, adRequest,
-                new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        // The mInterstitialAd reference will be null until
-                        // an ad is loaded.
-                        QuizAlphabet.this.screenAd = interstitialAd;
-
-                        if(isFirst){
-                            showInterstitial();
-                            isFirst = false;
-                        }
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        // Handle the error
-                        QuizAlphabet.this.screenAd = null;
-                        Toast.makeText(getApplicationContext(), getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
-                        showNextQuestion();
-                    }
-
-                });
-    }
-
 
 
     private void showNextQuestion() {
@@ -668,12 +595,6 @@ public class QuizAlphabet extends YouTubeBaseActivity {
             nextButton.setText(getString(R.string.Next));
         }
         else{
-            if(randomAd==0) {
-
-            }
-            else{
-                LoadAD();
-            }
             isFinished=true;
             nextButton.setText(getString(R.string.Finish));
         }
@@ -774,34 +695,6 @@ public class QuizAlphabet extends YouTubeBaseActivity {
         }
     }
 
-
-
-    private void showInterstitial() {
-        screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-            @Override
-            public void onAdDismissedFullScreenContent() {
-                super.onAdDismissedFullScreenContent();
-                QuizAlphabet.this.screenAd = null;
-                if (isFinished){
-                    finishQuiz();
-                }
-
-                else{
-                    showNextQuestion();
-                }
-                LoadAD();
-            }
-        });
-
-        if (screenAd != null) {
-            screenAd.show(QuizAlphabet.this);
-            screenAd = null;
-        } else {
-            Toast.makeText(this, getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
-            Log.e("TAG","NO SHOW!");
-        }
-
-    }
 
 }
 

@@ -64,6 +64,8 @@ public class TipsActivity extends AppCompatActivity{
             }
         }
 
+
+
         // 전원 버튼 감지
         intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -73,11 +75,12 @@ public class TipsActivity extends AppCompatActivity{
             @Override
             public void onReceive(Context context, Intent intent) {
                 if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-                    if(mediaplayer_tips.isPlaying())
-                    {
-                        // BGM 중지
-                        mediaplayer_tips.pause();
+                    if(mediaplayer_tips!=null) {
+                        if (mediaplayer_tips.isPlaying()) {
+                            // BGM 중지
+                            mediaplayer_tips.pause();
 
+                        }
                     }
                 }
 
@@ -85,6 +88,7 @@ public class TipsActivity extends AppCompatActivity{
         };
 
         registerReceiver(receiver, intentFilter);
+
 
 
 
@@ -218,6 +222,21 @@ public class TipsActivity extends AppCompatActivity{
             mediaplayer_tips.stop();
             mediaplayer_tips.release();
             mediaplayer_tips = null;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mediaplayer_tips!=null) {
+
+            if (!mediaplayer_tips.isPlaying()) {
+                // BGN 실행
+                mediaplayer_tips = MediaPlayer.create(this, R.raw.selectmusic_new);
+                mediaplayer_tips.setLooping(true);
+                mediaplayer_tips.start();
+
+            }
         }
     }
 

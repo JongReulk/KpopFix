@@ -647,6 +647,18 @@ public class QuizMain extends YouTubeBaseActivity {
 //                player.cueVideo(videoId); // 여기에 있으면 동영상 재생이 안됨.
             }
 
+            // 인터넷 연결 확인
+            ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+            boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+            // 인터넷이 연결되어있을 때
+            if(!isConnected){
+                Toast.makeText(this,getString(R.string.videointernet),Toast.LENGTH_SHORT).show();
+            }
+
             player.loadVideo(question, randomStart);
 
 
@@ -1010,29 +1022,30 @@ public class QuizMain extends YouTubeBaseActivity {
 
 
     private void showInterstitial() {
-        screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-            @Override
-            public void onAdDismissedFullScreenContent() {
-                super.onAdDismissedFullScreenContent();
-                QuizMain.this.screenAd = null;
-                if (isFinished){
-                    finishQuiz();
-                }
-
-                else{
-                    initPlayer();
-                    showNextQuestion();
-                }
-                LoadAD();
-            }
-        });
-
         if (screenAd != null) {
+            screenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    super.onAdDismissedFullScreenContent();
+                    QuizMain.this.screenAd = null;
+                    if (isFinished){
+                        finishQuiz();
+                    }
+
+                    else{
+                        initPlayer();
+                        showNextQuestion();
+                    }
+                    LoadAD();
+                }
+            });
             screenAd.show(QuizMain.this);
             screenAd = null;
         } else {
-            Toast.makeText(this, getString(R.string.fatalerror), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.waitasecond), Toast.LENGTH_SHORT).show();
             Log.e("TAG","NO SHOW!");
+            LoadAD();
+            showInterstitial();
         }
 
     }
