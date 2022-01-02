@@ -3,15 +3,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.tenriver.kpop"
         minSdkVersion 16
-        targetSdkVersion 31
-        versionCode 215
-        versionName "2.1.5"
+        targetSdkVersion 32
+        versionCode 217
+        versionName "2.1.7"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

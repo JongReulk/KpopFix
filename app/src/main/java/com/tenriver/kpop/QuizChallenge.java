@@ -163,6 +163,8 @@ public class QuizChallenge extends YouTubeBaseActivity {
 
     private int randomAd;
 
+    private boolean isLoaded = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -1034,8 +1036,22 @@ public class QuizChallenge extends YouTubeBaseActivity {
         } else {
             Toast.makeText(this, getString(R.string.waitasecond), Toast.LENGTH_SHORT).show();
             Log.e("TAG","NO SHOW!");
-            LoadAD();
-            showInterstitial();
+            if(!isLoaded) {
+                LoadAD();
+                showInterstitial();
+                isLoaded = true;
+            }
+            else {
+                if (isFinished){
+                    finishQuiz();
+                }
+
+                else{
+                    initPlayer();
+                    showNextQuestion();
+                }
+                LoadAD();
+            }
         }
 
     }
