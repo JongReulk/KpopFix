@@ -34,7 +34,8 @@ import java.util.Random;
 
 public class YearActivity extends AppCompatActivity {
 
-    private static final String BANNER_AD_ID = "ca-app-pub-3940256099942544/6300978111";
+    private static final String BANNER_AD_ID = "ca-app-pub-6633751318337334/4843704975";
+    private static final String BANNER_TESTAD_ID = "ca-app-pub-3940256099942544/6300978111";
 
     private ScrollView year_scroll;
     private ImageButton year_up;
@@ -95,7 +96,7 @@ public class YearActivity extends AppCompatActivity {
         mAdview.loadAd(adRequest);
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("\n" + BANNER_AD_ID);
+        adView.setAdUnitId("\n" + BANNER_TESTAD_ID);
 
         if(!MainActivity.mediaplayer_main.isPlaying())
         {
@@ -230,6 +231,7 @@ public class YearActivity extends AppCompatActivity {
 
                     year_v.setSelected(false);
 
+                    // 선택된 버튼 강조
                     Button year_b = (Button)year_v;
                     year_b.setTextColor(getResources().getColor(R.color.white));
                     year_b.setTextSize(18);
@@ -245,6 +247,7 @@ public class YearActivity extends AppCompatActivity {
 
                     year_down.setEnabled(false);
 
+                    // 너무 빠르게 누르기 방지
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -279,7 +282,7 @@ public class YearActivity extends AppCompatActivity {
                 year_confirm.setTextColor(Color.GRAY);
 
 
-                // 리모콘 애니메이션
+                // 리모콘 애니메이션 (밑으로 내리기)
                 Animation RemoteDown = AnimationUtils.loadAnimation(getApplication(), R.anim.remotemove_down);
                 remote.startAnimation(RemoteDown);
 

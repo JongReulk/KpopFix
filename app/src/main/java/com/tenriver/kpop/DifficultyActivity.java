@@ -46,7 +46,8 @@ import static com.tenriver.kpop.MainActivity.KEY_POINT;
 import static com.tenriver.kpop.MainActivity.SHARED_POINT;
 
 public class  DifficultyActivity extends AppCompatActivity {
-    private static final String BANNER_AD_ID = "ca-app-pub-3940256099942544/6300978111";
+    private static final String BANNER_AD_ID = "ca-app-pub-6633751318337334/4843704975";
+    private static final String BANNER_TESTAD_ID = "ca-app-pub-3940256099942544/6300978111";
 
     private Button easyButton;
     private Button normalButton;
@@ -132,7 +133,7 @@ public class  DifficultyActivity extends AppCompatActivity {
         mAdview.loadAd(adRequest);
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("\n" + BANNER_AD_ID);
+        adView.setAdUnitId("\n" + BANNER_TESTAD_ID);
 
         Uparrowpink = findViewById(R.id.upPink);
         Downarrowpink = findViewById(R.id.downPink);

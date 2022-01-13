@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String CHALLENGEMODE_HIGHSCORE = "challengehighscore";
 
     private static final String REWARD_AD_ID = "ca-app-pub-3940256099942544/5224354917";
-    private static final String BANNER_AD_ID = "ca-app-pub-3940256099942544/6300978111";
+    private static final String BANNER_AD_ID = "ca-app-pub-6633751318337334/4843704975";
+    private static final String BANNER_TESTAD_ID = "ca-app-pub-3940256099942544/6300978111";
 
     //로그인 관련
     private static final int RC_SIGN_IN=9001;
@@ -174,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         mAdview.loadAd(adRequest);
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("\n" + BANNER_AD_ID);
+        adView.setAdUnitId("\n" + BANNER_TESTAD_ID);
 
         rewardAdButton = findViewById(R.id.RewardAdButton);
 

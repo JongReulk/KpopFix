@@ -63,6 +63,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
     public static final String CHALLENGE_HIGH_SCORE = "challengehighScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
     private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
+    private static final String INTERSTITIAL_TESTAD_ID = "ca-app-pub-3940256099942544/1033173712";
 
     private static final String QUIZ_SHARED = "quizshared";
     private static final String CHALLENGE_PLAY_TIME = "challengeplaytime";
