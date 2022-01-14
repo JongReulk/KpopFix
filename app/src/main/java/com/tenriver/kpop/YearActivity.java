@@ -11,6 +11,10 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -54,6 +58,9 @@ public class YearActivity extends AppCompatActivity {
 
     private TextView year_select;
 
+    private Button year_2014;
+    private Button year_2015;
+
     // 모드 선택 변수
     private static final String MODE_SHARED = "modeshared";
     private static final String GAMEMODE_SELECT = "gamemodeselect";
@@ -85,6 +92,25 @@ public class YearActivity extends AppCompatActivity {
 
             }
         });
+
+        year_2014 = findViewById(R.id.year_2014);
+        year_2015 = findViewById(R.id.year_2015);
+
+        String content_2014 = year_2014.getText().toString();
+        String content_2015 = year_2015.getText().toString();
+
+        SpannableString spannableString_2014 = new SpannableString(content_2014);
+        SpannableString spannableString_2015 = new SpannableString(content_2015);
+
+
+        spannableString_2014.setSpan(new ForegroundColorSpan(Color.parseColor("#FFF300")),5,content_2014.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString_2014.setSpan(new RelativeSizeSpan(0.8f),5,content_2014.length(),SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        spannableString_2015.setSpan(new ForegroundColorSpan(Color.parseColor("#FFF300")),5,content_2015.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString_2015.setSpan(new RelativeSizeSpan(0.8f),5,content_2015.length(),SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        year_2014.setText(spannableString_2014);
+        year_2015.setText(spannableString_2015);
 
         // 모드 뭐 선택했는지 가져오기
         SharedPreferences mode_shared = getSharedPreferences(MODE_SHARED,MODE_PRIVATE);
@@ -184,7 +210,8 @@ public class YearActivity extends AppCompatActivity {
         remotebutton_year.startAnimation(RemoteButtonUp);
 
         Button year_b;
-
+        
+        
         button_num = 0;
 
         button_total = year_linear.getChildCount();
@@ -290,7 +317,7 @@ public class YearActivity extends AppCompatActivity {
                 remotebutton_year.startAnimation(RemoteButtonDown);
 
 
-                int year_num = button_num + 2016;
+                int year_num = button_num + 2014;
                 String year_num_string = String.valueOf(year_num);
 
                 year_select.setText(year_num_string);
@@ -299,7 +326,7 @@ public class YearActivity extends AppCompatActivity {
                 {
                     Random random = new Random();
                     int random_year = random.nextInt(button_total-2);
-                    year_num = random_year + 2016;
+                    year_num = random_year + 2014;
                     year_num_string = String.valueOf(year_num);
 
                     year_select.setText(year_num_string);
@@ -320,16 +347,18 @@ public class YearActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        int year_num = button_num + 2016;
+                        int year_num = button_num + 2014;
 
+                        // 랜덤 눌렀을 경우
                         if(button_num == button_total-2)
                         {
                             Random random = new Random();
                             int random_year = random.nextInt(button_total-2);
-                            year_num = random_year + 2016;
+                            year_num = random_year + 2014;
                             Log.e("RANDOM YEAR", " : " + year_num);
                         }
 
+                        // 전체 눌렀을 경우
                         else if(button_num == button_total-1)
                         {
                             year_num = 101; // 전체면 101
@@ -348,6 +377,7 @@ public class YearActivity extends AppCompatActivity {
                         else {
                             Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
                             intent.putExtra("year_num", year_num); // 연도
+                            Log.d("로그", "연도 : " + year_num);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                             startActivityForResult(intent, MainActivity.REQUEST_CODE_QUIZ);
 

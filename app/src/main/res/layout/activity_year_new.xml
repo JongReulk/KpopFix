@@ -186,6 +186,8 @@
 
     </TextView>
 
+
+
     <ScrollView
         android:id="@+id/year_Scrollview"
         android:layout_width="0dp"
@@ -206,6 +208,34 @@
             android:orientation="vertical"
             android:padding="10dp"
             >
+
+            <Button
+                android:id="@+id/year_2014"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_year"
+                android:text="2014 new!"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_digital"
+                android:layout_marginBottom="5dp"
+                >
+            </Button>
+
+            <Button
+                android:id="@+id/year_2015"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_year"
+                android:text="2015 new!"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_digital"
+                android:layout_marginBottom="5dp"
+                >
+            </Button>
 
             <Button
                 android:id="@+id/year_2016"
