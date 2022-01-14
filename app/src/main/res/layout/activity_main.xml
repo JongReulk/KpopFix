@@ -215,10 +215,11 @@
                 android:bufferType="spannable"
                 android:fontFamily="@font/font_digital"
 
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="24sp"
-                android:autoSizeMaxTextSize="40sp"
-                android:autoSizeStepGranularity="2sp"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+
+                android:textSize="36sp"
 
                 app:textStroke="true"
                 app:textStrokeWidth="8.0"

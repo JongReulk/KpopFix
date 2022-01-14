@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -93,6 +95,8 @@ public class YearActivity extends AppCompatActivity {
             }
         });
 
+
+        // 2014, 2015 new 색깔 및 크기 변경
         year_2014 = findViewById(R.id.year_2014);
         year_2015 = findViewById(R.id.year_2015);
 
@@ -103,10 +107,12 @@ public class YearActivity extends AppCompatActivity {
         SpannableString spannableString_2015 = new SpannableString(content_2015);
 
 
-        spannableString_2014.setSpan(new ForegroundColorSpan(Color.parseColor("#FFF300")),5,content_2014.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString_2014.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.deepyellow)),5,content_2014.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString_2014.setSpan(new StyleSpan(R.font.labdigitalfont),5,content_2014.length(),SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString_2014.setSpan(new RelativeSizeSpan(0.8f),5,content_2014.length(),SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        spannableString_2015.setSpan(new ForegroundColorSpan(Color.parseColor("#FFF300")),5,content_2015.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString_2015.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.deepyellow)),5,content_2015.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString_2015.setSpan(new StyleSpan(R.font.labdigitalfont),5,content_2014.length(),SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString_2015.setSpan(new RelativeSizeSpan(0.8f),5,content_2015.length(),SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         year_2014.setText(spannableString_2014);

@@ -16,6 +16,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -253,6 +254,10 @@ public class MainActivity extends AppCompatActivity {
 
         txtbasicHighscore.startAnimation(textfadein);
         txtchallengeHighscore.startAnimation(textfadein);
+
+        txtchallengeHighscore.setSingleLine(true);
+        txtchallengeHighscore.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        txtchallengeHighscore.setSelected(true);
 
 
         //Sound
