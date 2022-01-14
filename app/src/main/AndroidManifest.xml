@@ -59,7 +59,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".WarningActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:exported="false">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

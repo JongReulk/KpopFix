@@ -205,7 +205,7 @@
             <com.tenriver.kpop.OutlineTextView
                 android:id="@+id/txtChallengebestScore"
                 android:layout_marginTop="10dp"
-                android:text="Challenge"
+                android:text="Chall"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:textStyle="bold"
@@ -215,11 +215,11 @@
                 android:bufferType="spannable"
                 android:fontFamily="@font/font_digital"
 
-                android:ellipsize="marquee"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:singleLine="true"
 
-                android:textSize="36sp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="24sp"
+                android:autoSizeMaxTextSize="40sp"
+                android:autoSizeStepGranularity="2sp"
 
                 app:textStroke="true"
                 app:textStrokeWidth="8.0"

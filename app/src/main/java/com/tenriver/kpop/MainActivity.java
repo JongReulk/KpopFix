@@ -255,10 +255,6 @@ public class MainActivity extends AppCompatActivity {
         txtbasicHighscore.startAnimation(textfadein);
         txtchallengeHighscore.startAnimation(textfadein);
 
-        txtchallengeHighscore.setSingleLine(true);
-        txtchallengeHighscore.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-        txtchallengeHighscore.setSelected(true);
-
 
         //Sound
         soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);	//작성
@@ -575,7 +571,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         challengehighscore = prefs.getInt(KEY_CHALLENGEHIGHSCORE, 0);
         if(challengehighscore <= 0) {
-            txtchallengeHighscore.setText("Challenge");
+            txtchallengeHighscore.setText("Chall");
         }
         else{
             txtchallengeHighscore.setText("" + challengehighscore);
