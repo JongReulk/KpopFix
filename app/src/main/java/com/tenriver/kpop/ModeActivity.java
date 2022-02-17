@@ -38,9 +38,6 @@ import static com.tenriver.kpop.MainActivity.SHARED_POINT;
 
 public class ModeActivity extends AppCompatActivity {
 
-    private static final String BANNER_AD_ID = "ca-app-pub-6633751318337334/4843704975";
-    private static final String BANNER_TESTAD_ID = "ca-app-pub-3940256099942544/6300978111";
-
     private boolean isFinished = false;
 
     //Sound
@@ -96,13 +93,6 @@ public class ModeActivity extends AppCompatActivity {
 
             }
         });
-
-        AdView mAdview = findViewById(R.id.mode_adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdview.loadAd(adRequest);
-        AdView adView = new AdView(this);
-        adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("\n" + BANNER_TESTAD_ID);
 
         Uparrowpink = findViewById(R.id.upPink);
         Downarrowpink = findViewById(R.id.downPink);

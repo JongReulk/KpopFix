@@ -16,7 +16,7 @@ import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MyKpopQuiz.db";
-    private static final int DATABASE_VERSION = 22; // 데이터베이스 버전 항상 다르게 하기 ( 2022.01.14 기준 22)
+    private static final int DATABASE_VERSION = 24; // 데이터베이스 버전 항상 다르게 하기 ( 2022.01.15 기준 24)
 
     private SQLiteDatabase db;
 
@@ -432,7 +432,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q372 = new Question("1kcwvcbO8MI", "얼굴찌푸리지말아요","plzdontbesad","얼굴 찌푸리지 말아요 (Plz Don’t Be Sad) - 하이라이트 (Highlight)",2017, "ㅇㄱ ㅉㅍㄹㅈ ㅁㄹㅇ / p** d**t b* s**","하이라이트 (Highlight)");	addQuestion(q372);
         Question q373 = new Question("EVaV7AwqBWg", "에너제틱","energetic","에너제틱 (Energetic) - 워너원(Wanna One)",2017, "ㅇㄴㅈㅌ / e**r**t**","워너원(Wanna One)");	addQuestion(q373);
         Question q374 = new Question("ZsYwEV_ge4Y", "여름비","summerrain","여름비 (Summer Rain) - GFRIEND(여자친구)",2017, "ㅇㄹㅂ / s**m** r**n","GFRIEND(여자친구)");	addQuestion(q374);
-        Question q375 = new Question("De5Lz3QzzWI", "여우야","yeowooya","여우아 (Yeowooya) - 조이 (JOY)",2017, "ㅇㅇㅇ / y**w**y*","조이 (JOY)");	addQuestion(q375);
+        Question q375 = new Question("De5Lz3QzzWI", "여우야","yeowooya","여우야 (Yeowooya) - 조이 (JOY)",2017, "ㅇㅇㅇ / y**w**y*","조이 (JOY)");	addQuestion(q375);
         Question q376 = new Question("Z3INNjAEqHk", "연애소설","lovestory","연애소설 (LOVE STORY) - 에픽하이 (EPIK HIGH)",2017, "ㅇㅇㅅㅅ / l**e s**r*","에픽하이 (EPIK HIGH)");	addQuestion(q376);
         Question q377 = new Question("3q22SInyiX8", "예스터데이","yesterday","YESTERDAY - 블락비 (Block B)",2017, "ㅇㅅㅌㄷㅇ / y**t**d**","블락비 (Block B)");	addQuestion(q377);
         Question q378 = new Question("sUZeYOLp8Ys", "오솔레미오","osolemio","O Sole Mio(오솔레미오) - SF9 (에스에프나인)",2017, "ㅇㅅㄹㅁㅇ / o s**e m**","SF9 (에스에프나인)");	addQuestion(q378);
@@ -763,7 +763,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q703 = new Question("0-snXdhDs1w", "와이낫","whynot","Why Not - LOONA (이달의 소녀)",2020, "ㅇㅇ ㄴ / w** n**","LOONA (이달의 소녀)");	addQuestion(q703);
         Question q704 = new Question("lBYyAQ99ZFI", "왓유웨이팅포","whatyouwaitingfor","What You Waiting For - JEON SOMI (전소미)",2020, "ㅇ ㅇ ㅇㅇㅌ ㅍ / w**t y** w**t**g f**","JEON SOMI (전소미)");	addQuestion(q704);
         Question q705 = new Question("FEI_imQ1Eaw", "우리만남이","butillmissyou","우리 만남이 (But I'll Miss You) - Paul Kim(폴킴)",2020, "ㅇㄹ ㅁㄴㅇ / b** i** m**s y**","Paul Kim(폴킴)");	addQuestion(q705);
-        Question q706 = new Question("M33FPNp8-XE", "우아","wooah"," woo!ah!(우아!) _ Bad Girl",2020, "ㅇㅇ / w** a*","Bad Girl");	addQuestion(q706);
+        Question q706 = new Question("M33FPNp8-XE", "배드걸","badgirl","Bad Girl - woo!ah!(우아!)",2020, "ㅂㄷ ㄱ / b** g**l","woo!ah!(우아!)");	addQuestion(q706);
         Question q707 = new Question("4HjcypoChfQ", "운전만해","weride","운전만해 (We Ride) - 브레이브걸스 (Brave Girls)",2020, "ㅇㅈㅁㅎ / w* r**e","브레이브걸스 (Brave Girls)");	addQuestion(q707);
         Question q708 = new Question("fE2h3lGlOsk", "워너비","wannabe","WANNABE - ITZY(있지)",2020, "ㅇㄴㅂ / w**n**e","ITZY(있지)");	addQuestion(q708);
         Question q709 = new Question("KBuvtmMfdN8", "워너비마이셀프","wannabemyself","WANNA BE MYSELF - 마마무 (MAMAMOO)",2020, "ㅇㄴㅂ ㅁㅇ ㅅㅍ / w**n* b* m**e**","마마무 (MAMAMOO)");	addQuestion(q709);

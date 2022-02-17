@@ -7,8 +7,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
-
     <!-- 모니터 이미지 -->
     <ImageView
         android:id="@+id/Image_TV_main"
@@ -57,7 +55,7 @@
             app:layout_constraintVertical_bias="0.18"
             app:layout_constraintHeight_percent="0.25"
             app:layout_constraintWidth_percent="0.2"
-            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintHorizontal_bias="0.16"
 
             app:textStroke="true"
             app:textStrokeWidth="8.0"
@@ -558,19 +556,6 @@
 
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/mainadView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0"
-        />
 
     <FrameLayout
         android:id="@+id/googlePopup"

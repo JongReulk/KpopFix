@@ -10,8 +10,8 @@ android {
         applicationId "com.tenriver.kpop"
         minSdkVersion 16
         targetSdkVersion 32
-        versionCode 219
-        versionName "2.1.9"
+        versionCode 223
+        versionName "2.2.3"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

@@ -40,8 +40,7 @@ import java.util.Random;
 
 public class YearActivity extends AppCompatActivity {
 
-    private static final String BANNER_AD_ID = "ca-app-pub-6633751318337334/4843704975";
-    private static final String BANNER_TESTAD_ID = "ca-app-pub-3940256099942544/6300978111";
+
 
     private ScrollView year_scroll;
     private ImageButton year_up;
@@ -123,12 +122,6 @@ public class YearActivity extends AppCompatActivity {
 
         mode_select = mode_shared.getInt(GAMEMODE_SELECT,-1);
 
-        mAdview = findViewById(R.id.yearadView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdview.loadAd(adRequest);
-        AdView adView = new AdView(this);
-        adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("\n" + BANNER_TESTAD_ID);
 
         if(!MainActivity.mediaplayer_main.isPlaying())
         {

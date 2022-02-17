@@ -62,7 +62,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
     public static final String HIGH_SCORE = "highScore";
     public static final String CHALLENGE_HIGH_SCORE = "challengehighScore";
     private static final long COUNTDOWN_IN_MILLIS = 30500;
-    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-3940256099942544/1033173712";
+    private static final String INTERSTITIAL_AD_ID = "ca-app-pub-6633751318337334/2526988236";
     private static final String INTERSTITIAL_TESTAD_ID = "ca-app-pub-3940256099942544/1033173712";
 
     private static final String QUIZ_SHARED = "quizshared";
@@ -550,7 +550,7 @@ public class QuizChallenge extends YouTubeBaseActivity {
     private void LoadAD() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        InterstitialAd.load(this,INTERSTITIAL_AD_ID, adRequest,
+        InterstitialAd.load(this,INTERSTITIAL_TESTAD_ID, adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
@@ -1038,9 +1038,9 @@ public class QuizChallenge extends YouTubeBaseActivity {
             Toast.makeText(this, getString(R.string.waitasecond), Toast.LENGTH_SHORT).show();
             Log.e("TAG","NO SHOW!");
             if(!isLoaded) {
+                isLoaded = true;
                 LoadAD();
                 showInterstitial();
-                isLoaded = true;
             }
             else {
                 if (isFinished){
